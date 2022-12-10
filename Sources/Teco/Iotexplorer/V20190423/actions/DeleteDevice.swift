@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 删除设备
-    ///
-    /// 删除设备
     @inlinable
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
         self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除设备
-    ///
     /// 删除设备
     @inlinable
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {

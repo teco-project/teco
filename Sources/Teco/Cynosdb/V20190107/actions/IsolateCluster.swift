@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 隔离集群
-    ///
-    /// 隔离集群
     @inlinable
     public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
         self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 隔离集群
-    ///
     /// 隔离集群
     @inlinable
     public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {

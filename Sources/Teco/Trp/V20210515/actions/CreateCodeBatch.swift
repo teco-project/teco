@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 新增批次
-    ///
-    /// 新增批次
     @inlinable
     public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeBatchResponse > {
         self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增批次
-    ///
     /// 新增批次
     @inlinable
     public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {

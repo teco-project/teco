@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -2354,8 +2353,7 @@ extension Clb {
         /// 后端服务的监听端口。
         /// 注意：绑定CVM（云服务器）或ENI（弹性网卡）时必传此参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// 后端服务的类型，可取：CVM（云服务器）、ENI（弹性网卡）；作为入参时，目前本参数暂不生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2374,7 +2372,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eniIp: String?
         
-        public init (port: Int64?, type: String?, instanceId: String?, weight: Int64?, eniIp: String?) {
+        public init (port: Int64, type: String?, instanceId: String?, weight: Int64?, eniIp: String?) {
             self.port = port
             self.type = type
             self.instanceId = instanceId

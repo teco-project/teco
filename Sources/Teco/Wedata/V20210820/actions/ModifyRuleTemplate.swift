@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 编辑规则模版
-    ///
-    /// 编辑规则模版
     @inlinable
     public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleTemplateResponse > {
         self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑规则模版
-    ///
     /// 编辑规则模版
     @inlinable
     public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleTemplateResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdn {
     /// 删除SCDN域名
-    ///
-    /// 删除SCDN域名
     @inlinable
     public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScdnDomainResponse > {
         self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除SCDN域名
-    ///
     /// 删除SCDN域名
     @inlinable
     public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {

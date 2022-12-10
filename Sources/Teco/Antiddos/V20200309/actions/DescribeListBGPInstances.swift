@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取高防包资产实例列表
-    ///
-    /// 获取高防包资产实例列表
     @inlinable
     public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListBGPInstancesResponse > {
         self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取高防包资产实例列表
-    ///
     /// 获取高防包资产实例列表
     @inlinable
     public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {

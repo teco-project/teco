@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取L7转发规则健康检查异常结果列表
-    ///
-    /// 获取L7转发规则健康检查异常结果列表
     @inlinable
     public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesErrHealthResponse > {
         self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取L7转发规则健康检查异常结果列表
-    ///
     /// 获取L7转发规则健康检查异常结果列表
     @inlinable
     public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {

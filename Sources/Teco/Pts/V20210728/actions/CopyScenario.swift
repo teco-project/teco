@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 复制场景
-    ///
-    /// 复制场景
     @inlinable
     public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyScenarioResponse > {
         self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 复制场景
-    ///
     /// 复制场景
     @inlinable
     public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {

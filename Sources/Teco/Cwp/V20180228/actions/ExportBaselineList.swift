@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 导出基线列表
-    ///
-    /// 导出基线列表
     @inlinable
     public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineListResponse > {
         self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出基线列表
-    ///
     /// 导出基线列表
     @inlinable
     public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {

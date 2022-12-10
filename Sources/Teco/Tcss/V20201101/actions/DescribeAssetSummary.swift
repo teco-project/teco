@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询账户容器、镜像等统计信息
-    ///
-    /// 查询账户容器、镜像等统计信息
     @inlinable
     public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSummaryResponse > {
         self.client.execute(action: "DescribeAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询账户容器、镜像等统计信息
-    ///
     /// 查询账户容器、镜像等统计信息
     @inlinable
     public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSummaryResponse {

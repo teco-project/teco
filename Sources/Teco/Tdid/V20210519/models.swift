@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -309,20 +308,17 @@ extension Tdid {
         
         /// 凭证摘要
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let digest: String?
+        public let digest: String
         
         /// 凭证签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let signature: String?
+        public let signature: String
         
         /// 更新时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let timeStamp: UInt64?
+        public let timeStamp: UInt64
         
-        public init (credentialId: String, status: UInt64, issuer: String, digest: String?, signature: String?, timeStamp: UInt64?) {
+        public init (credentialId: String, status: UInt64, issuer: String, digest: String, signature: String, timeStamp: UInt64) {
             self.credentialId = credentialId
             self.status = status
             self.issuer = issuer

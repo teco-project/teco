@@ -58,6 +58,9 @@ public struct TCCiamError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -111,10 +114,12 @@ public struct TCCiamError: TCErrorType {
         TCCiamError(.failedOperation_EmailIsNull)
     }
     
+    /// 在接口中传入用户数据。
     public static var failedOperation_ImportUserIsEmpty: TCCiamError {
         TCCiamError(.failedOperation_ImportUserIsEmpty)
     }
     
+    /// indexedAttribute最长512字符。
     public static var failedOperation_IndexedAttributeTooLong: TCCiamError {
         TCCiamError(.failedOperation_IndexedAttributeTooLong)
     }
@@ -154,14 +159,17 @@ public struct TCCiamError: TCErrorType {
         TCCiamError(.failedOperation_PrimaryUserNotFound)
     }
     
+    /// 查询条件必须包含id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId, qqUnionId,lastModifiedDate, createdDate,indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5中的一个或者多个。
     public static var failedOperation_QueryUsersParameterMustInWhitelist: TCCiamError {
         TCCiamError(.failedOperation_QueryUsersParameterMustInWhitelist)
     }
     
+    /// 将filter中的重复propertyKey去掉。
     public static var failedOperation_QueryUsersParameterRepeat: TCCiamError {
         TCCiamError(.failedOperation_QueryUsersParameterRepeat)
     }
     
+    /// Sort条件的PropertyKey必须在id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId,qqUnionId,lastModifiedDate, createdDate,indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5中。
     public static var failedOperation_QueryUsersSortParameterMustInWhitelist: TCCiamError {
         TCCiamError(.failedOperation_QueryUsersSortParameterMustInWhitelist)
     }
@@ -192,6 +200,8 @@ public struct TCCiamError: TCErrorType {
     }
     
     /// 用户名不能为空。
+    ///
+    /// 报文中添加用户名UserName。
     public static var failedOperation_UserNameIsNull: TCCiamError {
         TCCiamError(.failedOperation_UserNameIsNull)
     }
@@ -322,5 +332,15 @@ extension TCCiamError: Equatable {
 extension TCCiamError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCiamError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dc {
     /// 获取用户互联网公网地址信息
-    ///
-    /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
         self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户互联网公网地址信息
-    ///
     /// 获取用户互联网公网地址信息
     @inlinable
     public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 获取应用实例列表
-    ///
-    /// 获取应用实例列表
     @inlinable
     public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationPodsResponse > {
         self.client.execute(action: "DescribeApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取应用实例列表
-    ///
     /// 获取应用实例列表
     @inlinable
     public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationPodsResponse {

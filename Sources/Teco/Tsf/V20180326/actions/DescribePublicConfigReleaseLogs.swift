@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 查询公共配置发布历史
-    ///
-    /// 查询公共配置发布历史
     @inlinable
     public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigReleaseLogsResponse > {
         self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询公共配置发布历史
-    ///
     /// 查询公共配置发布历史
     @inlinable
     public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {

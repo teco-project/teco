@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tci {
     /// 人脸考勤查询结果
-    ///
-    /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttendanceResultResponse > {
         self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 人脸考勤查询结果
-    ///
     /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {

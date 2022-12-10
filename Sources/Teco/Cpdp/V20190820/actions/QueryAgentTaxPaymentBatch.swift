@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 直播平台-查询批次信息
-    ///
-    /// 直播平台-查询批次信息
     @inlinable
     public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentTaxPaymentBatchResponse > {
         self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-查询批次信息
-    ///
     /// 直播平台-查询批次信息
     @inlinable
     public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 判断集成任务名称是否存在
-    ///
-    /// 判断集成任务名称是否存在
     @inlinable
     public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationTaskNameExistsResponse > {
         self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 判断集成任务名称是否存在
-    ///
     /// 判断集成任务名称是否存在
     @inlinable
     public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {

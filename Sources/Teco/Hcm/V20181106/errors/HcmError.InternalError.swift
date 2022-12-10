@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCHcmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -46,11 +48,15 @@ extension TCHcmError {
         }
         
         /// 引擎请求失败。
+        ///
+        /// 请检查图片是否正确后重试请求。
         public static var engineRequestFailed: InternalError {
             InternalError(.engineRequestFailed)
         }
         
         /// 引擎识别失败。
+        ///
+        /// 请检查图片是否正确后重试请求。
         public static var engineResultError: InternalError {
             InternalError(.engineResultError)
         }
@@ -80,10 +86,21 @@ extension TCHcmError.InternalError: CustomStringConvertible {
 }
 
 extension TCHcmError.InternalError {
+    /// - Returns: ``TCHcmError`` that holds the same error and context.
     public func toHcmError() -> TCHcmError {
         guard let code = TCHcmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCHcmError(code, context: self.context)
+    }
+}
+
+extension TCHcmError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

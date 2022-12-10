@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 设备告警-删除告警
-    ///
-    /// 设备告警-删除告警
     @inlinable
     public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWarningResponse > {
         self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设备告警-删除告警
-    ///
     /// 设备告警-删除告警
     @inlinable
     public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {

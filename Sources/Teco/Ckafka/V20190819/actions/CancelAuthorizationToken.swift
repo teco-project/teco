@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 取消授权token
-    ///
-    /// 取消授权token
     @inlinable
     public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorizationTokenResponse > {
         self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消授权token
-    ///
     /// 取消授权token
     @inlinable
     public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {

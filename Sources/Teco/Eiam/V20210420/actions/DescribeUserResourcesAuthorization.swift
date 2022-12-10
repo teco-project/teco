@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 查询指定用户下的资源授权列表
-    ///
-    /// 查询指定用户下的资源授权列表
     @inlinable
     public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResourcesAuthorizationResponse > {
         self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询指定用户下的资源授权列表
-    ///
     /// 查询指定用户下的资源授权列表
     @inlinable
     public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {

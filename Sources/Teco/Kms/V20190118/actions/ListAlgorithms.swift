@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Kms {
     /// 列出当前Region支持的加密方式
-    ///
-    /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAlgorithmsResponse > {
         self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出当前Region支持的加密方式
-    ///
     /// 列出当前Region支持的加密方式
     @inlinable
     public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 运营中心-设备录像存储统计
-    ///
-    /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
         self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运营中心-设备录像存储统计
-    ///
     /// 运营中心-设备录像存储统计
     @inlinable
     public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {

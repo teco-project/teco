@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -37,6 +36,9 @@ extension TCMnaError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -51,41 +53,57 @@ extension TCMnaError {
         }
         
         /// 不建议加速。
+        ///
+        /// 网络状况较良好，不建议发起加速。
         public static var accelerationNotSuggest: OperationDenied {
             OperationDenied(.accelerationNotSuggest)
         }
         
         /// 相同加速间隔时间过短。
+        ///
+        /// 加速成功并且未取消，加速结束前5秒不能再发起相同源IP和目标IP的加速
         public static var createQosExceedLimit: OperationDenied {
             OperationDenied(.createQosExceedLimit)
         }
         
         /// 中国电信加速token过期。
+        ///
+        /// 重新申请中国电信加速token。
         public static var ctccTokenExpired: OperationDenied {
             OperationDenied(.ctccTokenExpired)
         }
         
         /// 请求运营商加速超时。
+        ///
+        /// 运营商返回超时，请稍后重试。
         public static var requestQosTimeout: OperationDenied {
             OperationDenied(.requestQosTimeout)
         }
         
         /// 该用户加速已取消，不处于加速状态。
+        ///
+        /// 该用户已不在加速状态，不用再重复取消加速
         public static var userNonAccelerated: OperationDenied {
             OperationDenied(.userNonAccelerated)
         }
         
         /// 该用户不在运营商网络可加速范围内
+        ///
+        /// 请检查用户IP地址信息是否填写正确，填写的是蜂窝网络下的IP，若正确可能是运营商目前不支持该用户手机卡类型的加速
         public static var userOutOfCoverage: OperationDenied {
             OperationDenied(.userOutOfCoverage)
         }
         
         /// 运营商返回结果错误。
+        ///
+        /// 该错误可能由于当前用户网络下运营商无法保证该用户加速导致。
         public static var vendorReturnError: OperationDenied {
             OperationDenied(.vendorReturnError)
         }
         
         /// 运营商服务器临时错误。
+        ///
+        /// 运营商服务器临时错误，请稍后重试。
         public static var vendorServerError: OperationDenied {
             OperationDenied(.vendorServerError)
         }
@@ -110,10 +128,21 @@ extension TCMnaError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCMnaError.OperationDenied {
+    /// - Returns: ``TCMnaError`` that holds the same error and context.
     public func toMnaError() -> TCMnaError {
         guard let code = TCMnaError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCMnaError(code, context: self.context)
+    }
+}
+
+extension TCMnaError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

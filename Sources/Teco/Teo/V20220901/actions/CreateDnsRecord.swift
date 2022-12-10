@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 创建 DNS 记录
-    ///
-    /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
         self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建 DNS 记录
-    ///
     /// 创建 DNS 记录
     @inlinable
     public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {

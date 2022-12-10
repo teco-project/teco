@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ciam {
     /// 新建接口导入用户任务
-    ///
-    /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
         self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新建接口导入用户任务
-    ///
     /// 新建接口导入用户任务
     @inlinable
     public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {

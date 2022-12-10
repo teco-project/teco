@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 调用长安链体验网络合约执行交易
-    ///
-    /// 调用长安链体验网络合约执行交易
     @inlinable
     public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeChainMakerDemoContractResponse > {
         self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 调用长安链体验网络合约执行交易
-    ///
     /// 调用长安链体验网络合约执行交易
     @inlinable
     public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {

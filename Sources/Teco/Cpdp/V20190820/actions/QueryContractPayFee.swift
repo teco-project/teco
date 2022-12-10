@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云支付-查询支付方式费率及自定义表单项接口
-    ///
-    /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
     public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractPayFeeResponse > {
         self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云支付-查询支付方式费率及自定义表单项接口
-    ///
     /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
     public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {

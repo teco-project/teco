@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Cr {
     /// 导出机器人数据
-    ///
-    /// 导出机器人数据
     @inlinable
     public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBotDataResponse > {
         self.client.execute(action: "ExportBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出机器人数据
-    ///
     /// 导出机器人数据
     @inlinable
     public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBotDataResponse {

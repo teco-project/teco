@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iot {
     /// 获取转发规则信息
-    ///
-    /// 获取转发规则信息
     @inlinable
     public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuleResponse > {
         self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取转发规则信息
-    ///
     /// 获取转发规则信息
     @inlinable
     public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {

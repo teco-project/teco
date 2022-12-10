@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 获取角色权限边界
-    ///
-    /// 获取角色权限边界
     @inlinable
     public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRolePermissionBoundaryResponse > {
         self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取角色权限边界
-    ///
     /// 获取角色权限边界
     @inlinable
     public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {

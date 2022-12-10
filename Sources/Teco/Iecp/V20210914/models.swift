@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -254,8 +253,7 @@ extension Iecp {
         
         /// 卷挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let volumeMounts: [VolumeMount]?
+        public let volumeMounts: [VolumeMount]
         
         /// cpu最低配置
         public let cpuRequest: String
@@ -296,7 +294,7 @@ extension Iecp {
         /// 就绪探针配置
         public let readinessProbe: Probe
         
-        public init (name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount]?, cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String?, resourceMapCloud: [KeyValueObj]?, envs: [Env]?, workingDir: String?, commands: [String]?, args: [String]?, securityContext: SecurityContext, readinessProbe: Probe) {
+        public init (name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount], cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String?, resourceMapCloud: [KeyValueObj]?, envs: [Env]?, workingDir: String?, commands: [String]?, args: [String]?, securityContext: SecurityContext, readinessProbe: Probe) {
             self.name = name
             self.imageName = imageName
             self.imageVersion = imageVersion
@@ -421,8 +419,7 @@ extension Iecp {
     public struct DockerConfig: TCInputModel, TCOutputModel {
         /// 镜像仓库地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let registryDomain: String?
+        public let registryDomain: String
         
         /// 用户名
         public let userName: String
@@ -430,7 +427,7 @@ extension Iecp {
         /// 密码
         public let password: String
         
-        public init (registryDomain: String?, userName: String, password: String) {
+        public init (registryDomain: String, userName: String, password: String) {
             self.registryDomain = registryDomain
             self.userName = userName
             self.password = password
@@ -1185,15 +1182,13 @@ extension Iecp {
     public struct HttpHeader: TCInputModel, TCOutputModel {
         /// HTTP头的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// HTTP头的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let value: String?
+        public let value: String
         
-        public init (name: String?, value: String?) {
+        public init (name: String, value: String) {
             self.name = name
             self.value = value
         }
@@ -1208,13 +1203,11 @@ extension Iecp {
     public struct HttpProbe: TCInputModel, TCOutputModel {
         /// 请求路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let path: String?
+        public let path: String
         
         /// 请求端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// 请求地址，默认Pod的IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1228,7 +1221,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [HttpHeader]?
         
-        public init (path: String?, port: Int64?, host: String?, scheme: String?, headers: [HttpHeader]?) {
+        public init (path: String, port: Int64, host: String?, scheme: String?, headers: [HttpHeader]?) {
             self.path = path
             self.port = port
             self.host = host
@@ -2095,10 +2088,9 @@ extension Iecp {
     public struct TcpProbe: TCInputModel, TCOutputModel {
         /// 连接端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
-        public init (port: Int64?) {
+        public init (port: Int64) {
             self.port = port
         }
         

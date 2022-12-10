@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Yunjing {
     /// 删除服务器关联的标签
-    ///
-    /// 删除服务器关联的标签
     @inlinable
     public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineTagResponse > {
         self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除服务器关联的标签
-    ///
     /// 删除服务器关联的标签
     @inlinable
     public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {

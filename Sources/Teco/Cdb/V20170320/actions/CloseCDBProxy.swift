@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdb {
     /// 关闭数据库代理
-    ///
-    /// 关闭数据库代理
     @inlinable
     public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseCDBProxyResponse > {
         self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关闭数据库代理
-    ///
     /// 关闭数据库代理
     @inlinable
     public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {

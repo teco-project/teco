@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -91,6 +90,9 @@ extension TCAsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -119,6 +121,8 @@ extension TCAsError {
         }
         
         /// 通知接收端类型冲突。
+        ///
+        /// 请根据通知接收端类型，设置匹配的接收对象。
         public static var conflictNotificationTarget: InvalidParameterValue {
             InvalidParameterValue(.conflictNotificationTarget)
         }
@@ -178,6 +182,8 @@ extension TCAsError {
         }
         
         /// 指定的镜像不存在。
+        ///
+        /// 请尝试更换镜像。
         public static var imageNotFound: InvalidParameterValue {
             InvalidParameterValue(.imageNotFound)
         }
@@ -242,6 +248,8 @@ extension TCAsError {
         }
         
         /// 输入的启动配置无效。
+        ///
+        /// 请确认启动配置信息的完整性及正确性。
         public static var invalidLaunchConfiguration: InvalidParameterValue {
             InvalidParameterValue(.invalidLaunchConfiguration)
         }
@@ -429,10 +437,21 @@ extension TCAsError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCAsError.InvalidParameterValue {
+    /// - Returns: ``TCAsError`` that holds the same error and context.
     public func toAsError() -> TCAsError {
         guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCAsError(code, context: self.context)
+    }
+}
+
+extension TCAsError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

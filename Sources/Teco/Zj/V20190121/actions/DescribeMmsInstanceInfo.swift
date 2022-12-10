@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Zj {
     /// 获取彩信实例信息
-    ///
-    /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceInfoResponse > {
         self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取彩信实例信息
-    ///
     /// 获取彩信实例信息
     @inlinable
     public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {

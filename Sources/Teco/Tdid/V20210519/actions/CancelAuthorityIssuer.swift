@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 撤消权威机构认证
-    ///
-    /// 撤消权威机构认证
     @inlinable
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorityIssuerResponse > {
         self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 撤消权威机构认证
-    ///
     /// 撤消权威机构认证
     @inlinable
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Cr {
     /// 查看黑名单数据列表
-    ///
-    /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
         self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看黑名单数据列表
-    ///
     /// 查看黑名单数据列表
     @inlinable
     public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {

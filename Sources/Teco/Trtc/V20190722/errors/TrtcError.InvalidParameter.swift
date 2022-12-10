@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -66,6 +65,9 @@ extension TCTrtcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -100,6 +102,8 @@ extension TCTrtcError {
         }
         
         /// 后缀名校验失败。
+        ///
+        /// 请输入合法的后缀名。
         public static var checkSuffixFailed: InvalidParameter {
             InvalidParameter(.checkSuffixFailed)
         }
@@ -214,6 +218,7 @@ extension TCTrtcError {
             InvalidParameter(.startTimeExpire)
         }
         
+        /// 详情请见:https://cloud.tencent.com/document/product/647/81331。
         public static var startTimeOversize: InvalidParameter {
             InvalidParameter(.startTimeOversize)
         }
@@ -282,10 +287,21 @@ extension TCTrtcError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCTrtcError.InvalidParameter {
+    /// - Returns: ``TCTrtcError`` that holds the same error and context.
     public func toTrtcError() -> TCTrtcError {
         guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTrtcError(code, context: self.context)
+    }
+}
+
+extension TCTrtcError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

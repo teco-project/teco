@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -58,6 +57,9 @@ extension TCLighthouseError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -182,6 +184,8 @@ extension TCLighthouseError {
         }
         
         /// 计费资源中心删除资源失败。
+        ///
+        /// 请稍后再次重试。
         public static var postDestroyResourceFailed: UnsupportedOperation {
             UnsupportedOperation(.postDestroyResourceFailed)
         }
@@ -210,6 +214,7 @@ extension TCLighthouseError {
             UnsupportedOperation(.windowsNotAllowToAssociateKeyPair)
         }
         
+        /// 请不要对windows类型实例进行密钥对功能操作，或者将实例更换为Linux类型实例。
         public static var windowsNotSupportKeyPair: UnsupportedOperation {
             UnsupportedOperation(.windowsNotSupportKeyPair)
         }
@@ -234,10 +239,21 @@ extension TCLighthouseError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCLighthouseError.UnsupportedOperation {
+    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
     public func toLighthouseError() -> TCLighthouseError {
         guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCLighthouseError(code, context: self.context)
+    }
+}
+
+extension TCLighthouseError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

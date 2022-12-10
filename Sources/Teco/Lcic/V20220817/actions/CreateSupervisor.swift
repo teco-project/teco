@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Lcic {
     /// 创建巡课
-    ///
-    /// 创建巡课
     @inlinable
     public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
         self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建巡课
-    ///
     /// 创建巡课
     @inlinable
     public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {

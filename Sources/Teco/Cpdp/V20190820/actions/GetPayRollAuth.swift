@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 务工卡-查询授权关系
-    ///
-    /// 务工卡-查询授权关系
     @inlinable
     public func getPayRollAuth(_ input: GetPayRollAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResponse > {
         self.client.execute(action: "GetPayRollAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 务工卡-查询授权关系
-    ///
     /// 务工卡-查询授权关系
     @inlinable
     public func getPayRollAuth(_ input: GetPayRollAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResponse {

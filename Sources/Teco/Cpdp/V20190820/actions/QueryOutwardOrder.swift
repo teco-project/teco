@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 跨境-查询汇出结果
-    ///
-    /// 跨境-查询汇出结果
     @inlinable
     public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
         self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 跨境-查询汇出结果
-    ///
     /// 跨境-查询汇出结果
     @inlinable
     public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {

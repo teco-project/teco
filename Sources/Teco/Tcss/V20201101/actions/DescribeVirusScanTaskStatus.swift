@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 运行时查询文件查杀任务状态
-    ///
-    /// 运行时查询文件查杀任务状态
     @inlinable
     public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanTaskStatusResponse > {
         self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运行时查询文件查杀任务状态
-    ///
     /// 运行时查询文件查杀任务状态
     @inlinable
     public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {

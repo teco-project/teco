@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bm {
     /// 解除标签与预授权规则的绑定
-    ///
-    /// 解除标签与预授权规则的绑定
     @inlinable
     public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPsaTagResponse > {
         self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 解除标签与预授权规则的绑定
-    ///
     /// 解除标签与预授权规则的绑定
     @inlinable
     public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取高危命令规则列表
-    ///
-    /// 获取高危命令规则列表
     @inlinable
     public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashRulesResponse > {
         self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取高危命令规则列表
-    ///
     /// 获取高危命令规则列表
     @inlinable
     public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {

@@ -177,6 +177,9 @@ public struct TCPostgresError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -215,6 +218,7 @@ public struct TCPostgresError: TCErrorType {
         TCPostgresError(.failedOperation)
     }
     
+    /// 请前往标签控制台添加配额，如果持续不成功，请联系客服进行处理。
     public static var failedOperation_AllocateQuotasError: TCPostgresError {
         TCPostgresError(.failedOperation_AllocateQuotasError)
     }
@@ -1037,5 +1041,15 @@ extension TCPostgresError: Equatable {
 extension TCPostgresError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCPostgresError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

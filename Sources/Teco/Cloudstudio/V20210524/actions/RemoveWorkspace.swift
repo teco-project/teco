@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudstudio {
     /// 删除工作空间
-    ///
-    /// 删除工作空间
     @inlinable
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
         self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除工作空间
-    ///
     /// 删除工作空间
     @inlinable
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {

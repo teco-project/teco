@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询agent安装命令
-    ///
-    /// 查询agent安装命令
     @inlinable
     public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentInstallCommandResponse > {
         self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询agent安装命令
-    ///
     /// 查询agent安装命令
     @inlinable
     public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {

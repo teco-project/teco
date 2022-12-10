@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cat {
     /// 批量创建拨测任务
-    ///
-    /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProbeTasksResponse > {
         self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量创建拨测任务
-    ///
     /// 批量创建拨测任务
     @inlinable
     public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {

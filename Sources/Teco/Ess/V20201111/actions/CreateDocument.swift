@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,7 +18,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDocumentResponse > {
@@ -29,7 +28,7 @@ extension Ess {
     /// 创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {

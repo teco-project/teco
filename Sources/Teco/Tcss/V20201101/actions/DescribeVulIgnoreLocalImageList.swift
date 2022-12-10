@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询漏洞扫描忽略的本地镜像列表
-    ///
-    /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
     public func describeVulIgnoreLocalImageList(_ input: DescribeVulIgnoreLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreLocalImageListResponse > {
         self.client.execute(action: "DescribeVulIgnoreLocalImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询漏洞扫描忽略的本地镜像列表
-    ///
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
     public func describeVulIgnoreLocalImageList(_ input: DescribeVulIgnoreLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreLocalImageListResponse {

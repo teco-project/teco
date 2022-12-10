@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 删除数据集
-    ///
-    /// 删除数据集
     @inlinable
     public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatasetResponse > {
         self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除数据集
-    ///
     /// 删除数据集
     @inlinable
     public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {

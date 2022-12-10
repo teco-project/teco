@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfs {
     /// 文件系统快照概览
-    ///
-    /// 文件系统快照概览
     @inlinable
     public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotOverviewResponse > {
         self.client.execute(action: "DescribeCfsSnapshotOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 文件系统快照概览
-    ///
     /// 文件系统快照概览
     @inlinable
     public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotOverviewResponse {

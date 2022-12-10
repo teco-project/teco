@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 清空订阅者消息标签
-    ///
-    /// 清空订阅者消息标签
     @inlinable
     public func clearSubscriptionFilterTags(_ input: ClearSubscriptionFilterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearSubscriptionFilterTagsResponse > {
         self.client.execute(action: "ClearSubscriptionFilterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 清空订阅者消息标签
-    ///
     /// 清空订阅者消息标签
     @inlinable
     public func clearSubscriptionFilterTags(_ input: ClearSubscriptionFilterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearSubscriptionFilterTagsResponse {

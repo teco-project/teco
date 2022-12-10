@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 元数据锁
-    ///
-    /// 元数据锁
     @inlinable
     public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockMetaDataResponse > {
         self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 元数据锁
-    ///
     /// 元数据锁
     @inlinable
     public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {

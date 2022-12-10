@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取防护概览的ddos攻击事件
-    ///
-    /// 获取防护概览的ddos攻击事件
     @inlinable
     public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
         self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取防护概览的ddos攻击事件
-    ///
     /// 获取防护概览的ddos攻击事件
     @inlinable
     public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {

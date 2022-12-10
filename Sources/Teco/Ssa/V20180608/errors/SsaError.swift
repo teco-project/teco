@@ -32,6 +32,9 @@ public struct TCSsaError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -51,6 +54,8 @@ public struct TCSsaError: TCErrorType {
     }
     
     /// 云上资产、安全配置、合规风险配置、互联网攻击面测绘模块未授权。
+    ///
+    /// 引导客户进行模块授权
     public static var authFailure_AuthModuleFailed: TCSsaError {
         TCSsaError(.authFailure_AuthModuleFailed)
     }
@@ -171,5 +176,15 @@ extension TCSsaError: Equatable {
 extension TCSsaError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSsaError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

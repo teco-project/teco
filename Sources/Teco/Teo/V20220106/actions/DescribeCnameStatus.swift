@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 查询域名 CNAME 状态
-    ///
-    /// 查询域名 CNAME 状态
     @inlinable
     public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCnameStatusResponse > {
         self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询域名 CNAME 状态
-    ///
     /// 查询域名 CNAME 状态
     @inlinable
     public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCnameStatusResponse {

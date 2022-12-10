@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 查询账户余额
-    ///
-    /// 查询账户余额
     @inlinable
     public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceResponse > {
         self.client.execute(action: "DescribeBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询账户余额
-    ///
     /// 查询账户余额
     @inlinable
     public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceResponse {

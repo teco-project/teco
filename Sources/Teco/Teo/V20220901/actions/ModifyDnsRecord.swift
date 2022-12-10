@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 修改 DNS 记录
-    ///
-    /// 修改 DNS 记录
     @inlinable
     public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnsRecordResponse > {
         self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改 DNS 记录
-    ///
     /// 修改 DNS 记录
     @inlinable
     public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {

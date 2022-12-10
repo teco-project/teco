@@ -43,6 +43,9 @@ public struct TCSsmError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -132,6 +135,8 @@ public struct TCSsmError: TCErrorType {
     }
     
     /// 角色不存在。
+    ///
+    /// 检查调用方账号中是否已定义该接口所需的角色。
     public static var operationDenied_RoleNotExist: TCSsmError {
         TCSsmError(.operationDenied_RoleNotExist)
     }
@@ -237,5 +242,15 @@ extension TCSsmError: Equatable {
 extension TCSsmError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSsmError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

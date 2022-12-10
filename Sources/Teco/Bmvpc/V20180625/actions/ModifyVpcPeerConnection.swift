@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 修改黑石对等连接
-    ///
-    /// 修改黑石对等连接
     @inlinable
     public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcPeerConnectionResponse > {
         self.client.execute(action: "ModifyVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改黑石对等连接
-    ///
     /// 修改黑石对等连接
     @inlinable
     public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeerConnectionResponse {

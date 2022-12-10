@@ -109,6 +109,9 @@ public struct TCTrtcError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -268,6 +271,8 @@ public struct TCTrtcError: TCErrorType {
     }
     
     /// 后缀名校验失败。
+    ///
+    /// 请输入合法的后缀名。
     public static var invalidParameter_CheckSuffixFailed: TCTrtcError {
         TCTrtcError(.invalidParameter_CheckSuffixFailed)
     }
@@ -382,6 +387,7 @@ public struct TCTrtcError: TCErrorType {
         TCTrtcError(.invalidParameter_StartTimeExpire)
     }
     
+    /// 详情请见:https://cloud.tencent.com/document/product/647/81331。
     public static var invalidParameter_StartTimeOversize: TCTrtcError {
         TCTrtcError(.invalidParameter_StartTimeOversize)
     }
@@ -630,5 +636,15 @@ extension TCTrtcError: Equatable {
 extension TCTrtcError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTrtcError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

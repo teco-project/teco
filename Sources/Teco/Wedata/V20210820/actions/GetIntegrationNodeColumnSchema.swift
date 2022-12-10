@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 提取数据集成节点字段Schema
-    ///
-    /// 提取数据集成节点字段Schema
     @inlinable
     public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
         self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 提取数据集成节点字段Schema
-    ///
     /// 提取数据集成节点字段Schema
     @inlinable
     public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {

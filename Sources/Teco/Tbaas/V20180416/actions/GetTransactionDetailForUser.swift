@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 获取交易详情
-    ///
-    /// 获取交易详情
     @inlinable
     public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTransactionDetailForUserResponse > {
         self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取交易详情
-    ///
     /// 获取交易详情
     @inlinable
     public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {

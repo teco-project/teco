@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 手动备份Redis实例
-    ///
-    /// 手动备份Redis实例
     @inlinable
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
         self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 手动备份Redis实例
-    ///
     /// 手动备份Redis实例
     @inlinable
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {

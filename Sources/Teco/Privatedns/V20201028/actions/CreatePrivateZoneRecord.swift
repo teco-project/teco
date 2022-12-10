@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Privatedns {
     /// 添加私有域解析记录
-    ///
-    /// 添加私有域解析记录
     @inlinable
     public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneRecordResponse > {
         self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加私有域解析记录
-    ///
     /// 添加私有域解析记录
     @inlinable
     public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {

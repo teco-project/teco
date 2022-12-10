@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 修改爆破阻断模式
-    ///
-    /// 修改爆破阻断模式
     @inlinable
     public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanModeResponse > {
         self.client.execute(action: "ModifyBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改爆破阻断模式
-    ///
     /// 修改爆破阻断模式
     @inlinable
     public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {

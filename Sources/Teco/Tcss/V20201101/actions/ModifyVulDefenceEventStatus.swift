@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 修改漏洞防御事件状态
-    ///
-    /// 修改漏洞防御事件状态
     @inlinable
     public func modifyVulDefenceEventStatus(_ input: ModifyVulDefenceEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVulDefenceEventStatusResponse > {
         self.client.execute(action: "ModifyVulDefenceEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改漏洞防御事件状态
-    ///
     /// 修改漏洞防御事件状态
     @inlinable
     public func modifyVulDefenceEventStatus(_ input: ModifyVulDefenceEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceEventStatusResponse {

@@ -83,6 +83,9 @@ public struct TCCmeError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -112,11 +115,15 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 云点播用户无效。
+    ///
+    /// 检查云点播业务状态，如未开通云点播请开通云点播，如欠费停服请充正开服。
     public static var failedOperation_InvalidVodUser: TCCmeError {
         TCCmeError(.failedOperation_InvalidVodUser)
     }
     
     /// 直播录制功能暂未对使用腾讯云点播存储的平台开放。
+    ///
+    /// 请在非腾讯云点播存储的平台使用直播录制相关功能。
     public static var failedOperation_RecordNotSupport: TCCmeError {
         TCCmeError(.failedOperation_RecordNotSupport)
     }
@@ -127,6 +134,8 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 非法操作，导播中正在工作中。
+    ///
+    /// 先停止导播中。
     public static var failedOperation_SwitcherOnWorking: TCCmeError {
         TCCmeError(.failedOperation_SwitcherOnWorking)
     }
@@ -216,6 +225,8 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 原始媒资信息不存在。
+    ///
+    /// 检查填写的原始媒资信息是否有效。
     public static var invalidParameterValue_ExternalMediaInfoNotExist: TCCmeError {
         TCCmeError(.invalidParameterValue_ExternalMediaInfoNotExist)
     }
@@ -261,6 +272,8 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 非团队成员。
+    ///
+    /// 检查操作者是否是团队成员。
     public static var invalidParameterValue_NotTeamMemberError: TCCmeError {
         TCCmeError(.invalidParameterValue_NotTeamMemberError)
     }
@@ -306,6 +319,8 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 轨道素材替换类型无效或不匹配。
+    ///
+    /// 需要保证新替换的素材类型与模板的素材类型一致，视频只能使用视频替换，音频只能使用音频替换。
     public static var invalidParameterValue_ReplacementType: TCCmeError {
         TCCmeError(.invalidParameterValue_ReplacementType)
     }
@@ -341,11 +356,15 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 导播台项目输入信息无效。
+    ///
+    /// 更新导播台项目输入信息。
     public static var invalidParameterValue_SwitcherProjectInput: TCCmeError {
         TCCmeError(.invalidParameterValue_SwitcherProjectInput)
     }
     
     /// 任务 Id 无效。
+    ///
+    /// 检查任务  Id 是否存在。
     public static var invalidParameterValue_TaskId: TCCmeError {
         TCCmeError(.invalidParameterValue_TaskId)
     }
@@ -406,21 +425,29 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 您已超过推流时长限制，若还需使用，请升级会员版本或购买资源包。
+    ///
+    /// 升级会员版本，或联系商务。
     public static var limitExceeded_BillItemLiveDispatchDuration: TCCmeError {
         TCCmeError(.limitExceeded_BillItemLiveDispatchDuration)
     }
     
     /// 您已达到转推并发数上限，若还需使用，请升级会员版本或购买资源包。
+    ///
+    /// 升级会员版本，或联系商务。
     public static var limitExceeded_BillItemLiveDispatchMaxCount: TCCmeError {
         TCCmeError(.limitExceeded_BillItemLiveDispatchMaxCount)
     }
     
     /// 存储空间不足，请查看会员权益，购买资源包或会员版本后继续使用。
+    ///
+    /// 升级会员版本，或联系商务。
     public static var limitExceeded_BillItemStorage: TCCmeError {
         TCCmeError(.limitExceeded_BillItemStorage)
     }
     
     /// 您已达到导出视频时长上限，若还需使用，请升级会员版本或购买资源包。
+    ///
+    /// 升级会员版本，或联系商务。
     public static var limitExceeded_BillItemVideoEditExportDuration: TCCmeError {
         TCCmeError(.limitExceeded_BillItemVideoEditExportDuration)
     }
@@ -451,6 +478,8 @@ public struct TCCmeError: TCErrorType {
     }
     
     /// 平台不存在。
+    ///
+    /// 检查平台参数是否正确。
     public static var resourceNotFound_PlatformNotFound: TCCmeError {
         TCCmeError(.resourceNotFound_PlatformNotFound)
     }
@@ -476,5 +505,15 @@ extension TCCmeError: Equatable {
 extension TCCmeError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCmeError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

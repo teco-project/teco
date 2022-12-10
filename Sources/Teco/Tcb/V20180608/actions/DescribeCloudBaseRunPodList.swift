@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 查询云应用服务版本容器列表
-    ///
-    /// 查询云应用服务版本容器列表
     @inlinable
     public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunPodListResponse > {
         self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询云应用服务版本容器列表
-    ///
     /// 查询云应用服务版本容器列表
     @inlinable
     public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {

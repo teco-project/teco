@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 更新健康检查配置
-    ///
-    /// 更新健康检查配置
     @inlinable
     public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
         self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新健康检查配置
-    ///
     /// 更新健康检查配置
     @inlinable
     public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {

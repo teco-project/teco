@@ -66,6 +66,9 @@ public struct TCMongodbError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -89,6 +92,7 @@ public struct TCMongodbError: TCErrorType {
         TCMongodbError(.failedOperation)
     }
     
+    /// 稍后重新尝试。
     public static var failedOperation_KernelResponseTimeout: TCMongodbError {
         TCMongodbError(.failedOperation_KernelResponseTimeout)
     }
@@ -104,6 +108,8 @@ public struct TCMongodbError: TCErrorType {
     }
     
     /// 实例查询失败。
+    ///
+    /// 请输入正确的实例instanceId。
     public static var internalError_FindInstanceFailed: TCMongodbError {
         TCMongodbError(.internalError_FindInstanceFailed)
     }
@@ -324,11 +330,15 @@ public struct TCMongodbError: TCErrorType {
     }
     
     /// 当前实例不支持设置参数。
+    ///
+    /// 请升级实例版本。
     public static var invalidParameter_CurrentInstanceNotSupportModifyParams: TCMongodbError {
         TCMongodbError(.invalidParameter_CurrentInstanceNotSupportModifyParams)
     }
     
     /// 无效Vip信息。
+    ///
+    /// 输入正确的Vip信息。
     public static var invalidParameter_InvalidVip: TCMongodbError {
         TCMongodbError(.invalidParameter_InvalidVip)
     }
@@ -354,6 +364,8 @@ public struct TCMongodbError: TCErrorType {
     }
     
     /// 当前版本不支持该操作。
+    ///
+    /// 请升级实例版本。
     public static var unsupportedOperation_VersionNotSupport: TCMongodbError {
         TCMongodbError(.unsupportedOperation_VersionNotSupport)
     }
@@ -374,5 +386,15 @@ extension TCMongodbError: Equatable {
 extension TCMongodbError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCMongodbError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

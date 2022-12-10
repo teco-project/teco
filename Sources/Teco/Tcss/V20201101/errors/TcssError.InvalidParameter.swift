@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -36,6 +35,9 @@ extension TCTcssError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -55,16 +57,22 @@ extension TCTcssError {
         }
         
         /// 参数格式错误。
+        ///
+        /// 修正参数格式。
         public static var invalidFormat: InvalidParameter {
             InvalidParameter(.invalidFormat)
         }
         
         /// 缺少必须参数。
+        ///
+        /// 修正输入
         public static var missingParameter: InvalidParameter {
             InvalidParameter(.missingParameter)
         }
         
         /// 参数解析错误。
+        ///
+        /// 修正输入参数
         public static var parsingError: InvalidParameter {
             InvalidParameter(.parsingError)
         }
@@ -104,10 +112,21 @@ extension TCTcssError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCTcssError.InvalidParameter {
+    /// - Returns: ``TCTcssError`` that holds the same error and context.
     public func toTcssError() -> TCTcssError {
         guard let code = TCTcssError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTcssError(code, context: self.context)
+    }
+}
+
+extension TCTcssError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

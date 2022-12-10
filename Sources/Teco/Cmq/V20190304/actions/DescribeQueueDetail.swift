@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 枚举队列
-    ///
-    /// 枚举队列
     @inlinable
     public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
         self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 枚举队列
-    ///
     /// 枚举队列
     @inlinable
     public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mna {
     /// 获取Qos加速状态
-    ///
-    /// 获取Qos加速状态
     @inlinable
     public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
         self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取Qos加速状态
-    ///
     /// 获取Qos加速状态
     @inlinable
     public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {

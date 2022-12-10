@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 添加DDoS防护的水印防护密钥
-    ///
-    /// 添加DDoS防护的水印防护密钥
     @inlinable
     public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintKeyResponse > {
         self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加DDoS防护的水印防护密钥
-    ///
     /// 添加DDoS防护的水印防护密钥
     @inlinable
     public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {

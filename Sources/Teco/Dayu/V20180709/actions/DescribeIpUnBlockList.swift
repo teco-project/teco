@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Dayu {
     /// 获取IP解封记录
-    ///
-    /// 获取IP解封记录
     @inlinable
     public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
         self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取IP解封记录
-    ///
     /// 获取IP解封记录
     @inlinable
     public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {

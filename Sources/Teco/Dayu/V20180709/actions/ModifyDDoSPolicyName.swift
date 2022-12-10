@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 修改DDoS高级策略名称
-    ///
-    /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyNameResponse > {
         self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改DDoS高级策略名称
-    ///
     /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {

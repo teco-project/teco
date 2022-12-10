@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 黑石EIP查询接口
-    ///
-    /// 黑石EIP查询接口
     @inlinable
     public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipsResponse > {
         self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 黑石EIP查询接口
-    ///
     /// 黑石EIP查询接口
     @inlinable
     public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 修改CC自定义策略
-    ///
-    /// 修改CC自定义策略
     @inlinable
     public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCSelfDefinePolicyResponse > {
         self.client.execute(action: "ModifyCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改CC自定义策略
-    ///
     /// 修改CC自定义策略
     @inlinable
     public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCSelfDefinePolicyResponse {

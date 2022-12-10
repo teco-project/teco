@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 取消关联投递信息和部署组
-    ///
-    /// 取消关联投递信息和部署组
     @inlinable
     public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
         self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消关联投递信息和部署组
-    ///
     /// 取消关联投递信息和部署组
     @inlinable
     public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {

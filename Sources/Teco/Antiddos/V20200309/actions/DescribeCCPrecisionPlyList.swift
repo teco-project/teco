@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取CC精准防护列表
-    ///
-    /// 获取CC精准防护列表
     @inlinable
     public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCPrecisionPlyListResponse > {
         self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取CC精准防护列表
-    ///
     /// 获取CC精准防护列表
     @inlinable
     public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {

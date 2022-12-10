@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询边缘节点列表
-    ///
-    /// 查询边缘节点列表
     @inlinable
     public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodesResponse > {
         self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询边缘节点列表
-    ///
     /// 查询边缘节点列表
     @inlinable
     public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {

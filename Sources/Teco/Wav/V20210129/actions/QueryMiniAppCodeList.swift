@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wav {
     /// 查询小程序码列表接口
-    ///
-    /// 查询小程序码列表接口
     @inlinable
     public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMiniAppCodeListResponse > {
         self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询小程序码列表接口
-    ///
     /// 查询小程序码列表接口
     @inlinable
     public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {

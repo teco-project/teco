@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Dayu {
     /// 下载攻击事件的pcap包
-    ///
-    /// 下载攻击事件的pcap包
     @inlinable
     public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePcapResponse > {
         self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 下载攻击事件的pcap包
-    ///
     /// 下载攻击事件的pcap包
     @inlinable
     public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {

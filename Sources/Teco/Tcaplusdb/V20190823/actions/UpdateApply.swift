@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 更新申请单状态
-    ///
-    /// 更新申请单状态
     @inlinable
     public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApplyResponse > {
         self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新申请单状态
-    ///
     /// 更新申请单状态
     @inlinable
     public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {

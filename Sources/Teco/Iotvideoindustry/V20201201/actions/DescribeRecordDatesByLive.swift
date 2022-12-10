@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 直播录像存储日期列表
-    ///
-    /// 直播录像存储日期列表
     @inlinable
     public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordDatesByLiveResponse > {
         self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播录像存储日期列表
-    ///
     /// 直播录像存储日期列表
     @inlinable
     public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {

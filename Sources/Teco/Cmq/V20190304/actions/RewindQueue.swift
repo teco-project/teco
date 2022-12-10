@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 回溯队列
-    ///
-    /// 回溯队列
     @inlinable
     public func rewindQueue(_ input: RewindQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RewindQueueResponse > {
         self.client.execute(action: "RewindQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 回溯队列
-    ///
     /// 回溯队列
     @inlinable
     public func rewindQueue(_ input: RewindQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {

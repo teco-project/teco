@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 告警接收人详情
-    ///
-    /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
         self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 告警接收人详情
-    ///
     /// 告警接收人详情
     @inlinable
     public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {

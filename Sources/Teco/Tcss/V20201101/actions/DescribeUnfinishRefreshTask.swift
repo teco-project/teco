@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询未完成的刷新资产任务信息
-    ///
-    /// 查询未完成的刷新资产任务信息
     @inlinable
     public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnfinishRefreshTaskResponse > {
         self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询未完成的刷新资产任务信息
-    ///
     /// 查询未完成的刷新资产任务信息
     @inlinable
     public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {

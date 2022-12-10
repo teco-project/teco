@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -29,6 +28,9 @@ extension TCEiamError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -43,6 +45,8 @@ extension TCEiamError {
         }
         
         /// 当前用户缺乏访问该操作的权限。
+        ///
+        /// 尝试向管理员或资源拥有者申请权限。
         public static var actionPermissionDeny: OperationDenied {
             OperationDenied(.actionPermissionDeny)
         }
@@ -62,10 +66,21 @@ extension TCEiamError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCEiamError.OperationDenied {
+    /// - Returns: ``TCEiamError`` that holds the same error and context.
     public func toEiamError() -> TCEiamError {
         guard let code = TCEiamError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEiamError(code, context: self.context)
+    }
+}
+
+extension TCEiamError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 修改L4转发规则
-    ///
-    /// 修改L4转发规则
     @inlinable
     public func modifyL4Rules(_ input: ModifyL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4RulesResponse > {
         self.client.execute(action: "ModifyL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改L4转发规则
-    ///
     /// 修改L4转发规则
     @inlinable
     public func modifyL4Rules(_ input: ModifyL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4RulesResponse {

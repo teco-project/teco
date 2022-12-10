@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Partners {
     /// 合作伙伴为客户消除强代付关系
-    ///
-    /// 合作伙伴为客户消除强代付关系
     @inlinable
     public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePayRelationForClientResponse > {
         self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 合作伙伴为客户消除强代付关系
-    ///
     /// 合作伙伴为客户消除强代付关系
     @inlinable
     public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {

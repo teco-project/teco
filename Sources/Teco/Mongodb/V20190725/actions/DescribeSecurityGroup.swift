@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mongodb {
     /// 查询实例绑定的安全组
-    ///
-    /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupResponse > {
         self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询实例绑定的安全组
-    ///
     /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 运行时更新文件查杀设置
-    ///
-    /// 运行时更新文件查杀设置
     @inlinable
     public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusScanSettingResponse > {
         self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运行时更新文件查杀设置
-    ///
     /// 运行时更新文件查杀设置
     @inlinable
     public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {

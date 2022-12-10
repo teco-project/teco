@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 灵云-批量转账结果查询
-    ///
-    /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBatchPaymentResultResponse > {
         self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 灵云-批量转账结果查询
-    ///
     /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {

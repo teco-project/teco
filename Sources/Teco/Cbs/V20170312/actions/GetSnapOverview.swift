@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cbs {
     /// 获取快照概览信息
-    ///
-    /// 获取快照概览信息
     @inlinable
     public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSnapOverviewResponse > {
         self.client.execute(action: "GetSnapOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取快照概览信息
-    ///
     /// 获取快照概览信息
     @inlinable
     public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSnapOverviewResponse {

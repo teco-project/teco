@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Dayu {
     /// 获取高防IP专业版资源的DDoS攻击事件列表
-    ///
-    /// 获取高防IP专业版资源的DDoS攻击事件列表
     @inlinable
     public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvListResponse > {
         self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取高防IP专业版资源的DDoS攻击事件列表
-    ///
     /// 获取高防IP专业版资源的DDoS攻击事件列表
     @inlinable
     public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {

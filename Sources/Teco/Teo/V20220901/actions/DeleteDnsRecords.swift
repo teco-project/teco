@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 批量删除 DNS 记录
-    ///
-    /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDnsRecordsResponse > {
         self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量删除 DNS 记录
-    ///
     /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {

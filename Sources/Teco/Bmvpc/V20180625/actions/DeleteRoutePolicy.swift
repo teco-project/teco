@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 删除黑石路由表路由规则
-    ///
-    /// 删除黑石路由表路由规则
     @inlinable
     public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutePolicyResponse > {
         self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除黑石路由表路由规则
-    ///
     /// 删除黑石路由表路由规则
     @inlinable
     public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {

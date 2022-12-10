@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 创建Amqp Vhost
-    ///
-    /// 创建Amqp Vhost
     @inlinable
     public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPVHostResponse > {
         self.client.execute(action: "CreateAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建Amqp Vhost
-    ///
     /// 创建Amqp Vhost
     @inlinable
     public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {

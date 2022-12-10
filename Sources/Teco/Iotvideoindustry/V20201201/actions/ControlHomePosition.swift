@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 看守位控制
-    ///
-    /// 看守位控制
     @inlinable
     public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlHomePositionResponse > {
         self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 看守位控制
-    ///
     /// 看守位控制
     @inlinable
     public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlHomePositionResponse {

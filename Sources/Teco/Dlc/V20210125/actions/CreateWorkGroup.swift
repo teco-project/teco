@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 创建工作组
-    ///
-    /// 创建工作组
     @inlinable
     public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
         self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建工作组
-    ///
     /// 创建工作组
     @inlinable
     public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {

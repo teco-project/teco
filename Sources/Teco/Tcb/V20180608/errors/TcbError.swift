@@ -51,6 +51,9 @@ public struct TCTcbError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -80,6 +83,8 @@ public struct TCTcbError: TCErrorType {
     }
     
     /// 部分失败（有一部分操作失败）。
+    ///
+    /// 部分失败，一般是因为权限等问题导致有部分资源操作失败。具体信息关注Message。
     public static var failedOperation_PartialFailure: TCTcbError {
         TCTcbError(.failedOperation_PartialFailure)
     }
@@ -190,6 +195,8 @@ public struct TCTcbError: TCErrorType {
     }
     
     /// 操作失败：资源被冻结。
+    ///
+    /// 相关资源被冻结，请前往 额度监控 控制台（https://console.cloud.tencent.com/tcb/env/safety?tabId=quota）手动解冻。
     public static var operationDenied_ResourceFrozen: TCTcbError {
         TCTcbError(.operationDenied_ResourceFrozen)
     }
@@ -234,6 +241,7 @@ public struct TCTcbError: TCErrorType {
         TCTcbError(.resourceUnavailable_InvoiceAmountLack)
     }
     
+    /// 云项目OAuth的refreshToken已过期，需要重新授权。
     public static var resourceUnavailable_RefreshTokenExpired: TCTcbError {
         TCTcbError(.resourceUnavailable_RefreshTokenExpired)
     }
@@ -284,5 +292,15 @@ extension TCTcbError: Equatable {
 extension TCTcbError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTcbError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

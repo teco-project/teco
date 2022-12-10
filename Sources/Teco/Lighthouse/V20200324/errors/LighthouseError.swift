@@ -161,6 +161,9 @@ public struct TCLighthouseError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -234,6 +237,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 无法创建实例。
+    ///
+    /// 请稍后重试。
     public static var failedOperation_UnableToCreateInstances: TCLighthouseError {
         TCLighthouseError(.failedOperation_UnableToCreateInstances)
     }
@@ -284,6 +289,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 无法找到此接口。
+    ///
+    /// 请确认接口是否存在。
     public static var internalError_InvalidActionNotFound: TCLighthouseError {
         TCLighthouseError(.internalError_InvalidActionNotFound)
     }
@@ -304,6 +311,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 调用计费网关服务失败。
+    ///
+    /// 请稍后再次重试。
     public static var internalError_TradeCallBillingGatewayFailed: TCLighthouseError {
         TCLighthouseError(.internalError_TradeCallBillingGatewayFailed)
     }
@@ -338,6 +347,7 @@ public struct TCLighthouseError: TCErrorType {
         TCLighthouseError(.invalidParameterValue_BlueprintIdMalformed)
     }
     
+    /// 一般是套餐内存或者系统盘大小不满足镜像要求，请更换套餐或者镜像。
     public static var invalidParameterValue_BundleAndBlueprintNotMatch: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_BundleAndBlueprintNotMatch)
     }
@@ -403,6 +413,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 非法的套餐参数。
+    ///
+    /// 更换套餐。
     public static var invalidParameterValue_InvalidBundle: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_InvalidBundle)
     }
@@ -518,6 +530,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 套餐和镜像不匹配。
+    ///
+    /// 更换套餐或者更换镜像。
     public static var invalidParameter_BundleAndBlueprintNotMatch: TCLighthouseError {
         TCLighthouseError(.invalidParameter_BundleAndBlueprintNotMatch)
     }
@@ -623,6 +637,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 该实例不支持升级套餐操作。
+    ///
+    /// 请选择其他套餐完成升级套餐操作
     public static var operationDenied_BundleNotSupportModify: TCLighthouseError {
         TCLighthouseError(.operationDenied_BundleNotSupportModify)
     }
@@ -747,11 +763,15 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 套餐无可用配置。
+    ///
+    /// 更换套餐。
     public static var resourcesSoldOut_PurchaseSourceHasNoBundleConfigs: TCLighthouseError {
         TCLighthouseError(.resourcesSoldOut_PurchaseSourceHasNoBundleConfigs)
     }
     
     /// 套餐无可用配置。
+    ///
+    /// 更换套餐。
     public static var resourcesSoldOut_ZonesHasNoBundleConfigs: TCLighthouseError {
         TCLighthouseError(.resourcesSoldOut_ZonesHasNoBundleConfigs)
     }
@@ -892,6 +912,8 @@ public struct TCLighthouseError: TCErrorType {
     }
     
     /// 计费资源中心删除资源失败。
+    ///
+    /// 请稍后再次重试。
     public static var unsupportedOperation_PostDestroyResourceFailed: TCLighthouseError {
         TCLighthouseError(.unsupportedOperation_PostDestroyResourceFailed)
     }
@@ -920,6 +942,7 @@ public struct TCLighthouseError: TCErrorType {
         TCLighthouseError(.unsupportedOperation_WindowsNotAllowToAssociateKeyPair)
     }
     
+    /// 请不要对windows类型实例进行密钥对功能操作，或者将实例更换为Linux类型实例。
     public static var unsupportedOperation_WindowsNotSupportKeyPair: TCLighthouseError {
         TCLighthouseError(.unsupportedOperation_WindowsNotSupportKeyPair)
     }
@@ -940,5 +963,15 @@ extension TCLighthouseError: Equatable {
 extension TCLighthouseError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCLighthouseError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

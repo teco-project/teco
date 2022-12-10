@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 回滚前检查单条记录
-    ///
-    /// 回滚前检查单条记录
     @inlinable
     public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRecordSnapshotRollbackResponse > {
         self.client.execute(action: "CheckRecordSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 回滚前检查单条记录
-    ///
     /// 回滚前检查单条记录
     @inlinable
     public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRecordSnapshotRollbackResponse {

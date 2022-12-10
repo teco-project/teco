@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 统计漏洞扫描页已授权和未扫描镜像数
-    ///
-    /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanAuthorizedImageSummaryResponse > {
         self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 统计漏洞扫描页已授权和未扫描镜像数
-    ///
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {

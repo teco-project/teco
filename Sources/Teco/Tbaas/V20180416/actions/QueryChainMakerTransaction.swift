@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 通过交易ID查询长安链交易
-    ///
-    /// 通过交易ID查询长安链交易
     @inlinable
     public func queryChainMakerTransaction(_ input: QueryChainMakerTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerTransactionResponse > {
         self.client.execute(action: "QueryChainMakerTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 通过交易ID查询长安链交易
-    ///
     /// 通过交易ID查询长安链交易
     @inlinable
     public func queryChainMakerTransaction(_ input: QueryChainMakerTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerTransactionResponse {

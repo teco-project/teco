@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 创建集群
-    ///
-    /// 创建集群
     @inlinable
     public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClustersResponse > {
         self.client.execute(action: "CreateClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建集群
-    ///
     /// 创建集群
     @inlinable
     public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClustersResponse {

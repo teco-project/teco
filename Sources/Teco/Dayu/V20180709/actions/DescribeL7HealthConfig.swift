@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 导出七层健康检查配置
-    ///
-    /// 导出七层健康检查配置
     @inlinable
     public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7HealthConfigResponse > {
         self.client.execute(action: "DescribeL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出七层健康检查配置
-    ///
     /// 导出七层健康检查配置
     @inlinable
     public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7HealthConfigResponse {

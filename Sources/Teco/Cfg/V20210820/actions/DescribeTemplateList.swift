@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfg {
     /// 查询经验库列表
-    ///
-    /// 查询经验库列表
     @inlinable
     public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
         self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询经验库列表
-    ///
     /// 查询经验库列表
     @inlinable
     public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {

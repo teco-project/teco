@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 创建应用账号
-    ///
-    /// 创建应用账号
     @inlinable
     public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppAccountResponse > {
         self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建应用账号
-    ///
     /// 创建应用账号
     @inlinable
     public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {

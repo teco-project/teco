@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gaap {
     /// 开启域名解析
-    ///
-    /// 开启域名解析
     @inlinable
     public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGlobalDomainResponse > {
         self.client.execute(action: "EnableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 开启域名解析
-    ///
     /// 开启域名解析
     @inlinable
     public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {

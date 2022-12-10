@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 获取托管规则组
-    ///
-    /// 获取托管规则组
     @inlinable
     public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupManagedRulesResponse > {
         self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取托管规则组
-    ///
     /// 获取托管规则组
     @inlinable
     public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {

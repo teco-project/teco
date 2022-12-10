@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 批量申请长安链用户签名证书
-    ///
-    /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyChainMakerBatchUserCertResponse > {
         self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量申请长安链用户签名证书
-    ///
     /// 批量申请长安链用户签名证书
     @inlinable
     public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {

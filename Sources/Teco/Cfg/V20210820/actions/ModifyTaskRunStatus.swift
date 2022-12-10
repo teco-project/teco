@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfg {
     /// 修改任务运行状态
-    ///
-    /// 修改任务运行状态
     @inlinable
     public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskRunStatusResponse > {
         self.client.execute(action: "ModifyTaskRunStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改任务运行状态
-    ///
     /// 修改任务运行状态
     @inlinable
     public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 新增、修改表格数据订阅
-    ///
-    /// 新增、修改表格数据订阅
     @inlinable
     public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
         self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增、修改表格数据订阅
-    ///
     /// 新增、修改表格数据订阅
     @inlinable
     public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {

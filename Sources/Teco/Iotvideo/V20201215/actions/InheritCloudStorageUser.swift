@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 继承云存用户
-    ///
-    /// 继承云存用户
     @inlinable
     public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InheritCloudStorageUserResponse > {
         self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 继承云存用户
-    ///
     /// 继承云存用户
     @inlinable
     public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {

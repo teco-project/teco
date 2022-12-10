@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 新建自定义码规则
-    ///
-    /// 新建自定义码规则
     @inlinable
     public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomRuleResponse > {
         self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新建自定义码规则
-    ///
     /// 新建自定义码规则
     @inlinable
     public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {

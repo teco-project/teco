@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Billing {
     /// 按日期获取产品用量明细
-    ///
-    /// 按日期获取产品用量明细
     @inlinable
     public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageDetailByDateResponse > {
         self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 按日期获取产品用量明细
-    ///
     /// 按日期获取产品用量明细
     @inlinable
     public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {

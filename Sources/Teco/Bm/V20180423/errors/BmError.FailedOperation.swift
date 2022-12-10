@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCBmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -45,6 +47,8 @@ extension TCBmError {
         }
         
         /// 存在未结束故障单，操作失败。
+        ///
+        /// 设备仍处于故障状态中，请前往 维护平台-维修任务 进行故障处理，处理完毕稍后再试。
         public static var existRepairTask: FailedOperation {
             FailedOperation(.existRepairTask)
         }
@@ -74,10 +78,21 @@ extension TCBmError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCBmError.FailedOperation {
+    /// - Returns: ``TCBmError`` that holds the same error and context.
     public func toBmError() -> TCBmError {
         guard let code = TCBmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCBmError(code, context: self.context)
+    }
+}
+
+extension TCBmError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

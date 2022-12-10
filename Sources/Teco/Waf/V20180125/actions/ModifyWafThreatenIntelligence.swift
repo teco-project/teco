@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 配置WAF威胁情报封禁模块详情
-    ///
-    /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafThreatenIntelligenceResponse > {
         self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 配置WAF威胁情报封禁模块详情
-    ///
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {

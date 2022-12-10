@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 开通微信云托管MySQL数据库服务
-    ///
-    /// 开通微信云托管MySQL数据库服务
     @inlinable
     public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunServerDBClusterResponse > {
         self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 开通微信云托管MySQL数据库服务
-    ///
     /// 开通微信云托管MySQL数据库服务
     @inlinable
     public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {

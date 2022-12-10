@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ivld {
     /// 删除自定义人物
-    ///
-    /// 删除自定义人物
     @inlinable
     public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonResponse > {
         self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除自定义人物
-    ///
     /// 删除自定义人物
     @inlinable
     public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {

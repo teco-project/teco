@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Pts {
     /// 更新定时任务
-    ///
-    /// 更新定时任务
     @inlinable
     public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCronJobResponse > {
         self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新定时任务
-    ///
     /// 更新定时任务
     @inlinable
     public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 更新Amqp队列
-    ///
-    /// 更新Amqp队列
     @inlinable
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
         self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新Amqp队列
-    ///
     /// 更新Amqp队列
     @inlinable
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1240,14 +1239,13 @@ extension Gse {
     public struct PlayerLatencyPolicy: TCInputModel, TCOutputModel {
         /// 任意player允许的最大延迟，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let maximumIndividualPlayerLatencyMilliseconds: UInt64?
+        public let maximumIndividualPlayerLatencyMilliseconds: UInt64
         
         /// 放置新GameServerSession时强制实施策略的时间长度，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyDurationSeconds: UInt64?
         
-        public init (maximumIndividualPlayerLatencyMilliseconds: UInt64?, policyDurationSeconds: UInt64?) {
+        public init (maximumIndividualPlayerLatencyMilliseconds: UInt64, policyDurationSeconds: UInt64?) {
             self.maximumIndividualPlayerLatencyMilliseconds = maximumIndividualPlayerLatencyMilliseconds
             self.policyDurationSeconds = policyDurationSeconds
         }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 高防IP获取7层规则
-    ///
-    /// 高防IP获取7层规则
     @inlinable
     public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesResponse > {
         self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 高防IP获取7层规则
-    ///
     /// 高防IP获取7层规则
     @inlinable
     public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {

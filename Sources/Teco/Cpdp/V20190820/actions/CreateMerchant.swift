@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 智慧零售-商户注册
-    ///
-    /// 智慧零售-商户注册
     @inlinable
     public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
         self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智慧零售-商户注册
-    ///
     /// 智慧零售-商户注册
     @inlinable
     public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {

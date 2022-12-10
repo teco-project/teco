@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCIvldError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,21 +49,29 @@ extension TCIvldError {
         }
         
         /// 内部DB连接失败。
+        ///
+        /// 请稍后重试
         public static var dbConnectionError: InternalError {
             InternalError(.dbConnectionError)
         }
         
         /// 内部DB操作错误。
+        ///
+        /// 检查操作参数是否正确
         public static var dbOperationError: InternalError {
             InternalError(.dbOperationError)
         }
         
         /// 内部错误。
+        ///
+        /// 请稍后重试
         public static var innerError: InternalError {
             InternalError(.innerError)
         }
         
         /// 自定义人物请求超过限制。
+        ///
+        /// 请稍后重试
         public static var internalOverflow: InternalError {
             InternalError(.internalOverflow)
         }
@@ -86,10 +96,21 @@ extension TCIvldError.InternalError: CustomStringConvertible {
 }
 
 extension TCIvldError.InternalError {
+    /// - Returns: ``TCIvldError`` that holds the same error and context.
     public func toIvldError() -> TCIvldError {
         guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIvldError(code, context: self.context)
+    }
+}
+
+extension TCIvldError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

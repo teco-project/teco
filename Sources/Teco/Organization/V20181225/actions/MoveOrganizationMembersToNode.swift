@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Organization {
     /// 移动成员到指定企业组织单元
-    ///
-    /// 移动成员到指定企业组织单元
     @inlinable
     public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationMembersToNodeResponse > {
         self.client.execute(action: "MoveOrganizationMembersToNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 移动成员到指定企业组织单元
-    ///
     /// 移动成员到指定企业组织单元
     @inlinable
     public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationMembersToNodeResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 查询个人用户配额
-    ///
-    /// 查询个人用户配额
     @inlinable
     public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaPersonalResponse > {
         self.client.execute(action: "DescribeUserQuotaPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询个人用户配额
-    ///
     /// 查询个人用户配额
     @inlinable
     public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {

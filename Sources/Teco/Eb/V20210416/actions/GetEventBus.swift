@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Eb {
     /// 获取事件集详情
-    ///
-    /// 获取事件集详情
     @inlinable
     public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEventBusResponse > {
         self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取事件集详情
-    ///
     /// 获取事件集详情
     @inlinable
     public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {

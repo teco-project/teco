@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 查询固件升级任务详情
-    ///
-    /// 查询固件升级任务详情
     @inlinable
     public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskResponse > {
         self.client.execute(action: "DescribeFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询固件升级任务详情
-    ///
     /// 查询固件升级任务详情
     @inlinable
     public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskResponse {

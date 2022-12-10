@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 导出资产管理内核模块列表
-    ///
-    /// 导出资产管理内核模块列表
     @inlinable
     public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetCoreModuleListResponse > {
         self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出资产管理内核模块列表
-    ///
     /// 导出资产管理内核模块列表
     @inlinable
     public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {

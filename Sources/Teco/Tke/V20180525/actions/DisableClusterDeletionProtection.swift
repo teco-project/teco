@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 关闭集群删除保护
-    ///
-    /// 关闭集群删除保护
     @inlinable
     public func disableClusterDeletionProtection(_ input: DisableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableClusterDeletionProtectionResponse > {
         self.client.execute(action: "DisableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关闭集群删除保护
-    ///
     /// 关闭集群删除保护
     @inlinable
     public func disableClusterDeletionProtection(_ input: DisableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterDeletionProtectionResponse {

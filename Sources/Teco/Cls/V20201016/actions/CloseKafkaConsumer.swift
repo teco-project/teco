@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cls {
     /// 关闭Kafka协议消费
-    ///
-    /// 关闭Kafka协议消费
     @inlinable
     public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseKafkaConsumerResponse > {
         self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关闭Kafka协议消费
-    ///
     /// 关闭Kafka协议消费
     @inlinable
     public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {

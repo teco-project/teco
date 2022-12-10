@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 查询集群变配记录
-    ///
-    /// 查询集群变配记录
     @inlinable
     public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterLevelChangeRecordsResponse > {
         self.client.execute(action: "DescribeClusterLevelChangeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询集群变配记录
-    ///
     /// 查询集群变配记录
     @inlinable
     public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelChangeRecordsResponse {

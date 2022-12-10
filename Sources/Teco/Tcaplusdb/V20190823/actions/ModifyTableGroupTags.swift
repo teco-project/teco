@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 修改表格组标签
-    ///
-    /// 修改表格组标签
     @inlinable
     public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupTagsResponse > {
         self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改表格组标签
-    ///
     /// 修改表格组标签
     @inlinable
     public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupTagsResponse {

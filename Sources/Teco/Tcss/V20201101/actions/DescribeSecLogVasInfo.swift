@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询安全日志商品信息
-    ///
-    /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
         self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询安全日志商品信息
-    ///
     /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {

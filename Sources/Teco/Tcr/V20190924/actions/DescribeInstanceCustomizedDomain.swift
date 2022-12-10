@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 查询实例自定义域名列表
-    ///
-    /// 查询实例自定义域名列表
     @inlinable
     public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCustomizedDomainResponse > {
         self.client.execute(action: "DescribeInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询实例自定义域名列表
-    ///
     /// 查询实例自定义域名列表
     @inlinable
     public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCustomizedDomainResponse {

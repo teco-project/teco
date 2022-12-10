@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 自动获取Draco设备的安装包
-    ///
-    /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDracoEdgeNodeInstallerResponse > {
         self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 自动获取Draco设备的安装包
-    ///
     /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 镜像仓库资产刷新
-    ///
-    /// 镜像仓库资产刷新
     @inlinable
     public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetImageRegistryAssetResponse > {
         self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 镜像仓库资产刷新
-    ///
     /// 镜像仓库资产刷新
     @inlinable
     public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {

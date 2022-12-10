@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Live {
     /// 解绑域名证书
-    ///
-    /// 解绑域名证书
     @inlinable
     public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindLiveDomainCertResponse > {
         self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 解绑域名证书
-    ///
     /// 解绑域名证书
     @inlinable
     public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {

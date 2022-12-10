@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 会员间交易退款
-    ///
-    /// 会员间交易退款
     @inlinable
     public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundMemberTransactionResponse > {
         self.client.execute(action: "RefundMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 会员间交易退款
-    ///
     /// 会员间交易退款
     @inlinable
     public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundMemberTransactionResponse {

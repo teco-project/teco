@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Asr {
     /// 查询自学习模型列表
-    ///
-    /// 查询自学习模型列表
     @inlinable
     public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
         self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询自学习模型列表
-    ///
     /// 查询自学习模型列表
     @inlinable
     public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {

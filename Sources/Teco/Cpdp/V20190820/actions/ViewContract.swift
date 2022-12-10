@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云支付-查询合同明细接口
-    ///
-    /// 云支付-查询合同明细接口
     @inlinable
     public func viewContract(_ input: ViewContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ViewContractResponse > {
         self.client.execute(action: "ViewContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云支付-查询合同明细接口
-    ///
     /// 云支付-查询合同明细接口
     @inlinable
     public func viewContract(_ input: ViewContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewContractResponse {

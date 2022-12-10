@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -39,6 +38,9 @@ extension TCClbError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,6 +60,8 @@ extension TCClbError {
         }
         
         /// 查询参数错误。
+        ///
+        /// 按文档接口说明传参。
         public static var invalidFilter: InvalidParameter {
             InvalidParameter(.invalidFilter)
         }
@@ -122,10 +126,21 @@ extension TCClbError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCClbError.InvalidParameter {
+    /// - Returns: ``TCClbError`` that holds the same error and context.
     public func toClbError() -> TCClbError {
         guard let code = TCClbError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCClbError(code, context: self.context)
+    }
+}
+
+extension TCClbError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

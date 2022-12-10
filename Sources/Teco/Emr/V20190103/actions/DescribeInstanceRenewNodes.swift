@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Emr {
     /// 查询待续费节点信息
-    ///
-    /// 查询待续费节点信息
     @inlinable
     public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
         self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询待续费节点信息
-    ///
     /// 查询待续费节点信息
     @inlinable
     public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {

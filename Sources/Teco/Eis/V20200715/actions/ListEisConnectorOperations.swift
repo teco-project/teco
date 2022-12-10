@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eis {
     /// 获取连接器操作列表
-    ///
-    /// 获取连接器操作列表
     @inlinable
     public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEisConnectorOperationsResponse > {
         self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取连接器操作列表
-    ///
     /// 获取连接器操作列表
     @inlinable
     public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {

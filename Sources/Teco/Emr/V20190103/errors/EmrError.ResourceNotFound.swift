@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -36,6 +35,9 @@ extension TCEmrError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,41 +52,57 @@ extension TCEmrError {
         }
         
         /// 资源不存在。
+        ///
+        /// 占位符
         public static var cdbInfoNotFound: ResourceNotFound {
             ResourceNotFound(.cdbInfoNotFound)
         }
         
         /// 无法找到该实例。
+        ///
+        /// 占位符
         public static var clusterNotFound: ResourceNotFound {
             ResourceNotFound(.clusterNotFound)
         }
         
         /// 无法找到硬件信息。
+        ///
+        /// 占位符
         public static var hardwareInfoNotFound: ResourceNotFound {
             ResourceNotFound(.hardwareInfoNotFound)
         }
         
         /// 无法找到该实例。
+        ///
+        /// 占位符
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
         
         /// 无法找到监控元数据。
+        ///
+        /// 占位符
         public static var resourceNotFound: ResourceNotFound {
             ResourceNotFound(.resourceNotFound)
         }
         
         /// 找不到对应的子网。
+        ///
+        /// 占位符
         public static var subnetNotFound: ResourceNotFound {
             ResourceNotFound(.subnetNotFound)
         }
         
         /// 没有查找到指定标签。
+        ///
+        /// 占位符
         public static var tagsNotFound: ResourceNotFound {
             ResourceNotFound(.tagsNotFound)
         }
         
         /// tke集群前置组件未部署。
+        ///
+        /// 占位符
         public static var tkePreconditionNotFound: ResourceNotFound {
             ResourceNotFound(.tkePreconditionNotFound)
         }
@@ -104,10 +122,21 @@ extension TCEmrError.ResourceNotFound: CustomStringConvertible {
 }
 
 extension TCEmrError.ResourceNotFound {
+    /// - Returns: ``TCEmrError`` that holds the same error and context.
     public func toEmrError() -> TCEmrError {
         guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEmrError(code, context: self.context)
+    }
+}
+
+extension TCEmrError.ResourceNotFound {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

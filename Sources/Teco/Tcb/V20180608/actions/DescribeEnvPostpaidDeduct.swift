@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 查询环境后付费计费详情
-    ///
-    /// 查询环境后付费计费详情
     @inlinable
     public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvPostpaidDeductResponse > {
         self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询环境后付费计费详情
-    ///
     /// 查询环境后付费计费详情
     @inlinable
     public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {

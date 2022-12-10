@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 财税-查询金融数据文件下载链接
-    ///
-    /// 财税-查询金融数据文件下载链接
     @inlinable
     public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFinancialDataUrlResponse > {
         self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 财税-查询金融数据文件下载链接
-    ///
     /// 财税-查询金融数据文件下载链接
     @inlinable
     public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {

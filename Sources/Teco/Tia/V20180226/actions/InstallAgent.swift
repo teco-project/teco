@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tia {
     /// 安装agent
-    ///
-    /// 安装agent
     @inlinable
     public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
         self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 安装agent
-    ///
     /// 安装agent
     @inlinable
     public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {

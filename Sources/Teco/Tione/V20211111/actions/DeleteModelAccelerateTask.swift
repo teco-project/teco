@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 删除模型加速任务
-    ///
-    /// 删除模型加速任务
     @inlinable
     public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelAccelerateTaskResponse > {
         self.client.execute(action: "DeleteModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除模型加速任务
-    ///
     /// 删除模型加速任务
     @inlinable
     public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {

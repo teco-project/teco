@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 查询单个saas域名详情
-    ///
-    /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainDetailsSaasResponse > {
         self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询单个saas域名详情
-    ///
     /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {

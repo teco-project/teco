@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 获取离线任务长连接Token
-    ///
-    /// 获取离线任务长连接Token
     @inlinable
     public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineTaskTokenResponse > {
         self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取离线任务长连接Token
-    ///
     /// 获取离线任务长连接Token
     @inlinable
     public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineTaskTokenResponse {

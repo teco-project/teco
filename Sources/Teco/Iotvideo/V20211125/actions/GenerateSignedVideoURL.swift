@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 获取视频防盗链播放URL
-    ///
-    /// 获取视频防盗链播放URL
     @inlinable
     public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateSignedVideoURLResponse > {
         self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取视频防盗链播放URL
-    ///
     /// 获取视频防盗链播放URL
     @inlinable
     public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {

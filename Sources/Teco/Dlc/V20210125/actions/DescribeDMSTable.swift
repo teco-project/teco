@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Dlc {
     /// DMS元数据获取表
-    ///
-    /// DMS元数据获取表
     @inlinable
     public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTableResponse > {
         self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DMS元数据获取表
-    ///
     /// DMS元数据获取表
     @inlinable
     public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {

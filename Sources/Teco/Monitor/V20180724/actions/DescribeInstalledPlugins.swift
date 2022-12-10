@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 列出实例已安装的插件
-    ///
-    /// 列出实例已安装的插件
     @inlinable
     public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstalledPluginsResponse > {
         self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出实例已安装的插件
-    ///
     /// 列出实例已安装的插件
     @inlinable
     public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {

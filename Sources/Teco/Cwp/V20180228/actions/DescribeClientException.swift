@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取客户端异常事件
-    ///
-    /// 获取客户端异常事件
     @inlinable
     public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientExceptionResponse > {
         self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取客户端异常事件
-    ///
     /// 获取客户端异常事件
     @inlinable
     public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {

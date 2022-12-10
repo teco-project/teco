@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eb {
     /// 创建事件连接器
-    ///
-    /// 创建事件连接器
     @inlinable
     public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectionResponse > {
         self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建事件连接器
-    ///
     /// 创建事件连接器
     @inlinable
     public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {

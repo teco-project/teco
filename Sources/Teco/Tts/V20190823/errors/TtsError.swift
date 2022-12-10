@@ -56,6 +56,9 @@ public struct TCTtsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -149,6 +152,7 @@ public struct TCTtsError: TCErrorType {
         TCTtsError(.invalidParameterValue_ModelType)
     }
     
+    /// 文本无效，请检查文本信息。
     public static var invalidParameterValue_ParticipleError: TCTtsError {
         TCTtsError(.invalidParameterValue_ParticipleError)
     }
@@ -158,6 +162,7 @@ public struct TCTtsError: TCErrorType {
         TCTtsError(.invalidParameterValue_PrimaryLanguage)
     }
     
+    /// 请检查SSML标签，修改文本内容。
     public static var invalidParameterValue_SSMLInvalid: TCTtsError {
         TCTtsError(.invalidParameterValue_SSMLInvalid)
     }
@@ -267,6 +272,7 @@ public struct TCTtsError: TCErrorType {
         TCTtsError(.unsupportedOperation_NoFreeAccount)
     }
     
+    /// 请检查资源包余量。
     public static var unsupportedOperation_PkgExhausted: TCTtsError {
         TCTtsError(.unsupportedOperation_PkgExhausted)
     }
@@ -312,5 +318,15 @@ extension TCTtsError: Equatable {
 extension TCTtsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTtsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

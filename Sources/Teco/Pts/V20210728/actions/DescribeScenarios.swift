@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 查询场景列表
-    ///
-    /// 查询场景列表
     @inlinable
     public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
         self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询场景列表
-    ///
     /// 查询场景列表
     @inlinable
     public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {

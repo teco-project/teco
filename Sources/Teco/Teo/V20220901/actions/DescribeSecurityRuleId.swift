@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 查询安全规则详情
-    ///
-    /// 查询安全规则详情
     @inlinable
     public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
         self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询安全规则详情
-    ///
     /// 查询安全规则详情
     @inlinable
     public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {

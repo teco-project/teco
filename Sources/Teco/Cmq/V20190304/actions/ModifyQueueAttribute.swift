@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 修改队列属性
-    ///
-    /// 修改队列属性
     @inlinable
     public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyQueueAttributeResponse > {
         self.client.execute(action: "ModifyQueueAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改队列属性
-    ///
     /// 修改队列属性
     @inlinable
     public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyQueueAttributeResponse {

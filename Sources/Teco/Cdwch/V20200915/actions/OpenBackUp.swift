@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdwch {
     /// 开启或者关闭策略
-    ///
-    /// 开启或者关闭策略
     @inlinable
     public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenBackUpResponse > {
         self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 开启或者关闭策略
-    ///
     /// 开启或者关闭策略
     @inlinable
     public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {

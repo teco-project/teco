@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gme {
     /// 拉取用户在房间得进出时间
-    ///
-    /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
         self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取用户在房间得进出时间
-    ///
     /// 拉取用户在房间得进出时间
     @inlinable
     public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {

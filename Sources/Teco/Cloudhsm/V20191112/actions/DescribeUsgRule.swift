@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudhsm {
     /// 获取安全组详情
-    ///
-    /// 获取安全组详情
     @inlinable
     public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgRuleResponse > {
         self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取安全组详情
-    ///
     /// 获取安全组详情
     @inlinable
     public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {

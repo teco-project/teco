@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Youmall {
     /// 获取指定区域不同年龄段男女平均停留时间
-    ///
-    /// 获取指定区域不同年龄段男女平均停留时间
     @inlinable
     public func describeZoneFlowGenderAvrStayTimeByZoneId(_ input: DescribeZoneFlowGenderAvrStayTimeByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowGenderAvrStayTimeByZoneIdResponse > {
         self.client.execute(action: "DescribeZoneFlowGenderAvrStayTimeByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取指定区域不同年龄段男女平均停留时间
-    ///
     /// 获取指定区域不同年龄段男女平均停留时间
     @inlinable
     public func describeZoneFlowGenderAvrStayTimeByZoneId(_ input: DescribeZoneFlowGenderAvrStayTimeByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderAvrStayTimeByZoneIdResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 网关与API分组批量绑定
-    ///
-    /// 网关与API分组批量绑定
     @inlinable
     public func bindApiGroup(_ input: BindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindApiGroupResponse > {
         self.client.execute(action: "BindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 网关与API分组批量绑定
-    ///
     /// 网关与API分组批量绑定
     @inlinable
     public func bindApiGroup(_ input: BindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiGroupResponse {

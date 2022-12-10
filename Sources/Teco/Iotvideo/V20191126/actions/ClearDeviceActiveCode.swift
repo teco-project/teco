@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 清除设备激活码
-    ///
-    /// 清除设备激活码
     @inlinable
     public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearDeviceActiveCodeResponse > {
         self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 清除设备激活码
-    ///
     /// 清除设备激活码
     @inlinable
     public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {

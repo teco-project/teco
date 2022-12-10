@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 删除基线策略配置
-    ///
-    /// 删除基线策略配置
     @inlinable
     public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBaselinePolicyResponse > {
         self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除基线策略配置
-    ///
     /// 删除基线策略配置
     @inlinable
     public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {

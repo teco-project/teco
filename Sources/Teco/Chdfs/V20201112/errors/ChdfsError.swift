@@ -39,6 +39,9 @@ public struct TCChdfsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -58,11 +61,15 @@ public struct TCChdfsError: TCErrorType {
     }
     
     /// 权限组被绑定。
+    ///
+    /// 当前权限组先解绑关联的挂载点。
     public static var failedOperation_AccessGroupBound: TCChdfsError {
         TCChdfsError(.failedOperation_AccessGroupBound)
     }
     
     /// 文件系统非空。
+    ///
+    /// 先清空当前文件系统。
     public static var failedOperation_FileSystemNotEmpty: TCChdfsError {
         TCChdfsError(.failedOperation_FileSystemNotEmpty)
     }
@@ -213,5 +220,15 @@ extension TCChdfsError: Equatable {
 extension TCChdfsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCChdfsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

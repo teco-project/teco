@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 发布文件配置
-    ///
-    /// 发布文件配置
     @inlinable
     public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseFileConfigResponse > {
         self.client.execute(action: "ReleaseFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 发布文件配置
-    ///
     /// 发布文件配置
     @inlinable
     public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseFileConfigResponse {

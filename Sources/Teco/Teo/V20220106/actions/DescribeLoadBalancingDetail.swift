@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 获取负载均衡详细信息
-    ///
-    /// 获取负载均衡详细信息
     @inlinable
     public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingDetailResponse > {
         self.client.execute(action: "DescribeLoadBalancingDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取负载均衡详细信息
-    ///
     /// 获取负载均衡详细信息
     @inlinable
     public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingDetailResponse {

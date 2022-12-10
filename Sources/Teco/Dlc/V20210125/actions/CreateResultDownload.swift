@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 创建查询结果下载任务
-    ///
-    /// 创建查询结果下载任务
     @inlinable
     public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
         self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建查询结果下载任务
-    ///
     /// 创建查询结果下载任务
     @inlinable
     public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {

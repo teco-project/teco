@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取登录审计列表
-    ///
-    /// 获取登录审计列表
     @inlinable
     public func describeHostLoginList(_ input: DescribeHostLoginListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostLoginListResponse > {
         self.client.execute(action: "DescribeHostLoginList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取登录审计列表
-    ///
     /// 获取登录审计列表
     @inlinable
     public func describeHostLoginList(_ input: DescribeHostLoginListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostLoginListResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Lcic {
     /// 修改应用
-    ///
-    /// 修改应用
     @inlinable
     public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
         self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改应用
-    ///
     /// 修改应用
     @inlinable
     public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 停用工作流
-    ///
-    /// 停用工作流
     @inlinable
     public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableTaskFlowResponse > {
         self.client.execute(action: "DisableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 停用工作流
-    ///
     /// 停用工作流
     @inlinable
     public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskFlowResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 查询静态托管域名任务状态
-    ///
-    /// 查询静态托管域名任务状态
     @inlinable
     public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostingDomainTaskResponse > {
         self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询静态托管域名任务状态
-    ///
     /// 查询静态托管域名任务状态
     @inlinable
     public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostingDomainTaskResponse {

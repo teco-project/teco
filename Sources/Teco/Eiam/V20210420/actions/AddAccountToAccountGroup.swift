@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 账号组添加账号
-    ///
-    /// 账号组添加账号
     @inlinable
     public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAccountToAccountGroupResponse > {
         self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 账号组添加账号
-    ///
     /// 账号组添加账号
     @inlinable
     public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 查询黑石EIP 限额
-    ///
-    /// 查询黑石EIP 限额
     @inlinable
     public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipQuotaResponse > {
         self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询黑石EIP 限额
-    ///
     /// 查询黑石EIP 限额
     @inlinable
     public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {

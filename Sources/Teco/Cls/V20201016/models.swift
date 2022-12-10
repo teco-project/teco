@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -494,13 +493,11 @@ extension Cls {
     public struct ConsumerContent: TCInputModel, TCOutputModel {
         /// 是否投递 TAG 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let enableTag: Bool?
+        public let enableTag: Bool
         
         /// 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_，\_\_TIMESTAMP\_\_，\_\_HOSTNAME\_\_和\_\_PKGID\_\_
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let metaFields: [String]?
+        public let metaFields: [String]
         
         /// 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -510,7 +507,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestampAccuracy: Int64?
         
-        public init (enableTag: Bool?, metaFields: [String]?, tagJsonNotTiled: Bool?, timestampAccuracy: Int64?) {
+        public init (enableTag: Bool, metaFields: [String], tagJsonNotTiled: Bool?, timestampAccuracy: Int64?) {
             self.enableTag = enableTag
             self.metaFields = metaFields
             self.tagJsonNotTiled = tagJsonNotTiled
@@ -698,8 +695,7 @@ extension Cls {
         
         /// 每列key的名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let keys: [String]?
+        public let keys: [String]
         
         /// 各字段间的分隔符
         public let delimiter: String
@@ -710,7 +706,7 @@ extension Cls {
         /// 对于上面指定的不存在字段使用该内容填充
         public let nonExistingField: String
         
-        public init (printKey: Bool, keys: [String]?, delimiter: String, escapeChar: String, nonExistingField: String) {
+        public init (printKey: Bool, keys: [String], delimiter: String, escapeChar: String, nonExistingField: String) {
             self.printKey = printKey
             self.keys = keys
             self.delimiter = delimiter
@@ -1024,10 +1020,9 @@ extension Cls {
         
         /// 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__、__HOSTNAME__。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let metaFields: [String]?
+        public let metaFields: [String]
         
-        public init (enableTag: Bool, metaFields: [String]?) {
+        public init (enableTag: Bool, metaFields: [String]) {
             self.enableTag = enableTag
             self.metaFields = metaFields
         }
@@ -1410,10 +1405,9 @@ extension Cls {
         
         /// 解析失败赋值信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let keyNonExistingField: String?
+        public let keyNonExistingField: String
         
-        public init (keyName: String, keyType: String, keyNonExistingField: String?) {
+        public init (keyName: String, keyType: String, keyNonExistingField: String) {
             self.keyName = keyName
             self.keyType = keyType
             self.keyNonExistingField = keyNonExistingField

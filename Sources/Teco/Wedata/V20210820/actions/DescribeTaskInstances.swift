@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 查询任务实例列表
-    ///
-    /// 查询任务实例列表
     @inlinable
     public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
         self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询任务实例列表
-    ///
     /// 查询任务实例列表
     @inlinable
     public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {

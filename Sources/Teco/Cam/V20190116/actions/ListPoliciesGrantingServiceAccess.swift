@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 获取所有已授权服务
-    ///
-    /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesGrantingServiceAccessResponse > {
         self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取所有已授权服务
-    ///
     /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {

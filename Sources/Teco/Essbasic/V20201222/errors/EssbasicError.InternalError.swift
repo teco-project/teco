@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -42,6 +41,9 @@ extension TCEssbasicError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,66 +58,92 @@ extension TCEssbasicError {
         }
         
         /// 其他API错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var api: InternalError {
             InternalError(.api)
         }
         
         /// 缓存错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var cache: InternalError {
             InternalError(.cache)
         }
         
         /// 回调错误。
+        ///
+        /// 优先检查参数、回调地址的正确性。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var callback: InternalError {
             InternalError(.callback)
         }
         
         /// 数据库错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var db: InternalError {
             InternalError(.db)
         }
         
         /// 解密错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var decryption: InternalError {
             InternalError(.decryption)
         }
         
         /// 加密错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var encryption: InternalError {
             InternalError(.encryption)
         }
         
         /// 生成唯一ID错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var generateId: InternalError {
             InternalError(.generateId)
         }
         
         /// MQ错误。
+        ///
+        /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
         public static var mq: InternalError {
             InternalError(.mq)
         }
         
         /// Pdf错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var pdf: InternalError {
             InternalError(.pdf)
         }
         
         /// 序列化错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var serialize: InternalError {
             InternalError(.serialize)
         }
         
         /// 存储错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var storage: InternalError {
             InternalError(.storage)
         }
         
         /// 第三方错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var thirdParty: InternalError {
             InternalError(.thirdParty)
         }
         
         /// 反序列化错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var unSerialize: InternalError {
             InternalError(.unSerialize)
         }
@@ -140,10 +168,21 @@ extension TCEssbasicError.InternalError: CustomStringConvertible {
 }
 
 extension TCEssbasicError.InternalError {
+    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
     public func toEssbasicError() -> TCEssbasicError {
         guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEssbasicError(code, context: self.context)
+    }
+}
+
+extension TCEssbasicError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

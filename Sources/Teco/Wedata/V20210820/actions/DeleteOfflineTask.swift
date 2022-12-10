@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 删除任务
-    ///
-    /// 删除任务
     @inlinable
     public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineTaskResponse > {
         self.client.execute(action: "DeleteOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除任务
-    ///
     /// 删除任务
     @inlinable
     public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineTaskResponse {

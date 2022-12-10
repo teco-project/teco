@@ -31,6 +31,9 @@ public struct TCWafError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -60,6 +63,8 @@ public struct TCWafError: TCErrorType {
     }
     
     /// CLS内部错误。
+    ///
+    /// 错误表示WAF的API后端访问CLS接口失败,包括接口失败,语法失败,参数校验不通过等。
     public static var failedOperation_CLSInternalError: TCWafError {
         TCWafError(.failedOperation_CLSInternalError)
     }
@@ -165,5 +170,15 @@ extension TCWafError: Equatable {
 extension TCWafError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCWafError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -34,6 +34,9 @@ public struct TCCccError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -48,6 +51,8 @@ public struct TCCccError: TCErrorType {
     }
     
     /// 外呼失败。
+    ///
+    /// 外呼失败，请检查主叫或被叫号码是否正常。
     public static var failedOperation_CallOutFailed: TCCccError {
         TCCccError(.failedOperation_CallOutFailed)
     }
@@ -74,6 +79,8 @@ public struct TCCccError: TCErrorType {
     }
     
     /// 权限不足。
+    ///
+    /// 检查账号权限
     public static var failedOperation_PermissionDenied: TCCccError {
         TCCccError(.failedOperation_PermissionDenied)
     }
@@ -112,11 +119,14 @@ public struct TCCccError: TCErrorType {
         TCCccError(.invalidParameterValue_InstanceNotExist)
     }
     
+    /// 请确认手机号是否有误
     public static var invalidParameterValue_PhoneNumIsBoundOtherAccount: TCCccError {
         TCCccError(.invalidParameterValue_PhoneNumIsBoundOtherAccount)
     }
     
     /// 查询记录不存在。
+    ///
+    /// 确认查询条件是否正确
     public static var invalidParameterValue_RecordNotExist: TCCccError {
         TCCccError(.invalidParameterValue_RecordNotExist)
     }
@@ -145,6 +155,8 @@ public struct TCCccError: TCErrorType {
     }
     
     /// 不在白名单中。
+    ///
+    /// 请申请号码白名单并通过之后再试。
     public static var operationDenied_NotInWhiteList: TCCccError {
         TCCccError(.operationDenied_NotInWhiteList)
     }
@@ -175,5 +187,15 @@ extension TCCccError: Equatable {
 extension TCCccError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCccError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

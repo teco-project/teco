@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询木马一键检测预估超时时间
-    ///
-    /// 查询木马一键检测预估超时时间
     @inlinable
     public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusManualScanEstimateTimeoutResponse > {
         self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询木马一键检测预估超时时间
-    ///
     /// 查询木马一键检测预估超时时间
     @inlinable
     public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusManualScanEstimateTimeoutResponse {

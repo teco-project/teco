@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 查询模型版本
-    ///
-    /// 查询模型版本
     @inlinable
     public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionResponse > {
         self.client.execute(action: "DescribeTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询模型版本
-    ///
     /// 查询模型版本
     @inlinable
     public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionResponse {

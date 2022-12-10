@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 删除触发器
-    ///
-    /// 删除触发器
     @inlinable
     public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebhookTriggerResponse > {
         self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除触发器
-    ///
     /// 删除触发器
     @inlinable
     public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {

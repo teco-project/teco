@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 批量添加记录
-    ///
-    /// 批量添加记录
     @inlinable
     public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordBatchResponse > {
         self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量添加记录
-    ///
     /// 批量添加记录
     @inlinable
     public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {

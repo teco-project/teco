@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 创建专用集群
-    ///
-    /// 创建专用集群
     @inlinable
     public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterResponse > {
         self.client.execute(action: "CreateDedicatedCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建专用集群
-    ///
     /// 创建专用集群
     @inlinable
     public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Rum {
     /// 停止实例
-    ///
-    /// 停止实例
     @inlinable
     public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstanceResponse > {
         self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 停止实例
-    ///
     /// 停止实例
     @inlinable
     public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {

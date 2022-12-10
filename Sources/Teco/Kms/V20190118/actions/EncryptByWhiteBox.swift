@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Kms {
     /// 使用白盒密钥进行加密
-    ///
-    /// 使用白盒密钥进行加密
     @inlinable
     public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptByWhiteBoxResponse > {
         self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 使用白盒密钥进行加密
-    ///
     /// 使用白盒密钥进行加密
     @inlinable
     public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {

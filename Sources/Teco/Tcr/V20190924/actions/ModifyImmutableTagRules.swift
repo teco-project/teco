@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 更新镜像不可变规则
-    ///
-    /// 更新镜像不可变规则
     @inlinable
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImmutableTagRulesResponse > {
         self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新镜像不可变规则
-    ///
     /// 更新镜像不可变规则
     @inlinable
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {

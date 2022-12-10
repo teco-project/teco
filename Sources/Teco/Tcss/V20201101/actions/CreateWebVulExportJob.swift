@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 创建web漏洞导出任务
-    ///
-    /// 创建web漏洞导出任务
     @inlinable
     public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebVulExportJobResponse > {
         self.client.execute(action: "CreateWebVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建web漏洞导出任务
-    ///
     /// 创建web漏洞导出任务
     @inlinable
     public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebVulExportJobResponse {

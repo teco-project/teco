@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCPrivatednsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -45,11 +47,15 @@ extension TCPrivatednsError {
         }
         
         /// 超过自定义TLD额度。
+        ///
+        /// 超过自定义TLD额度
         public static var tldOutOfLimit: LimitExceeded {
             LimitExceeded(.tldOutOfLimit)
         }
         
         /// 使用自定义TLD的私有域超过总额度。
+        ///
+        /// 删除不需要的使用了自定义TLD的私有域
         public static var tldOutOfRange: LimitExceeded {
             LimitExceeded(.tldOutOfRange)
         }
@@ -74,10 +80,21 @@ extension TCPrivatednsError.LimitExceeded: CustomStringConvertible {
 }
 
 extension TCPrivatednsError.LimitExceeded {
+    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
     public func toPrivatednsError() -> TCPrivatednsError {
         guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCPrivatednsError(code, context: self.context)
+    }
+}
+
+extension TCPrivatednsError.LimitExceeded {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

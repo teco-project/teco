@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 修改安全日志kafkaUIN
-    ///
-    /// 修改安全日志kafkaUIN
     @inlinable
     public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogKafkaUINResponse > {
         self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改安全日志kafkaUIN
-    ///
     /// 修改安全日志kafkaUIN
     @inlinable
     public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {

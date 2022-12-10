@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCMongodbError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,11 +49,15 @@ extension TCMongodbError {
         }
         
         /// 当前实例不支持设置参数。
+        ///
+        /// 请升级实例版本。
         public static var currentInstanceNotSupportModifyParams: InvalidParameter {
             InvalidParameter(.currentInstanceNotSupportModifyParams)
         }
         
         /// 无效Vip信息。
+        ///
+        /// 输入正确的Vip信息。
         public static var invalidVip: InvalidParameter {
             InvalidParameter(.invalidVip)
         }
@@ -86,10 +92,21 @@ extension TCMongodbError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCMongodbError.InvalidParameter {
+    /// - Returns: ``TCMongodbError`` that holds the same error and context.
     public func toMongodbError() -> TCMongodbError {
         guard let code = TCMongodbError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCMongodbError(code, context: self.context)
+    }
+}
+
+extension TCMongodbError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

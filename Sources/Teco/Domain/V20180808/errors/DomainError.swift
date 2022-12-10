@@ -75,6 +75,9 @@ public struct TCDomainError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -229,6 +232,8 @@ public struct TCDomainError: TCErrorType {
     }
     
     /// 仅支持已验证的电子邮箱，请先在控制台创建后使用
+    ///
+    /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
     public static var invalidParameter_EmailIsUnverified: TCDomainError {
         TCDomainError(.invalidParameter_EmailIsUnverified)
     }
@@ -304,6 +309,8 @@ public struct TCDomainError: TCErrorType {
     }
     
     /// 仅支持已验证的手机号码，请先在控制台创建后使用。
+    ///
+    /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
     public static var invalidParameter_TelephoneIsUnverified: TCDomainError {
         TCDomainError(.invalidParameter_TelephoneIsUnverified)
     }
@@ -429,5 +436,15 @@ extension TCDomainError: Equatable {
 extension TCDomainError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCDomainError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

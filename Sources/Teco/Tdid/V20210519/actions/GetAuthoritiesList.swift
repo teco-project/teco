@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 权威机构列表
-    ///
-    /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
         self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 权威机构列表
-    ///
     /// 权威机构列表
     @inlinable
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {

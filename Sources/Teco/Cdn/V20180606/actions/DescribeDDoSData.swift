@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdn {
     /// DDoS统计数据查询
-    ///
-    /// DDoS统计数据查询
     @inlinable
     public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDataResponse > {
         self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DDoS统计数据查询
-    ///
     /// DDoS统计数据查询
     @inlinable
     public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {

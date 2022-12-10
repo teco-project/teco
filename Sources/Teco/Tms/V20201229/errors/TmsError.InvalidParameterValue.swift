@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCTmsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,11 +52,15 @@ extension TCTmsError {
         }
         
         /// 请求的文本长度超过限制。
+        ///
+        /// 咨询运营人员，获取接口的文本入参长度限制，调整文本入参长度。
         public static var errTextContentLen: InvalidParameterValue {
             InvalidParameterValue(.errTextContentLen)
         }
         
         /// 请求的文本格式错误（需要base64编码格式的文本）。
+        ///
+        /// 对请求的文本进行base64编码
         public static var errTextContentType: InvalidParameterValue {
             InvalidParameterValue(.errTextContentType)
         }
@@ -74,10 +80,21 @@ extension TCTmsError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCTmsError.InvalidParameterValue {
+    /// - Returns: ``TCTmsError`` that holds the same error and context.
     public func toTmsError() -> TCTmsError {
         guard let code = TCTmsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTmsError(code, context: self.context)
+    }
+}
+
+extension TCTmsError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

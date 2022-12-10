@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 删除域名共享
-    ///
-    /// 删除域名共享
     @inlinable
     public func deleteShareDomain(_ input: DeleteShareDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShareDomainResponse > {
         self.client.execute(action: "DeleteShareDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除域名共享
-    ///
     /// 删除域名共享
     @inlinable
     public func deleteShareDomain(_ input: DeleteShareDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShareDomainResponse {

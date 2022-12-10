@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 修改独占集群机器
-    ///
-    /// 修改独占集群机器
     @inlinable
     public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterMachineResponse > {
         self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改独占集群机器
-    ///
     /// 修改独占集群机器
     @inlinable
     public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 容器网络查询网络策略策略执行状态
-    ///
-    /// 容器网络查询网络策略策略执行状态
     @inlinable
     public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyStatusResponse > {
         self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 容器网络查询网络策略策略执行状态
-    ///
     /// 容器网络查询网络策略策略执行状态
     @inlinable
     public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 查询表得分趋势
-    ///
-    /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableScoreTrendResponse > {
         self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询表得分趋势
-    ///
     /// 查询表得分趋势
     @inlinable
     public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {

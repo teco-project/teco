@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bpaas {
     /// 查看审批详情
-    ///
-    /// 查看审批详情
     @inlinable
     public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBpaasApproveDetailResponse > {
         self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看审批详情
-    ///
     /// 查看审批详情
     @inlinable
     public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {

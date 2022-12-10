@@ -106,6 +106,9 @@ public struct TCGaapError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -260,6 +263,8 @@ public struct TCGaapError: TCErrorType {
     }
     
     /// 该通道为非标通道，限制所有写操作。
+    ///
+    /// 通道已锁定，无法配置，请联系腾讯云工程师或提交工单进行配置。
     public static var failedOperation_NonStandardProxy: TCGaapError {
         TCGaapError(.failedOperation_NonStandardProxy)
     }
@@ -609,5 +614,15 @@ extension TCGaapError: Equatable {
 extension TCGaapError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCGaapError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

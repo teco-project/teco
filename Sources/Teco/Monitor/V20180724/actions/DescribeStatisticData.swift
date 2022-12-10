@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 根据维度条件查询监控数据
-    ///
-    /// 根据维度条件查询监控数据
     @inlinable
     public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDataResponse > {
         self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据维度条件查询监控数据
-    ///
     /// 根据维度条件查询监控数据
     @inlinable
     public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDataResponse {

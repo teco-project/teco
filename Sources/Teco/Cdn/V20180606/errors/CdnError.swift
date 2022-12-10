@@ -186,6 +186,9 @@ public struct TCCdnError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -225,6 +228,8 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// 内部鉴权系统错误。
+    ///
+    /// 该类型错误一般是偶发性问题，如果持续存在，请联系腾讯云工程师进一步排查。
     public static var internalError_CamSystemError: TCCdnError {
         TCCdnError(.internalError_CamSystemError)
     }
@@ -270,6 +275,8 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// 内部服务错误，请联系腾讯云工程师进一步排查。
+    ///
+    /// 联系腾讯云工程师进一步排查
     public static var internalError_Error: TCCdnError {
         TCCdnError(.internalError_Error)
     }
@@ -894,11 +901,15 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
+    ///
+    /// 购买安全套餐
     public static var resourceUnavailable_ScdnUserNoPackage: TCCdnError {
         TCCdnError(.resourceUnavailable_ScdnUserNoPackage)
     }
     
     /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
+    ///
+    /// 购买 SCDN 套餐。
     public static var resourceUnavailable_ScdnUserSuspend: TCCdnError {
         TCCdnError(.resourceUnavailable_ScdnUserSuspend)
     }
@@ -934,6 +945,8 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// 该域名涉及违法违规风险，不可接入。
+    ///
+    /// 您可前往工业和信息化部政务服务平台-ICP/IP地址/域名信息备案管理系统查询。
     public static var unauthorizedOperation_CdnHostInIcpBlacklist: TCCdnError {
         TCCdnError(.unauthorizedOperation_CdnHostInIcpBlacklist)
     }
@@ -1014,6 +1027,8 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// CLS服务未开通，请先在CLS控制台开通服务。
+    ///
+    /// 使用cdn-cls服务，需先在CLS控制台开通服务。
     public static var unauthorizedOperation_ClsServiceNotActivated: TCCdnError {
         TCCdnError(.unauthorizedOperation_ClsServiceNotActivated)
     }
@@ -1049,6 +1064,8 @@ public struct TCCdnError: TCErrorType {
     }
     
     /// 操作超出调用频次限制。
+    ///
+    /// 接口有调用频率限制，请降低调用频率。如果您需要提升频率，请联系腾讯云工程师进一步处理。
     public static var unauthorizedOperation_OperationTooOften: TCCdnError {
         TCCdnError(.unauthorizedOperation_OperationTooOften)
     }
@@ -1094,5 +1111,15 @@ extension TCCdnError: Equatable {
 extension TCCdnError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCdnError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 异步调用设备行为
-    ///
-    /// 异步调用设备行为
     @inlinable
     public func callDeviceActionAsync(_ input: CallDeviceActionAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallDeviceActionAsyncResponse > {
         self.client.execute(action: "CallDeviceActionAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 异步调用设备行为
-    ///
     /// 异步调用设备行为
     @inlinable
     public func callDeviceActionAsync(_ input: CallDeviceActionAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionAsyncResponse {

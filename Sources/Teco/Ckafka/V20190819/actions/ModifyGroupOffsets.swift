@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 设置Groups 消费分组offset
-    ///
-    /// 设置Groups 消费分组offset
     @inlinable
     public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupOffsetsResponse > {
         self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置Groups 消费分组offset
-    ///
     /// 设置Groups 消费分组offset
     @inlinable
     public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {

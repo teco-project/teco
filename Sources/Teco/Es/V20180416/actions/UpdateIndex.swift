@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Es {
     /// 更新索引
-    ///
-    /// 更新索引
     @inlinable
     public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateIndexResponse > {
         self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新索引
-    ///
     /// 更新索引
     @inlinable
     public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {

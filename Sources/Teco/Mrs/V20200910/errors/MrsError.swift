@@ -34,6 +34,9 @@ public struct TCMrsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -63,6 +66,8 @@ public struct TCMrsError: TCErrorType {
     }
     
     /// 未知错误。
+    ///
+    /// 服务端故障，请重试。
     public static var failedOperation_UnknownError: TCMrsError {
         TCMrsError(.failedOperation_UnknownError)
     }
@@ -108,11 +113,15 @@ public struct TCMrsError: TCErrorType {
     }
     
     /// 图片没有文字。
+    ///
+    /// 上传的报告图片没有文字内容。
     public static var invalidParameterValue_ImageIsNoText: TCMrsError {
         TCMrsError(.invalidParameterValue_ImageIsNoText)
     }
     
     /// 图片URL无效。
+    ///
+    /// 检查参数中URL地址是否有效且公网可达。
     public static var invalidParameterValue_ImageURLInvalid: TCMrsError {
         TCMrsError(.invalidParameterValue_ImageURLInvalid)
     }
@@ -153,6 +162,8 @@ public struct TCMrsError: TCErrorType {
     }
     
     /// 不支持的报告类型。
+    ///
+    /// 请检查上传报告是否正确。
     public static var operationDenied_UnSupportThisType: TCMrsError {
         TCMrsError(.operationDenied_UnSupportThisType)
     }
@@ -183,5 +194,15 @@ extension TCMrsError: Equatable {
 extension TCMrsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCMrsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

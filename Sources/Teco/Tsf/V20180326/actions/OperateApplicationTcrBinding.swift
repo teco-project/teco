@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 绑定解绑tcr仓库
-    ///
-    /// 绑定解绑tcr仓库
     @inlinable
     public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateApplicationTcrBindingResponse > {
         self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 绑定解绑tcr仓库
-    ///
     /// 绑定解绑tcr仓库
     @inlinable
     public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {

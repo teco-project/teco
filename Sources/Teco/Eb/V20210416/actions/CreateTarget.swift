@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eb {
     /// 创建事件目标
-    ///
-    /// 创建事件目标
     @inlinable
     public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTargetResponse > {
         self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建事件目标
-    ///
     /// 创建事件目标
     @inlinable
     public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {

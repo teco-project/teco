@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 同步资产-互联网&VPC（新）
-    ///
-    /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRunSyncAssetResponse > {
         self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 同步资产-互联网&VPC（新）
-    ///
     /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {

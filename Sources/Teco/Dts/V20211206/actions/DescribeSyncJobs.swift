@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dts {
     /// 查询同步任务信息
-    ///
-    /// 查询同步任务信息
     @inlinable
     public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSyncJobsResponse > {
         self.client.execute(action: "DescribeSyncJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询同步任务信息
-    ///
     /// 查询同步任务信息
     @inlinable
     public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSyncJobsResponse {

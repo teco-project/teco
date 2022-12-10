@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 创建触发器
-    ///
-    /// 创建触发器
     @inlinable
     public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebhookTriggerResponse > {
         self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建触发器
-    ///
     /// 创建触发器
     @inlinable
     public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {

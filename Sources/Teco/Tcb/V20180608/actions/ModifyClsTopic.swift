@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 修改日志主题
-    ///
-    /// 修改日志主题
     @inlinable
     public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClsTopicResponse > {
         self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改日志主题
-    ///
     /// 修改日志主题
     @inlinable
     public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {

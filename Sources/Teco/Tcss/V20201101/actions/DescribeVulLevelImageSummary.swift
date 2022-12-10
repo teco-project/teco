@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询应急漏洞各威胁等级统计镜像数
-    ///
-    /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
     public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelImageSummaryResponse > {
         self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询应急漏洞各威胁等级统计镜像数
-    ///
     /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
     public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Es {
     /// 更新ES集群词典
-    ///
-    /// 更新ES集群词典
     @inlinable
     public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictionariesResponse > {
         self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新ES集群词典
-    ///
     /// 更新ES集群词典
     @inlinable
     public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {

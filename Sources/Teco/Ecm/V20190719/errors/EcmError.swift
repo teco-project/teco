@@ -205,6 +205,9 @@ public struct TCEcmError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -544,6 +547,8 @@ public struct TCEcmError: TCErrorType {
     }
     
     /// 秘钥名称异常。
+    ///
+    /// 请检查实例ID是否重复
     public static var invalidParameterValue_InvalidKeyPairName: TCEcmError {
         TCEcmError(.invalidParameterValue_InvalidKeyPairName)
     }
@@ -693,6 +698,7 @@ public struct TCEcmError: TCErrorType {
         TCEcmError(.invalidParameterValue_SubnetConflict)
     }
     
+    /// 更换子网。
     public static var invalidParameterValue_SubnetNotExist: TCEcmError {
         TCEcmError(.invalidParameterValue_SubnetNotExist)
     }
@@ -1022,6 +1028,7 @@ public struct TCEcmError: TCErrorType {
         TCEcmError(.resourcesSoldOut_LoadBalancerSoldOut)
     }
     
+    /// 更换机型或者可用区。
     public static var resourcesSoldOut_SpecifiedInstanceType: TCEcmError {
         TCEcmError(.resourcesSoldOut_SpecifiedInstanceType)
     }
@@ -1207,5 +1214,15 @@ extension TCEcmError: Equatable {
 extension TCEcmError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEcmError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

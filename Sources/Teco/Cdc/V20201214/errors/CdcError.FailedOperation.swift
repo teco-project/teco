@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -30,6 +29,9 @@ extension TCCdcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,6 +50,8 @@ extension TCCdcError {
         }
         
         /// 删除site失败。
+        ///
+        /// site删除失败，因为还存在某些其它的cluster。
         public static var failDeleteSite: FailedOperation {
             FailedOperation(.failDeleteSite)
         }
@@ -67,10 +71,21 @@ extension TCCdcError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCdcError.FailedOperation {
+    /// - Returns: ``TCCdcError`` that holds the same error and context.
     public func toCdcError() -> TCCdcError {
         guard let code = TCCdcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCdcError(code, context: self.context)
+    }
+}
+
+extension TCCdcError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

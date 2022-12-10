@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssl {
     /// 查询管理人详情
-    ///
-    /// 查询管理人详情
     @inlinable
     public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
         self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询管理人详情
-    ///
     /// 查询管理人详情
     @inlinable
     public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {

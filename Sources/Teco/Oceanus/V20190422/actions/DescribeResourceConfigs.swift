@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Oceanus {
     /// 描述资源配置接口
-    ///
-    /// 描述资源配置接口
     @inlinable
     public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceConfigsResponse > {
         self.client.execute(action: "DescribeResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 描述资源配置接口
-    ///
     /// 描述资源配置接口
     @inlinable
     public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceConfigsResponse {

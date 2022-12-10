@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 查询DDos攻击时序数据
-    ///
-    /// 查询DDos攻击时序数据
     @inlinable
     public func describeDDosAttackData(_ input: DescribeDDosAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackDataResponse > {
         self.client.execute(action: "DescribeDDosAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询DDos攻击时序数据
-    ///
     /// 查询DDos攻击时序数据
     @inlinable
     public func describeDDosAttackData(_ input: DescribeDDosAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackDataResponse {

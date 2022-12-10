@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Youmall {
     /// 获取指定区域每日客流量
-    ///
-    /// 获取指定区域每日客流量
     @inlinable
     public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowDailyByZoneIdResponse > {
         self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取指定区域每日客流量
-    ///
     /// 获取指定区域每日客流量
     @inlinable
     public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowDailyByZoneIdResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 删除应用账号
-    ///
-    /// 删除应用账号
     @inlinable
     public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppAccountResponse > {
         self.client.execute(action: "DeleteAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除应用账号
-    ///
     /// 删除应用账号
     @inlinable
     public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppAccountResponse {

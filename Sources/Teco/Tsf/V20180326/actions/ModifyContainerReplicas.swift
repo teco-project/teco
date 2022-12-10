@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 修改容器部署组实例数
-    ///
-    /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(_ input: ModifyContainerReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerReplicasResponse > {
         self.client.execute(action: "ModifyContainerReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改容器部署组实例数
-    ///
     /// 修改容器部署组实例数
     @inlinable
     public func modifyContainerReplicas(_ input: ModifyContainerReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerReplicasResponse {

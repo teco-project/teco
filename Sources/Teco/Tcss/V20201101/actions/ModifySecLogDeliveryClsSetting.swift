@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 更新安全日志-日志投递cls配置
-    ///
-    /// 更新安全日志-日志投递cls配置
     @inlinable
     public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryClsSettingResponse > {
         self.client.execute(action: "ModifySecLogDeliveryClsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新安全日志-日志投递cls配置
-    ///
     /// 更新安全日志-日志投递cls配置
     @inlinable
     public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryClsSettingResponse {

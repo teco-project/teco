@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 获取用户所在的用户组列表
-    ///
-    /// 获取用户所在的用户组列表
     @inlinable
     public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserGroupsOfUserResponse > {
         self.client.execute(action: "ListUserGroupsOfUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户所在的用户组列表
-    ///
     /// 获取用户所在的用户组列表
     @inlinable
     public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询正在一键扫描的镜像扫描taskid
-    ///
-    /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
     public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanTaskResponse > {
         self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询正在一键扫描的镜像扫描taskid
-    ///
     /// 查询正在一键扫描的镜像扫描taskid
     @inlinable
     public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanTaskResponse {

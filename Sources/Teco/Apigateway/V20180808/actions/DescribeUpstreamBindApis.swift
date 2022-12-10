@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apigateway {
     /// 查询后端通道所绑定的API列表
-    ///
-    /// 查询后端通道所绑定的API列表
     @inlinable
     public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamBindApisResponse > {
         self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询后端通道所绑定的API列表
-    ///
     /// 查询后端通道所绑定的API列表
     @inlinable
     public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 禁用读写分离
-    ///
-    /// 禁用读写分离
     @inlinable
     public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableReplicaReadonlyResponse > {
         self.client.execute(action: "DisableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 禁用读写分离
-    ///
     /// 禁用读写分离
     @inlinable
     public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableReplicaReadonlyResponse {

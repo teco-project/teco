@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -136,6 +135,9 @@ extension TCVpcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -385,6 +387,8 @@ extension TCVpcError {
         }
         
         /// 无效的实例状态。
+        ///
+        /// 请确保实例状态正常，再进行操作。
         public static var invalidInstanceState: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceState)
         }
@@ -486,6 +490,7 @@ extension TCVpcError {
             UnsupportedOperation(.notSupportDeleteDefaultRouteTable)
         }
         
+        /// 确认云联网是否开启了路由重叠选项。
         public static var notSupportedUpdateCcnRoutePublish: UnsupportedOperation {
             UnsupportedOperation(.notSupportedUpdateCcnRoutePublish)
         }
@@ -554,10 +559,13 @@ extension TCVpcError {
         }
         
         /// 未找到相关角色，请确认角色是否授权。
+        ///
+        /// 进行角色授权
         public static var roleNotFound: UnsupportedOperation {
             UnsupportedOperation(.roleNotFound)
         }
         
+        /// 请解除该路由表和子网的绑定后重试。
         public static var routeTableHasSubnetRule: UnsupportedOperation {
             UnsupportedOperation(.routeTableHasSubnetRule)
         }
@@ -685,10 +693,21 @@ extension TCVpcError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCVpcError.UnsupportedOperation {
+    /// - Returns: ``TCVpcError`` that holds the same error and context.
     public func toVpcError() -> TCVpcError {
         guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCVpcError(code, context: self.context)
+    }
+}
+
+extension TCVpcError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

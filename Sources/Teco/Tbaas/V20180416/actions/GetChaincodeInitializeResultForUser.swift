@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 实例化结果查询
-    ///
-    /// 实例化结果查询
     @inlinable
     public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeInitializeResultForUserResponse > {
         self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 实例化结果查询
-    ///
     /// 实例化结果查询
     @inlinable
     public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {

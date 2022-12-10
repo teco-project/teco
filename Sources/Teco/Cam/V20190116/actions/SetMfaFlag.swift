@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 设置子用户的登录保护和敏感操作校验方式
-    ///
-    /// 设置子用户的登录保护和敏感操作校验方式
     @inlinable
     public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMfaFlagResponse > {
         self.client.execute(action: "SetMfaFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置子用户的登录保护和敏感操作校验方式
-    ///
     /// 设置子用户的登录保护和敏感操作校验方式
     @inlinable
     public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMfaFlagResponse {

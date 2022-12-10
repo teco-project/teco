@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cr {
     /// 更新机器人任务状态
-    ///
-    /// 更新机器人任务状态
     @inlinable
     public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotTaskStatusResponse > {
         self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新机器人任务状态
-    ///
     /// 更新机器人任务状态
     @inlinable
     public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {

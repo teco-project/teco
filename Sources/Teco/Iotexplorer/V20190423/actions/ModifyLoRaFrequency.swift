@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 修改LoRa自定义频点
-    ///
-    /// 修改LoRa自定义频点
     @inlinable
     public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaFrequencyResponse > {
         self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改LoRa自定义频点
-    ///
     /// 修改LoRa自定义频点
     @inlinable
     public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {

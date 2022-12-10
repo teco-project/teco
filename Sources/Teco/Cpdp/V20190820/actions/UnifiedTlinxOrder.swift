@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云支付-统一下单接口
-    ///
-    /// 云支付-统一下单接口
     @inlinable
     public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnifiedTlinxOrderResponse > {
         self.client.execute(action: "UnifiedTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云支付-统一下单接口
-    ///
     /// 云支付-统一下单接口
     @inlinable
     public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedTlinxOrderResponse {

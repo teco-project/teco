@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 修改应用账号
-    ///
-    /// 修改应用账号
     @inlinable
     public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppAccountResponse > {
         self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改应用账号
-    ///
     /// 修改应用账号
     @inlinable
     public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {

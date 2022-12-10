@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tan {
     /// 推送节点数据
-    ///
-    /// 推送节点数据
     @inlinable
     public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
         self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 推送节点数据
-    ///
     /// 推送节点数据
     @inlinable
     public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 商户恶意注册接口
-    ///
-    /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
         self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 商户恶意注册接口
-    ///
     /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {

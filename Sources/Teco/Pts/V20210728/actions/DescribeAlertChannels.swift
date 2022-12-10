@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 查询告警通知接收组
-    ///
-    /// 查询告警通知接收组
     @inlinable
     public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertChannelsResponse > {
         self.client.execute(action: "DescribeAlertChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询告警通知接收组
-    ///
     /// 查询告警通知接收组
     @inlinable
     public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertChannelsResponse {

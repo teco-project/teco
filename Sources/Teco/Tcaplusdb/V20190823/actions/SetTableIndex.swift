@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 设置表格分布式索引
-    ///
-    /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableIndexResponse > {
         self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置表格分布式索引
-    ///
     /// 设置表格分布式索引
     @inlinable
     public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {

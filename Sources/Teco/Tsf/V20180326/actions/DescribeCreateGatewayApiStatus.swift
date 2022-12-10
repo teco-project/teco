@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 查询一键导入API分组任务的状态
-    ///
-    /// 查询一键导入API分组任务的状态
     @inlinable
     public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreateGatewayApiStatusResponse > {
         self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询一键导入API分组任务的状态
-    ///
     /// 查询一键导入API分组任务的状态
     @inlinable
     public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 导出本地提权事件
-    ///
-    /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
         self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出本地提权事件
-    ///
     /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {

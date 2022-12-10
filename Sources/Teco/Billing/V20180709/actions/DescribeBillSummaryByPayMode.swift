@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Billing {
     /// 获取按付费模式汇总费用分布
-    ///
-    /// 获取按付费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByPayModeResponse > {
         self.client.execute(action: "DescribeBillSummaryByPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取按付费模式汇总费用分布
-    ///
     /// 获取按付费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {

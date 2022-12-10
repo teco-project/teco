@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Kms {
     /// 获取白盒密钥列表
-    ///
-    /// 获取白盒密钥列表
     @inlinable
     public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyDetailsResponse > {
         self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取白盒密钥列表
-    ///
     /// 获取白盒密钥列表
     @inlinable
     public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {

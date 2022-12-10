@@ -174,6 +174,9 @@ public struct TCCdbError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -233,6 +236,8 @@ public struct TCCdbError: TCErrorType {
     }
     
     /// 审计不存在。
+    ///
+    /// 实例未开通审计
     public static var failedOperation_AuditConfigNotExist: TCCdbError {
         TCCdbError(.failedOperation_AuditConfigNotExist)
     }
@@ -343,6 +348,8 @@ public struct TCCdbError: TCErrorType {
     }
     
     /// 查询超时。
+    ///
+    /// 请缩小查询范围重新查询
     public static var failedOperation_TimeoutError: TCCdbError {
         TCCdbError(.failedOperation_TimeoutError)
     }
@@ -672,6 +679,8 @@ public struct TCCdbError: TCErrorType {
     }
     
     /// 置放群组下存在资源。
+    ///
+    /// 请从置放群组里移除资源。
     public static var invalidParameter_DeployGroupNotEmpty: TCCdbError {
         TCCdbError(.invalidParameter_DeployGroupNotEmpty)
     }
@@ -1020,5 +1029,15 @@ extension TCCdbError: Equatable {
 extension TCCdbError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCdbError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

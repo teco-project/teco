@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 下载快照
-    ///
-    /// 下载快照
     @inlinable
     public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadSnapshotResponse > {
         self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 下载快照
-    ///
     /// 下载快照
     @inlinable
     public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {

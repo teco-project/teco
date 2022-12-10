@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 修改单元应用基本信息
-    ///
-    /// 修改单元应用基本信息
     @inlinable
     public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationBasicInfoResponse > {
         self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改单元应用基本信息
-    ///
     /// 修改单元应用基本信息
     @inlinable
     public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {

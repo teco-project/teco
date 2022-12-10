@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -350,28 +349,23 @@ extension Ckafka {
     public struct ClickHouseConnectParam: TCInputModel, TCOutputModel {
         /// ClickHouse的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// ClickHouse连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// ClickHouse连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// ClickHouse连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// ClickHouse连接源是否为自建集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let selfBuilt: Bool?
+        public let selfBuilt: Bool
         
         /// ClickHouse连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -385,7 +379,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, selfBuilt: Bool?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, selfBuilt: Bool, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -412,8 +406,7 @@ extension Ckafka {
     public struct ClickHouseModifyConnectParam: TCInputModel, TCOutputModel {
         /// ClickHouse连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// ClickHouse的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -443,7 +436,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -583,8 +576,7 @@ extension Ckafka {
     public struct ClsParam: TCInputModel {
         /// 生产的信息是否为json格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let decodeJson: Bool?
+        public let decodeJson: Bool
         
         /// cls日志主题id
         public let resource: String
@@ -601,7 +593,7 @@ extension Ckafka {
         /// 字段内容格式需要是秒级时间戳
         public let timeField: String?
         
-        public init (decodeJson: Bool?, resource: String, logSet: String?, contentKey: String?, timeField: String?) {
+        public init (decodeJson: Bool, resource: String, logSet: String?, contentKey: String?, timeField: String?) {
             self.decodeJson = decodeJson
             self.resource = resource
             self.logSet = logSet
@@ -1602,23 +1594,19 @@ extension Ckafka {
     public struct DorisConnectParam: TCInputModel, TCOutputModel {
         /// Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// Doris 连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// Doris 连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// Doris 连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Doris 连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1640,7 +1628,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bePort: Int64?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?, selfBuilt: Bool?, bePort: Int64?) {
+        public init (port: Int64, userName: String, password: String, resource: String, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?, selfBuilt: Bool?, bePort: Int64?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -1669,8 +1657,7 @@ extension Ckafka {
     public struct DorisModifyConnectParam: TCInputModel, TCOutputModel {
         /// Doris 连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1704,7 +1691,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bePort: Int64?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?, selfBuilt: Bool?, bePort: Int64?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?, selfBuilt: Bool?, bePort: Int64?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -1772,39 +1759,33 @@ extension Ckafka {
     public struct DtsConnectParam: TCInputModel, TCOutputModel {
         /// Dts的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// Dts消费分组的Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groupId: String?
+        public let groupId: String
         
         /// Dts消费分组的账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// Dts消费分组的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// Dts实例Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Dts订阅的topic
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let topic: String?
+        public let topic: String
         
         /// 是否更新到关联的Datahub任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, groupId: String?, userName: String?, password: String?, resource: String?, topic: String?, isUpdate: Bool?) {
+        public init (port: Int64, groupId: String, userName: String, password: String, resource: String, topic: String, isUpdate: Bool?) {
             self.port = port
             self.groupId = groupId
             self.userName = userName
@@ -1829,8 +1810,7 @@ extension Ckafka {
     public struct DtsModifyConnectParam: TCInputModel {
         /// Dts实例Id【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Dts的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1856,7 +1836,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topic: String?
         
-        public init (resource: String?, port: Int64?, groupId: String?, userName: String?, password: String?, isUpdate: Bool?, topic: String?) {
+        public init (resource: String, port: Int64?, groupId: String?, userName: String?, password: String?, isUpdate: Bool?, topic: String?) {
             self.resource = resource
             self.port = port
             self.groupId = groupId
@@ -1996,28 +1976,23 @@ extension Ckafka {
     public struct EsConnectParam: TCInputModel, TCOutputModel {
         /// Es的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// Es连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// Es连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// Es连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Es连接源是否为自建集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let selfBuilt: Bool?
+        public let selfBuilt: Bool
         
         /// Es连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2031,7 +2006,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, selfBuilt: Bool?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, selfBuilt: Bool, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -2058,8 +2033,7 @@ extension Ckafka {
     public struct EsModifyConnectParam: TCInputModel, TCOutputModel {
         /// Es连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// Es的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2089,7 +2063,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -3361,23 +3335,19 @@ extension Ckafka {
     public struct MariaDBConnectParam: TCInputModel, TCOutputModel {
         /// MariaDB的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// MariaDB连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// MariaDB连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// MariaDB连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MariaDB连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3391,7 +3361,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -3416,8 +3386,7 @@ extension Ckafka {
     public struct MariaDBModifyConnectParam: TCInputModel, TCOutputModel {
         /// MariaDB连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MariaDB的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3443,7 +3412,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -3551,28 +3520,23 @@ extension Ckafka {
     public struct MongoDBConnectParam: TCInputModel, TCOutputModel {
         /// MongoDB的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// MongoDB连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// MongoDB连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// MongoDB连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MongoDB连接源是否为自建集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let selfBuilt: Bool?
+        public let selfBuilt: Bool
         
         /// MongoDB连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3586,7 +3550,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, selfBuilt: Bool?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, selfBuilt: Bool, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -3613,8 +3577,7 @@ extension Ckafka {
     public struct MongoDBModifyConnectParam: TCInputModel, TCOutputModel {
         /// MongoDB连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MongoDB的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3644,7 +3607,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, selfBuilt: Bool?, isUpdate: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -3740,23 +3703,19 @@ extension Ckafka {
     public struct MySQLConnectParam: TCInputModel, TCOutputModel {
         /// MySQL的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// MySQL连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// MySQL连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// MySQL连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MySQL连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3778,7 +3737,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfBuilt: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?, clusterId: String?, selfBuilt: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?, clusterId: String?, selfBuilt: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -3807,8 +3766,7 @@ extension Ckafka {
     public struct MySQLModifyConnectParam: TCInputModel, TCOutputModel {
         /// MySQL连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// MySQL的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3842,7 +3800,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfBuilt: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?, clusterId: String?, selfBuilt: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?, clusterId: String?, selfBuilt: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -4061,23 +4019,19 @@ extension Ckafka {
     public struct PostgreSQLConnectParam: TCInputModel, TCOutputModel {
         /// PostgreSQL的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// PostgreSQL连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// PostgreSQL连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// PostgreSQL连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// PostgreSQL连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4099,7 +4053,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfBuilt: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, serviceVip: String?, uniqVpcId: String?, clusterId: String?, isUpdate: Bool?, selfBuilt: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, serviceVip: String?, uniqVpcId: String?, clusterId: String?, isUpdate: Bool?, selfBuilt: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -4128,8 +4082,7 @@ extension Ckafka {
     public struct PostgreSQLModifyConnectParam: TCInputModel, TCOutputModel {
         /// PostgreSQL连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// PostgreSQL的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4163,7 +4116,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let selfBuilt: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, clusterId: String?, isUpdate: Bool?, selfBuilt: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, clusterId: String?, isUpdate: Bool?, selfBuilt: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip
@@ -4560,23 +4513,19 @@ extension Ckafka {
     public struct SQLServerConnectParam: TCInputModel, TCOutputModel {
         /// SQLServer的连接port
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// SQLServer连接源的用户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userName: String?
+        public let userName: String
         
         /// SQLServer连接源的密码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let password: String?
+        public let password: String
         
         /// SQLServer连接源的实例资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// SQLServer连接源的实例vip，当为腾讯云实例时，必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4590,7 +4539,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (port: Int64?, userName: String?, password: String?, resource: String?, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
+        public init (port: Int64, userName: String, password: String, resource: String, serviceVip: String?, uniqVpcId: String?, isUpdate: Bool?) {
             self.port = port
             self.userName = userName
             self.password = password
@@ -4615,8 +4564,7 @@ extension Ckafka {
     public struct SQLServerModifyConnectParam: TCInputModel, TCOutputModel {
         /// SQLServer连接源的实例资源【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resource: String?
+        public let resource: String
         
         /// SQLServer的连接port【不支持修改】
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4642,7 +4590,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
         
-        public init (resource: String?, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?) {
+        public init (resource: String, port: Int64?, serviceVip: String?, uniqVpcId: String?, userName: String?, password: String?, isUpdate: Bool?) {
             self.resource = resource
             self.port = port
             self.serviceVip = serviceVip

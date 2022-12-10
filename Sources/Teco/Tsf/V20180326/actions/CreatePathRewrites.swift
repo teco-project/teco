@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 创建路径重写
-    ///
-    /// 创建路径重写
     @inlinable
     public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePathRewritesResponse > {
         self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建路径重写
-    ///
     /// 创建路径重写
     @inlinable
     public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {

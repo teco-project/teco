@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 创建或更新边缘单元NodeUnit
-    ///
-    /// 创建或更新边缘单元NodeUnit
     @inlinable
     public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpdateNodeUnitResponse > {
         self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建或更新边缘单元NodeUnit
-    ///
     /// 创建或更新边缘单元NodeUnit
     @inlinable
     public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {

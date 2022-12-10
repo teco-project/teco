@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取CC分级策略
-    ///
-    /// 获取CC分级策略
     @inlinable
     public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelPolicyResponse > {
         self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取CC分级策略
-    ///
     /// 获取CC分级策略
     @inlinable
     public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 添加L4转发规则
-    ///
-    /// 添加L4转发规则
     @inlinable
     public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL4RulesResponse > {
         self.client.execute(action: "CreateL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加L4转发规则
-    ///
     /// 添加L4转发规则
     @inlinable
     public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4RulesResponse {

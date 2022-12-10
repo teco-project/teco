@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCDtsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -46,11 +48,16 @@ extension TCDtsError {
         }
         
         /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+        ///
+        /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
         public static var intraNetUserNotTaggedError: UnsupportedOperation {
             UnsupportedOperation(.intraNetUserNotTaggedError)
         }
         
         /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+        ///
+        /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713
+        /// 【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
         public static var intraNetUserNotTaggedForSyncJobError: UnsupportedOperation {
             UnsupportedOperation(.intraNetUserNotTaggedForSyncJobError)
         }
@@ -79,10 +86,21 @@ extension TCDtsError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCDtsError.UnsupportedOperation {
+    /// - Returns: ``TCDtsError`` that holds the same error and context.
     public func toDtsError() -> TCDtsError {
         guard let code = TCDtsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCDtsError(code, context: self.context)
+    }
+}
+
+extension TCDtsError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

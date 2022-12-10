@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 获取某个租户的虚拟集群列表
-    ///
-    /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllTenantsResponse > {
         self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取某个租户的虚拟集群列表
-    ///
     /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {

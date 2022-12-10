@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cvm {
     /// 修改CHC物理服务器的属性
-    ///
-    /// 修改CHC物理服务器的属性
     @inlinable
     public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
         self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改CHC物理服务器的属性
-    ///
     /// 修改CHC物理服务器的属性
     @inlinable
     public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 概览
-    ///
-    /// 概览
     @inlinable
     public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataPanelResponse > {
         self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 概览
-    ///
     /// 概览
     @inlinable
     public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {

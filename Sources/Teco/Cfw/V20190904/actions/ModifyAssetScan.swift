@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 资产扫描
-    ///
-    /// 资产扫描
     @inlinable
     public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetScanResponse > {
         self.client.execute(action: "ModifyAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 资产扫描
-    ///
     /// 资产扫描
     @inlinable
     public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetScanResponse {

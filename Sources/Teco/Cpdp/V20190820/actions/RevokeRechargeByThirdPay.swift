@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 撤销会员在途充值(经第三方支付渠道)接口
-    ///
-    /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
     public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeRechargeByThirdPayResponse > {
         self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 撤销会员在途充值(经第三方支付渠道)接口
-    ///
     /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
     public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {

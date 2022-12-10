@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 删除镜像加速服务
-    ///
-    /// 删除镜像加速服务
     @inlinable
     public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageAccelerateServiceResponse > {
         self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除镜像加速服务
-    ///
     /// 删除镜像加速服务
     @inlinable
     public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 删除命名空间加签策略
-    ///
-    /// 删除命名空间加签策略
     @inlinable
     public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSignaturePolicyResponse > {
         self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除命名空间加签策略
-    ///
     /// 删除命名空间加签策略
     @inlinable
     public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {

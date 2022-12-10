@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 删除坐席信息
-    ///
-    /// 删除坐席信息
     @inlinable
     public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
         self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除坐席信息
-    ///
     /// 删除坐席信息
     @inlinable
     public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {

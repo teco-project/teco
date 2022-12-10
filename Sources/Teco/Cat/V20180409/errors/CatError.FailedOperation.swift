@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -47,6 +46,9 @@ extension TCCatError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -75,11 +77,14 @@ extension TCCatError {
             FailedOperation(.dbRecordUpdateFailed)
         }
         
+        /// 任务绑定的预付费套餐已过期，请续期对应的套餐包。
         public static var errPrePaidResourceExpire: FailedOperation {
             FailedOperation(.errPrePaidResourceExpire)
         }
         
         /// ES查询错误。
+        ///
+        /// 尝试重新访问该接口，如果无效，尝试缩小时间范围或更换排序的指标。
         public static var esQueryError: FailedOperation {
             FailedOperation(.esQueryError)
         }
@@ -94,6 +99,7 @@ extension TCCatError {
             FailedOperation(.orderOutOfCredit)
         }
         
+        /// 未查询到此id对应的预付费资源或者此预付费资源已经绑定其他任务，请更换资源id或者删除已经绑定此资源的任务。
         public static var preResourceIDFailed: FailedOperation {
             FailedOperation(.preResourceIDFailed)
         }
@@ -107,6 +113,7 @@ extension TCCatError {
             FailedOperation(.sendRequest)
         }
         
+        /// 需要标签中需要包含 运营产品，运营部门，负责人。
         public static var tagRequiredVerifyFailed: FailedOperation {
             FailedOperation(.tagRequiredVerifyFailed)
         }
@@ -127,6 +134,8 @@ extension TCCatError {
         }
         
         /// 批量拨测任务的类型不相同。
+        ///
+        /// 选择相同拨测类型的一批任务
         public static var taskTypeNotSame: FailedOperation {
             FailedOperation(.taskTypeNotSame)
         }
@@ -136,10 +145,12 @@ extension TCCatError {
             FailedOperation(.trialTaskExceed)
         }
         
+        /// 检查api调用逻辑
         public static var unmarshalResponse: FailedOperation {
             FailedOperation(.unmarshalResponse)
         }
         
+        /// 当前子用户无相关标签写权限，请联系主账号管理员协助授予QcloudTAGFullAccess
         public static var userNoQcloudTAGFullAccess: FailedOperation {
             FailedOperation(.userNoQcloudTAGFullAccess)
         }
@@ -164,10 +175,21 @@ extension TCCatError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCatError.FailedOperation {
+    /// - Returns: ``TCCatError`` that holds the same error and context.
     public func toCatError() -> TCCatError {
         guard let code = TCCatError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCatError(code, context: self.context)
+    }
+}
+
+extension TCCatError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 删除 Ingress 规则
-    ///
-    /// 删除 Ingress 规则
     @inlinable
     public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIngressResponse > {
         self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除 Ingress 规则
-    ///
     /// 删除 Ingress 规则
     @inlinable
     public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {

@@ -102,6 +102,9 @@ public struct TCTioneError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -126,6 +129,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 没有权限。
+    ///
+    /// 请授权
     public static var authFailure_NoPermission: TCTioneError {
         TCTioneError(.authFailure_NoPermission)
     }
@@ -146,6 +151,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// API网关访问失败，请重试。
+    ///
+    /// 请重试或提工单寻求帮助。
     public static var failedOperation_ApiGatewayQueryFailed: TCTioneError {
         TCTioneError(.failedOperation_ApiGatewayQueryFailed)
     }
@@ -156,16 +163,22 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 绑定标签失败。
+    ///
+    /// 请列表页重新编辑。
     public static var failedOperation_BindingTagsFailed: TCTioneError {
         TCTioneError(.failedOperation_BindingTagsFailed)
     }
     
     /// CAM内部错误。
+    ///
+    /// 请到CAM确认。
     public static var failedOperation_CAMFailure: TCTioneError {
         TCTioneError(.failedOperation_CAMFailure)
     }
     
     /// 调用集群失败。
+    ///
+    /// 请重试
     public static var failedOperation_CallClusterFail: TCTioneError {
         TCTioneError(.failedOperation_CallClusterFail)
     }
@@ -176,11 +189,15 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 集群访问失败。
+    ///
+    /// 请稍后重试或提工单询问小助手
     public static var failedOperation_ClusterQueryFailed: TCTioneError {
         TCTioneError(.failedOperation_ClusterQueryFailed)
     }
     
     /// 启动实例失败。
+    ///
+    /// 请稍后重试。
     public static var failedOperation_CreateJobInstanceFailed: TCTioneError {
         TCTioneError(.failedOperation_CreateJobInstanceFailed)
     }
@@ -256,6 +273,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 标签操作失败。
+    ///
+    /// 请重试
     public static var failedOperation_ExecTagFail: TCTioneError {
         TCTioneError(.failedOperation_ExecTagFail)
     }
@@ -276,6 +295,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 移动模型目录失败。
+    ///
+    /// 请到cos确认。
     public static var failedOperation_MoveModelDirFailed: TCTioneError {
         TCTioneError(.failedOperation_MoveModelDirFailed)
     }
@@ -301,6 +322,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 查询资源标签失败。
+    ///
+    /// 请到标签中心确认。
     public static var failedOperation_QueryBindingTagsFailed: TCTioneError {
         TCTioneError(.failedOperation_QueryBindingTagsFailed)
     }
@@ -311,11 +334,15 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 根据标签查询资源失败。
+    ///
+    /// 请到标签中心确认。
     public static var failedOperation_QueryModelsByTagsFailed: TCTioneError {
         TCTioneError(.failedOperation_QueryModelsByTagsFailed)
     }
     
     /// 查询计费价格失败。
+    ///
+    /// 请稍后重试。
     public static var failedOperation_QueryPriceFailed: TCTioneError {
         TCTioneError(.failedOperation_QueryPriceFailed)
     }
@@ -325,11 +352,14 @@ public struct TCTioneError: TCErrorType {
         TCTioneError(.failedOperation_QuerySpecsFailed)
     }
     
+    /// 请重试
     public static var failedOperation_QueryTagFail: TCTioneError {
         TCTioneError(.failedOperation_QueryTagFail)
     }
     
     /// 记录不存在。
+    ///
+    /// 确认传参是否有问题
     public static var failedOperation_RecordNotFound: TCTioneError {
         TCTioneError(.failedOperation_RecordNotFound)
     }
@@ -350,6 +380,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 未知的实例规格。
+    ///
+    /// 请查看规格文档，填写正确的实例规格
     public static var failedOperation_UnknownInstanceType: TCTioneError {
         TCTioneError(.failedOperation_UnknownInstanceType)
     }
@@ -365,19 +397,25 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 冻结失败。
+    ///
+    /// 余额不足，请充值。
     public static var internalError_FreezeBillFailed: TCTioneError {
         TCTioneError(.internalError_FreezeBillFailed)
     }
     
     /// 余额不足。
+    ///
+    /// 账户余额不足，无法创建任务，请充值后重新操作。
     public static var internalError_InsufficientBalance: TCTioneError {
         TCTioneError(.internalError_InsufficientBalance)
     }
     
+    /// 请检查相关权限是否允许操作。
     public static var internalError_NoPermission: TCTioneError {
         TCTioneError(.internalError_NoPermission)
     }
     
+    /// 请检查操作是否正确。
     public static var internalError_NotAllow: TCTioneError {
         TCTioneError(.internalError_NotAllow)
     }
@@ -457,14 +495,18 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 训练框架对应的版本不支持，请阅读文档查看TIONE目前支持的框架和版本。
+    ///
+    /// 查看文档支持对应的框架和版本
     public static var invalidParameterValue_FrameworkVersionNotSupport: TCTioneError {
         TCTioneError(.invalidParameterValue_FrameworkVersionNotSupport)
     }
     
+    /// 检查过滤器参数
     public static var invalidParameterValue_InvalidFilter: TCTioneError {
         TCTioneError(.invalidParameterValue_InvalidFilter)
     }
     
+    /// 减少参数值数量
     public static var invalidParameterValue_LimitExceeded: TCTioneError {
         TCTioneError(.invalidParameterValue_LimitExceeded)
     }
@@ -475,11 +517,15 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 无效的请求包体。
+    ///
+    /// 检查必填字段是否填写
     public static var invalidParameter_TgwInvalidRequestBody: TCTioneError {
         TCTioneError(.invalidParameter_TgwInvalidRequestBody)
     }
     
     /// 请求参数校验失败。
+    ///
+    /// 请确认请求参数
     public static var invalidParameter_ValidateError: TCTioneError {
         TCTioneError(.invalidParameter_ValidateError)
     }
@@ -500,6 +546,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 余额不足，创建/更新失败。
+    ///
+    /// 请充值并查看服务使用的冻结规则
     public static var operationDenied_BalanceInsufficient: TCTioneError {
         TCTioneError(.operationDenied_BalanceInsufficient)
     }
@@ -533,6 +581,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 没有该模型。
+    ///
+    /// 请输入正确的id或创建新模型。
     public static var resourceNotFound_NoModel: TCTioneError {
         TCTioneError(.resourceNotFound_NoModel)
     }
@@ -553,6 +603,8 @@ public struct TCTioneError: TCErrorType {
     }
     
     /// 资源不属于当前登陆用户主账号，无权限访问。
+    ///
+    /// 请确认资源ID是否正确，或者切换账号进行访问。
     public static var unauthorizedOperation_NoPermission: TCTioneError {
         TCTioneError(.unauthorizedOperation_NoPermission)
     }
@@ -583,5 +635,15 @@ extension TCTioneError: Equatable {
 extension TCTioneError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTioneError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 创建AMQP队列
-    ///
-    /// 创建AMQP队列
     @inlinable
     public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPQueueResponse > {
         self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建AMQP队列
-    ///
     /// 创建AMQP队列
     @inlinable
     public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {

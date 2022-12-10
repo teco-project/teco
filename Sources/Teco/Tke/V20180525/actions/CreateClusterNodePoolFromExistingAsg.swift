@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 从伸缩组创建节点池
-    ///
-    /// 从伸缩组创建节点池
     @inlinable
     public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolFromExistingAsgResponse > {
         self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 从伸缩组创建节点池
-    ///
     /// 从伸缩组创建节点池
     @inlinable
     public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolFromExistingAsgResponse {

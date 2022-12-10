@@ -194,6 +194,9 @@ public struct TCCpdpError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -213,11 +216,15 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 权限限额，禁止操作。
+    ///
+    /// 请联系管理人员授权
     public static var authFailure_Forbidden: TCCpdpError {
         TCCpdpError(.authFailure_Forbidden)
     }
     
     /// 聚鑫签名信息不匹配。
+    ///
+    /// 请联系我们
     public static var authFailure_Midas: TCCpdpError {
         TCCpdpError(.authFailure_Midas)
     }
@@ -338,6 +345,8 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 渠道方退款失败。
+    ///
+    /// 渠道方拒绝该笔退款请求，请联系米大师定位具体问题原因。
     public static var failedOperation_ChannelRefundFailed: TCCpdpError {
         TCCpdpError(.failedOperation_ChannelRefundFailed)
     }
@@ -533,6 +542,8 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫内部系统错误。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasInternalError: TCCpdpError {
         TCCpdpError(.failedOperation_MidasInternalError)
     }
@@ -542,21 +553,29 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫需要重试。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasNeedRetry: TCCpdpError {
         TCCpdpError(.failedOperation_MidasNeedRetry)
     }
     
     /// 聚鑫当前企业对该产品能力有未完成的申请单。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasRegisterUnfinished: TCCpdpError {
         TCCpdpError(.failedOperation_MidasRegisterUnfinished)
     }
     
     /// 聚鑫订单已经提交。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasRepeatOrder: TCCpdpError {
         TCCpdpError(.failedOperation_MidasRepeatOrder)
     }
     
     /// 通用风控系统错误，被风控拦截。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasRisk: TCCpdpError {
         TCCpdpError(.failedOperation_MidasRisk)
     }
@@ -566,6 +585,8 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫不支持该操作。
+    ///
+    /// 请联系我们
     public static var failedOperation_MidasUnsupportedAction: TCCpdpError {
         TCCpdpError(.failedOperation_MidasUnsupportedAction)
     }
@@ -580,6 +601,7 @@ public struct TCCpdpError: TCErrorType {
         TCCpdpError(.failedOperation_ModifyMerchantFailed)
     }
     
+    /// 未查询到相关记录
     public static var failedOperation_MountNotFound: TCCpdpError {
         TCCpdpError(.failedOperation_MountNotFound)
     }
@@ -705,6 +727,8 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 退款处理中。
+    ///
+    /// 待渠道完成退款操作，请稍后查看退款结果。
     public static var failedOperation_RefundProcessIng: TCCpdpError {
         TCCpdpError(.failedOperation_RefundProcessIng)
     }
@@ -850,6 +874,8 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫内部系统未知错误。
+    ///
+    /// 请联系我们
     public static var internalError_Midas: TCCpdpError {
         TCCpdpError(.internalError_Midas)
     }
@@ -904,31 +930,43 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫参数无效。
+    ///
+    /// 请联系我们
     public static var invalidParameter_Midas: TCCpdpError {
         TCCpdpError(.invalidParameter_Midas)
     }
     
     /// 聚鑫环境参数非法。
+    ///
+    /// 请联系我们
     public static var invalidParameter_MidasEnvironment: TCCpdpError {
         TCCpdpError(.invalidParameter_MidasEnvironment)
     }
     
     /// 聚鑫第三方应用无效。
+    ///
+    /// 请联系我们
     public static var invalidParameter_MidasExternalApp: TCCpdpError {
         TCCpdpError(.invalidParameter_MidasExternalApp)
     }
     
     /// 聚鑫文件格式错误。
+    ///
+    /// 请联系我们
     public static var invalidParameter_MidasFileType: TCCpdpError {
         TCCpdpError(.invalidParameter_MidasFileType)
     }
     
     /// 聚鑫摘要错误。
+    ///
+    /// 请联系我们
     public static var invalidParameter_MidasHash: TCCpdpError {
         TCCpdpError(.invalidParameter_MidasHash)
     }
     
     /// 聚鑫签约ID非法。
+    ///
+    /// 请联系我们
     public static var invalidParameter_MidasSignId: TCCpdpError {
         TCCpdpError(.invalidParameter_MidasSignId)
     }
@@ -949,46 +987,64 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫文件过大。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasLargeFile: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasLargeFile)
     }
     
     /// 聚鑫不允许并发下单。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrder: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrder)
     }
     
     /// 聚鑫订单已取消。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderCanceled: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderCanceled)
     }
     
     /// 聚鑫已关单。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderClosed: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderClosed)
     }
     
     /// 聚鑫订单已过期，包括超时未支付、超过退款期限等情况。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderExpired: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderExpired)
     }
     
     /// 聚鑫处理失败。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderFailed: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderFailed)
     }
     
     /// 聚鑫处理部分成功部分失败。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderPartialSuccess: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderPartialSuccess)
     }
     
     /// 聚鑫处理中。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderProcessing: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderProcessing)
     }
     
     /// 聚鑫处理成功，请勿再提交。
+    ///
+    /// 请联系我们
     public static var limitExceeded_MidasOrderSuccess: TCCpdpError {
         TCCpdpError(.limitExceeded_MidasOrderSuccess)
     }
@@ -1014,16 +1070,22 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫接口请求频率限制。
+    ///
+    /// 请联系我们
     public static var requestLimitExceeded_Midas: TCCpdpError {
         TCCpdpError(.requestLimitExceeded_Midas)
     }
     
     /// 聚鑫接口无效请求过多。
+    ///
+    /// 请联系我们
     public static var requestLimitExceeded_MidasInvalidRequest: TCCpdpError {
         TCCpdpError(.requestLimitExceeded_MidasInvalidRequest)
     }
     
     /// 聚鑫流程进行中，不能重入。
+    ///
+    /// 请联系我们
     public static var resourceInUse_Midas: TCCpdpError {
         TCCpdpError(.resourceInUse_Midas)
     }
@@ -1059,21 +1121,29 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫第三方应用未查找到。
+    ///
+    /// 请联系我们
     public static var resourceNotFound_MidasExternalApp: TCCpdpError {
         TCCpdpError(.resourceNotFound_MidasExternalApp)
     }
     
     /// 聚鑫第三方渠道找不到订单，ORDER_NOT_FOUND表示支付中台找不到订单。
+    ///
+    /// 请联系我们
     public static var resourceNotFound_MidasExternalOrder: TCCpdpError {
         TCCpdpError(.resourceNotFound_MidasExternalOrder)
     }
     
     /// 聚鑫订单没有查到记录。
+    ///
+    /// 请联系我们
     public static var resourceNotFound_MidasOrder: TCCpdpError {
         TCCpdpError(.resourceNotFound_MidasOrder)
     }
     
     /// 聚鑫签约关系不存在。
+    ///
+    /// 请联系我们
     public static var resourceNotFound_MidasSign: TCCpdpError {
         TCCpdpError(.resourceNotFound_MidasSign)
     }
@@ -1088,36 +1158,50 @@ public struct TCCpdpError: TCErrorType {
     }
     
     /// 聚鑫单日限额。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasDay: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasDay)
     }
     
     /// 聚鑫订单剩余冻结金额不足，因此会完结失败。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasFrozenAmount: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasFrozenAmount)
     }
     
     /// 聚鑫商户可用余额不足。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasMerchantBalance: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasMerchantBalance)
     }
     
     /// 聚鑫单笔限额。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasOrder: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasOrder)
     }
     
     /// 聚鑫用户可用余额不足。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasUserBalance: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasUserBalance)
     }
     
     /// 聚鑫钱包支付超限。
+    ///
+    /// 请联系我们
     public static var resourceUnavailable_MidasWallet: TCCpdpError {
         TCCpdpError(.resourceUnavailable_MidasWallet)
     }
     
     /// 聚鑫系统未授权。
+    ///
+    /// 请联系我们
     public static var unauthorizedOperation_Midas: TCCpdpError {
         TCCpdpError(.unauthorizedOperation_Midas)
     }
@@ -1138,5 +1222,15 @@ extension TCCpdpError: Equatable {
 extension TCCpdpError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCpdpError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

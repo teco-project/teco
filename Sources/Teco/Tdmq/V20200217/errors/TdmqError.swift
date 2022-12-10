@@ -108,6 +108,9 @@ public struct TCTdmqError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -132,6 +135,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// CMQ 后台服务错误。
+    ///
+    /// CMQ 后台服务错误，请再试一次。
     public static var failedOperation_CmqBackendError: TCTdmqError {
         TCTdmqError(.failedOperation_CmqBackendError)
     }
@@ -247,6 +252,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 上传的msgID错误。
+    ///
+    /// 请使用正确的MessageID的格式，否则服务端无法正确解析，
     public static var failedOperation_MessageIDError: TCTdmqError {
         TCTdmqError(.failedOperation_MessageIDError)
     }
@@ -261,11 +268,15 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 接收消息出错。
+    ///
+    /// 这个是由于在接收消息时，client或者broker没有正确响应导致抛出 PulsarClientException 异常，可通过重试来尝试解决。
     public static var failedOperation_ReceiveError: TCTdmqError {
         TCTdmqError(.failedOperation_ReceiveError)
     }
     
     /// 接收消息超时，请重试。
+    ///
+    /// 这里是因为接收消息超时导致的错误，一般由于网络抖动等因素会引起接收消息超时，可以通过重试来解决。
     public static var failedOperation_ReceiveTimeout: TCTdmqError {
         TCTdmqError(.failedOperation_ReceiveTimeout)
     }
@@ -286,6 +297,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 消息发送超时。
+    ///
+    /// 消息发送超时主要是由于broker侧的问题导致的，一般可以通过业务侧重试解决
     public static var failedOperation_SendMessageTimeoutError: TCTdmqError {
         TCTdmqError(.failedOperation_SendMessageTimeoutError)
     }
@@ -296,6 +309,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 设置消息保留策略失败。
+    ///
+    /// 调整参数后重试。
     public static var failedOperation_SetRetentionPolicy: TCTdmqError {
         TCTdmqError(.failedOperation_SetRetentionPolicy)
     }
@@ -311,6 +326,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 请使用partition topic。
+    ///
+    /// 创建的Topic类型不支持
     public static var failedOperation_TopicTypeError: TCTdmqError {
         TCTdmqError(.failedOperation_TopicTypeError)
     }
@@ -405,6 +422,7 @@ public struct TCTdmqError: TCErrorType {
         TCTdmqError(.invalidParameterValue_TopicNotFound)
     }
     
+    /// 调整分区数到合理的范围内
     public static var invalidParameter_Partition: TCTdmqError {
         TCTdmqError(.invalidParameter_Partition)
     }
@@ -540,6 +558,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 环境不存在。
+    ///
+    /// 创建环境。
     public static var resourceNotFound_Environment: TCTdmqError {
         TCTdmqError(.resourceNotFound_Environment)
     }
@@ -560,11 +580,15 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 订阅关系不存在。
+    ///
+    /// 创建订阅关系。
     public static var resourceNotFound_Subscription: TCTdmqError {
         TCTdmqError(.resourceNotFound_Subscription)
     }
     
     /// 主题不存在。
+    ///
+    /// 创建主题。
     public static var resourceNotFound_Topic: TCTdmqError {
         TCTdmqError(.resourceNotFound_Topic)
     }
@@ -575,6 +599,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 发货异常。
+    ///
+    /// 请检查账户状态
     public static var resourceUnavailable_CreateFailed: TCTdmqError {
         TCTdmqError(.resourceUnavailable_CreateFailed)
     }
@@ -585,6 +611,8 @@ public struct TCTdmqError: TCErrorType {
     }
     
     /// 系统升级。
+    ///
+    /// 升级完成后可用。
     public static var resourceUnavailable_SystemUpgrade: TCTdmqError {
         TCTdmqError(.resourceUnavailable_SystemUpgrade)
     }
@@ -625,5 +653,15 @@ extension TCTdmqError: Equatable {
 extension TCTdmqError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTdmqError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

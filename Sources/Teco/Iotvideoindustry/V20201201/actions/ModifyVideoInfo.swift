@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 修改录像存储列表
-    ///
-    /// 修改录像存储列表
     @inlinable
     public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoInfoResponse > {
         self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改录像存储列表
-    ///
     /// 修改录像存储列表
     @inlinable
     public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {

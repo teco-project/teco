@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudstudio {
     /// 修改工作空间的名称和描述
-    ///
-    /// 修改工作空间的名称和描述
     @inlinable
     public func modifyWorkspaceAttributes(_ input: ModifyWorkspaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkspaceAttributesResponse > {
         self.client.execute(action: "ModifyWorkspaceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改工作空间的名称和描述
-    ///
     /// 修改工作空间的名称和描述
     @inlinable
     public func modifyWorkspaceAttributes(_ input: ModifyWorkspaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkspaceAttributesResponse {

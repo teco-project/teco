@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 保存优化模型
-    ///
-    /// 保存优化模型
     @inlinable
     public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOptimizedModelResponse > {
         self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 保存优化模型
-    ///
     /// 保存优化模型
     @inlinable
     public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {

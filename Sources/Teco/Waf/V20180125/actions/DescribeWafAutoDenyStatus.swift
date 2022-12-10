@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 描述WAF自动封禁模块详情
-    ///
-    /// 描述WAF自动封禁模块详情
     @inlinable
     public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafAutoDenyStatusResponse > {
         self.client.execute(action: "DescribeWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 描述WAF自动封禁模块详情
-    ///
     /// 描述WAF自动封禁模块详情
     @inlinable
     public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {

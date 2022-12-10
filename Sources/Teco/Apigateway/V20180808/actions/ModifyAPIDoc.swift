@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apigateway {
     /// 修改 API 文档
-    ///
-    /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
         self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改 API 文档
-    ///
     /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {

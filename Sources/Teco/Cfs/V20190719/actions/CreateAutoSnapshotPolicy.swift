@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfs {
     /// 创建定期快照策略
-    ///
-    /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
         self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建定期快照策略
-    ///
     /// 创建定期快照策略
     @inlinable
     public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {

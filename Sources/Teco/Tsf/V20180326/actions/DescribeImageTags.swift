@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 镜像版本列表
-    ///
-    /// 镜像版本列表
     @inlinable
     public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
         self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 镜像版本列表
-    ///
     /// 镜像版本列表
     @inlinable
     public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {

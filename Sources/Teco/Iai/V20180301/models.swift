@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -589,13 +588,12 @@ extension Iai {
     public struct GroupExDescriptionInfo: TCInputModel {
         /// 人员库自定义描述字段Index，从0开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groupExDescriptionIndex: UInt64?
+        public let groupExDescriptionIndex: UInt64
         
         /// 需要更新的人员库自定义描述字段内容
         public let groupExDescription: String
         
-        public init (groupExDescriptionIndex: UInt64?, groupExDescription: String) {
+        public init (groupExDescriptionIndex: UInt64, groupExDescription: String) {
             self.groupExDescriptionIndex = groupExDescriptionIndex
             self.groupExDescription = groupExDescription
         }
@@ -711,13 +709,12 @@ extension Iai {
     public struct PersonExDescriptionInfo: TCInputModel {
         /// 人员描述字段Index，从0开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let personExDescriptionIndex: UInt64?
+        public let personExDescriptionIndex: UInt64
         
         /// 需要更新的人员描述字段内容
         public let personExDescription: String
         
-        public init (personExDescriptionIndex: UInt64?, personExDescription: String) {
+        public init (personExDescriptionIndex: UInt64, personExDescription: String) {
             self.personExDescriptionIndex = personExDescriptionIndex
             self.personExDescription = personExDescription
         }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 获取DID服务列表
-    ///
-    /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidServiceListResponse > {
         self.client.execute(action: "GetDidServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取DID服务列表
-    ///
     /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {

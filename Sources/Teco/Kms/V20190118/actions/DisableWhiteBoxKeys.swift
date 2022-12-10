@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Kms {
     /// 批量禁用白盒密钥
-    ///
-    /// 批量禁用白盒密钥
     @inlinable
     public func disableWhiteBoxKeys(_ input: DisableWhiteBoxKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableWhiteBoxKeysResponse > {
         self.client.execute(action: "DisableWhiteBoxKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量禁用白盒密钥
-    ///
     /// 批量禁用白盒密钥
     @inlinable
     public func disableWhiteBoxKeys(_ input: DisableWhiteBoxKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWhiteBoxKeysResponse {

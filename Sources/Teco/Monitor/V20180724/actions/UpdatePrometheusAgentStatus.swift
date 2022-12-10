@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 更新 Prometheus CVM Agent 状态
-    ///
-    /// 更新 Prometheus CVM Agent 状态
     @inlinable
     public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusAgentStatusResponse > {
         self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新 Prometheus CVM Agent 状态
-    ///
     /// 更新 Prometheus CVM Agent 状态
     @inlinable
     public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {

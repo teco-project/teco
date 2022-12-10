@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 定期扫描漏洞设置
-    ///
-    /// 定期扫描漏洞设置
     @inlinable
     public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulSettingResponse > {
         self.client.execute(action: "ScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 定期扫描漏洞设置
-    ///
     /// 定期扫描漏洞设置
     @inlinable
     public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {

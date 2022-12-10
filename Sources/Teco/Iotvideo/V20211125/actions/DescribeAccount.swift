@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 获取消费版账号信息
-    ///
-    /// 获取消费版账号信息
     @inlinable
     public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountResponse > {
         self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取消费版账号信息
-    ///
     /// 获取消费版账号信息
     @inlinable
     public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {

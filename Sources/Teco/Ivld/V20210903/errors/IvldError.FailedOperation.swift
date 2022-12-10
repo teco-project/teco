@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -60,6 +59,9 @@ extension TCIvldError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -74,156 +76,218 @@ extension TCIvldError {
         }
         
         /// 匹配的模板不存在。
+        ///
+        /// 重新选择模板类型
         public static var aiTemplateNotExist: FailedOperation {
             FailedOperation(.aiTemplateNotExist)
         }
         
         /// 自定义人物分类已存在。
+        ///
+        /// 检查自定义类型是否重复
         public static var categoryExist: FailedOperation {
             FailedOperation(.categoryExist)
         }
         
         /// 自定义类型层级变化。
+        ///
+        /// 检查自定义类型层级是否变化
         public static var categoryLevelChanged: FailedOperation {
             FailedOperation(.categoryLevelChanged)
         }
         
         /// 自定义人物分类被引用，不能删除。
+        ///
+        /// 删除引用分类的自定义人物
         public static var categoryReferred: FailedOperation {
             FailedOperation(.categoryReferred)
         }
         
         /// 自定义人物库已存在。
+        ///
+        /// 人脸库已存在，无需重建
         public static var customGroupAlreadyExist: FailedOperation {
             FailedOperation(.customGroupAlreadyExist)
         }
         
         /// 内部DB连接失败。
+        ///
+        /// 请稍后重试
         public static var dbConnectionError: FailedOperation {
             FailedOperation(.dbConnectionError)
         }
         
         /// 媒资文件下载失败。
+        ///
+        /// 检查文件是否正确，或者稍后重试
         public static var downloadFailed: FailedOperation {
             FailedOperation(.downloadFailed)
         }
         
         /// 图片特征提取失败。
+        ///
+        /// 换一张含人脸图片
         public static var featureAlgoFailed: FailedOperation {
             FailedOperation(.featureAlgoFailed)
         }
         
         /// 获取CAM临时鉴权失败。
+        ///
+        /// 检查文件权限是否正确配置，检查是否授予IVLD产品“服务相关角色”
         public static var getCAMTokenFailed: FailedOperation {
             FailedOperation(.getCAMTokenFailed)
         }
         
         /// 获取任务列表失败。
+        ///
+        /// 确认该用户是否成功创建过任务
         public static var getTaskListFailed: FailedOperation {
             FailedOperation(.getTaskListFailed)
         }
         
         /// 获取媒资信息失败。
+        ///
+        /// 检查视频文件格式是否满足要求
         public static var getVideoMetadataFailed: FailedOperation {
             FailedOperation(.getVideoMetadataFailed)
         }
         
         /// 图片数量过多。
+        ///
+        /// 删除不用的自定义人物图片
         public static var imageNumExceeded: FailedOperation {
             FailedOperation(.imageNumExceeded)
         }
         
         /// MD5不匹配。
+        ///
+        /// 检查文件MD5是否正确
         public static var md5Mismatch: FailedOperation {
             FailedOperation(.md5Mismatch)
         }
         
         /// 媒资文件已经存在。
+        ///
+        /// 媒资文件已存在，请勿重复导入
         public static var mediaAlreadyExist: FailedOperation {
             FailedOperation(.mediaAlreadyExist)
         }
         
         /// 媒资文件已经过期。
+        ///
+        /// 媒资文件已过期，请重新导入
         public static var mediaExpired: FailedOperation {
             FailedOperation(.mediaExpired)
         }
         
         /// 媒资正在使用。
+        ///
+        /// 媒资正在使用，无法修改，请稍后重试
         public static var mediaInUse: FailedOperation {
             FailedOperation(.mediaInUse)
         }
         
         /// 媒体文件未就绪。
+        ///
+        /// 检查MediaId状态是否正确
         public static var mediaNotReady: FailedOperation {
             FailedOperation(.mediaNotReady)
         }
         
         /// 图片中包含多张人脸。
+        ///
+        /// 换一张单人脸图片
         public static var multipleFacesInImage: FailedOperation {
             FailedOperation(.multipleFacesInImage)
         }
         
         /// 图片中不包含人脸。
+        ///
+        /// 换一张含人脸图片
         public static var noFaceInImage: FailedOperation {
             FailedOperation(.noFaceInImage)
         }
         
         /// 计费开通失败。
+        ///
+        /// 请查看失败原因，或稍后重试
         public static var openChargeFailed: FailedOperation {
             FailedOperation(.openChargeFailed)
         }
         
         /// 人脸库中存在相似的人脸: %!s(MISSING)。
+        ///
+        /// 检查入库图片是否正确
         public static var personDuplicated: FailedOperation {
             FailedOperation(.personDuplicated)
         }
         
         /// 人脸图片不属于已知人物。
+        ///
+        /// 检查输入PersonId是否正确
         public static var personNotMatched: FailedOperation {
             FailedOperation(.personNotMatched)
         }
         
         /// 自定义人物数量过多。
+        ///
+        /// 删除不用的自定义人物
         public static var personNumExceeded: FailedOperation {
             FailedOperation(.personNumExceeded)
         }
         
         /// 图片质量分检测失败。
+        ///
+        /// 换一张含人脸图片
         public static var qualityAlgoFailed: FailedOperation {
             FailedOperation(.qualityAlgoFailed)
         }
         
         /// 图片质量分过低。
+        ///
+        /// 换一张高质量含人脸图片
         public static var qualityTooLow: FailedOperation {
             FailedOperation(.qualityTooLow)
         }
         
         /// 结果快照反序列化失败。
+        ///
+        /// 重新分析该视频
         public static var snapshotDeserializeFailed: FailedOperation {
             FailedOperation(.snapshotDeserializeFailed)
         }
         
         /// 停止AI工作室任务失败。
+        ///
+        /// 确认AI工作室状态后重试本操作
         public static var stopFlowFailed: FailedOperation {
             FailedOperation(.stopFlowFailed)
         }
         
         /// 存在相同的任务。
+        ///
+        /// 停止相同的任务
         public static var taskAlreadyExist: FailedOperation {
             FailedOperation(.taskAlreadyExist)
         }
         
         /// 视频分析未完成。
+        ///
+        /// 等待任务分析完成后重新调用该接口
         public static var taskNotFinished: FailedOperation {
             FailedOperation(.taskNotFinished)
         }
         
         /// 转码失败。
+        ///
+        /// 请查看失败原因，或稍后重试
         public static var transcodeFailed: FailedOperation {
             FailedOperation(.transcodeFailed)
         }
         
         /// 上传文件失败。
+        ///
+        /// 请稍后重试
         public static var uploadFailed: FailedOperation {
             FailedOperation(.uploadFailed)
         }
@@ -248,10 +312,21 @@ extension TCIvldError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCIvldError.FailedOperation {
+    /// - Returns: ``TCIvldError`` that holds the same error and context.
     public func toIvldError() -> TCIvldError {
         guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIvldError(code, context: self.context)
+    }
+}
+
+extension TCIvldError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询木马自动隔离设置
-    ///
-    /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
         self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询木马自动隔离设置
-    ///
     /// 查询木马自动隔离设置
     @inlinable
     public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {

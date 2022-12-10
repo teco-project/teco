@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCOceanusError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -51,6 +53,8 @@ extension TCOceanusError {
         }
         
         /// 权限拦截,没有进入权限。
+        ///
+        /// 先赋权，再作业
         public static var noPermissionAccess: UnsupportedOperation {
             UnsupportedOperation(.noPermissionAccess)
         }
@@ -80,10 +84,21 @@ extension TCOceanusError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCOceanusError.UnsupportedOperation {
+    /// - Returns: ``TCOceanusError`` that holds the same error and context.
     public func toOceanusError() -> TCOceanusError {
         guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCOceanusError(code, context: self.context)
+    }
+}
+
+extension TCOceanusError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

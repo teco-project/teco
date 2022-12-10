@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dc {
     /// 接受专用通道申请
-    ///
-    /// 接受专用通道申请
     @inlinable
     public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptDirectConnectTunnelResponse > {
         self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 接受专用通道申请
-    ///
     /// 接受专用通道申请
     @inlinable
     public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {

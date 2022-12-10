@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 删除边缘容器CVM实例
-    ///
-    /// 删除边缘容器CVM实例
     @inlinable
     public func deleteEdgeCVMInstances(_ input: DeleteEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeCVMInstancesResponse > {
         self.client.execute(action: "DeleteEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除边缘容器CVM实例
-    ///
     /// 删除边缘容器CVM实例
     @inlinable
     public func deleteEdgeCVMInstances(_ input: DeleteEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeCVMInstancesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 删除批次
-    ///
-    /// 删除批次
     @inlinable
     public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCodeBatchResponse > {
         self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除批次
-    ///
     /// 删除批次
     @inlinable
     public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {

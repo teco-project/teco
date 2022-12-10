@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bm {
     /// 设置带外VPN认证用户密码
-    ///
-    /// 设置带外VPN认证用户密码
     @inlinable
     public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
         self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置带外VPN认证用户密码
-    ///
     /// 设置带外VPN认证用户密码
     @inlinable
     public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {

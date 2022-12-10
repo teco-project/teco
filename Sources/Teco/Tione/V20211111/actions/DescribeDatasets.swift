@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 查询数据集列表
-    ///
-    /// 查询数据集列表
     @inlinable
     public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetsResponse > {
         self.client.execute(action: "DescribeDatasets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询数据集列表
-    ///
     /// 查询数据集列表
     @inlinable
     public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetsResponse {

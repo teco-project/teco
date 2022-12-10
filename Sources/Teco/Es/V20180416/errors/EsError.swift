@@ -39,6 +39,9 @@ public struct TCEsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -73,6 +76,8 @@ public struct TCEsError: TCErrorType {
     }
     
     /// 节点磁盘块数参数检查失败。
+    ///
+    /// 检查节点的磁盘块数是否符合要求，4C16G以下配置节点不支持多盘。
     public static var failedOperation_DiskCountParamError: TCEsError {
         TCEsError(.failedOperation_DiskCountParamError)
     }
@@ -83,11 +88,15 @@ public struct TCEsError: TCErrorType {
     }
     
     /// 集群索引没有副本存在。
+    ///
+    /// 给集群中0副本的索引添加副本
     public static var failedOperation_ErrorClusterStateNoReplication: TCEsError {
         TCEsError(.failedOperation_ErrorClusterStateNoReplication)
     }
     
     /// 集群状态不健康。
+    ///
+    /// 等集群状态健康后在进行操作。
     public static var failedOperation_ErrorClusterStateUnhealth: TCEsError {
         TCEsError(.failedOperation_ErrorClusterStateUnhealth)
     }
@@ -113,6 +122,8 @@ public struct TCEsError: TCErrorType {
     }
     
     /// 不支持反向调节节点配置和磁盘容量。
+    ///
+    /// 只能同时扩容节点配置和磁盘容量或磁盘数量。
     public static var failedOperation_UnsupportReverseRegulationNodeTypeAndDisk: TCEsError {
         TCEsError(.failedOperation_UnsupportReverseRegulationNodeTypeAndDisk)
     }
@@ -213,5 +224,15 @@ extension TCEsError: Equatable {
 extension TCEsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

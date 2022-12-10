@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -145,6 +144,9 @@ extension TCScfError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -194,6 +196,8 @@ extension TCScfError {
         }
         
         /// Args 参数值有误。
+        ///
+        /// 请确认不包含逗号、单引号、斜杠等非法字符
         public static var args: InvalidParameterValue {
             InvalidParameterValue(.args)
         }
@@ -234,6 +238,8 @@ extension TCScfError {
         }
         
         /// 运行函数时的参数传入有误。
+        ///
+        /// 运行函数时的参数，以json格式传入，同步调用最大支持 6MB，异步调用最大支持 128 KB
         public static var clientContext: InvalidParameterValue {
             InvalidParameterValue(.clientContext)
         }
@@ -269,6 +275,8 @@ extension TCScfError {
         }
         
         /// Command[Entrypoint] 参数值有误。
+        ///
+        /// 请确认不包含空格，逗号、单引号、双引号、斜杠等非法字符
         public static var command: InvalidParameterValue {
             InvalidParameterValue(.command)
         }
@@ -298,6 +306,7 @@ extension TCScfError {
             InvalidParameterValue(.cosBucketRegion)
         }
         
+        /// 请传递有效的COS通知规则。
         public static var cosNotifyRuleConflict: InvalidParameterValue {
             InvalidParameterValue(.cosNotifyRuleConflict)
         }
@@ -343,6 +352,8 @@ extension TCScfError {
         }
         
         /// 环境变量DNS[OS_NAMESERVER]配置有误。
+        ///
+        /// 请确认ip格式，多个ip用分号(;)分割
         public static var dnsInfo: InvalidParameterValue {
             InvalidParameterValue(.dnsInfo)
         }
@@ -458,6 +469,8 @@ extension TCScfError {
         }
         
         /// imageUri 传入有误。
+        ///
+        /// 请确认格式是否正确（字符格式[ASCII]，参数个数：tag/digest信息是否传入）。
         public static var imageUri: InvalidParameterValue {
             InvalidParameterValue(.imageUri)
         }
@@ -613,6 +626,8 @@ extension TCScfError {
         }
         
         /// 企业版镜像实例ID[RegistryId]传值错误。
+        ///
+        /// RegistryId 取值要求：小写字母、数字和 - 的组合，且不能以 - 开头或结尾，长度为5-50字符
         public static var registryId: InvalidParameterValue {
             InvalidParameterValue(.registryId)
         }
@@ -733,6 +748,8 @@ extension TCScfError {
         }
         
         /// 压缩文件base64解码失败: <code>Incorrect padding</code>，请修正后再试。
+        ///
+        /// 检查压缩文件base64编码是否合法
         public static var zipFileBase64BinasciiError: InvalidParameterValue {
             InvalidParameterValue(.zipFileBase64BinasciiError)
         }
@@ -757,10 +774,21 @@ extension TCScfError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCScfError.InvalidParameterValue {
+    /// - Returns: ``TCScfError`` that holds the same error and context.
     public func toScfError() -> TCScfError {
         guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCScfError(code, context: self.context)
+    }
+}
+
+extension TCScfError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

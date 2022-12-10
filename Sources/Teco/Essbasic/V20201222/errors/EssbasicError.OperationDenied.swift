@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -38,6 +37,9 @@ extension TCEssbasicError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -52,46 +54,64 @@ extension TCEssbasicError {
         }
         
         /// 应用号已被禁止。
+        ///
+        /// 当前应用号已经被禁止，请联系运营人员处理。
         public static var bannedApplication: OperationDenied {
             OperationDenied(.bannedApplication)
         }
         
         /// 没有API权限。
+        ///
+        /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
         public static var noApiAuth: OperationDenied {
             OperationDenied(.noApiAuth)
         }
         
         /// 未通过补充实名。
+        ///
+        /// 请检查补充实名信息正确性。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noExtraVerify: OperationDenied {
             OperationDenied(.noExtraVerify)
         }
         
         /// 未通过个人实名。
+        ///
+        /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noIdentityVerify: OperationDenied {
             OperationDenied(.noIdentityVerify)
         }
         
         /// 未在腾讯云实名打款。
+        ///
+        /// 请登录腾讯云官网进行实名打款。
         public static var noPaymentVerify: OperationDenied {
             OperationDenied(.noPaymentVerify)
         }
         
         /// 没有登录态需要登录。
+        ///
+        /// 当前用户没有登录，请登录后进行重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noSession: OperationDenied {
             OperationDenied(.noSession)
         }
         
         /// 未在腾讯云实名。
+        ///
+        /// 未在腾讯云实名，请登录腾讯云官网进行实名。https://cloud.tencent.com/
         public static var noVerify: OperationDenied {
             OperationDenied(.noVerify)
         }
         
         /// 非企业主账号。
+        ///
+        /// 请检查参数，确定是主企业账号。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var notOwnerUin: OperationDenied {
             OperationDenied(.notOwnerUin)
         }
         
         /// 用户与企业不对应。
+        ///
+        /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var userNotInOrganization: OperationDenied {
             OperationDenied(.userNotInOrganization)
         }
@@ -116,10 +136,21 @@ extension TCEssbasicError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCEssbasicError.OperationDenied {
+    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
     public func toEssbasicError() -> TCEssbasicError {
         guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEssbasicError(code, context: self.context)
+    }
+}
+
+extension TCEssbasicError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

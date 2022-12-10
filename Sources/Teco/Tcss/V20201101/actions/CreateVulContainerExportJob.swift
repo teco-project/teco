@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 创建受漏洞影响的容器导出任务
-    ///
-    /// 创建受漏洞影响的容器导出任务
     @inlinable
     public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulContainerExportJobResponse > {
         self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建受漏洞影响的容器导出任务
-    ///
     /// 创建受漏洞影响的容器导出任务
     @inlinable
     public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {

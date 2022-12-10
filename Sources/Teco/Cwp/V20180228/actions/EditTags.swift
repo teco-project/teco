@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 新增或编辑标签
-    ///
-    /// 新增或编辑标签
     @inlinable
     public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
         self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增或编辑标签
-    ///
     /// 新增或编辑标签
     @inlinable
     public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {

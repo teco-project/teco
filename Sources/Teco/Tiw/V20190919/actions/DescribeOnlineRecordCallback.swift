@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tiw {
     /// 查询实时录制回调地址
-    ///
-    /// 查询实时录制回调地址
     @inlinable
     public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOnlineRecordCallbackResponse > {
         self.client.execute(action: "DescribeOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询实时录制回调地址
-    ///
     /// 查询实时录制回调地址
     @inlinable
     public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {

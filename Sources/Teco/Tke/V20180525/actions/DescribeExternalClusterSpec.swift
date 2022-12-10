@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取导入第三方集群YAML定义
-    ///
-    /// 获取导入第三方集群YAML定义
     @inlinable
     public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalClusterSpecResponse > {
         self.client.execute(action: "DescribeExternalClusterSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取导入第三方集群YAML定义
-    ///
     /// 获取导入第三方集群YAML定义
     @inlinable
     public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalClusterSpecResponse {

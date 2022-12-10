@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -71,6 +70,9 @@ extension TCTdmqError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -85,6 +87,8 @@ extension TCTdmqError {
         }
         
         /// CMQ 后台服务错误。
+        ///
+        /// CMQ 后台服务错误，请再试一次。
         public static var cmqBackendError: FailedOperation {
             FailedOperation(.cmqBackendError)
         }
@@ -200,6 +204,8 @@ extension TCTdmqError {
         }
         
         /// 上传的msgID错误。
+        ///
+        /// 请使用正确的MessageID的格式，否则服务端无法正确解析，
         public static var messageIDError: FailedOperation {
             FailedOperation(.messageIDError)
         }
@@ -214,11 +220,15 @@ extension TCTdmqError {
         }
         
         /// 接收消息出错。
+        ///
+        /// 这个是由于在接收消息时，client或者broker没有正确响应导致抛出 PulsarClientException 异常，可通过重试来尝试解决。
         public static var receiveError: FailedOperation {
             FailedOperation(.receiveError)
         }
         
         /// 接收消息超时，请重试。
+        ///
+        /// 这里是因为接收消息超时导致的错误，一般由于网络抖动等因素会引起接收消息超时，可以通过重试来解决。
         public static var receiveTimeout: FailedOperation {
             FailedOperation(.receiveTimeout)
         }
@@ -239,6 +249,8 @@ extension TCTdmqError {
         }
         
         /// 消息发送超时。
+        ///
+        /// 消息发送超时主要是由于broker侧的问题导致的，一般可以通过业务侧重试解决
         public static var sendMessageTimeoutError: FailedOperation {
             FailedOperation(.sendMessageTimeoutError)
         }
@@ -249,6 +261,8 @@ extension TCTdmqError {
         }
         
         /// 设置消息保留策略失败。
+        ///
+        /// 调整参数后重试。
         public static var setRetentionPolicy: FailedOperation {
             FailedOperation(.setRetentionPolicy)
         }
@@ -264,6 +278,8 @@ extension TCTdmqError {
         }
         
         /// 请使用partition topic。
+        ///
+        /// 创建的Topic类型不支持
         public static var topicTypeError: FailedOperation {
             FailedOperation(.topicTypeError)
         }
@@ -313,10 +329,21 @@ extension TCTdmqError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCTdmqError.FailedOperation {
+    /// - Returns: ``TCTdmqError`` that holds the same error and context.
     public func toTdmqError() -> TCTdmqError {
         guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTdmqError(code, context: self.context)
+    }
+}
+
+extension TCTdmqError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

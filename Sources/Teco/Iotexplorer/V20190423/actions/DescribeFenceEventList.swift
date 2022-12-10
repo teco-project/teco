@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 获取围栏告警事件列表
-    ///
-    /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceEventListResponse > {
         self.client.execute(action: "DescribeFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取围栏告警事件列表
-    ///
     /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {

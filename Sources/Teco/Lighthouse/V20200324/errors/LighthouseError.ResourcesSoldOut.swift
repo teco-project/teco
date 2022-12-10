@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -30,6 +29,9 @@ extension TCLighthouseError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -44,11 +46,15 @@ extension TCLighthouseError {
         }
         
         /// 套餐无可用配置。
+        ///
+        /// 更换套餐。
         public static var purchaseSourceHasNoBundleConfigs: ResourcesSoldOut {
             ResourcesSoldOut(.purchaseSourceHasNoBundleConfigs)
         }
         
         /// 套餐无可用配置。
+        ///
+        /// 更换套餐。
         public static var zonesHasNoBundleConfigs: ResourcesSoldOut {
             ResourcesSoldOut(.zonesHasNoBundleConfigs)
         }
@@ -68,10 +74,21 @@ extension TCLighthouseError.ResourcesSoldOut: CustomStringConvertible {
 }
 
 extension TCLighthouseError.ResourcesSoldOut {
+    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
     public func toLighthouseError() -> TCLighthouseError {
         guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCLighthouseError(code, context: self.context)
+    }
+}
+
+extension TCLighthouseError.ResourcesSoldOut {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

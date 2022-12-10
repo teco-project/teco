@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 修改 LoRa 网关信息
-    ///
-    /// 修改 LoRa 网关信息
     @inlinable
     public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaGatewayResponse > {
         self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改 LoRa 网关信息
-    ///
     /// 修改 LoRa 网关信息
     @inlinable
     public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {

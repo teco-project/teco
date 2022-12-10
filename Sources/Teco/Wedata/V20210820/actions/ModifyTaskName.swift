@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 重命名任务（任务编辑）
-    ///
-    /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
         self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重命名任务（任务编辑）
-    ///
     /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {

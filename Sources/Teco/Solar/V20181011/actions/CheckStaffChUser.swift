@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Solar {
     /// 员工渠道更改员工状态
-    ///
-    /// 员工渠道更改员工状态
     @inlinable
     public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckStaffChUserResponse > {
         self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 员工渠道更改员工状态
-    ///
     /// 员工渠道更改员工状态
     @inlinable
     public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {

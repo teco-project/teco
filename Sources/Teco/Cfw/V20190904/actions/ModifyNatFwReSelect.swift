@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 防火墙实例重新选择vpc或nat
-    ///
-    /// 防火墙实例重新选择vpc或nat
     @inlinable
     public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwReSelectResponse > {
         self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 防火墙实例重新选择vpc或nat
-    ///
     /// 防火墙实例重新选择vpc或nat
     @inlinable
     public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {

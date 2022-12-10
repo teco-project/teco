@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询集群网络空间标签列表
-    ///
-    /// 查询集群网络空间标签列表
     @inlinable
     public func describeNetworkFirewallNamespaceLabelList(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallNamespaceLabelListResponse > {
         self.client.execute(action: "DescribeNetworkFirewallNamespaceLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询集群网络空间标签列表
-    ///
     /// 查询集群网络空间标签列表
     @inlinable
     public func describeNetworkFirewallNamespaceLabelList(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallNamespaceLabelListResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Tsf {
     /// 服务调用监控统计概览
-    ///
-    /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewInvocationResponse > {
         self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 服务调用监控统计概览
-    ///
     /// 服务调用监控统计概览
     @inlinable
     public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {

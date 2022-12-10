@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -131,8 +130,7 @@ extension Ecdn {
     public struct ClientCert: TCInputModel, TCOutputModel {
         /// 客户端证书，pem格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certificate: String?
+        public let certificate: String
         
         /// 客户端证书名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -146,7 +144,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployTime: Date?
         
-        public init (certificate: String?, certName: String?, expireTime: Date?, deployTime: Date?) {
+        public init (certificate: String, certName: String?, expireTime: Date?, deployTime: Date?) {
             self.certificate = certificate
             self.certName = certName
             self.expireTime = expireTime
@@ -428,8 +426,7 @@ extension Ecdn {
     public struct ForceRedirect: TCInputModel, TCOutputModel {
         /// 访问协议强制跳转配置开关，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 强制跳转访问协议类型，支持http，https，分别表示请求强制跳转http协议，请求强制跳转https协议。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -439,7 +436,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
         
-        public init (`switch`: String?, redirectType: String?, redirectStatusCode: Int64?) {
+        public init (`switch`: String, redirectType: String?, redirectStatusCode: Int64?) {
             self.`switch` = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
@@ -483,30 +480,25 @@ extension Ecdn {
         /// http头部设置方式，支持add，set或del，分别表示新增，设置或删除头部。
         /// 请求头部暂不支持set。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerMode: String?
+        public let headerMode: String
         
         /// http头部名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerName: String?
+        public let headerName: String
         
         /// http头部值。del时可不填写该字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerValue: String?
+        public let headerValue: String
         
         /// 生效的url路径规则类型，支持all，file，directory或path，分别表示全部路径，文件后缀类型，目录或绝对路径生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// url路径或文件类型列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
-        public init (headerMode: String?, headerName: String?, headerValue: String?, ruleType: String?, rulePaths: [String]?) {
+        public init (headerMode: String, headerName: String, headerValue: String, ruleType: String, rulePaths: [String]) {
             self.headerMode = headerMode
             self.headerName = headerName
             self.headerValue = headerValue
@@ -527,8 +519,7 @@ extension Ecdn {
     public struct Https: TCInputModel, TCOutputModel {
         /// https配置开关，on或off。开启https配置的域名在部署中状态，开关保持off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 是否开启http2，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -562,7 +553,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hsts: Hsts
         
-        public init (`switch`: String?, http2: String?, ocspStapling: String?, verifyClient: String?, certInfo: ServerCert, clientCertInfo: ClientCert, spdy: String?, sslStatus: String?, hsts: Hsts) {
+        public init (`switch`: String, http2: String?, ocspStapling: String?, verifyClient: String?, certInfo: ServerCert, clientCertInfo: ClientCert, spdy: String?, sslStatus: String?, hsts: Hsts) {
             self.`switch` = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
@@ -881,15 +872,13 @@ extension Ecdn {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagKey: String?
+        public let tagKey: String
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagValue: String?
+        public let tagValue: String
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

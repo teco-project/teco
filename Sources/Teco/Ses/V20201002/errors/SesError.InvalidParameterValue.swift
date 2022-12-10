@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -57,6 +56,9 @@ extension TCSesError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -76,6 +78,8 @@ extension TCSesError {
         }
         
         /// 开始时间不能早于当前时间。
+        ///
+        /// 开始时间不能早于当前时间。请检查
         public static var beginTimeBeforeNow: InvalidParameterValue {
             InvalidParameterValue(.beginTimeBeforeNow)
         }
@@ -100,10 +104,12 @@ extension TCSesError {
             InvalidParameterValue(.illegalEmailAddress)
         }
         
+        /// 创建发信人地址时，别名错误。别名不能为一个邮箱地址
         public static var illegalSenderName: InvalidParameterValue {
             InvalidParameterValue(.illegalSenderName)
         }
         
+        /// 存在某一个收件人地址附带的模板参数不能包含html标签。请逐条检查收件人地址附带的模板参数。
         public static var inValidTemplateData: InvalidParameterValue {
             InvalidParameterValue(.inValidTemplateData)
         }
@@ -128,11 +134,14 @@ extension TCSesError {
             InvalidParameterValue(.receiverDescIllegal)
         }
         
+        /// 批量发信或单条发信，，收件人地址错误
         public static var receiverEmailInvalid: InvalidParameterValue {
             InvalidParameterValue(.receiverEmailInvalid)
         }
         
         /// 收件人列表名字不合法，请检查字符内容及大小。
+        ///
+        /// 收件人列表名字不合法，没有传列表名字或者列表名字长度超长，调整列表名字后，重新保存
         public static var receiverNameIllegal: InvalidParameterValue {
             InvalidParameterValue(.receiverNameIllegal)
         }
@@ -148,6 +157,8 @@ extension TCSesError {
         }
         
         /// 收件人列表名称重复。
+        ///
+        /// 收件人列表名称重复，修改列表名称，保证列表名称在自己所有的收件人列表中不重复。
         public static var repeatReceiverName: InvalidParameterValue {
             InvalidParameterValue(.repeatReceiverName)
         }
@@ -168,14 +179,18 @@ extension TCSesError {
         }
         
         /// 变量设置必须为json格式。
+        ///
+        /// 模板参数必须为json格式。
         public static var templateDataError: InvalidParameterValue {
             InvalidParameterValue(.templateDataError)
         }
         
+        /// 模板参数变量与之前不一致。向收件人列表追加收件人地址及模板参数变量时，模板参数变量名与首次上传时不一致造成。请修改模板参数变量名。
         public static var templateDataInconsistent: InvalidParameterValue {
             InvalidParameterValue(.templateDataInconsistent)
         }
         
+        /// 收件人地址附带的模板参数长度超过限制，具体指TemplateData字段的长度。在控制台上传时，变量名和变量值为转成成json字符串，再计算长度。请参考API文档，调整TemplateData字段长度，在控制台上传时，减少变量个数或者缩短变量值
         public static var templateDataLenLimit: InvalidParameterValue {
             InvalidParameterValue(.templateDataLenLimit)
         }
@@ -196,6 +211,8 @@ extension TCSesError {
         }
         
         /// 模板变量与收件人列表参数不一一对应。
+        ///
+        /// 调整模板或删除收件人列表，重新调整列表中的参数并上传
         public static var templateNotMatchData: InvalidParameterValue {
             InvalidParameterValue(.templateNotMatchData)
         }
@@ -225,10 +242,21 @@ extension TCSesError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCSesError.InvalidParameterValue {
+    /// - Returns: ``TCSesError`` that holds the same error and context.
     public func toSesError() -> TCSesError {
         guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSesError(code, context: self.context)
+    }
+}
+
+extension TCSesError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

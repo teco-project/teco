@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 会员间交易接口
-    ///
-    /// 会员间交易接口
     @inlinable
     public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteMemberTransactionResponse > {
         self.client.execute(action: "ExecuteMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 会员间交易接口
-    ///
     /// 会员间交易接口
     @inlinable
     public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteMemberTransactionResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 取消漏洞扫描忽略漏洞
-    ///
-    /// 取消漏洞扫描忽略漏洞
     @inlinable
     public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIgnoreVulResponse > {
         self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消漏洞扫描忽略漏洞
-    ///
     /// 取消漏洞扫描忽略漏洞
     @inlinable
     public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {

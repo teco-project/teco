@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 下线集群
-    ///
-    /// 下线集群
     @inlinable
     public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineClusterResponse > {
         self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 下线集群
-    ///
     /// 下线集群
     @inlinable
     public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {

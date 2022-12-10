@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gaap {
     /// 关闭安全策略
-    ///
-    /// 关闭安全策略
     @inlinable
     public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseSecurityPolicyResponse > {
         self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关闭安全策略
-    ///
     /// 关闭安全策略
     @inlinable
     public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {

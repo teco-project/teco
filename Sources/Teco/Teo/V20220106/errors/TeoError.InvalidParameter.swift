@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -57,6 +56,9 @@ extension TCTeoError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -95,6 +97,7 @@ extension TCTeoError {
             InvalidParameter(.invalidClientIpHeaderName)
         }
         
+        /// 套餐包不支持智能加速配置。
         public static var invalidDynamicRoutineBilling: InvalidParameter {
             InvalidParameter(.invalidDynamicRoutineBilling)
         }
@@ -114,6 +117,7 @@ extension TCTeoError {
             InvalidParameter(.invalidOrigin)
         }
         
+        /// 套餐包不支持最大上传大小。
         public static var invalidPostMaxSizeBilling: InvalidParameter {
             InvalidParameter(.invalidPostMaxSizeBilling)
         }
@@ -138,6 +142,7 @@ extension TCTeoError {
             InvalidParameter(.invalidRequestHeaderValue)
         }
         
+        /// 无套餐包。
         public static var invalidResourceIdBilling: InvalidParameter {
             InvalidParameter(.invalidResourceIdBilling)
         }
@@ -183,6 +188,8 @@ extension TCTeoError {
         }
         
         /// 域名配置错误。
+        ///
+        /// 参数错误-setting非法参数。
         public static var settingInvalidParam: InvalidParameter {
             InvalidParameter(.settingInvalidParam)
         }
@@ -227,10 +234,21 @@ extension TCTeoError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCTeoError.InvalidParameter {
+    /// - Returns: ``TCTeoError`` that holds the same error and context.
     public func toTeoError() -> TCTeoError {
         guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTeoError(code, context: self.context)
+    }
+}
+
+extension TCTeoError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

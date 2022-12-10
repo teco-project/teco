@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 登记挂账(支持撤销)
-    ///
-    /// 登记挂账(支持撤销)
     @inlinable
     public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBillResponse > {
         self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 登记挂账(支持撤销)
-    ///
     /// 登记挂账(支持撤销)
     @inlinable
     public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {

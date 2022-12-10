@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 查询备份文件列表
-    ///
-    /// 查询备份文件列表
     @inlinable
     public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupListResponse > {
         self.client.execute(action: "DescribeBackupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询备份文件列表
-    ///
     /// 查询备份文件列表
     @inlinable
     public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {

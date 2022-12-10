@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Es {
     /// 创建索引
-    ///
-    /// 创建索引
     @inlinable
     public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
         self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建索引
-    ///
     /// 创建索引
     @inlinable
     public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {

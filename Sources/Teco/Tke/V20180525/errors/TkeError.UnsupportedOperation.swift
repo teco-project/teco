@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCTkeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,6 +49,8 @@ extension TCTkeError {
         }
         
         /// AS伸缩关闭导致无法开启CA。
+        ///
+        /// 如果需要开启伸缩(CA)功能，请打开对应伸缩组的伸缩开关，重新操作即可
         public static var caEnableFailed: UnsupportedOperation {
             UnsupportedOperation(.caEnableFailed)
         }
@@ -84,10 +88,21 @@ extension TCTkeError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCTkeError.UnsupportedOperation {
+    /// - Returns: ``TCTkeError`` that holds the same error and context.
     public func toTkeError() -> TCTkeError {
         guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTkeError(code, context: self.context)
+    }
+}
+
+extension TCTkeError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

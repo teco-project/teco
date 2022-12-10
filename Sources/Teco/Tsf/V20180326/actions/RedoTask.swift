@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 重新执行任务
-    ///
-    /// 重新执行任务
     @inlinable
     public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
         self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重新执行任务
-    ///
     /// 重新执行任务
     @inlinable
     public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {

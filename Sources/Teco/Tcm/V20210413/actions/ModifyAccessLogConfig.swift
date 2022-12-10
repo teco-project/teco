@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcm {
     /// 修改访问日志配置
-    ///
-    /// 修改访问日志配置
     @inlinable
     public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessLogConfigResponse > {
         self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改访问日志配置
-    ///
     /// 修改访问日志配置
     @inlinable
     public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {

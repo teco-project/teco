@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -47,6 +46,9 @@ extension TCCdnError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -61,6 +63,8 @@ extension TCCdnError {
         }
         
         /// 内部鉴权系统错误。
+        ///
+        /// 该类型错误一般是偶发性问题，如果持续存在，请联系腾讯云工程师进一步排查。
         public static var camSystemError: InternalError {
             InternalError(.camSystemError)
         }
@@ -106,6 +110,8 @@ extension TCCdnError {
         }
         
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
+        ///
+        /// 联系腾讯云工程师进一步排查
         public static var error: InternalError {
             InternalError(.error)
         }
@@ -170,10 +176,21 @@ extension TCCdnError.InternalError: CustomStringConvertible {
 }
 
 extension TCCdnError.InternalError {
+    /// - Returns: ``TCCdnError`` that holds the same error and context.
     public func toCdnError() -> TCCdnError {
         guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCdnError(code, context: self.context)
+    }
+}
+
+extension TCCdnError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

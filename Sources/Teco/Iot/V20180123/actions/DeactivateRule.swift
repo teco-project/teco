@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iot {
     /// 禁用规则
-    ///
-    /// 禁用规则
     @inlinable
     public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeactivateRuleResponse > {
         self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 禁用规则
-    ///
     /// 禁用规则
     @inlinable
     public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {

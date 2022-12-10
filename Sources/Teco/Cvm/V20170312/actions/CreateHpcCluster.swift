@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cvm {
     /// 创建高性能计算集群
-    ///
-    /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHpcClusterResponse > {
         self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建高性能计算集群
-    ///
     /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {

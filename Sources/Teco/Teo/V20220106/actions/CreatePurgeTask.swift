@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 创建清除缓存任务
-    ///
-    /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
         self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建清除缓存任务
-    ///
     /// 创建清除缓存任务
     @inlinable
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {

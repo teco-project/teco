@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 删除Api分组
-    ///
-    /// 删除Api分组
     @inlinable
     public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiGroupResponse > {
         self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除Api分组
-    ///
     /// 删除Api分组
     @inlinable
     public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {

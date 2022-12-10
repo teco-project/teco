@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 下载用户证书
-    ///
-    /// 下载用户证书
     @inlinable
     public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
         self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 下载用户证书
-    ///
     /// 下载用户证书
     @inlinable
     public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {

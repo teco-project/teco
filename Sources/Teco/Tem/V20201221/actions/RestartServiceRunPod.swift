@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 重启实例
-    ///
-    /// 重启实例
     @inlinable
     public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartServiceRunPodResponse > {
         self.client.execute(action: "RestartServiceRunPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重启实例
-    ///
     /// 重启实例
     @inlinable
     public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartServiceRunPodResponse {

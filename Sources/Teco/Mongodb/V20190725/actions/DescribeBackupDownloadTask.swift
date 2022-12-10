@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mongodb {
     /// 查询备份下载任务信息
-    ///
-    /// 查询备份下载任务信息
     @inlinable
     public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadTaskResponse > {
         self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询备份下载任务信息
-    ///
     /// 查询备份下载任务信息
     @inlinable
     public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {

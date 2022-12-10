@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 获取权威机构信息
-    ///
-    /// 获取权威机构信息
     @inlinable
     public func getAuthorityIssuer(_ input: GetAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthorityIssuerResponse > {
         self.client.execute(action: "GetAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取权威机构信息
-    ///
     /// 获取权威机构信息
     @inlinable
     public func getAuthorityIssuer(_ input: GetAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthorityIssuerResponse {

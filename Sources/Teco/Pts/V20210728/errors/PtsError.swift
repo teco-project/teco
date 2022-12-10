@@ -25,6 +25,9 @@ public struct TCPtsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -88,6 +91,8 @@ public struct TCPtsError: TCErrorType {
     }
     
     /// 请求发送失败。
+    ///
+    /// 可能的原因：标签服务鉴权失败，等等。
     public static var failedOperation_SendRequest: TCPtsError {
         TCPtsError(.failedOperation_SendRequest)
     }
@@ -128,5 +133,15 @@ extension TCPtsError: Equatable {
 extension TCPtsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCPtsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

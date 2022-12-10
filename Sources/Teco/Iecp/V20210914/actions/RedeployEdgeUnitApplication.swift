@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 单元应用重部署
-    ///
-    /// 单元应用重部署
     @inlinable
     public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedeployEdgeUnitApplicationResponse > {
         self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 单元应用重部署
-    ///
     /// 单元应用重部署
     @inlinable
     public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {

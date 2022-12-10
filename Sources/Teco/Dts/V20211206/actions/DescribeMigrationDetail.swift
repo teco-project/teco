@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dts {
     /// 查询某个迁移任务详情
-    ///
-    /// 查询某个迁移任务详情
     @inlinable
     public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDetailResponse > {
         self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询某个迁移任务详情
-    ///
     /// 查询某个迁移任务详情
     @inlinable
     public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {

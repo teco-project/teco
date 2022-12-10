@@ -35,6 +35,9 @@ public struct TCCatError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -69,10 +72,13 @@ public struct TCCatError: TCErrorType {
     }
     
     /// ES查询错误。
+    ///
+    /// 尝试重新访问该接口，如果无效，尝试缩小时间范围或更换排序的指标。
     public static var failedOperation_ESQueryError: TCCatError {
         TCCatError(.failedOperation_ESQueryError)
     }
     
+    /// 任务绑定的预付费套餐已过期，请续期对应的套餐包。
     public static var failedOperation_ErrPrePaidResourceExpire: TCCatError {
         TCCatError(.failedOperation_ErrPrePaidResourceExpire)
     }
@@ -87,6 +93,7 @@ public struct TCCatError: TCErrorType {
         TCCatError(.failedOperation_OrderOutOfCredit)
     }
     
+    /// 未查询到此id对应的预付费资源或者此预付费资源已经绑定其他任务，请更换资源id或者删除已经绑定此资源的任务。
     public static var failedOperation_PreResourceIDFailed: TCCatError {
         TCCatError(.failedOperation_PreResourceIDFailed)
     }
@@ -100,6 +107,7 @@ public struct TCCatError: TCErrorType {
         TCCatError(.failedOperation_SendRequest)
     }
     
+    /// 需要标签中需要包含 运营产品，运营部门，负责人。
     public static var failedOperation_TagRequiredVerifyFailed: TCCatError {
         TCCatError(.failedOperation_TagRequiredVerifyFailed)
     }
@@ -120,6 +128,8 @@ public struct TCCatError: TCErrorType {
     }
     
     /// 批量拨测任务的类型不相同。
+    ///
+    /// 选择相同拨测类型的一批任务
     public static var failedOperation_TaskTypeNotSame: TCCatError {
         TCCatError(.failedOperation_TaskTypeNotSame)
     }
@@ -129,10 +139,12 @@ public struct TCCatError: TCErrorType {
         TCCatError(.failedOperation_TrialTaskExceed)
     }
     
+    /// 检查api调用逻辑
     public static var failedOperation_UnmarshalResponse: TCCatError {
         TCCatError(.failedOperation_UnmarshalResponse)
     }
     
+    /// 当前子用户无相关标签写权限，请联系主账号管理员协助授予QcloudTAGFullAccess
     public static var failedOperation_UserNoQcloudTAGFullAccess: TCCatError {
         TCCatError(.failedOperation_UserNoQcloudTAGFullAccess)
     }
@@ -183,5 +195,15 @@ extension TCCatError: Equatable {
 extension TCCatError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCatError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

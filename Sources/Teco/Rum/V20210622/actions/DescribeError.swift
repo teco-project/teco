@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Rum {
     /// 获取首页错误信息
-    ///
-    /// 获取首页错误信息
     @inlinable
     public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
         self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取首页错误信息
-    ///
     /// 获取首页错误信息
     @inlinable
     public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {

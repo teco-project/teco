@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -41,6 +40,9 @@ extension TCClsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -65,6 +67,8 @@ extension TCClsError {
         }
         
         /// 账户不存在。
+        ///
+        /// 需要开通cls服务
         public static var accountNotExists: OperationDenied {
             OperationDenied(.accountNotExists)
         }
@@ -80,10 +84,13 @@ extension TCClsError {
         }
         
         /// 字段没有开启分析功能。
+        ///
+        /// 开启即可
         public static var analysisSwitchClose: OperationDenied {
             OperationDenied(.analysisSwitchClose)
         }
         
+        /// 该资源暂不支持新语法，联系helper处理。
         public static var newSyntaxNotSupported: OperationDenied {
             OperationDenied(.newSyntaxNotSupported)
         }
@@ -104,6 +111,8 @@ extension TCClsError {
         }
         
         /// topic绑定了函数投递。
+        ///
+        /// 需要删除函数投递之后， 才能删除topic
         public static var topicHasDeliverFunction: OperationDenied {
             OperationDenied(.topicHasDeliverFunction)
         }
@@ -132,10 +141,21 @@ extension TCClsError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCClsError.OperationDenied {
+    /// - Returns: ``TCClsError`` that holds the same error and context.
     public func toClsError() -> TCClsError {
         guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCClsError(code, context: self.context)
+    }
+}
+
+extension TCClsError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

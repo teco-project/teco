@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 创建用户数据签名
-    ///
-    /// 创建用户数据签名
     @inlinable
     public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
         self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建用户数据签名
-    ///
     /// 创建用户数据签名
     @inlinable
     public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {

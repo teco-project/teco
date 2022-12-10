@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 查询单个服务
-    ///
-    /// 查询单个服务
     @inlinable
     public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceResponse > {
         self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询单个服务
-    ///
     /// 查询单个服务
     @inlinable
     public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {

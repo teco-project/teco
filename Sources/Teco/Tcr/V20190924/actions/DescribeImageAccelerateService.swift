@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 查询镜像加速服务状态
-    ///
-    /// 查询镜像加速服务状态
     @inlinable
     public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAccelerateServiceResponse > {
         self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询镜像加速服务状态
-    ///
     /// 查询镜像加速服务状态
     @inlinable
     public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {

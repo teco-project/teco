@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 批量更新API限流规则
-    ///
-    /// 批量更新API限流规则
     @inlinable
     public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiRateLimitRulesResponse > {
         self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量更新API限流规则
-    ///
     /// 批量更新API限流规则
     @inlinable
     public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {

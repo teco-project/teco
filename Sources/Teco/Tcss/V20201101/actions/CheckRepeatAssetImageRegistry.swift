@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 检查单个镜像仓库名是否重复
-    ///
-    /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
         self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 检查单个镜像仓库名是否重复
-    ///
     /// 检查单个镜像仓库名是否重复
     @inlinable
     public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 修改弹性公网IP ACL
-    ///
-    /// 修改弹性公网IP ACL
     @inlinable
     public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipAclResponse > {
         self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改弹性公网IP ACL
-    ///
     /// 修改弹性公网IP ACL
     @inlinable
     public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {

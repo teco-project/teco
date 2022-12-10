@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 描述扩展上传文件信息
-    ///
-    /// 描述扩展上传文件信息
     @inlinable
     public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionUploadInfoResponse > {
         self.client.execute(action: "DescribeExtensionUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 描述扩展上传文件信息
-    ///
     /// 描述扩展上传文件信息
     @inlinable
     public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionUploadInfoResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 创建消息路由
-    ///
-    /// 创建消息路由
     @inlinable
     public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageRouteResponse > {
         self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建消息路由
-    ///
     /// 创建消息路由
     @inlinable
     public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {

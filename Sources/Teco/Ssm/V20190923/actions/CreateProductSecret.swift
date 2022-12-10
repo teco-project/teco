@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssm {
     /// 创建云产品凭据
-    ///
-    /// 创建云产品凭据
     @inlinable
     public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductSecretResponse > {
         self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建云产品凭据
-    ///
     /// 创建云产品凭据
     @inlinable
     public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {

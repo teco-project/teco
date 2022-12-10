@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 查询规则模版维度分布情况
-    ///
-    /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateDimCountResponse > {
         self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询规则模版维度分布情况
-    ///
     /// 查询规则模版维度分布情况
     @inlinable
     public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {

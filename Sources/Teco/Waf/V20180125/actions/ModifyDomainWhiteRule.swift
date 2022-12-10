@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 更改某一条规则
-    ///
-    /// 更改某一条规则
     @inlinable
     public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainWhiteRuleResponse > {
         self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更改某一条规则
-    ///
     /// 更改某一条规则
     @inlinable
     public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {

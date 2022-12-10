@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取基础防护攻击状态
-    ///
-    /// 获取基础防护攻击状态
     @inlinable
     public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceStatusResponse > {
         self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取基础防护攻击状态
-    ///
     /// 获取基础防护攻击状态
     @inlinable
     public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {

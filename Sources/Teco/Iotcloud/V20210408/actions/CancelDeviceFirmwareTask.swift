@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 取消设备升级任务
-    ///
-    /// 取消设备升级任务
     @inlinable
     public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDeviceFirmwareTaskResponse > {
         self.client.execute(action: "CancelDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消设备升级任务
-    ///
     /// 取消设备升级任务
     @inlinable
     public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {

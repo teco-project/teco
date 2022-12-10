@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcm {
     /// 修改 Tracing 配置
-    ///
-    /// 修改 Tracing 配置
     @inlinable
     public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTracingConfigResponse > {
         self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改 Tracing 配置
-    ///
     /// 修改 Tracing 配置
     @inlinable
     public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {

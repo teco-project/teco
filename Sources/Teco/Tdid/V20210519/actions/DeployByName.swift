@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 通过Name部署TDID合约
-    ///
-    /// 通过Name部署TDID合约
     @inlinable
     public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployByNameResponse > {
         self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 通过Name部署TDID合约
-    ///
     /// 通过Name部署TDID合约
     @inlinable
     public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {

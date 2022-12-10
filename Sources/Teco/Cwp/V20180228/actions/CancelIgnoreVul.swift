@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 取消漏洞忽略
-    ///
-    /// 取消漏洞忽略
     @inlinable
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
         self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消漏洞忽略
-    ///
     /// 取消漏洞忽略
     @inlinable
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {

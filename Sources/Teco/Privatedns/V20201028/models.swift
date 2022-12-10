@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -25,19 +24,17 @@ extension Privatedns {
         
         /// Vpc所属地区: ap-guangzhou, ap-shanghai
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let region: String?
+        public let region: String
         
         /// Vpc所属账号: 123456789
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let uin: String?
+        public let uin: String
         
         /// vpc资源名称：testname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcName: String?
         
-        public init (uniqVpcId: String, region: String?, uin: String?, vpcName: String?) {
+        public init (uniqVpcId: String, region: String, uin: String, vpcName: String?) {
             self.uniqVpcId = uniqVpcId
             self.region = region
             self.uin = uin

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 查询推送资源任务统计信息
-    ///
-    /// 查询推送资源任务统计信息
     @inlinable
     public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
         self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询推送资源任务统计信息
-    ///
     /// 查询推送资源任务统计信息
     @inlinable
     public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {

@@ -41,6 +41,9 @@ public struct TCTseError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -124,6 +127,7 @@ public struct TCTseError: TCErrorType {
         TCTseError(.internalError_VPCFailure)
     }
     
+    /// 迁移到新架构的云原生网关
     public static var invalidParameterValue_Action: TCTseError {
         TCTseError(.invalidParameterValue_Action)
     }
@@ -224,5 +228,15 @@ extension TCTseError: Equatable {
 extension TCTseError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTseError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

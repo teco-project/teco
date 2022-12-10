@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 将已购买的云存服务转移到另一设备
-    ///
-    /// 将已购买的云存服务转移到另一设备
     @inlinable
     public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverStorageServiceResponse > {
         self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 将已购买的云存服务转移到另一设备
-    ///
     /// 将已购买的云存服务转移到另一设备
     @inlinable
     public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {

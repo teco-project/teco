@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 删除Datahub连接源
-    ///
-    /// 删除Datahub连接源
     @inlinable
     public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectResourceResponse > {
         self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除Datahub连接源
-    ///
     /// 删除Datahub连接源
     @inlinable
     public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {

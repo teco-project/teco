@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -52,13 +51,11 @@ extension Iotvideoindustry {
     public struct AllDeviceInfo: TCInputModel, TCOutputModel {
         /// 设备唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let deviceId: String?
+        public let deviceId: String
         
         /// 设备类型；2：IPC
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let deviceType: Int64?
+        public let deviceType: Int64
         
         /// 设备状态；0：设备不在线；1：设备在线；2：设备隔离中；3：设备未注册
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -104,7 +101,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
         
-        public init (deviceId: String?, deviceType: Int64?, status: Int64?, createTime: Int64?, extraInformation: String?, nickName: String?, groupPath: String?, deviceCode: String?, isRecord: Int64?, recordable: Int64?, `protocol`: String?, groupId: String?, groupName: String?) {
+        public init (deviceId: String, deviceType: Int64, status: Int64?, createTime: Int64?, extraInformation: String?, nickName: String?, groupPath: String?, deviceCode: String?, isRecord: Int64?, recordable: Int64?, `protocol`: String?, groupId: String?, groupName: String?) {
             self.deviceId = deviceId
             self.deviceType = deviceType
             self.status = status
@@ -190,15 +187,13 @@ extension Iotvideoindustry {
     public struct ChannelItem: TCInputModel, TCOutputModel {
         /// 设备唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let deviceId: String?
+        public let deviceId: String
         
         /// 通道唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let channelId: String?
+        public let channelId: String
         
-        public init (deviceId: String?, channelId: String?) {
+        public init (deviceId: String, channelId: String) {
             self.deviceId = deviceId
             self.channelId = channelId
         }
@@ -378,8 +373,7 @@ extension Iotvideoindustry {
     public struct GroupDeviceItem: TCInputModel, TCOutputModel {
         /// 设备唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let deviceId: String?
+        public let deviceId: String
         
         /// 设备名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -429,7 +423,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoChannelNum: Int64?
         
-        public init (deviceId: String?, nickName: String?, status: Int64?, extraInformation: String?, deviceType: Int64?, rtspUrl: String?, deviceCode: String?, isRecord: Int64?, recordable: Int64?, `protocol`: String?, createTime: Int64?, channelNum: Int64?, videoChannelNum: Int64?) {
+        public init (deviceId: String, nickName: String?, status: Int64?, extraInformation: String?, deviceType: Int64?, rtspUrl: String?, deviceCode: String?, isRecord: Int64?, recordable: Int64?, `protocol`: String?, createTime: Int64?, channelNum: Int64?, videoChannelNum: Int64?) {
             self.deviceId = deviceId
             self.nickName = nickName
             self.status = status
@@ -527,18 +521,15 @@ extension Iotvideoindustry {
     public struct GroupItem: TCInputModel, TCOutputModel {
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groupName: String?
+        public let groupName: String
         
         /// 父分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let parentId: String?
+        public let parentId: String
         
         /// 分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groupId: String?
+        public let groupId: String
         
         /// 分组路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -572,7 +563,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupStatus: Int64?
         
-        public init (groupName: String?, parentId: String?, groupId: String?, groupPath: String?, groupDescribe: String?, deviceNum: Int64?, subGroupNum: Int64?, extraInformation: String?, groupType: String?, createTime: Int64?, groupStatus: Int64?) {
+        public init (groupName: String, parentId: String, groupId: String, groupPath: String?, groupDescribe: String?, deviceNum: Int64?, subGroupNum: Int64?, extraInformation: String?, groupType: String?, createTime: Int64?, groupStatus: Int64?) {
             self.groupName = groupName
             self.parentId = parentId
             self.groupId = groupId
@@ -1081,18 +1072,15 @@ extension Iotvideoindustry {
     public struct TimeTemplateItem: TCInputModel, TCOutputModel {
         /// 时间模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let templateId: String?
+        public let templateId: String
         
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 是否全时录制，即7*24小时录制 0-否 1-是
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let isAllWeek: Int64?
+        public let isAllWeek: Int64
         
         /// 是否为自定义模板 0-否 1-是
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1102,7 +1090,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeTemplateSpecs: [TimeTemplateSpec]?
         
-        public init (templateId: String?, name: String?, isAllWeek: Int64?, type: Int64?, timeTemplateSpecs: [TimeTemplateSpec]?) {
+        public init (templateId: String, name: String, isAllWeek: Int64, type: Int64?, timeTemplateSpecs: [TimeTemplateSpec]?) {
             self.templateId = templateId
             self.name = name
             self.isAllWeek = isAllWeek
@@ -1123,20 +1111,17 @@ extension Iotvideoindustry {
     public struct TimeTemplateSpec: TCInputModel, TCOutputModel {
         /// 一周中的周几
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let dayofWeek: Int64?
+        public let dayofWeek: Int64
         
         /// 时间片段的开始时分。格式【HH:MM】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let beginTime: String?
+        public let beginTime: String
         
         /// 时间片段的结束时分。格式【HH:MM】
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let endTime: String?
+        public let endTime: String
         
-        public init (dayofWeek: Int64?, beginTime: String?, endTime: String?) {
+        public init (dayofWeek: Int64, beginTime: String, endTime: String) {
             self.dayofWeek = dayofWeek
             self.beginTime = beginTime
             self.endTime = endTime

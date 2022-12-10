@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Captcha {
     /// 安全验证码小程序插件查询请求数据概况
-    ///
-    /// 安全验证码小程序插件查询请求数据概况
     @inlinable
     public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniDataSumResponse > {
         self.client.execute(action: "DescribeCaptchaMiniDataSum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 安全验证码小程序插件查询请求数据概况
-    ///
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
     public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {

@@ -70,6 +70,9 @@ public struct TCDtsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -98,6 +101,8 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 鉴权失败，当前用户不允许执行该操作。
+    ///
+    /// 联系当前用户的主账号为操作者赋权。
     public static var authFailure_UnauthorizedOperationError: TCDtsError {
         TCDtsError(.authFailure_UnauthorizedOperationError)
     }
@@ -136,6 +141,8 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 内部调度系统错误。
+    ///
+    /// 内部调度系统错误
     public static var internalError_CeleryError: TCDtsError {
         TCDtsError(.internalError_CeleryError)
     }
@@ -180,6 +187,8 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 用户余额不足。
+    ///
+    /// 充值后可继续购买。
     public static var internalError_NotEnoughMoneyError: TCDtsError {
         TCDtsError(.internalError_NotEnoughMoneyError)
     }
@@ -190,11 +199,15 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 内部错误。
+    ///
+    /// 联系客服
     public static var internalError_UndefinedError: TCDtsError {
         TCDtsError(.internalError_UndefinedError)
     }
     
     /// 未知的内部错误。
+    ///
+    /// 请联系客服。
     public static var internalError_UnknownError: TCDtsError {
         TCDtsError(.internalError_UnknownError)
     }
@@ -262,6 +275,8 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 任务操作失败。
+    ///
+    /// 任务操作失败
     public static var operationDenied_JobOperationDeniedError: TCDtsError {
         TCDtsError(.operationDenied_JobOperationDeniedError)
     }
@@ -293,6 +308,8 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 未找到资源。
+    ///
+    /// 未找到用户的资源。请确认账号与资源的关系是否正确。
     public static var resourceNotFound_BizResourceNotFoundError: TCDtsError {
         TCDtsError(.resourceNotFound_BizResourceNotFoundError)
     }
@@ -353,11 +370,16 @@ public struct TCDtsError: TCErrorType {
     }
     
     /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+    ///
+    /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
     public static var unsupportedOperation_IntraNetUserNotTaggedError: TCDtsError {
         TCDtsError(.unsupportedOperation_IntraNetUserNotTaggedError)
     }
     
     /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+    ///
+    /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713
+    /// 【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
     public static var unsupportedOperation_IntraNetUserNotTaggedForSyncJobError: TCDtsError {
         TCDtsError(.unsupportedOperation_IntraNetUserNotTaggedForSyncJobError)
     }
@@ -382,5 +404,15 @@ extension TCDtsError: Equatable {
 extension TCDtsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCDtsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

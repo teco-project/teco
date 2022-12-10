@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 获取域名列表
-    ///
-    /// 获取域名列表
     @inlinable
     public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainListResponse > {
         self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取域名列表
-    ///
     /// 获取域名列表
     @inlinable
     public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {

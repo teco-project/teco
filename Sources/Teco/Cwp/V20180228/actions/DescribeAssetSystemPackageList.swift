@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取资产管理系统安装包列表
-    ///
-    /// 获取资产管理系统安装包列表
     @inlinable
     public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemPackageListResponse > {
         self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取资产管理系统安装包列表
-    ///
     /// 获取资产管理系统安装包列表
     @inlinable
     public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {

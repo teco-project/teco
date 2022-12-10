@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// Yaml方式修改应用配置
-    ///
-    /// Yaml方式修改应用配置
     @inlinable
     public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationYamlResponse > {
         self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// Yaml方式修改应用配置
-    ///
     /// Yaml方式修改应用配置
     @inlinable
     public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {

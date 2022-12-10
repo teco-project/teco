@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 开关消息路由
-    ///
-    /// 开关消息路由
     @inlinable
     public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRouteOnOffResponse > {
         self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 开关消息路由
-    ///
     /// 开关消息路由
     @inlinable
     public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {

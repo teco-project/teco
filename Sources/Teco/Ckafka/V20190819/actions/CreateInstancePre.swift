@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 创建实例(预付费包年包月)
-    ///
-    /// 创建实例(预付费包年包月)
     @inlinable
     public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePreResponse > {
         self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建实例(预付费包年包月)
-    ///
     /// 创建实例(预付费包年包月)
     @inlinable
     public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {

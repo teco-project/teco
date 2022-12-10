@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -43,6 +42,9 @@ extension TCEssbasicError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -57,71 +59,99 @@ extension TCEssbasicError {
         }
         
         /// 帐号已存在并实名。
+        ///
+        /// 请确定账号是否重复，再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var accountAlreadyExists: FailedOperation {
             FailedOperation(.accountAlreadyExists)
         }
         
         /// 实名认证错误。
+        ///
+        /// 当前用户实名认证失败，优先检查参数及重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var accountVerifyFail: FailedOperation {
             FailedOperation(.accountVerifyFail)
         }
         
         /// 鉴权失败。
+        ///
+        /// 请检查参数，确保账号信息正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var authFail: FailedOperation {
             FailedOperation(.authFail)
         }
         
         /// 加锁失败。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var dLockFailed: FailedOperation {
             FailedOperation(.dLockFailed)
         }
         
         /// 已绑定其它手机号码或手机号码已被其它终端(微信)绑定。
+        ///
+        /// 请检查当前账号是否已绑定手机号或当前手机号是否已经被使用。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var errBindingRepeated: FailedOperation {
             FailedOperation(.errBindingRepeated)
         }
         
         /// 生成企业印章失败。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的RequestId。
         public static var generateOrgSeal: FailedOperation {
             FailedOperation(.generateOrgSeal)
         }
         
         /// 生成个人印章失败。
+        ///
+        /// 请检查生成个人印章参数，确保用户，印章信息正确；请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var generateUserSeal: FailedOperation {
             FailedOperation(.generateUserSeal)
         }
         
         /// 无角色。
+        ///
+        /// 无相关角色权限，请联系管理员进行授权操作。
         public static var noRole: FailedOperation {
             FailedOperation(.noRole)
         }
         
         /// 注册的OpenId已存在。
+        ///
+        /// 当前用户已经存在, 请确认。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var openIdAlreadyExists: FailedOperation {
             FailedOperation(.openIdAlreadyExists)
         }
         
         /// 注册的企业证件号码已存在。
+        ///
+        /// 注册的企业证件号码已存在，请确认后再重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var orgIdCardNumberAlreadyExists: FailedOperation {
             FailedOperation(.orgIdCardNumberAlreadyExists)
         }
         
         /// 请求的次数超过了频率限制。
+        ///
+        /// 请求的次数超过了频率限制。请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var requestLimitExceeded: FailedOperation {
             FailedOperation(.requestLimitExceeded)
         }
         
         /// 今日验证码发送量已超出限制，请联系工作人员处理。
+        ///
+        /// 今日验证码发送量已超出限制，请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var requestLimitExceeded1D: FailedOperation {
             FailedOperation(.requestLimitExceeded1D)
         }
         
         /// 本小时验证码发送数量超出限制，请稍后重试。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var requestLimitExceeded1H: FailedOperation {
             FailedOperation(.requestLimitExceeded1H)
         }
         
         /// 短信发送频率超出限制，请等待一分钟后重试。
+        ///
+        /// 短信发送频率超出限制，请等待一分钟后重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var requestLimitExceeded30S: FailedOperation {
             FailedOperation(.requestLimitExceeded30S)
         }
@@ -146,10 +176,21 @@ extension TCEssbasicError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCEssbasicError.FailedOperation {
+    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
     public func toEssbasicError() -> TCEssbasicError {
         guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEssbasicError(code, context: self.context)
+    }
+}
+
+extension TCEssbasicError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

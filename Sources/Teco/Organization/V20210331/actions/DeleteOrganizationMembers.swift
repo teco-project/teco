@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Organization {
     /// 批量删除企业组织成员
-    ///
-    /// 批量删除企业组织成员
     @inlinable
     public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMembersResponse > {
         self.client.execute(action: "DeleteOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量删除企业组织成员
-    ///
     /// 批量删除企业组织成员
     @inlinable
     public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMembersResponse {

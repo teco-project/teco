@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 校验Secret的Yaml语法
-    ///
-    /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretYamlErrorResponse > {
         self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 校验Secret的Yaml语法
-    ///
     /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 查询设备绑定的网关设备
-    ///
-    /// 查询设备绑定的网关设备
     @inlinable
     public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceBindGatewayResponse > {
         self.client.execute(action: "DescribeDeviceBindGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询设备绑定的网关设备
-    ///
     /// 查询设备绑定的网关设备
     @inlinable
     public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceBindGatewayResponse {

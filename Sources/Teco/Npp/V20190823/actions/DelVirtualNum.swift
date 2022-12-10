@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Npp {
     /// 直拨解绑中间号
-    ///
-    /// 直拨解绑中间号
     @inlinable
     public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelVirtualNumResponse > {
         self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直拨解绑中间号
-    ///
     /// 直拨解绑中间号
     @inlinable
     public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {

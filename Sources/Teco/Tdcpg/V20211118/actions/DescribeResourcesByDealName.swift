@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdcpg {
     /// 根据订单号获取资源信息
-    ///
-    /// 根据订单号获取资源信息
     @inlinable
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByDealNameResponse > {
         self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据订单号获取资源信息
-    ///
     /// 根据订单号获取资源信息
     @inlinable
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {

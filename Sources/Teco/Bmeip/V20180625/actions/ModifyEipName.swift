@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 更新黑石EIP名称
-    ///
-    /// 更新黑石EIP名称
     @inlinable
     public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
         self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新黑石EIP名称
-    ///
     /// 更新黑石EIP名称
     @inlinable
     public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {

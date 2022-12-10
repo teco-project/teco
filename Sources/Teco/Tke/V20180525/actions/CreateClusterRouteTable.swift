@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 创建集群路由表
-    ///
-    /// 创建集群路由表
     @inlinable
     public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteTableResponse > {
         self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建集群路由表
-    ///
     /// 创建集群路由表
     @inlinable
     public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {

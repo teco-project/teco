@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -65,6 +64,9 @@ extension TCSslError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -203,6 +205,8 @@ extension TCSslError {
         }
         
         /// 该主域（%s）下申请的免费证书数量已达到%s个上限，请购买付费证书。
+        ///
+        /// 主域申请的免费证书数量已达到20个上限，请购买付费证书
         public static var mainDomainCertificateCountLimit: FailedOperation {
             FailedOperation(.mainDomainCertificateCountLimit)
         }
@@ -253,6 +257,8 @@ extension TCSslError {
         }
         
         /// 角色不存在，请前往授权。
+        ///
+        /// 服务角色授权
         public static var roleNotFoundAuthorization: FailedOperation {
             FailedOperation(.roleNotFoundAuthorization)
         }
@@ -277,10 +283,21 @@ extension TCSslError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCSslError.FailedOperation {
+    /// - Returns: ``TCSslError`` that holds the same error and context.
     public func toSslError() -> TCSslError {
         guard let code = TCSslError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSslError(code, context: self.context)
+    }
+}
+
+extension TCSslError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

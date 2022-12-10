@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Yunjing {
     /// 获取指定标签关联的服务器信息
-    ///
-    /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
         self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取指定标签关联的服务器信息
-    ///
     /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {

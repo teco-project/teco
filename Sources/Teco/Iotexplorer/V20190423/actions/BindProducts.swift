@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 批量绑定子产品
-    ///
-    /// 批量绑定子产品
     @inlinable
     public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindProductsResponse > {
         self.client.execute(action: "BindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量绑定子产品
-    ///
     /// 批量绑定子产品
     @inlinable
     public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindProductsResponse {

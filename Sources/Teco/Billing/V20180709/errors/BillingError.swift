@@ -33,6 +33,9 @@ public struct TCBillingError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -107,6 +110,8 @@ public struct TCBillingError: TCErrorType {
     }
     
     /// 获取数据条数失败。
+    ///
+    /// 尝试将NeedRecordNum设置为默认值或0。
     public static var failedOperation_QueryCountFailed: TCBillingError {
         TCBillingError(.failedOperation_QueryCountFailed)
     }
@@ -177,5 +182,15 @@ extension TCBillingError: Equatable {
 extension TCBillingError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCBillingError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

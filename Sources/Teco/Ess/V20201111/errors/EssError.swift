@@ -196,6 +196,9 @@ public struct TCEssError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -263,14 +266,17 @@ public struct TCEssError: TCErrorType {
         TCEssError(.failedOperation_PreViewUrlFail)
     }
     
+    /// 请确认是否模板配置存在填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeCreatorSignComponents: TCEssError {
         TCEssError(.failedOperation_QrCodeCreatorSignComponents)
     }
     
+    /// 请确认模板是否缺少签署人。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeSignUsers: TCEssError {
         TCEssError(.failedOperation_QrCodeSignUsers)
     }
     
+    /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeTemplateId: TCEssError {
         TCEssError(.failedOperation_QrCodeTemplateId)
     }
@@ -551,14 +557,17 @@ public struct TCEssError: TCErrorType {
         TCEssError(.invalidParameter_InvalidVerifyCode)
     }
     
+    /// 请检查必填控件是否都已填充非空值。
     public static var invalidParameter_MissingRequiredComponentValue: TCEssError {
         TCEssError(.invalidParameter_MissingRequiredComponentValue)
     }
     
+    /// 请确认手机号是正确的。
     public static var invalidParameter_Mobile: TCEssError {
         TCEssError(.invalidParameter_Mobile)
     }
     
+    /// 确认名字是否正确。
     public static var invalidParameter_Name: TCEssError {
         TCEssError(.invalidParameter_Name)
     }
@@ -833,10 +842,12 @@ public struct TCEssError: TCErrorType {
         TCEssError(.operationDenied_NoVerify)
     }
     
+    /// 使用超管/法人进行接口调用。
     public static var operationDenied_NotBelongSuperAdminOrLegalPerson: TCEssError {
         TCEssError(.operationDenied_NotBelongSuperAdminOrLegalPerson)
     }
     
+    /// 联系管理员获取权限。
     public static var operationDenied_OperatorHasNoPermission: TCEssError {
         TCEssError(.operationDenied_OperatorHasNoPermission)
     }
@@ -986,6 +997,7 @@ public struct TCEssError: TCErrorType {
         TCEssError(.resourceNotFound_Template)
     }
     
+    /// 确认查询条件是否可以匹配到 Url
     public static var resourceNotFound_Url: TCEssError {
         TCEssError(.resourceNotFound_Url)
     }
@@ -1034,5 +1046,15 @@ extension TCEssError: Equatable {
 extension TCEssError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEssError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 批量预注册节点
-    ///
-    /// 批量预注册节点
     @inlinable
     public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeBatchResponse > {
         self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量预注册节点
-    ///
     /// 批量预注册节点
     @inlinable
     public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {

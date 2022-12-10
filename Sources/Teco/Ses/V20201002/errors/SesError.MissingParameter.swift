@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -34,6 +33,9 @@ extension TCSesError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,16 +50,22 @@ extension TCSesError {
         }
         
         /// 周期发送任务需选择开始时间和间隔时间。
+        ///
+        /// 周期发送任务需选择开始时间和间隔时间
         public static var cycleParamNecessary: MissingParameter {
             MissingParameter(.cycleParamNecessary)
         }
         
         /// 收件人地址必须传。
+        ///
+        /// 参数中补上收件人地址
         public static var emailsNecessary: MissingParameter {
             MissingParameter(.emailsNecessary)
         }
         
         /// 收件人列表Id必传。
+        ///
+        /// 收件人列表Id必传
         public static var receiverIdNecessary: MissingParameter {
             MissingParameter(.receiverIdNecessary)
         }
@@ -68,6 +76,8 @@ extension TCSesError {
         }
         
         /// 定时发送任务需选择开始时间。
+        ///
+        /// 定时发送任务需选择开始时间
         public static var timedParamNecessary: MissingParameter {
             MissingParameter(.timedParamNecessary)
         }
@@ -92,10 +102,21 @@ extension TCSesError.MissingParameter: CustomStringConvertible {
 }
 
 extension TCSesError.MissingParameter {
+    /// - Returns: ``TCSesError`` that holds the same error and context.
     public func toSesError() -> TCSesError {
         guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSesError(code, context: self.context)
+    }
+}
+
+extension TCSesError.MissingParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

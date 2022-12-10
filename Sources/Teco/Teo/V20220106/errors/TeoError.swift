@@ -79,6 +79,9 @@ public struct TCTeoError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -153,6 +156,8 @@ public struct TCTeoError: TCErrorType {
     }
     
     /// 内部错误。
+    ///
+    /// 内部错误-系统错误。
     public static var internalError_SystemError: TCTeoError {
         TCTeoError(.internalError_SystemError)
     }
@@ -242,6 +247,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_InvalidClientIpHeaderName)
     }
     
+    /// 套餐包不支持智能加速配置。
     public static var invalidParameter_InvalidDynamicRoutineBilling: TCTeoError {
         TCTeoError(.invalidParameter_InvalidDynamicRoutineBilling)
     }
@@ -261,6 +267,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_InvalidOrigin)
     }
     
+    /// 套餐包不支持最大上传大小。
     public static var invalidParameter_InvalidPostMaxSizeBilling: TCTeoError {
         TCTeoError(.invalidParameter_InvalidPostMaxSizeBilling)
     }
@@ -285,6 +292,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_InvalidRequestHeaderValue)
     }
     
+    /// 无套餐包。
     public static var invalidParameter_InvalidResourceIdBilling: TCTeoError {
         TCTeoError(.invalidParameter_InvalidResourceIdBilling)
     }
@@ -330,6 +338,8 @@ public struct TCTeoError: TCErrorType {
     }
     
     /// 域名配置错误。
+    ///
+    /// 参数错误-setting非法参数。
     public static var invalidParameter_SettingInvalidParam: TCTeoError {
         TCTeoError(.invalidParameter_SettingInvalidParam)
     }
@@ -374,6 +384,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.operationDenied)
     }
     
+    /// 域名尚未备案。
     public static var operationDenied_DomainNoICP: TCTeoError {
         TCTeoError(.operationDenied_DomainNoICP)
     }
@@ -449,5 +460,15 @@ extension TCTeoError: Equatable {
 extension TCTeoError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTeoError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

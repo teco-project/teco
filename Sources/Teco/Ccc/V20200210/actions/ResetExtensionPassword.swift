@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 重置话机注册密码
-    ///
-    /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetExtensionPasswordResponse > {
         self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重置话机注册密码
-    ///
     /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {

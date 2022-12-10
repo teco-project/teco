@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 分页查询质量监控组
-    ///
-    /// 分页查询质量监控组
     @inlinable
     public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsByPageResponse > {
         self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 分页查询质量监控组
-    ///
     /// 分页查询质量监控组
     @inlinable
     public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {

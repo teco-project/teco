@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 获取用户列表信息
-    ///
-    /// 获取用户列表信息
     @inlinable
     public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
         self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户列表信息
-    ///
     /// 获取用户列表信息
     @inlinable
     public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {

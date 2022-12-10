@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// Waf IP黑白名单Delete接口
-    ///
-    /// Waf IP黑白名单Delete接口
     @inlinable
     public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIpAccessControlResponse > {
         self.client.execute(action: "DeleteIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// Waf IP黑白名单Delete接口
-    ///
     /// Waf IP黑白名单Delete接口
     @inlinable
     public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {

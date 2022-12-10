@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -544,13 +543,11 @@ extension Trp {
     public struct Quota: TCInputModel, TCOutputModel {
         /// 服务开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let startTime: String?
+        public let startTime: String
         
         /// 服务结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let endTime: String?
+        public let endTime: String
         
         /// 配额ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -596,7 +593,7 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
         
-        public init (startTime: String?, endTime: String?, quotaId: UInt64?, corpId: UInt64?, services: [String]?, factoryQuota: Int64?, itemQuota: Int64?, trackQuota: Int64?, saleQuota: Int64?, chainQuota: Int64?, riskQuota: Int64?, trackType: Int64?, version: String?) {
+        public init (startTime: String, endTime: String, quotaId: UInt64?, corpId: UInt64?, services: [String]?, factoryQuota: Int64?, itemQuota: Int64?, trackQuota: Int64?, saleQuota: Int64?, chainQuota: Int64?, riskQuota: Int64?, trackType: Int64?, version: String?) {
             self.startTime = startTime
             self.endTime = endTime
             self.quotaId = quotaId

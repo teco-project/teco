@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ess {
     /// 通过AuthCode查询用户是否实名
-    ///
-    /// 通过AuthCode查询用户是否实名
     @inlinable
     public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
         self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 通过AuthCode查询用户是否实名
-    ///
     /// 通过AuthCode查询用户是否实名
     @inlinable
     public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {

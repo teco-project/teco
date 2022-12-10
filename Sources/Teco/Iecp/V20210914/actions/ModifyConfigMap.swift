@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 修改ConfigMap
-    ///
-    /// 修改ConfigMap
     @inlinable
     public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigMapResponse > {
         self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改ConfigMap
-    ///
     /// 修改ConfigMap
     @inlinable
     public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {

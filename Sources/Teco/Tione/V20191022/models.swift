@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -123,25 +122,21 @@ extension Tione {
     public struct CosDataSource: TCInputModel, TCOutputModel {
         /// cos桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let bucket: String?
+        public let bucket: String
         
         /// cos文件key
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let keyPrefix: String?
+        public let keyPrefix: String
         
         /// 分布式数据下载方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let dataDistributionType: String?
+        public let dataDistributionType: String
         
         /// 数据类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let dataType: String?
+        public let dataType: String
         
-        public init (bucket: String?, keyPrefix: String?, dataDistributionType: String?, dataType: String?) {
+        public init (bucket: String, keyPrefix: String, dataDistributionType: String, dataType: String) {
             self.bucket = bucket
             self.keyPrefix = keyPrefix
             self.dataDistributionType = dataDistributionType
@@ -460,19 +455,17 @@ extension Tione {
     public struct ResourceConfig: TCInputModel, TCOutputModel {
         /// 计算实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let instanceCount: UInt64?
+        public let instanceCount: UInt64
         
         /// 计算实例类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let instanceType: String?
+        public let instanceType: String
         
         /// 挂载CBS大小（GB）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeSizeInGB: UInt64?
         
-        public init (instanceCount: UInt64?, instanceType: String?, volumeSizeInGB: UInt64?) {
+        public init (instanceCount: UInt64, instanceType: String, volumeSizeInGB: UInt64?) {
             self.instanceCount = instanceCount
             self.instanceType = instanceType
             self.volumeSizeInGB = volumeSizeInGB
@@ -582,15 +575,13 @@ extension Tione {
     public struct VpcConfig: TCInputModel, TCOutputModel {
         /// 安全组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let securityGroupIds: [String]?
+        public let securityGroupIds: [String]
         
         /// 子网id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let subnetId: String?
+        public let subnetId: String
         
-        public init (securityGroupIds: [String]?, subnetId: String?) {
+        public init (securityGroupIds: [String], subnetId: String) {
             self.securityGroupIds = securityGroupIds
             self.subnetId = subnetId
         }

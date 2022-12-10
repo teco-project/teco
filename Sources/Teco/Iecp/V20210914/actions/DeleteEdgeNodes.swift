@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 批量删除边缘节点
-    ///
-    /// 批量删除边缘节点
     @inlinable
     public func deleteEdgeNodes(_ input: DeleteEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodesResponse > {
         self.client.execute(action: "DeleteEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量删除边缘节点
-    ///
     /// 批量删除边缘节点
     @inlinable
     public func deleteEdgeNodes(_ input: DeleteEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodesResponse {

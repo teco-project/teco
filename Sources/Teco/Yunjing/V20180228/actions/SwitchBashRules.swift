@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Yunjing {
     /// 切换高危命令规则状态
-    ///
-    /// 切换高危命令规则状态
     @inlinable
     public func switchBashRules(_ input: SwitchBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchBashRulesResponse > {
         self.client.execute(action: "SwitchBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 切换高危命令规则状态
-    ///
     /// 切换高危命令规则状态
     @inlinable
     public func switchBashRules(_ input: SwitchBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchBashRulesResponse {

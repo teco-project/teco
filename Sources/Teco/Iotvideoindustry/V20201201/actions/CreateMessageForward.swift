@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 创建消息转发配置
-    ///
-    /// 创建消息转发配置
     @inlinable
     public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageForwardResponse > {
         self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建消息转发配置
-    ///
     /// 创建消息转发配置
     @inlinable
     public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {

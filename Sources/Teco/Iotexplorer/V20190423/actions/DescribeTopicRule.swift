@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 获取规则信息
-    ///
-    /// 获取规则信息
     @inlinable
     public func describeTopicRule(_ input: DescribeTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicRuleResponse > {
         self.client.execute(action: "DescribeTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取规则信息
-    ///
     /// 获取规则信息
     @inlinable
     public func describeTopicRule(_ input: DescribeTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicRuleResponse {

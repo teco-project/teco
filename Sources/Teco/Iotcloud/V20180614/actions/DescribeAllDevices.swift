@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 查询所有设备列表
-    ///
-    /// 查询所有设备列表
     @inlinable
     public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllDevicesResponse > {
         self.client.execute(action: "DescribeAllDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询所有设备列表
-    ///
     /// 查询所有设备列表
     @inlinable
     public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDevicesResponse {

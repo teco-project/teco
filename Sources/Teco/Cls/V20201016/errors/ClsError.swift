@@ -90,6 +90,9 @@ public struct TCClsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -134,6 +137,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 检索游标已失效或不存在。
+    ///
+    /// 请重新输入有效参数。
     public static var failedOperation_InvalidContext: TCClsError {
         TCClsError(.failedOperation_InvalidContext)
     }
@@ -164,6 +169,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 查询语句运行失败。
+    ///
+    /// 请检查索引配置及查询语句。若无法解决，请联系智能客服或提交工单。
     public static var failedOperation_QueryError: TCClsError {
         TCClsError(.failedOperation_QueryError)
     }
@@ -174,6 +181,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 查询超时。
+    ///
+    /// 请稍后重试或优化语句。若无法解决，请联系智能客服或提交工单。
     public static var failedOperation_SearchTimeout: TCClsError {
         TCClsError(.failedOperation_SearchTimeout)
     }
@@ -184,11 +193,15 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 查询语句解析错误。
+    ///
+    /// 请检查语法并输入正确语句。
     public static var failedOperation_SyntaxError: TCClsError {
         TCClsError(.failedOperation_SyntaxError)
     }
     
     /// 请求标签服务限频。
+    ///
+    /// 控制请求次数
     public static var failedOperation_TagQpsLimit: TCClsError {
         TCClsError(.failedOperation_TagQpsLimit)
     }
@@ -199,6 +212,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 日志主题已隔离。
+    ///
+    /// 请检查日志主题状态。若无法解决，请联系智能客服或提交工单。
     public static var failedOperation_TopicIsolated: TCClsError {
         TCClsError(.failedOperation_TopicIsolated)
     }
@@ -249,6 +264,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 数据库唯一键冲突。
+    ///
+    /// 数据已经存在，检查参数是否填写有误。
     public static var invalidParameter_DbDuplication: TCClsError {
         TCClsError(.invalidParameter_DbDuplication)
     }
@@ -337,11 +354,14 @@ public struct TCClsError: TCErrorType {
         TCClsError(.limitExceeded_Partition)
     }
     
+    /// 修改检索语句，减少查询范围。
     public static var limitExceeded_SearchResources: TCClsError {
         TCClsError(.limitExceeded_SearchResources)
     }
     
     /// 检索接口返回的日志量太大， 超过20MB限制。
+    ///
+    /// 可以把limit参数降低一点
     public static var limitExceeded_SearchResultTooLarge: TCClsError {
         TCClsError(.limitExceeded_SearchResultTooLarge)
     }
@@ -387,6 +407,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 账户不存在。
+    ///
+    /// 需要开通cls服务
     public static var operationDenied_AccountNotExists: TCClsError {
         TCClsError(.operationDenied_AccountNotExists)
     }
@@ -397,10 +419,13 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 字段没有开启分析功能。
+    ///
+    /// 开启即可
     public static var operationDenied_AnalysisSwitchClose: TCClsError {
         TCClsError(.operationDenied_AnalysisSwitchClose)
     }
     
+    /// 该资源暂不支持新语法，联系helper处理。
     public static var operationDenied_NewSyntaxNotSupported: TCClsError {
         TCClsError(.operationDenied_NewSyntaxNotSupported)
     }
@@ -421,6 +446,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// topic绑定了函数投递。
+    ///
+    /// 需要删除函数投递之后， 才能删除topic
     public static var operationDenied_TopicHasDeliverFunction: TCClsError {
         TCClsError(.operationDenied_TopicHasDeliverFunction)
     }
@@ -480,6 +507,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 投递规则不存在。
+    ///
+    /// 检查投递规则是否存在。
     public static var resourceNotFound_ShipperNotExist: TCClsError {
         TCClsError(.resourceNotFound_ShipperNotExist)
     }
@@ -490,6 +519,8 @@ public struct TCClsError: TCErrorType {
     }
     
     /// 日志主题不存在。
+    ///
+    /// 请输入正确的日志主题ID。若无法解决，请联系智能客服或提交工单。
     public static var resourceNotFound_TopicNotExist: TCClsError {
         TCClsError(.resourceNotFound_TopicNotExist)
     }
@@ -515,5 +546,15 @@ extension TCClsError: Equatable {
 extension TCClsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCClsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

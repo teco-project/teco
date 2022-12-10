@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gaap {
     /// 查询目前定制域名的错误响应
-    ///
-    /// 查询目前定制域名的错误响应
     @inlinable
     public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoResponse > {
         self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询目前定制域名的错误响应
-    ///
     /// 查询目前定制域名的错误响应
     @inlinable
     public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {

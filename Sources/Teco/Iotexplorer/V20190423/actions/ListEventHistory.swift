@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 获取设备的历史事件
-    ///
-    /// 获取设备的历史事件
     @inlinable
     public func listEventHistory(_ input: ListEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEventHistoryResponse > {
         self.client.execute(action: "ListEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取设备的历史事件
-    ///
     /// 获取设备的历史事件
     @inlinable
     public func listEventHistory(_ input: ListEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventHistoryResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 启用应用弹性策略组合
-    ///
-    /// 启用应用弹性策略组合
     @inlinable
     public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableApplicationAutoscalerResponse > {
         self.client.execute(action: "EnableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 启用应用弹性策略组合
-    ///
     /// 启用应用弹性策略组合
     @inlinable
     public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 删除跟踪集
-    ///
-    /// 删除跟踪集
     @inlinable
     public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditResponse > {
         self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除跟踪集
-    ///
     /// 删除跟踪集
     @inlinable
     public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {

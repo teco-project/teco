@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 通过子用户UIN列表查询子用户
-    ///
-    /// 通过子用户UIN列表查询子用户
     @inlinable
     public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAccountsResponse > {
         self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 通过子用户UIN列表查询子用户
-    ///
     /// 通过子用户UIN列表查询子用户
     @inlinable
     public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {

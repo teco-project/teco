@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询边缘单元监控数据
-    ///
-    /// 查询边缘单元监控数据
     @inlinable
     public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorMetricsResponse > {
         self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询边缘单元监控数据
-    ///
     /// 查询边缘单元监控数据
     @inlinable
     public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 更新产品的私有CA
-    ///
-    /// 更新产品的私有CA
     @inlinable
     public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductPrivateCAResponse > {
         self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新产品的私有CA
-    ///
     /// 更新产品的私有CA
     @inlinable
     public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {

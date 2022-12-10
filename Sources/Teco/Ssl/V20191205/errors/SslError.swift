@@ -64,6 +64,9 @@ public struct TCSslError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -217,6 +220,8 @@ public struct TCSslError: TCErrorType {
     }
     
     /// 该主域（%s）下申请的免费证书数量已达到%s个上限，请购买付费证书。
+    ///
+    /// 主域申请的免费证书数量已达到20个上限，请购买付费证书
     public static var failedOperation_MainDomainCertificateCountLimit: TCSslError {
         TCSslError(.failedOperation_MainDomainCertificateCountLimit)
     }
@@ -267,6 +272,8 @@ public struct TCSslError: TCErrorType {
     }
     
     /// 角色不存在，请前往授权。
+    ///
+    /// 服务角色授权
     public static var failedOperation_RoleNotFoundAuthorization: TCSslError {
         TCSslError(.failedOperation_RoleNotFoundAuthorization)
     }
@@ -360,5 +367,15 @@ extension TCSslError: Equatable {
 extension TCSslError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSslError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

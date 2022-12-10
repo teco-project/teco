@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -101,6 +100,9 @@ extension TCCvmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -115,6 +117,8 @@ extension TCCvmError {
         }
         
         /// 指定的实例付费模式或者网络付费模式不支持共享带宽包
+        ///
+        /// 无
         public static var bandwidthPackageIdNotSupported: UnsupportedOperation {
             UnsupportedOperation(.bandwidthPackageIdNotSupported)
         }
@@ -137,6 +141,8 @@ extension TCCvmError {
         }
         
         /// IPv6实例不支持VPC迁移
+        ///
+        /// 无
         public static var iPv6NotSupportVpcMigrate: UnsupportedOperation {
             UnsupportedOperation(.iPv6NotSupportVpcMigrate)
         }
@@ -147,6 +153,8 @@ extension TCCvmError {
         }
         
         /// 请求不支持该实例计费模式
+        ///
+        /// 无
         public static var instanceChargeType: UnsupportedOperation {
             UnsupportedOperation(.instanceChargeType)
         }
@@ -156,11 +164,14 @@ extension TCCvmError {
             UnsupportedOperation(.instanceMixedPricingModel)
         }
         
+        /// 请单独选择中心可用区实例或者边缘可用区实例进行批量操作。
         public static var instanceMixedZoneType: UnsupportedOperation {
             UnsupportedOperation(.instanceMixedZoneType)
         }
         
         /// 请求不支持操作系统为<code>Xserver windows2012cndatacenterx86_64</code>的实例<code>ins-xxxxxx</code> 。
+        ///
+        /// 暂无
         public static var instanceOsWindows: UnsupportedOperation {
             UnsupportedOperation(.instanceOsWindows)
         }
@@ -176,16 +187,22 @@ extension TCCvmError {
         }
         
         /// 请求不支持进入救援模式的实例
+        ///
+        /// 无
         public static var instanceStateEnterRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateEnterRescueMode)
         }
         
         /// 不支持状态为 <code>ENTER_SERVICE_LIVE_MIGRATE</code>.的实例 <code>ins-xxxxxx</code> 。
+        ///
+        /// 无
         public static var instanceStateEnterServiceLiveMigrate: UnsupportedOperation {
             UnsupportedOperation(.instanceStateEnterServiceLiveMigrate)
         }
         
         /// 请求不支持正在退出救援模式的实例
+        ///
+        /// 无
         public static var instanceStateExitRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateExitRescueMode)
         }
@@ -210,31 +227,43 @@ extension TCCvmError {
         }
         
         /// 请求不支持创建未完成的实例
+        ///
+        /// 无
         public static var instanceStatePending: UnsupportedOperation {
             UnsupportedOperation(.instanceStatePending)
         }
         
         /// 请求不支持正在重启的实例
+        ///
+        /// 无
         public static var instanceStateRebooting: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRebooting)
         }
         
         /// 请求不支持救援模式的实例
+        ///
+        /// 无
         public static var instanceStateRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRescueMode)
         }
         
         /// 请求不支持开机状态的实例
+        ///
+        /// 无
         public static var instanceStateRunning: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRunning)
         }
         
         /// 不支持正在服务迁移的实例，请稍后再试
+        ///
+        /// 无
         public static var instanceStateServiceLiveMigrate: UnsupportedOperation {
             UnsupportedOperation(.instanceStateServiceLiveMigrate)
         }
         
         /// 请求不支持隔离状态的实例
+        ///
+        /// 无
         public static var instanceStateShutdown: UnsupportedOperation {
             UnsupportedOperation(.instanceStateShutdown)
         }
@@ -245,21 +274,29 @@ extension TCCvmError {
         }
         
         /// 请求不支持已关机的实例
+        ///
+        /// 无
         public static var instanceStateStopped: UnsupportedOperation {
             UnsupportedOperation(.instanceStateStopped)
         }
         
         /// 请求不支持正在关机的实例
+        ///
+        /// 无
         public static var instanceStateStopping: UnsupportedOperation {
             UnsupportedOperation(.instanceStateStopping)
         }
         
         /// 不支持已销毁的实例
+        ///
+        /// 无
         public static var instanceStateTerminated: UnsupportedOperation {
             UnsupportedOperation(.instanceStateTerminated)
         }
         
         /// 请求不支持正在销毁的实例
+        ///
+        /// 无
         public static var instanceStateTerminating: UnsupportedOperation {
             UnsupportedOperation(.instanceStateTerminating)
         }
@@ -280,6 +317,8 @@ extension TCCvmError {
         }
         
         /// 不支持指定的磁盘
+        ///
+        /// 无
         public static var invalidDisk: UnsupportedOperation {
             UnsupportedOperation(.invalidDisk)
         }
@@ -308,6 +347,8 @@ extension TCCvmError {
         }
         
         /// 密钥不支持Windows操作系统
+        ///
+        /// 无
         public static var keyPairUnsupportedWindows: UnsupportedOperation {
             UnsupportedOperation(.keyPairUnsupportedWindows)
         }
@@ -332,11 +373,15 @@ extension TCCvmError {
         }
         
         /// 绑定负载均衡的实例，不支持修改vpc属性。
+        ///
+        /// 实例已绑定CLB，不支持修改VPC，请自行解绑内外网 CLB 以及弹性网卡，并释放主网卡的辅助 IP，迁移后再进行绑定。
         public static var modifyVPCWithCLB: UnsupportedOperation {
             UnsupportedOperation(.modifyVPCWithCLB)
         }
         
         /// 该实例类型不支持竞价计费
+        ///
+        /// 无
         public static var noInstanceTypeSupportSpot: UnsupportedOperation {
             UnsupportedOperation(.noInstanceTypeSupportSpot)
         }
@@ -347,21 +392,29 @@ extension TCCvmError {
         }
         
         /// 当前实例不是FPGA机型。
+        ///
+        /// 检查实例的类型。
         public static var notFpgaInstance: UnsupportedOperation {
             UnsupportedOperation(.notFpgaInstance)
         }
         
         /// 针对当前实例设置定时任务失败。
+        ///
+        /// 可联系腾讯云助手解决。
         public static var notSupportImportInstancesActionTimer: UnsupportedOperation {
             UnsupportedOperation(.notSupportImportInstancesActionTimer)
         }
         
         /// 操作不支持当前实例
+        ///
+        /// 无
         public static var notSupportInstanceImage: UnsupportedOperation {
             UnsupportedOperation(.notSupportInstanceImage)
         }
         
         /// 该操作仅支持预付费账户
+        ///
+        /// 无
         public static var onlyForPrepaidAccount: UnsupportedOperation {
             UnsupportedOperation(.onlyForPrepaidAccount)
         }
@@ -390,6 +443,8 @@ extension TCCvmError {
         }
         
         /// 不支持该地域
+        ///
+        /// 无
         public static var region: UnsupportedOperation {
             UnsupportedOperation(.region)
         }
@@ -410,6 +465,8 @@ extension TCCvmError {
         }
         
         /// 请求不支持特殊机型的实例
+        ///
+        /// 无
         public static var specialInstanceType: UnsupportedOperation {
             UnsupportedOperation(.specialInstanceType)
         }
@@ -419,6 +476,8 @@ extension TCCvmError {
         }
         
         /// 不支持关机不收费特性
+        ///
+        /// 无
         public static var stoppedModeStopCharging: UnsupportedOperation {
             UnsupportedOperation(.stoppedModeStopCharging)
         }
@@ -429,11 +488,15 @@ extension TCCvmError {
         }
         
         /// 该机型为包销机型，RenewFlag的值只允许设置为NOTIFY_AND_AUTO_RENEW。
+        ///
+        /// 无
         public static var underwritingInstanceTypeOnlySupportAutoRenew: UnsupportedOperation {
             UnsupportedOperation(.underwritingInstanceTypeOnlySupportAutoRenew)
         }
         
         /// 指定机型不支持跨机型调整配置。
+        ///
+        /// 暂无
         public static var unsupportedChangeInstanceFamily: UnsupportedOperation {
             UnsupportedOperation(.unsupportedChangeInstanceFamily)
         }
@@ -449,11 +512,15 @@ extension TCCvmError {
         }
         
         /// 请求不支持国际版账号
+        ///
+        /// 无
         public static var unsupportedInternationalUser: UnsupportedOperation {
             UnsupportedOperation(.unsupportedInternationalUser)
         }
         
         /// 用户限额操作的配额不足。
+        ///
+        /// 请联系腾讯云助手处理。
         public static var userLimitOperationExceedQuota: UnsupportedOperation {
             UnsupportedOperation(.userLimitOperationExceedQuota)
         }
@@ -483,10 +550,21 @@ extension TCCvmError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCCvmError.UnsupportedOperation {
+    /// - Returns: ``TCCvmError`` that holds the same error and context.
     public func toCvmError() -> TCCvmError {
         guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCvmError(code, context: self.context)
+    }
+}
+
+extension TCCvmError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

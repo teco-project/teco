@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ams {
     /// 查看单个配置
-    ///
-    /// 查看单个配置
     @inlinable
     public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizConfigResponse > {
         self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看单个配置
-    ///
     /// 查看单个配置
     @inlinable
     public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {

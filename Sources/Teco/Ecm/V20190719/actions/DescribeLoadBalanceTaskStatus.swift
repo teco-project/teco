@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 查询负载均衡相关的任务状态
-    ///
-    /// 查询负载均衡相关的任务状态
     @inlinable
     public func describeLoadBalanceTaskStatus(_ input: DescribeLoadBalanceTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalanceTaskStatusResponse > {
         self.client.execute(action: "DescribeLoadBalanceTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询负载均衡相关的任务状态
-    ///
     /// 查询负载均衡相关的任务状态
     @inlinable
     public func describeLoadBalanceTaskStatus(_ input: DescribeLoadBalanceTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalanceTaskStatusResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取主机账号详情
-    ///
-    /// 获取主机账号详情
     @inlinable
     public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetUserInfoResponse > {
         self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取主机账号详情
-    ///
     /// 获取主机账号详情
     @inlinable
     public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {

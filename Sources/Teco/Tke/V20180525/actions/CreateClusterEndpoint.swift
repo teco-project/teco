@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 创建集群访问端口
-    ///
-    /// 创建集群访问端口
     @inlinable
     public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointResponse > {
         self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建集群访问端口
-    ///
     /// 创建集群访问端口
     @inlinable
     public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {

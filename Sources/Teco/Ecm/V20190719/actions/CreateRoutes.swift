@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 创建路由策略
-    ///
-    /// 创建路由策略
     @inlinable
     public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutesResponse > {
         self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建路由策略
-    ///
     /// 创建路由策略
     @inlinable
     public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1488,8 +1487,7 @@ extension Es {
     public struct OperationDuration: TCInputModel, TCOutputModel {
         /// 维护周期，表示周一到周日，可取值[0, 6]
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let periods: [UInt64]?
+        public let periods: [UInt64]
         
         /// 维护开始时间
         public let timeStart: String
@@ -1500,7 +1498,7 @@ extension Es {
         /// 时区，以UTC形式表示
         public let timeZone: String
         
-        public init (periods: [UInt64]?, timeStart: String, timeEnd: String, timeZone: String) {
+        public init (periods: [UInt64], timeStart: String, timeEnd: String, timeZone: String) {
             self.periods = periods
             self.timeStart = timeStart
             self.timeEnd = timeEnd

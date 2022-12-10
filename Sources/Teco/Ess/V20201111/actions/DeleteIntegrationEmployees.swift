@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ess {
     /// 移除员工
-    ///
-    /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationEmployeesResponse > {
         self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 移除员工
-    ///
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {

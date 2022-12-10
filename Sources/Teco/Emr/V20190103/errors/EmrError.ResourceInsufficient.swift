@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -30,6 +29,9 @@ extension TCEmrError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -44,11 +46,15 @@ extension TCEmrError {
         }
         
         /// 硬盘规格不满足。
+        ///
+        /// 占位符
         public static var diskInsufficient: ResourceInsufficient {
             ResourceInsufficient(.diskInsufficient)
         }
         
         /// 不支持或售罄的节点规格。
+        ///
+        /// 占位符
         public static var instanceInsufficient: ResourceInsufficient {
             ResourceInsufficient(.instanceInsufficient)
         }
@@ -68,10 +74,21 @@ extension TCEmrError.ResourceInsufficient: CustomStringConvertible {
 }
 
 extension TCEmrError.ResourceInsufficient {
+    /// - Returns: ``TCEmrError`` that holds the same error and context.
     public func toEmrError() -> TCEmrError {
         guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEmrError(code, context: self.context)
+    }
+}
+
+extension TCEmrError.ResourceInsufficient {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 获取域名的规则白名单
-    ///
-    /// 获取域名的规则白名单
     @inlinable
     public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainWhiteRulesResponse > {
         self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取域名的规则白名单
-    ///
     /// 获取域名的规则白名单
     @inlinable
     public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Scf {
     /// 获取账户信息
-    ///
-    /// 获取账户信息
     @inlinable
     public func getAccount(_ input: GetAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountResponse > {
         self.client.execute(action: "GetAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取账户信息
-    ///
     /// 获取账户信息
     @inlinable
     public func getAccount(_ input: GetAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {

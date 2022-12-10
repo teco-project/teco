@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 查询资产管理数据库列表
-    ///
-    /// 查询资产管理数据库列表
     @inlinable
     public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseListResponse > {
         self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询资产管理数据库列表
-    ///
     /// 查询资产管理数据库列表
     @inlinable
     public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {

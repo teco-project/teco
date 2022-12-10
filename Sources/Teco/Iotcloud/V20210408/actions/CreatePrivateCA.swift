@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 创建私有CA证书
-    ///
-    /// 创建私有CA证书
     @inlinable
     public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateCAResponse > {
         self.client.execute(action: "CreatePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建私有CA证书
-    ///
     /// 创建私有CA证书
     @inlinable
     public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateCAResponse {

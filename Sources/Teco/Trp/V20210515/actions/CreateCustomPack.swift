@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 生成自定义码包
-    ///
-    /// 生成自定义码包
     @inlinable
     public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPackResponse > {
         self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 生成自定义码包
-    ///
     /// 生成自定义码包
     @inlinable
     public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {

@@ -163,6 +163,9 @@ public struct TCAsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -300,6 +303,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 通知接收端类型冲突。
+    ///
+    /// 请根据通知接收端类型，设置匹配的接收对象。
     public static var invalidParameterValue_ConflictNotificationTarget: TCAsError {
         TCAsError(.invalidParameterValue_ConflictNotificationTarget)
     }
@@ -359,6 +364,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 指定的镜像不存在。
+    ///
+    /// 请尝试更换镜像。
     public static var invalidParameterValue_ImageNotFound: TCAsError {
         TCAsError(.invalidParameterValue_ImageNotFound)
     }
@@ -423,6 +430,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 输入的启动配置无效。
+    ///
+    /// 请确认启动配置信息的完整性及正确性。
     public static var invalidParameterValue_InvalidLaunchConfiguration: TCAsError {
         TCAsError(.invalidParameterValue_InvalidLaunchConfiguration)
     }
@@ -590,6 +599,7 @@ public struct TCAsError: TCErrorType {
         TCAsError(.invalidParameterValue_ZoneMismatchRegion)
     }
     
+    /// 请检查Action参数是否正确。
     public static var invalidParameter_ActionNotFound: TCAsError {
         TCAsError(.invalidParameter_ActionNotFound)
     }
@@ -664,6 +674,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 启动配置配额不足。
+    ///
+    /// 如需提升配额，请提工单。
     public static var limitExceeded_LaunchConfigurationQuotaNotEnough: TCAsError {
         TCAsError(.limitExceeded_LaunchConfigurationQuotaNotEnough)
     }
@@ -758,6 +770,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 指定的 CMQ queue 不存在。
+    ///
+    /// 请核实您提供的 queue。
     public static var resourceNotFound_CmqQueueNotFound: TCAsError {
         TCAsError(.resourceNotFound_CmqQueueNotFound)
     }
@@ -847,6 +861,8 @@ public struct TCAsError: TCErrorType {
     }
     
     /// 指定的 CMQ Topic 无订阅者。
+    ///
+    /// 请核实您的 Topic。
     public static var resourceUnavailable_CmqTopicHasNoSubscriber: TCAsError {
         TCAsError(.resourceUnavailable_CmqTopicHasNoSubscriber)
     }
@@ -946,5 +962,15 @@ extension TCAsError: Equatable {
 extension TCAsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCAsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 查询下载攻击日志任务记录列表
-    ///
-    /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(_ input: GetAttackDownloadRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAttackDownloadRecordsResponse > {
         self.client.execute(action: "GetAttackDownloadRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询下载攻击日志任务记录列表
-    ///
     /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(_ input: GetAttackDownloadRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttackDownloadRecordsResponse {

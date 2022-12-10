@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 启用停用单条企业安全组规则
-    ///
-    /// 启用停用单条企业安全组规则
     @inlinable
     public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupItemRuleStatusResponse > {
         self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 启用停用单条企业安全组规则
-    ///
     /// 启用停用单条企业安全组规则
     @inlinable
     public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {

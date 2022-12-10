@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Lcic {
     /// 绑定文档到房间
-    ///
-    /// 绑定文档到房间
     @inlinable
     public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDocumentToRoomResponse > {
         self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 绑定文档到房间
-    ///
     /// 绑定文档到房间
     @inlinable
     public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {

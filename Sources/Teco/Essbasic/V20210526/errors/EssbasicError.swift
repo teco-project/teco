@@ -141,6 +141,9 @@ public struct TCEssbasicError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -164,11 +167,14 @@ public struct TCEssbasicError: TCErrorType {
         TCEssbasicError(.failedOperation)
     }
     
+    /// 请检查签署人证件号是合法年龄，以证件号为准。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AgeNotAchieveNormalLegal: TCEssbasicError {
         TCEssbasicError(.failedOperation_AgeNotAchieveNormalLegal)
     }
     
     /// 鉴权失败。
+    ///
+    /// 请检查参数，确保账号信息正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AuthFail: TCEssbasicError {
         TCEssbasicError(.failedOperation_AuthFail)
     }
@@ -189,19 +195,24 @@ public struct TCEssbasicError: TCErrorType {
         TCEssbasicError(.failedOperation_NotAvailableSignReview)
     }
     
+    /// 请确认是否模板配置存在发起方的填写控件。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeCreatorSignComponents: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeCreatorSignComponents)
     }
     
+    /// 请确认模板是否缺少签署人。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeSignUsers: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeSignUsers)
     }
     
+    /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_QrCodeTemplateId: TCEssbasicError {
         TCEssbasicError(.failedOperation_QrCodeTemplateId)
     }
     
     /// 员工已实名。
+    ///
+    /// 员工已实名，如有其他疑问，请联系客服。
     public static var failedOperation_StaffAlreadyVerify: TCEssbasicError {
         TCEssbasicError(.failedOperation_StaffAlreadyVerify)
     }
@@ -212,51 +223,71 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 其他API错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Api: TCEssbasicError {
         TCEssbasicError(.internalError_Api)
     }
     
     /// 数据库错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Db: TCEssbasicError {
         TCEssbasicError(.internalError_Db)
     }
     
     /// 数据库连接出错。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_DbConnection: TCEssbasicError {
         TCEssbasicError(.internalError_DbConnection)
     }
     
     /// 数据库新增记录出错。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_DbInsert: TCEssbasicError {
         TCEssbasicError(.internalError_DbInsert)
     }
     
     /// 数据库读取失败。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_DbRead: TCEssbasicError {
         TCEssbasicError(.internalError_DbRead)
     }
     
     /// 数据库更新记录出错。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_DbUpdate: TCEssbasicError {
         TCEssbasicError(.internalError_DbUpdate)
     }
     
     /// 解密错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Decryption: TCEssbasicError {
         TCEssbasicError(.internalError_Decryption)
     }
     
     /// 依赖的其他api出错。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_DependsApi: TCEssbasicError {
         TCEssbasicError(.internalError_DependsApi)
     }
     
     /// 加密错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Encryption: TCEssbasicError {
         TCEssbasicError(.internalError_Encryption)
     }
     
     /// 生成唯一ID错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_GenerateId: TCEssbasicError {
         TCEssbasicError(.internalError_GenerateId)
     }
@@ -266,16 +297,22 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 序列化错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Serialize: TCEssbasicError {
         TCEssbasicError(.internalError_Serialize)
     }
     
     /// 系统错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_System: TCEssbasicError {
         TCEssbasicError(.internalError_System)
     }
     
     /// 第三方错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_ThirdParty: TCEssbasicError {
         TCEssbasicError(.internalError_ThirdParty)
     }
@@ -291,6 +328,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 应用号不存在。
+    ///
+    /// 请检查AppId是否正确后重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_Application: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Application)
     }
@@ -300,6 +339,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 重复添加签署人。
+    ///
+    /// 请参考错误信息，检查合同签署人手机号或身份证号，是否唯一。
     public static var invalidParameter_BizApproverAlreadyExists: TCEssbasicError {
         TCEssbasicError(.invalidParameter_BizApproverAlreadyExists)
     }
@@ -329,6 +370,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 数据不存在。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_DataNotFound: TCEssbasicError {
         TCEssbasicError(.invalidParameter_DataNotFound)
     }
@@ -346,6 +389,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 参数为空。
+    ///
+    /// 必填参数不能为空，请检查参数及重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_EmptyParams: TCEssbasicError {
         TCEssbasicError(.invalidParameter_EmptyParams)
     }
@@ -439,6 +484,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 参数错误。
+    ///
+    /// 请确认参数类型及值是否符合定义。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_ParamError: TCEssbasicError {
         TCEssbasicError(.invalidParameter_ParamError)
     }
@@ -452,6 +499,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 状态异常。
+    ///
+    /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_Status: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Status)
     }
@@ -506,6 +555,7 @@ public struct TCEssbasicError: TCErrorType {
         TCEssbasicError(.missingParameter_Date)
     }
     
+    /// 缺少流程id，请检查后重试。
     public static var missingParameter_FlowId: TCEssbasicError {
         TCEssbasicError(.missingParameter_FlowId)
     }
@@ -572,6 +622,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 应用号已被禁止。
+    ///
+    /// 当前应用号已经被禁止，请联系运营人员处理。
     public static var operationDenied_BannedApplication: TCEssbasicError {
         TCEssbasicError(.operationDenied_BannedApplication)
     }
@@ -597,6 +649,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 禁止操作。
+    ///
+    /// 请检查是否有足够的权限。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_Forbid: TCEssbasicError {
         TCEssbasicError(.operationDenied_Forbid)
     }
@@ -606,6 +660,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 没有API权限。
+    ///
+    /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
     public static var operationDenied_NoApiAuth: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoApiAuth)
     }
@@ -615,11 +671,15 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 未通过个人实名。
+    ///
+    /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoIdentityVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoIdentityVerify)
     }
     
     /// 流程配额不足。
+    ///
+    /// 请检查企业的配额是否充足。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoQuota: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoQuota)
     }
@@ -628,6 +688,7 @@ public struct TCEssbasicError: TCErrorType {
         TCEssbasicError(.operationDenied_OperateType)
     }
     
+    /// 联系管理员获取权限。
     public static var operationDenied_OperatorHasNoPermission: TCEssbasicError {
         TCEssbasicError(.operationDenied_OperatorHasNoPermission)
     }
@@ -637,6 +698,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 用户与企业不对应。
+    ///
+    /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_UserNotInOrganization: TCEssbasicError {
         TCEssbasicError(.operationDenied_UserNotInOrganization)
     }
@@ -647,6 +710,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 应用号不存在。
+    ///
+    /// 请检查应用号(AppId)参数是否正确。
     public static var resourceNotFound_Application: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Application)
     }
@@ -664,6 +729,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 未找到对应流程。
+    ///
+    /// 请检查流程Id是否存在。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var resourceNotFound_Flow: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Flow)
     }
@@ -673,6 +740,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 机构不存在。
+    ///
+    /// 请确认企业机构是否在电子签注册。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var resourceNotFound_Organization: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Organization)
     }
@@ -690,6 +759,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 模板不存在。
+    ///
+    /// 请检查参数TemplateId是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var resourceNotFound_Template: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Template)
     }
@@ -738,5 +809,15 @@ extension TCEssbasicError: Equatable {
 extension TCEssbasicError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEssbasicError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 创建spark应用
-    ///
-    /// 创建spark应用
     @inlinable
     public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppResponse > {
         self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建spark应用
-    ///
     /// 创建spark应用
     @inlinable
     public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {

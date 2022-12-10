@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 删除 Grafana 实例
-    ///
-    /// 删除 Grafana 实例
     @inlinable
     public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGrafanaInstanceResponse > {
         self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除 Grafana 实例
-    ///
     /// 删除 Grafana 实例
     @inlinable
     public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {

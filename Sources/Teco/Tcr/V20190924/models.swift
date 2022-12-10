@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1142,15 +1141,13 @@ extension Tcr {
     public struct TagSpecification: TCInputModel, TCOutputModel {
         /// 默认值为instance
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let resourceType: String?
+        public let resourceType: String
         
         /// 云标签数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tags: [Tag]?
+        public let tags: [Tag]
         
-        public init (resourceType: String?, tags: [Tag]?) {
+        public init (resourceType: String, tags: [Tag]) {
             self.resourceType = resourceType
             self.tags = tags
         }

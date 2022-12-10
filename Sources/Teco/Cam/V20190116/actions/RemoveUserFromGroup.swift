@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 从用户组删除用户
-    ///
-    /// 从用户组删除用户
     @inlinable
     public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserFromGroupResponse > {
         self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 从用户组删除用户
-    ///
     /// 从用户组删除用户
     @inlinable
     public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {

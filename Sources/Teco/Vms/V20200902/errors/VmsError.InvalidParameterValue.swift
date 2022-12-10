@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCVmsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -45,6 +47,8 @@ extension TCVmsError {
         }
         
         /// 被叫手机号码格式校验失败。
+        ///
+        /// 请参考CalledNumber参数描述。
         public static var calledNumberVerifyFail: InvalidParameterValue {
             InvalidParameterValue(.calledNumberVerifyFail)
         }
@@ -74,10 +78,21 @@ extension TCVmsError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCVmsError.InvalidParameterValue {
+    /// - Returns: ``TCVmsError`` that holds the same error and context.
     public func toVmsError() -> TCVmsError {
         guard let code = TCVmsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCVmsError(code, context: self.context)
+    }
+}
+
+extension TCVmsError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

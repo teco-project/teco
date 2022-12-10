@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 数据集成大屏任务状态统计趋势
-    ///
-    /// 数据集成大屏任务状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsTaskStatusTrendResponse > {
         self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 数据集成大屏任务状态统计趋势
-    ///
     /// 数据集成大屏任务状态统计趋势
     @inlinable
     public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusTrendResponse {

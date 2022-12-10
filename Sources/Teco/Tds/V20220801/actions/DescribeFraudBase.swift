@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tds {
     /// 查询设备风险
-    ///
-    /// 查询设备风险
     @inlinable
     public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudBaseResponse > {
         self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询设备风险
-    ///
     /// 查询设备风险
     @inlinable
     public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {

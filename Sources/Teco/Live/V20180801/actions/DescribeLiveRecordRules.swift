@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Live {
     /// 获取录制规则列表
-    ///
-    /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordRulesResponse > {
         self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取录制规则列表
-    ///
     /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {

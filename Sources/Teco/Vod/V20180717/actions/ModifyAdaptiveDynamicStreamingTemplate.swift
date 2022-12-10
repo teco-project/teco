@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Vod {
     /// 修改转自适应码流模板
-    ///
-    /// 修改转自适应码流模板
     @inlinable
     public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAdaptiveDynamicStreamingTemplateResponse > {
         self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改转自适应码流模板
-    ///
     /// 修改转自适应码流模板
     @inlinable
     public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {

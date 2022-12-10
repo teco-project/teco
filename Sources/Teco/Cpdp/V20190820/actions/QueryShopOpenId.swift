@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云支付-获取门店OpenId接口
-    ///
-    /// 云支付-获取门店OpenId接口
     @inlinable
     public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryShopOpenIdResponse > {
         self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云支付-获取门店OpenId接口
-    ///
     /// 云支付-获取门店OpenId接口
     @inlinable
     public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -60,6 +59,9 @@ extension TCTatError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -74,6 +76,8 @@ extension TCTatError {
         }
         
         /// Agent不支持此命令类型。
+        ///
+        /// 请确认执行机器是否支持此类型命令
         public static var agentUnsupportedCommandType: InvalidParameterValue {
             InvalidParameterValue(.agentUnsupportedCommandType)
         }
@@ -94,6 +98,8 @@ extension TCTatError {
         }
         
         /// 实例ID与执行活动无关。
+        ///
+        /// 检查参数InstanceIds。
         public static var instanceIsNotRelatedToInvocation: InvalidParameterValue {
             InvalidParameterValue(.instanceIsNotRelatedToInvocation)
         }
@@ -144,6 +150,8 @@ extension TCTatError {
         }
         
         /// OutputCOSBucketUrl 无效。
+        ///
+        /// OutputCOSBucketUrl 应该形如：https://tat-123454321.cos.ap-beijing.myqcloud.com。
         public static var invalidOutputCOSBucketUrl: InvalidParameterValue {
             InvalidParameterValue(.invalidOutputCOSBucketUrl)
         }
@@ -247,10 +255,21 @@ extension TCTatError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCTatError.InvalidParameterValue {
+    /// - Returns: ``TCTatError`` that holds the same error and context.
     public func toTatError() -> TCTatError {
         guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTatError(code, context: self.context)
+    }
+}
+
+extension TCTatError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

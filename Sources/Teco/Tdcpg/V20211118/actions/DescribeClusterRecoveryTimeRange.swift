@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdcpg {
     /// 查询集群可回档时间范围
-    ///
-    /// 查询集群可回档时间范围
     @inlinable
     public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRecoveryTimeRangeResponse > {
         self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询集群可回档时间范围
-    ///
     /// 查询集群可回档时间范围
     @inlinable
     public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {

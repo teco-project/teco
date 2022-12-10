@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 删除CC防护的访问频率控制规则
-    ///
-    /// 删除CC防护的访问频率控制规则
     @inlinable
     public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCFrequencyRulesResponse > {
         self.client.execute(action: "DeleteCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除CC防护的访问频率控制规则
-    ///
     /// 删除CC防护的访问频率控制规则
     @inlinable
     public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCFrequencyRulesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 拉取云存事件缩略图
-    ///
-    /// 拉取云存事件缩略图
     @inlinable
     public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageThumbnailResponse > {
         self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取云存事件缩略图
-    ///
     /// 拉取云存事件缩略图
     @inlinable
     public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {

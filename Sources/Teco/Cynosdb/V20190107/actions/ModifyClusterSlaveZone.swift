@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 修改从可用区
-    ///
-    /// 修改从可用区
     @inlinable
     public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterSlaveZoneResponse > {
         self.client.execute(action: "ModifyClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改从可用区
-    ///
     /// 修改从可用区
     @inlinable
     public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {

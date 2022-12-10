@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 修改溯源信息的排序
-    ///
-    /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
         self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改溯源信息的排序
-    ///
     /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// RabbitMQ专享版查询节点列表
-    ///
-    /// RabbitMQ专享版查询节点列表
     @inlinable
     public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
         self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// RabbitMQ专享版查询节点列表
-    ///
     /// RabbitMQ专享版查询节点列表
     @inlinable
     public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {

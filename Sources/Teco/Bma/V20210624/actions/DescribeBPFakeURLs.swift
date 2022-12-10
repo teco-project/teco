@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bma {
     /// 查询仿冒链接
-    ///
-    /// 查询仿冒链接
     @inlinable
     public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPFakeURLsResponse > {
         self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询仿冒链接
-    ///
     /// 查询仿冒链接
     @inlinable
     public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {

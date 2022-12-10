@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 启停告警策略
-    ///
-    /// 启停告警策略
     @inlinable
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
         self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 启停告警策略
-    ///
     /// 启停告警策略
     @inlinable
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {

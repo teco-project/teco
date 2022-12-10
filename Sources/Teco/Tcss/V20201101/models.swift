@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -5417,13 +5416,12 @@ extension Tcss {
         
         /// 主题名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let topicName: String?
+        public let topicName: String
         
         /// 投递状态(false:关 true:开)
         public let state: Bool
         
-        public init (logType: String, topicID: String, topicName: String?, state: Bool) {
+        public init (logType: String, topicID: String, topicName: String, state: Bool) {
             self.logType = logType
             self.topicID = topicID
             self.topicName = topicName

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询边缘单元指定Grid下的部署应用列表
-    ///
-    /// 查询边缘单元指定Grid下的部署应用列表
     @inlinable
     public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridItemResponse > {
         self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询边缘单元指定Grid下的部署应用列表
-    ///
     /// 查询边缘单元指定Grid下的部署应用列表
     @inlinable
     public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemResponse {

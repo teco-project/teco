@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 查看路由信息
-    ///
-    /// 查看路由信息
     @inlinable
     public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteResponse > {
         self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看路由信息
-    ///
     /// 查看路由信息
     @inlinable
     public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {

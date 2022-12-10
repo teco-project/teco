@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 删除从实例
-    ///
-    /// 删除从实例
     @inlinable
     public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
         self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除从实例
-    ///
     /// 删除从实例
     @inlinable
     public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {

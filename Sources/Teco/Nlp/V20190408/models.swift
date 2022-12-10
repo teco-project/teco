@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -250,14 +249,13 @@ extension Nlp {
         
         /// 匹配到的词条文本。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let matchText: String?
+        public let matchText: String
         
         /// 词条的词性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pos: String?
         
-        public init (text: String, isExist: UInt64, matchText: String?, pos: String?) {
+        public init (text: String, isExist: UInt64, matchText: String, pos: String?) {
             self.text = text
             self.isExist = isExist
             self.matchText = matchText

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mongodb {
     /// 修改实例用户的密码
-    ///
-    /// 修改实例用户的密码
     @inlinable
     public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
         self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改实例用户的密码
-    ///
     /// 修改实例用户的密码
     @inlinable
     public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {

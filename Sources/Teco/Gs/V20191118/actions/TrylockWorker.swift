@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gs {
     /// 尝试锁定机器
-    ///
-    /// 尝试锁定机器
     @inlinable
     public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrylockWorkerResponse > {
         self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 尝试锁定机器
-    ///
     /// 尝试锁定机器
     @inlinable
     public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {

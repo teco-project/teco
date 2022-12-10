@@ -97,6 +97,9 @@ public struct TCSqlserverError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -256,6 +259,8 @@ public struct TCSqlserverError: TCErrorType {
     }
     
     /// 管理员账号只能申请一个。
+    ///
+    /// 管理员账号只能申请一个，删除已有的管理员账户后，重新创建。
     public static var invalidParameterValue_AdminAccountNotUnique: TCSqlserverError {
         TCSqlserverError(.invalidParameterValue_AdminAccountNotUnique)
     }
@@ -561,5 +566,15 @@ extension TCSqlserverError: Equatable {
 extension TCSqlserverError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSqlserverError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

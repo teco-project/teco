@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Scf {
     /// 获取函数触发器列表
-    ///
-    /// 获取函数触发器列表
     @inlinable
     public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
         self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取函数触发器列表
-    ///
     /// 获取函数触发器列表
     @inlinable
     public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {

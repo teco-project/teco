@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云企付-查询对账单下载地址
-    ///
-    /// 云企付-查询对账单下载地址
     @inlinable
     public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDownLoadUrlResponse > {
         self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云企付-查询对账单下载地址
-    ///
     /// 云企付-查询对账单下载地址
     @inlinable
     public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {

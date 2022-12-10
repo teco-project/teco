@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -73,6 +72,9 @@ extension TCApigatewayError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -92,6 +94,8 @@ extension TCApigatewayError {
         }
         
         /// 非法的后端ip地址。
+        ///
+        /// 请使用正确的后端ip地址。
         public static var illegalProxyIp: InvalidParameterValue {
             InvalidParameterValue(.illegalProxyIp)
         }
@@ -152,6 +156,8 @@ extension TCApigatewayError {
         }
         
         /// 参数取值错误。
+        ///
+        /// 修改参数取值内容为可选范围内的取值。
         public static var invalidFilterNotSupportedName: InvalidParameterValue {
             InvalidParameterValue(.invalidFilterNotSupportedName)
         }
@@ -162,11 +168,15 @@ extension TCApigatewayError {
         }
         
         /// 参数后端地址取值错误。
+        ///
+        /// 请修改后端地址的取值再重试。
         public static var invalidIPAddress: InvalidParameterValue {
             InvalidParameterValue(.invalidIPAddress)
         }
         
         /// 参数请求配额总数取值错误。
+        ///
+        /// 请修改请求配额总数的取值再重试。
         public static var invalidMaxRequestNum: InvalidParameterValue {
             InvalidParameterValue(.invalidMaxRequestNum)
         }
@@ -267,6 +277,8 @@ extension TCApigatewayError {
         }
         
         /// 参数的长度超出限制。
+        ///
+        /// 修改参数的值，再重试。
         public static var lengthExceeded: InvalidParameterValue {
             InvalidParameterValue(.lengthExceeded)
         }
@@ -326,10 +338,21 @@ extension TCApigatewayError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCApigatewayError.InvalidParameterValue {
+    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
     public func toApigatewayError() -> TCApigatewayError {
         guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCApigatewayError(code, context: self.context)
+    }
+}
+
+extension TCApigatewayError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

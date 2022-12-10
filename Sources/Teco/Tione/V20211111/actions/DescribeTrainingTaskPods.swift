@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 训练任务pod列表
-    ///
-    /// 训练任务pod列表
     @inlinable
     public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskPodsResponse > {
         self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 训练任务pod列表
-    ///
     /// 训练任务pod列表
     @inlinable
     public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskPodsResponse {

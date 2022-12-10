@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eiam {
     /// 查询应用账号列表
-    ///
-    /// 查询应用账号列表
     @inlinable
     public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppAccountResponse > {
         self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询应用账号列表
-    ///
     /// 查询应用账号列表
     @inlinable
     public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {

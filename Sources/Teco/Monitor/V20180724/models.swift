@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -473,15 +472,13 @@ extension Monitor {
     public struct AlarmPolicyCondition: TCInputModel, TCOutputModel {
         /// 指标触发与或条件，0=或，1=与
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let isUnionRule: Int64?
+        public let isUnionRule: Int64
         
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rules: [AlarmPolicyRule]?
+        public let rules: [AlarmPolicyRule]
         
-        public init (isUnionRule: Int64?, rules: [AlarmPolicyRule]?) {
+        public init (isUnionRule: Int64, rules: [AlarmPolicyRule]) {
             self.isUnionRule = isUnionRule
             self.rules = rules
         }
@@ -496,10 +493,9 @@ extension Monitor {
     public struct AlarmPolicyEventCondition: TCInputModel, TCOutputModel {
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rules: [AlarmPolicyRule]?
+        public let rules: [AlarmPolicyRule]
         
-        public init (rules: [AlarmPolicyRule]?) {
+        public init (rules: [AlarmPolicyRule]) {
             self.rules = rules
         }
         
@@ -512,14 +508,13 @@ extension Monitor {
     public struct AlarmPolicyFilter: TCInputModel, TCOutputModel {
         /// 过滤条件类型 DIMENSION=使用 Dimensions 做过滤
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: String?
+        public let type: String
         
         /// AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
         
-        public init (type: String?, dimensions: String?) {
+        public init (type: String, dimensions: String?) {
             self.type = type
             self.dimensions = dimensions
         }
@@ -663,15 +658,13 @@ extension Monitor {
     public struct AlarmPolicyTriggerTask: TCInputModel, TCOutputModel {
         /// 触发任务类型 AS=弹性伸缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: String?
+        public let type: String
         
         /// 用 json 表示配置信息 {"Key1":"Value1","Key2":"Value2"}
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let taskConfig: String?
+        public let taskConfig: String
         
-        public init (type: String?, taskConfig: String?) {
+        public init (type: String, taskConfig: String) {
             self.type = type
             self.taskConfig = taskConfig
         }
@@ -2388,10 +2381,9 @@ extension Monitor {
         
         /// Grafana 插件版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let version: String?
+        public let version: String
         
-        public init (pluginId: String, version: String?) {
+        public init (pluginId: String, version: String) {
             self.pluginId = pluginId
             self.version = version
         }
@@ -3477,10 +3469,9 @@ extension Monitor {
         
         /// 标签对应的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let value: String?
+        public let value: String
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String) {
             self.key = key
             self.value = value
         }
@@ -3794,8 +3785,7 @@ extension Monitor {
     public struct URLNotice: TCInputModel, TCOutputModel {
         /// 回调 url（限长256字符）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let url: String?
+        public let url: String
         
         /// 是否通过验证 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3817,7 +3807,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
         
-        public init (url: String?, isValid: Int64?, validationCode: String?, startTime: Int64?, endTime: Int64?, weekday: [Int64]?) {
+        public init (url: String, isValid: Int64?, validationCode: String?, startTime: Int64?, endTime: Int64?, weekday: [Int64]?) {
             self.url = url
             self.isValid = isValid
             self.validationCode = validationCode
@@ -3840,23 +3830,19 @@ extension Monitor {
     public struct UserNotice: TCInputModel, TCOutputModel {
         /// 接收者类型 USER=用户 GROUP=用户组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let receiverType: String?
+        public let receiverType: String
         
         /// 通知开始时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let startTime: Int64?
+        public let startTime: Int64
         
         /// 通知结束时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let endTime: Int64?
+        public let endTime: Int64
         
         /// 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信 RTX=企业微信
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let noticeWay: [String]?
+        public let noticeWay: [String]
         
         /// 用户 uid 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3894,7 +3880,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
         
-        public init (receiverType: String?, startTime: Int64?, endTime: Int64?, noticeWay: [String]?, userIds: [Int64]?, groupIds: [Int64]?, phoneOrder: [Int64]?, phoneCircleTimes: Int64?, phoneInnerInterval: Int64?, phoneCircleInterval: Int64?, needPhoneArriveNotice: Int64?, phoneCallType: String?, weekday: [Int64]?) {
+        public init (receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]?, groupIds: [Int64]?, phoneOrder: [Int64]?, phoneCircleTimes: Int64?, phoneInnerInterval: Int64?, phoneCircleInterval: Int64?, needPhoneArriveNotice: Int64?, phoneCallType: String?, weekday: [Int64]?) {
             self.receiverType = receiverType
             self.startTime = startTime
             self.endTime = endTime

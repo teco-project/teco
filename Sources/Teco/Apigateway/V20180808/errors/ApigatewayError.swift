@@ -182,6 +182,9 @@ public struct TCApigatewayError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -391,6 +394,8 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 操作后端通道失败。
+    ///
+    /// 重试
     public static var failedOperation_OperateUpstream: TCApigatewayError {
         TCApigatewayError(.failedOperation_OperateUpstream)
     }
@@ -496,6 +501,8 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 非法的后端ip地址。
+    ///
+    /// 请使用正确的后端ip地址。
     public static var invalidParameterValue_IllegalProxyIp: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_IllegalProxyIp)
     }
@@ -556,6 +563,8 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 参数取值错误。
+    ///
+    /// 修改参数取值内容为可选范围内的取值。
     public static var invalidParameterValue_InvalidFilterNotSupportedName: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_InvalidFilterNotSupportedName)
     }
@@ -566,11 +575,15 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 参数后端地址取值错误。
+    ///
+    /// 请修改后端地址的取值再重试。
     public static var invalidParameterValue_InvalidIPAddress: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_InvalidIPAddress)
     }
     
     /// 参数请求配额总数取值错误。
+    ///
+    /// 请修改请求配额总数的取值再重试。
     public static var invalidParameterValue_InvalidMaxRequestNum: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_InvalidMaxRequestNum)
     }
@@ -671,6 +684,8 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 参数的长度超出限制。
+    ///
+    /// 修改参数的值，再重试。
     public static var invalidParameterValue_LengthExceeded: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_LengthExceeded)
     }
@@ -911,6 +926,8 @@ public struct TCApigatewayError: TCErrorType {
     }
     
     /// 账号余额不足
+    ///
+    /// 建议给账号余额冲正后重试
     public static var unsupportedOperation_AccountArrears: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_AccountArrears)
     }
@@ -1071,5 +1088,15 @@ extension TCApigatewayError: Equatable {
 extension TCApigatewayError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCApigatewayError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

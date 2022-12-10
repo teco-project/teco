@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 添加历史搜索记录
-    ///
-    /// 添加历史搜索记录
     @inlinable
     public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchLogResponse > {
         self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加历史搜索记录
-    ///
     /// 添加历史搜索记录
     @inlinable
     public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {

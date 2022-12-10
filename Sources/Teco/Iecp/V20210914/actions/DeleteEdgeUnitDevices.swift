@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 批量解绑单元设备
-    ///
-    /// 批量解绑单元设备
     @inlinable
     public func deleteEdgeUnitDevices(_ input: DeleteEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitDevicesResponse > {
         self.client.execute(action: "DeleteEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量解绑单元设备
-    ///
     /// 批量解绑单元设备
     @inlinable
     public func deleteEdgeUnitDevices(_ input: DeleteEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDevicesResponse {

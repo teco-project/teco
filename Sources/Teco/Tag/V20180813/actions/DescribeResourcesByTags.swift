@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tag {
     /// 通过标签查询资源列表
-    ///
-    /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(_ input: DescribeResourcesByTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsResponse > {
         self.client.execute(action: "DescribeResourcesByTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 通过标签查询资源列表
-    ///
     /// 通过标签查询资源列表
     @inlinable
     public func describeResourcesByTags(_ input: DescribeResourcesByTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsResponse {

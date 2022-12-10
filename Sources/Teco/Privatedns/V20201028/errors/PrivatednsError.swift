@@ -77,6 +77,9 @@ public struct TCPrivatednsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -96,6 +99,8 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// token校验失败。
+    ///
+    /// token校验失败
     public static var authFailure_TokenFailure: TCPrivatednsError {
         TCPrivatednsError(.authFailure_TokenFailure)
     }
@@ -125,6 +130,7 @@ public struct TCPrivatednsError: TCErrorType {
         TCPrivatednsError(.failedOperation_CreateZoneFailed)
     }
     
+    /// 数据异常，联系后台处理。
     public static var failedOperation_DataError: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_DataError)
     }
@@ -134,6 +140,7 @@ public struct TCPrivatednsError: TCErrorType {
         TCPrivatednsError(.failedOperation_DeleteLastBindVpcRecordFailed)
     }
     
+    /// 其他原因导致删除失败，可能需要联系后台帮忙处理
     public static var failedOperation_DeleteRecordFailed: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_DeleteRecordFailed)
     }
@@ -184,6 +191,8 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// 已经存在绑定的账号。
+    ///
+    /// 数据已经存在，无需重复操作。
     public static var invalidParameter_AccountExist: TCPrivatednsError {
         TCPrivatednsError(.invalidParameter_AccountExist)
     }
@@ -294,11 +303,15 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// 当前VPC已关联相同主域名。
+    ///
+    /// 检查解析记录+私有域名是否绑定了相同的VPC
     public static var invalidParameter_VpcBindedMainDomain: TCPrivatednsError {
         TCPrivatednsError(.invalidParameter_VpcBindedMainDomain)
     }
     
     /// VPC关联反解析域超过限制。
+    ///
+    /// 确认vpc关联的反解析域数量
     public static var invalidParameter_VpcPtrZoneBindExceed: TCPrivatednsError {
         TCPrivatednsError(.invalidParameter_VpcPtrZoneBindExceed)
     }
@@ -314,11 +327,15 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// 超过自定义TLD额度。
+    ///
+    /// 超过自定义TLD额度
     public static var limitExceeded_TldOutOfLimit: TCPrivatednsError {
         TCPrivatednsError(.limitExceeded_TldOutOfLimit)
     }
     
     /// 使用自定义TLD的私有域超过总额度。
+    ///
+    /// 删除不需要的使用了自定义TLD的私有域
     public static var limitExceeded_TldOutOfRange: TCPrivatednsError {
         TCPrivatednsError(.limitExceeded_TldOutOfRange)
     }
@@ -368,6 +385,8 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// TLD增值包已过期。
+    ///
+    /// TLD增值包已过期
     public static var resourceUnavailable_TldPackageExpired: TCPrivatednsError {
         TCPrivatednsError(.resourceUnavailable_TldPackageExpired)
     }
@@ -383,6 +402,8 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// 角色未授权。
+    ///
+    /// 资源所有者账号新增关联角色，并给授权账号授权
     public static var unauthorizedOperation_RoleUnAuthorized: TCPrivatednsError {
         TCPrivatednsError(.unauthorizedOperation_RoleUnAuthorized)
     }
@@ -403,21 +424,29 @@ public struct TCPrivatednsError: TCErrorType {
     }
     
     /// 账号未绑定。
+    ///
+    /// 账号未绑定，请绑定账号后再试
     public static var unsupportedOperation_AccountNotBound: TCPrivatednsError {
         TCPrivatednsError(.unsupportedOperation_AccountNotBound)
     }
     
     /// 存在绑定的VPC资源。
+    ///
+    /// 存在绑定的VPC资源，先解绑VPC资源后再删除绑定账号
     public static var unsupportedOperation_ExistBoundVpc: TCPrivatednsError {
         TCPrivatednsError(.unsupportedOperation_ExistBoundVpc)
     }
     
     /// 接口调用超过限频。
+    ///
+    /// 减少单位之间内的调用次数
     public static var unsupportedOperation_FrequencyLimit: TCPrivatednsError {
         TCPrivatednsError(.unsupportedOperation_FrequencyLimit)
     }
     
     /// 不支持设置子域名递归解析。
+    ///
+    /// 目前暂不支持设置子域名递归解析，不开启子域名递归解析即可
     public static var unsupportedOperation_NotSupportDnsForward: TCPrivatednsError {
         TCPrivatednsError(.unsupportedOperation_NotSupportDnsForward)
     }
@@ -438,5 +467,15 @@ extension TCPrivatednsError: Equatable {
 extension TCPrivatednsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCPrivatednsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

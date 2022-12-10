@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 操作TKEEdge集群的addon
-    ///
-    /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForwardTKEEdgeApplicationRequestV3Response > {
         self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 操作TKEEdge集群的addon
-    ///
     /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {

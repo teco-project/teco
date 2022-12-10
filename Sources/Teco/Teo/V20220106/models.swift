@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -529,8 +528,7 @@ extension Teo {
         
         /// 老版本的通用规则ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let managedIds: [Int64]?
+        public let managedIds: [Int64]
         
         /// 触发规则后的处置方式。
         /// 1. drop 拦截
@@ -583,7 +581,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseCode: Int64?
         
-        public init (ruleID: Int64, managedIds: [Int64]?, action: String?, punishTime: Int64?, punishTimeUnit: String?, transManagedIds: [Int64]?, algManagedIds: [Int64]?, capManagedIds: [Int64]?, monManagedIds: [Int64]?, dropManagedIds: [Int64]?, pageId: Int64?, name: String?, redirectUrl: String?, responseCode: Int64?) {
+        public init (ruleID: Int64, managedIds: [Int64], action: String?, punishTime: Int64?, punishTimeUnit: String?, transManagedIds: [Int64]?, algManagedIds: [Int64]?, capManagedIds: [Int64]?, monManagedIds: [Int64]?, dropManagedIds: [Int64]?, pageId: Int64?, name: String?, redirectUrl: String?, responseCode: Int64?) {
             self.ruleID = ruleID
             self.managedIds = managedIds
             self.action = action
@@ -1924,8 +1922,7 @@ extension Teo {
     public struct DefaultServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID, 默认证书ID, 或在 SSL 证书管理进行证书托管时自动生成
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certId: String?
+        public let certId: String
         
         /// 证书备注名
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1967,7 +1964,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
         
-        public init (certId: String?, alias: String?, type: String?, expireTime: Date?, effectiveTime: Date?, commonName: String?, subjectAltName: [String]?, status: String?, message: String?) {
+        public init (certId: String, alias: String?, type: String?, expireTime: Date?, effectiveTime: Date?, commonName: String?, subjectAltName: [String]?, status: String?, message: String?) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -2221,12 +2218,10 @@ extension Teo {
         
         /// Waf(托管规则)模块的拦截页面配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let waf: DropPageDetail
         
         /// 自定义页面的拦截页面配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let acl: DropPageDetail
         
         public init (`switch`: String, waf: DropPageDetail, acl: DropPageDetail) {
@@ -4261,8 +4256,7 @@ extension Teo {
     public struct ServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certId: String?
+        public let certId: String
         
         /// 证书备注名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4293,7 +4287,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signAlgo: String?
         
-        public init (certId: String?, alias: String?, type: String?, expireTime: Date?, deployTime: Date?, status: String?, signAlgo: String?) {
+        public init (certId: String, alias: String?, type: String?, expireTime: Date?, deployTime: Date?, status: String?, signAlgo: String?) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -4424,15 +4418,13 @@ extension Teo {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagKey: String?
+        public let tagKey: String
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagValue: String?
+        public let tagValue: String
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

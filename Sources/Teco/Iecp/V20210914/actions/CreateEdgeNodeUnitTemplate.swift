@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 创建边缘单元NodeUnit模板
-    ///
-    /// 创建边缘单元NodeUnit模板
     @inlinable
     public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeUnitTemplateResponse > {
         self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建边缘单元NodeUnit模板
-    ///
     /// 创建边缘单元NodeUnit模板
     @inlinable
     public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 更新活动详情
-    ///
-    /// 更新活动详情
     @inlinable
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
         self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新活动详情
-    ///
     /// 更新活动详情
     @inlinable
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {

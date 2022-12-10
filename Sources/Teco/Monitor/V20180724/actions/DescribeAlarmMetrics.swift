@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 查询告警指标列表
-    ///
-    /// 查询告警指标列表
     @inlinable
     public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
         self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询告警指标列表
-    ///
     /// 查询告警指标列表
     @inlinable
     public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {

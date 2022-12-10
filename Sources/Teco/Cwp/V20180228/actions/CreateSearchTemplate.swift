@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 添加检索模板
-    ///
-    /// 添加检索模板
     @inlinable
     public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchTemplateResponse > {
         self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加检索模板
-    ///
     /// 添加检索模板
     @inlinable
     public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {

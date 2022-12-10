@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Es {
     /// 更新接收客户端请求的节点类型
-    ///
-    /// 更新接收客户端请求的节点类型
     @inlinable
     public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRequestTargetNodeTypesResponse > {
         self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新接收客户端请求的节点类型
-    ///
     /// 更新接收客户端请求的节点类型
     @inlinable
     public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {

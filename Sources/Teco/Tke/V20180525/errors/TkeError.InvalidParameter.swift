@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -47,6 +46,9 @@ extension TCTkeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -86,11 +88,15 @@ extension TCTkeError {
         }
         
         /// CIDR无效。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var cidrInvali: InvalidParameter {
             InvalidParameter(.cidrInvali)
         }
         
         /// 参数错误，CIDR不符合规范。
+        ///
+        /// 请检查提交的CIDR相关参数是否合法。
         public static var cidrInvalid: InvalidParameter {
             InvalidParameter(.cidrInvalid)
         }
@@ -120,6 +126,7 @@ extension TCTkeError {
             InvalidParameter(.invalidPrivateNetworkCIDR)
         }
         
+        /// 请向腾讯云提工单寻求支持。
         public static var osNotSupport: InvalidParameter {
             InvalidParameter(.osNotSupport)
         }
@@ -169,10 +176,21 @@ extension TCTkeError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCTkeError.InvalidParameter {
+    /// - Returns: ``TCTkeError`` that holds the same error and context.
     public func toTkeError() -> TCTkeError {
         guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTkeError(code, context: self.context)
+    }
+}
+
+extension TCTkeError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

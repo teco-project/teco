@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -37,6 +36,9 @@ extension TCTdmqError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -61,6 +63,8 @@ extension TCTdmqError {
         }
         
         /// 环境不存在。
+        ///
+        /// 创建环境。
         public static var environment: ResourceNotFound {
             ResourceNotFound(.environment)
         }
@@ -81,11 +85,15 @@ extension TCTdmqError {
         }
         
         /// 订阅关系不存在。
+        ///
+        /// 创建订阅关系。
         public static var subscription: ResourceNotFound {
             ResourceNotFound(.subscription)
         }
         
         /// 主题不存在。
+        ///
+        /// 创建主题。
         public static var topic: ResourceNotFound {
             ResourceNotFound(.topic)
         }
@@ -110,10 +118,21 @@ extension TCTdmqError.ResourceNotFound: CustomStringConvertible {
 }
 
 extension TCTdmqError.ResourceNotFound {
+    /// - Returns: ``TCTdmqError`` that holds the same error and context.
     public func toTdmqError() -> TCTdmqError {
         guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTdmqError(code, context: self.context)
+    }
+}
+
+extension TCTdmqError.ResourceNotFound {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

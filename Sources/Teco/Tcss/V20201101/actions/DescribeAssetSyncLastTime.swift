@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询资产同步最近时间
-    ///
-    /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSyncLastTimeResponse > {
         self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询资产同步最近时间
-    ///
     /// 查询资产同步最近时间
     @inlinable
     public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {

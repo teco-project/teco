@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 添加已经存在的实例到集群
-    ///
-    /// 添加已经存在的实例到集群
     @inlinable
     public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddExistedInstancesResponse > {
         self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加已经存在的实例到集群
-    ///
     /// 添加已经存在的实例到集群
     @inlinable
     public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {

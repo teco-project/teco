@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudstudio {
     /// 获取创建模板的预置参数
-    ///
-    /// 获取创建模板的预置参数
     @inlinable
     public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
         self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取创建模板的预置参数
-    ///
     /// 获取创建模板的预置参数
     @inlinable
     public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {

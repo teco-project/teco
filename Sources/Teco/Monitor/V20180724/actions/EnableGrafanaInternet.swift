@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 设置 Grafana 公网访问
-    ///
-    /// 设置 Grafana 公网访问
     @inlinable
     public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaInternetResponse > {
         self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置 Grafana 公网访问
-    ///
     /// 设置 Grafana 公网访问
     @inlinable
     public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {

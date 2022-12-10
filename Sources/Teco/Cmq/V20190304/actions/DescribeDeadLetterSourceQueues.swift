@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 枚举死信队列源队列
-    ///
-    /// 枚举死信队列源队列
     @inlinable
     public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeadLetterSourceQueuesResponse > {
         self.client.execute(action: "DescribeDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 枚举死信队列源队列
-    ///
     /// 枚举死信队列源队列
     @inlinable
     public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeadLetterSourceQueuesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cat {
     /// 更新探测任务属性
-    ///
-    /// 更新探测任务属性
     @inlinable
     public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskAttributesResponse > {
         self.client.execute(action: "UpdateProbeTaskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新探测任务属性
-    ///
     /// 更新探测任务属性
     @inlinable
     public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {

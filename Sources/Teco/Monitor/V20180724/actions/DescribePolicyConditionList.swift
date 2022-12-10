@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 获取基础告警策略条件
-    ///
-    /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyConditionListResponse > {
         self.client.execute(action: "DescribePolicyConditionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取基础告警策略条件
-    ///
     /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {

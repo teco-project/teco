@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取ECM实例相关信息
-    ///
-    /// 获取ECM实例相关信息
     @inlinable
     public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeECMInstancesResponse > {
         self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取ECM实例相关信息
-    ///
     /// 获取ECM实例相关信息
     @inlinable
     public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {

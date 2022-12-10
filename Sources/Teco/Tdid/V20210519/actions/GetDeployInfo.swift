@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 合约部署详情
-    ///
-    /// 合约部署详情
     @inlinable
     public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
         self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 合约部署详情
-    ///
     /// 合约部署详情
     @inlinable
     public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1898,15 +1897,13 @@ extension Batch {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let key: String?
+        public let key: String
         
         /// 标签值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let value: String?
+        public let value: String
         
-        public init (key: String?, value: String?) {
+        public init (key: String, value: String) {
             self.key = key
             self.value = value
         }

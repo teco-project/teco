@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 查询边缘集群自定义参数
-    ///
-    /// 查询边缘集群自定义参数
     @inlinable
     public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterExtraArgsResponse > {
         self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询边缘集群自定义参数
-    ///
     /// 查询边缘集群自定义参数
     @inlinable
     public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {

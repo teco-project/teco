@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询用户的资源限制
-    ///
-    /// 查询用户的资源限制
     @inlinable
     public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeYeheResourceLimitResponse > {
         self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询用户的资源限制
-    ///
     /// 查询用户的资源限制
     @inlinable
     public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {

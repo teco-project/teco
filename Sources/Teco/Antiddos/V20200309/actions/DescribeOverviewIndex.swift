@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 拉取防护概览指标
-    ///
-    /// 拉取防护概览指标
     @inlinable
     public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewIndexResponse > {
         self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取防护概览指标
-    ///
     /// 拉取防护概览指标
     @inlinable
     public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {

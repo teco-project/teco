@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 删除集群访问端口
-    ///
-    /// 删除集群访问端口
     @inlinable
     public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointResponse > {
         self.client.execute(action: "DeleteClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除集群访问端口
-    ///
     /// 删除集群访问端口
     @inlinable
     public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {

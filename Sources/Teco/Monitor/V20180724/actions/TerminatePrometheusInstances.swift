@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 销毁按量 Prometheus 实例
-    ///
-    /// 销毁按量 Prometheus 实例
     @inlinable
     public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminatePrometheusInstancesResponse > {
         self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 销毁按量 Prometheus 实例
-    ///
     /// 销毁按量 Prometheus 实例
     @inlinable
     public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {

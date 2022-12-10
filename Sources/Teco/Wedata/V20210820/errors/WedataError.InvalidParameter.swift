@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -34,6 +33,9 @@ extension TCWedataError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,6 +55,8 @@ extension TCWedataError {
         }
         
         /// 查询过滤条件参数错误。
+        ///
+        /// 查询过滤条件参数错误
         public static var invalidFilterParameter: InvalidParameter {
             InvalidParameter(.invalidFilterParameter)
         }
@@ -63,6 +67,8 @@ extension TCWedataError {
         }
         
         /// 服务繁忙，请稍后重试。
+        ///
+        /// 服务繁忙，请稍后重试
         public static var serviceIsBusy: InvalidParameter {
             InvalidParameter(.serviceIsBusy)
         }
@@ -92,10 +98,21 @@ extension TCWedataError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCWedataError.InvalidParameter {
+    /// - Returns: ``TCWedataError`` that holds the same error and context.
     public func toWedataError() -> TCWedataError {
         guard let code = TCWedataError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCWedataError(code, context: self.context)
+    }
+}
+
+extension TCWedataError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

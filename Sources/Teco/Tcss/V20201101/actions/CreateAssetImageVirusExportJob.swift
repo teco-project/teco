@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 创建本地镜像木马列表导出任务
-    ///
-    /// 创建本地镜像木马列表导出任务
     @inlinable
     public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageVirusExportJobResponse > {
         self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建本地镜像木马列表导出任务
-    ///
     /// 创建本地镜像木马列表导出任务
     @inlinable
     public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 查看notebook生命周期脚本列表
-    ///
-    /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
         self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看notebook生命周期脚本列表
-    ///
     /// 查看notebook生命周期脚本列表
     @inlinable
     public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {

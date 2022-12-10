@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 删除负载均衡多个监听器
-    ///
-    /// 删除负载均衡多个监听器
     @inlinable
     public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerListenersResponse > {
         self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除负载均衡多个监听器
-    ///
     /// 删除负载均衡多个监听器
     @inlinable
     public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {

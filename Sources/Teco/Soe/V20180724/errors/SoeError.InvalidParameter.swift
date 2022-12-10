@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -37,6 +36,9 @@ extension TCSoeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,6 +58,8 @@ extension TCSoeError {
         }
         
         /// 请求参数RefText的音素Json解码失败，请参考API文档使用标准的Json格式。
+        ///
+        /// 请参考API文档检查参数RefText的Json格式。https://cloud.tencent.com/document/product/884/19310
         public static var errorPhoneme: InvalidParameter {
             InvalidParameter(.errorPhoneme)
         }
@@ -66,16 +70,22 @@ extension TCSoeError {
         }
         
         /// 请求参数Action不合法，请参考API文档检查参数Action的有效性。
+        ///
+        /// 请参考API文档检查参数Action的有效性。https://cloud.tencent.com/document/product/884/19310
         public static var invalidAction: InvalidParameter {
             InvalidParameter(.invalidAction)
         }
         
         /// 请求参数不合法，请参考API文档检查参数的有效性。
+        ///
+        /// 请参考API文档检查参数的有效性。https://cloud.tencent.com/document/product/884/19310
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
         
         /// 请求参数SeqId超过最大值限制，请参考API文档检查参数SeqId是否小于3000。
+        ///
+        /// 请参考API文档检查参数SeqId是否小于3000上限。https://cloud.tencent.com/document/product/884/19310
         public static var seqIdLimitExceeded: InvalidParameter {
             InvalidParameter(.seqIdLimitExceeded)
         }
@@ -110,10 +120,21 @@ extension TCSoeError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCSoeError.InvalidParameter {
+    /// - Returns: ``TCSoeError`` that holds the same error and context.
     public func toSoeError() -> TCSoeError {
         guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSoeError(code, context: self.context)
+    }
+}
+
+extension TCSoeError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

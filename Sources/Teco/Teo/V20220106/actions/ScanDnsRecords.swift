@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 扫描站点历史解析记录
-    ///
-    /// 扫描站点历史解析记录
     @inlinable
     public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
         self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 扫描站点历史解析记录
-    ///
     /// 扫描站点历史解析记录
     @inlinable
     public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {

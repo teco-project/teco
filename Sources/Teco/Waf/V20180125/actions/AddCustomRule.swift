@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 增加自定义策略
-    ///
-    /// 增加自定义策略
     @inlinable
     public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCustomRuleResponse > {
         self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 增加自定义策略
-    ///
     /// 增加自定义策略
     @inlinable
     public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {

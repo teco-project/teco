@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1870,20 +1869,17 @@ extension Tsf {
         
         /// 采集路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let collectPath: [String]?
+        public let collectPath: [String]
         
         /// 关联部署组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groups: [GroupInfo]?
+        public let groups: [GroupInfo]
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let createTime: String?
+        public let createTime: String
         
-        public init (configId: String, configName: String, collectPath: [String]?, groups: [GroupInfo]?, createTime: String?) {
+        public init (configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String) {
             self.configId = configId
             self.configName = configName
             self.collectPath = collectPath
@@ -2693,8 +2689,7 @@ extension Tsf {
     public struct HealthCheckSetting: TCInputModel, TCOutputModel {
         /// 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let actionType: String?
+        public let actionType: String
         
         /// 容器延时启动健康检查的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2736,7 +2731,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (actionType: String?, initialDelaySeconds: UInt64?, timeoutSeconds: UInt64?, periodSeconds: UInt64?, successThreshold: UInt64?, failureThreshold: UInt64?, scheme: String?, port: UInt64?, path: String?, command: [String]?, type: String?) {
+        public init (actionType: String, initialDelaySeconds: UInt64?, timeoutSeconds: UInt64?, periodSeconds: UInt64?, successThreshold: UInt64?, failureThreshold: UInt64?, scheme: String?, port: UInt64?, path: String?, command: [String]?, type: String?) {
             self.actionType = actionType
             self.initialDelaySeconds = initialDelaySeconds
             self.timeoutSeconds = timeoutSeconds
@@ -3505,13 +3500,11 @@ extension Tsf {
     public struct LaneGroup: TCInputModel, TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let groupId: String?
+        public let groupId: String
         
         /// 是否入口应用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let entrance: Bool?
+        public let entrance: Bool
         
         /// 泳道部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3553,7 +3546,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
         
-        public init (groupId: String?, entrance: Bool?, laneGroupId: String?, laneId: String?, groupName: String?, applicationId: String?, applicationName: String?, namespaceId: String?, namespaceName: String?, createTime: Int64?, updateTime: Int64?, clusterType: String?) {
+        public init (groupId: String, entrance: Bool, laneGroupId: String?, laneId: String?, groupName: String?, applicationId: String?, applicationName: String?, namespaceId: String?, namespaceName: String?, createTime: Int64?, updateTime: Int64?, clusterType: String?) {
             self.groupId = groupId
             self.entrance = entrance
             self.laneGroupId = laneGroupId
@@ -4968,10 +4961,9 @@ extension Tsf {
     public struct SchedulingStrategy: TCInputModel, TCOutputModel {
         /// NONE：不使用调度策略；CROSS_AZ：跨可用区部署
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: String?
+        public let type: String
         
-        public init (type: String?) {
+        public init (type: String) {
             self.type = type
         }
         
@@ -5009,18 +5001,15 @@ extension Tsf {
     public struct ServiceSetting: TCInputModel, TCOutputModel {
         /// 0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let accessType: Int64?
+        public let accessType: Int64
         
         /// 容器端口映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let protocolPorts: [ProtocolPort]?
+        public let protocolPorts: [ProtocolPort]
         
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let subnetId: String?
+        public let subnetId: String
         
         /// 是否创建 k8s service，默认为 false
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5042,7 +5031,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionAffinityTimeoutSeconds: Int64?
         
-        public init (accessType: Int64?, protocolPorts: [ProtocolPort]?, subnetId: String?, disableService: Bool?, headlessService: Bool?, allowDeleteService: Bool?, openSessionAffinity: Bool?, sessionAffinityTimeoutSeconds: Int64?) {
+        public init (accessType: Int64, protocolPorts: [ProtocolPort], subnetId: String, disableService: Bool?, headlessService: Bool?, allowDeleteService: Bool?, openSessionAffinity: Bool?, sessionAffinityTimeoutSeconds: Int64?) {
             self.accessType = accessType
             self.protocolPorts = protocolPorts
             self.subnetId = subnetId

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Emr {
     /// 创建流程作业
-    ///
-    /// 创建流程作业
     @inlinable
     public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobFlowResponse > {
         self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建流程作业
-    ///
     /// 创建流程作业
     @inlinable
     public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {

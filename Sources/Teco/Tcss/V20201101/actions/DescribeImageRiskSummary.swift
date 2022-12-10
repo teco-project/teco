@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询本地镜像风险概览
-    ///
-    /// 查询本地镜像风险概览
     @inlinable
     public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskSummaryResponse > {
         self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询本地镜像风险概览
-    ///
     /// 查询本地镜像风险概览
     @inlinable
     public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {

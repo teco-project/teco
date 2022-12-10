@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdcpg {
     /// 续费集群
-    ///
-    /// 续费集群
     @inlinable
     public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewClusterResponse > {
         self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 续费集群
-    ///
     /// 续费集群
     @inlinable
     public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {

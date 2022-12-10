@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -38,6 +37,9 @@ extension TCCpdpError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -77,21 +79,29 @@ extension TCCpdpError {
         }
         
         /// 聚鑫第三方应用未查找到。
+        ///
+        /// 请联系我们
         public static var midasExternalApp: ResourceNotFound {
             ResourceNotFound(.midasExternalApp)
         }
         
         /// 聚鑫第三方渠道找不到订单，ORDER_NOT_FOUND表示支付中台找不到订单。
+        ///
+        /// 请联系我们
         public static var midasExternalOrder: ResourceNotFound {
             ResourceNotFound(.midasExternalOrder)
         }
         
         /// 聚鑫订单没有查到记录。
+        ///
+        /// 请联系我们
         public static var midasOrder: ResourceNotFound {
             ResourceNotFound(.midasOrder)
         }
         
         /// 聚鑫签约关系不存在。
+        ///
+        /// 请联系我们
         public static var midasSign: ResourceNotFound {
             ResourceNotFound(.midasSign)
         }
@@ -116,10 +126,21 @@ extension TCCpdpError.ResourceNotFound: CustomStringConvertible {
 }
 
 extension TCCpdpError.ResourceNotFound {
+    /// - Returns: ``TCCpdpError`` that holds the same error and context.
     public func toCpdpError() -> TCCpdpError {
         guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCpdpError(code, context: self.context)
+    }
+}
+
+extension TCCpdpError.ResourceNotFound {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

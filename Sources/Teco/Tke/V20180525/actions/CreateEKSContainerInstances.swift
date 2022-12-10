@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 创建容器实例
-    ///
-    /// 创建容器实例
     @inlinable
     public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSContainerInstancesResponse > {
         self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建容器实例
-    ///
     /// 创建容器实例
     @inlinable
     public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSContainerInstancesResponse {

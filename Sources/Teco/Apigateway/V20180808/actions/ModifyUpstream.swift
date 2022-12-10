@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apigateway {
     /// 修改后端通道
-    ///
-    /// 修改后端通道
     @inlinable
     public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUpstreamResponse > {
         self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改后端通道
-    ///
     /// 修改后端通道
     @inlinable
     public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {

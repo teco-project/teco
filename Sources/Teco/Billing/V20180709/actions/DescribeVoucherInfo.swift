@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Billing {
     /// 获取代金券相关信息
-    ///
-    /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherInfoResponse > {
         self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取代金券相关信息
-    ///
     /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {

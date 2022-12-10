@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 判断是否开启的转发的权限
-    ///
-    /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckForwardAuthResponse > {
         self.client.execute(action: "CheckForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 判断是否开启的转发的权限
-    ///
     /// 判断是否开启的转发的权限
     @inlinable
     public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {

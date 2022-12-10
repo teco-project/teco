@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 修改本地专用集群信息
-    ///
-    /// 修改本地专用集群信息
     @inlinable
     public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDedicatedClusterInfoResponse > {
         self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改本地专用集群信息
-    ///
     /// 修改本地专用集群信息
     @inlinable
     public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {

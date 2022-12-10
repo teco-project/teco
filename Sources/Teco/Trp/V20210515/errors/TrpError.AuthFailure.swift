@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCTrpError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -45,11 +47,15 @@ extension TCTrpError {
         }
         
         /// 当前没有创建任何企业。
+        ///
+        /// 当前没有创建任何企业，请先创建企业以进行后续操作。
         public static var corpEmpty: AuthFailure {
             AuthFailure(.corpEmpty)
         }
         
         /// 企业服务时间已到期。
+        ///
+        /// 您购买的服务时间已到期，为不影响您的使用，请您联系商务，续费服务。
         public static var corpExpired: AuthFailure {
             AuthFailure(.corpExpired)
         }
@@ -74,10 +80,21 @@ extension TCTrpError.AuthFailure: CustomStringConvertible {
 }
 
 extension TCTrpError.AuthFailure {
+    /// - Returns: ``TCTrpError`` that holds the same error and context.
     public func toTrpError() -> TCTrpError {
         guard let code = TCTrpError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTrpError(code, context: self.context)
+    }
+}
+
+extension TCTrpError.AuthFailure {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

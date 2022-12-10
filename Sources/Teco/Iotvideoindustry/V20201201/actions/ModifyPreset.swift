@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 编辑预置位信息
-    ///
-    /// 编辑预置位信息
     @inlinable
     public func modifyPreset(_ input: ModifyPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPresetResponse > {
         self.client.execute(action: "ModifyPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑预置位信息
-    ///
     /// 编辑预置位信息
     @inlinable
     public func modifyPreset(_ input: ModifyPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {

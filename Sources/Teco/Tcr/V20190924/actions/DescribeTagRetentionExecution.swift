@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 查询版本保留执行记录
-    ///
-    /// 查询版本保留执行记录
     @inlinable
     public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionExecutionResponse > {
         self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询版本保留执行记录
-    ///
     /// 查询版本保留执行记录
     @inlinable
     public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionResponse {

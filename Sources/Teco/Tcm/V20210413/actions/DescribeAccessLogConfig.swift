@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcm {
     /// 获取AccessLog配置
-    ///
-    /// 获取AccessLog配置
     @inlinable
     public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessLogConfigResponse > {
         self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取AccessLog配置
-    ///
     /// 获取AccessLog配置
     @inlinable
     public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {

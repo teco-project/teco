@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云企付-绑定分账收款方查询
-    ///
-    /// 云企付-绑定分账收款方查询
     @inlinable
     public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankProfitSharePayeeResponse > {
         self.client.execute(action: "QueryOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云企付-绑定分账收款方查询
-    ///
     /// 云企付-绑定分账收款方查询
     @inlinable
     public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankProfitSharePayeeResponse {

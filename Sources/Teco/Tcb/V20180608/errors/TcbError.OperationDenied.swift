@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -30,6 +29,9 @@ extension TCTcbError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -44,6 +46,8 @@ extension TCTcbError {
         }
         
         /// 操作失败：资源被冻结。
+        ///
+        /// 相关资源被冻结，请前往 额度监控 控制台（https://console.cloud.tencent.com/tcb/env/safety?tabId=quota）手动解冻。
         public static var resourceFrozen: OperationDenied {
             OperationDenied(.resourceFrozen)
         }
@@ -68,10 +72,21 @@ extension TCTcbError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCTcbError.OperationDenied {
+    /// - Returns: ``TCTcbError`` that holds the same error and context.
     public func toTcbError() -> TCTcbError {
         guard let code = TCTcbError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTcbError(code, context: self.context)
+    }
+}
+
+extension TCTcbError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

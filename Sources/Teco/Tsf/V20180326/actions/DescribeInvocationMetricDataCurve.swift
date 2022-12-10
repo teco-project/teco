@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Tsf {
     /// 查询调用指标数据变化曲线
-    ///
-    /// 查询调用指标数据变化曲线
     @inlinable
     public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataCurveResponse > {
         self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询调用指标数据变化曲线
-    ///
     /// 查询调用指标数据变化曲线
     @inlinable
     public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {

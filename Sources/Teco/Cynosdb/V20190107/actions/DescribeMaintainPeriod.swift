@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cynosdb {
     /// 查询实例维护时间窗
-    ///
-    /// 查询实例维护时间窗
     @inlinable
     public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintainPeriodResponse > {
         self.client.execute(action: "DescribeMaintainPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询实例维护时间窗
-    ///
     /// 查询实例维护时间窗
     @inlinable
     public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {

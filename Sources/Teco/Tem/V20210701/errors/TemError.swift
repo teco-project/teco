@@ -128,6 +128,9 @@ public struct TCTemError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -575,6 +578,8 @@ public struct TCTemError: TCErrorType {
     }
     
     /// 镜像仓库还未就绪。
+    ///
+    /// 请等待镜像仓库就绪
     public static var missingParameter_SvcRepoNotReady: TCTemError {
         TCTemError(.missingParameter_SvcRepoNotReady)
     }
@@ -592,6 +597,7 @@ public struct TCTemError: TCErrorType {
         TCTemError(.operationDenied_BalanceNotEnough)
     }
     
+    /// 账户欠费，请充值。
     public static var operationDenied_ResourceIsolated: TCTemError {
         TCTemError(.operationDenied_ResourceIsolated)
     }
@@ -692,5 +698,15 @@ extension TCTemError: Equatable {
 extension TCTemError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTemError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

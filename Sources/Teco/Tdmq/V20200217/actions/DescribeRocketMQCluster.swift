@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 获取单个RocketMQ集群信息
-    ///
-    /// 获取单个RocketMQ集群信息
     @inlinable
     public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQClusterResponse > {
         self.client.execute(action: "DescribeRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取单个RocketMQ集群信息
-    ///
     /// 获取单个RocketMQ集群信息
     @inlinable
     public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClusterResponse {

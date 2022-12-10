@@ -87,6 +87,9 @@ public struct TCEiamError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -481,6 +484,8 @@ public struct TCEiamError: TCErrorType {
     }
     
     /// 当前用户缺乏访问该操作的权限。
+    ///
+    /// 尝试向管理员或资源拥有者申请权限。
     public static var operationDenied_ActionPermissionDeny: TCEiamError {
         TCEiamError(.operationDenied_ActionPermissionDeny)
     }
@@ -501,5 +506,15 @@ extension TCEiamError: Equatable {
 extension TCEiamError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEiamError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

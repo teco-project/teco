@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 复制组实例切主
-    ///
-    /// 复制组实例切主
     @inlinable
     public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeMasterInstanceResponse > {
         self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 复制组实例切主
-    ///
     /// 复制组实例切主
     @inlinable
     public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {

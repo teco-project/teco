@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -2683,18 +2682,15 @@ extension Cpdp {
     public struct ExternalReturnContractInfo: TCInputModel, TCOutputModel {
         /// 第三方渠道协议id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnAgreementId: String?
+        public let externalReturnAgreementId: String
         
         /// 第三方渠道协议生效时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractEffectiveTimestamp: String?
+        public let externalReturnContractEffectiveTimestamp: String
         
         /// 第三方渠道协议解约时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractTerminationTimestamp: String?
+        public let externalReturnContractTerminationTimestamp: String
         
         /// 平台合约状态
         /// 协议状态，枚举值：
@@ -2702,28 +2698,23 @@ extension Cpdp {
         /// CONTRACT_STATUS_TERMINATED：未签约
         /// CONTRACT_STATUS_PENDING：签约进行中
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractStatus: String?
+        public let externalReturnContractStatus: String
         
         /// 第三方渠道请求序列号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnRequestId: String?
+        public let externalReturnRequestId: String
         
         /// 第三方渠道协议签署时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractSignedTimestamp: String?
+        public let externalReturnContractSignedTimestamp: String
         
         /// 第三方渠道协议到期时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractExpiredTimestamp: String?
+        public let externalReturnContractExpiredTimestamp: String
         
         /// 第三方渠道返回的合约数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let externalReturnContractData: String?
+        public let externalReturnContractData: String
         
         /// 第三方渠道解约备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2733,7 +2724,7 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractTerminationMode: String?
         
-        public init (externalReturnAgreementId: String?, externalReturnContractEffectiveTimestamp: String?, externalReturnContractTerminationTimestamp: String?, externalReturnContractStatus: String?, externalReturnRequestId: String?, externalReturnContractSignedTimestamp: String?, externalReturnContractExpiredTimestamp: String?, externalReturnContractData: String?, externalReturnContractTerminationRemark: String?, externalReturnContractTerminationMode: String?) {
+        public init (externalReturnAgreementId: String, externalReturnContractEffectiveTimestamp: String, externalReturnContractTerminationTimestamp: String, externalReturnContractStatus: String, externalReturnRequestId: String, externalReturnContractSignedTimestamp: String, externalReturnContractExpiredTimestamp: String, externalReturnContractData: String, externalReturnContractTerminationRemark: String?, externalReturnContractTerminationMode: String?) {
             self.externalReturnAgreementId = externalReturnAgreementId
             self.externalReturnContractEffectiveTimestamp = externalReturnContractEffectiveTimestamp
             self.externalReturnContractTerminationTimestamp = externalReturnContractTerminationTimestamp

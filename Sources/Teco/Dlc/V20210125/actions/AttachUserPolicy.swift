@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 绑定鉴权策略到用户
-    ///
-    /// 绑定鉴权策略到用户
     @inlinable
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
         self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 绑定鉴权策略到用户
-    ///
     /// 绑定鉴权策略到用户
     @inlinable
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {

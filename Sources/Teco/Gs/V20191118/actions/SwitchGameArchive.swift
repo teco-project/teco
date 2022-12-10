@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gs {
     /// 切换游戏存档
-    ///
-    /// 切换游戏存档
     @inlinable
     public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchGameArchiveResponse > {
         self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 切换游戏存档
-    ///
     /// 切换游戏存档
     @inlinable
     public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {

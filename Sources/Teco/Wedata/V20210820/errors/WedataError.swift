@@ -38,6 +38,9 @@ public struct TCWedataError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -57,11 +60,15 @@ public struct TCWedataError: TCErrorType {
     }
     
     /// 未登陆或登陆已过期。
+    ///
+    /// 用户未登陆或者登陆已过期，请重新登陆。
     public static var authFailure_SignatureExpire: TCWedataError {
         TCWedataError(.authFailure_SignatureExpire)
     }
     
     /// CAM未授权，请联系主账号到CAM中授权QcloudWeDataFullAccess策略给该账户。
+    ///
+    /// 请联系主账号到CAM中授权QcloudWeDataFullAccess策略给该账户
     public static var authFailure_UnauthorizedOperation: TCWedataError {
         TCWedataError(.authFailure_UnauthorizedOperation)
     }
@@ -107,6 +114,8 @@ public struct TCWedataError: TCErrorType {
     }
     
     /// 查询过滤条件参数错误。
+    ///
+    /// 查询过滤条件参数错误
     public static var invalidParameter_InvalidFilterParameter: TCWedataError {
         TCWedataError(.invalidParameter_InvalidFilterParameter)
     }
@@ -117,6 +126,8 @@ public struct TCWedataError: TCErrorType {
     }
     
     /// 服务繁忙，请稍后重试。
+    ///
+    /// 服务繁忙，请稍后重试
     public static var invalidParameter_ServiceIsBusy: TCWedataError {
         TCWedataError(.invalidParameter_ServiceIsBusy)
     }
@@ -207,5 +218,15 @@ extension TCWedataError: Equatable {
 extension TCWedataError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCWedataError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

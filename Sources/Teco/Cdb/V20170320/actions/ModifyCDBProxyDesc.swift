@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdb {
     /// 修改数据库代理描述
-    ///
-    /// 修改数据库代理描述
     @inlinable
     public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyDescResponse > {
         self.client.execute(action: "ModifyCDBProxyDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改数据库代理描述
-    ///
     /// 修改数据库代理描述
     @inlinable
     public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyDescResponse {

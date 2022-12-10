@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cls {
     /// 创建采集规则配置
-    ///
-    /// 创建采集规则配置
     @inlinable
     public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigResponse > {
         self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建采集规则配置
-    ///
     /// 创建采集规则配置
     @inlinable
     public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {

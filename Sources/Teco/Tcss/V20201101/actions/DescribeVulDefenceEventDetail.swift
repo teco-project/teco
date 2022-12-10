@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询漏洞防御事件详情
-    ///
-    /// 查询漏洞防御事件详情
     @inlinable
     public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventDetailResponse > {
         self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询漏洞防御事件详情
-    ///
     /// 查询漏洞防御事件详情
     @inlinable
     public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {

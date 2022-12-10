@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取业务流量状态码统计
-    ///
-    /// 获取业务流量状态码统计
     @inlinable
     public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizHttpStatusResponse > {
         self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取业务流量状态码统计
-    ///
     /// 获取业务流量状态码统计
     @inlinable
     public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {

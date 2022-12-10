@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询系统漏洞列表
-    ///
-    /// 查询系统漏洞列表
     @inlinable
     public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemVulListResponse > {
         self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询系统漏洞列表
-    ///
     /// 查询系统漏洞列表
     @inlinable
     public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemVulListResponse {

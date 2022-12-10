@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 导出四层健康检查配置
-    ///
-    /// 导出四层健康检查配置
     @inlinable
     public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4HealthConfigResponse > {
         self.client.execute(action: "DescribeL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出四层健康检查配置
-    ///
     /// 导出四层健康检查配置
     @inlinable
     public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {

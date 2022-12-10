@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 删除互联网边界规则
-    ///
-    /// 删除互联网边界规则
     @inlinable
     public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAcRuleResponse > {
         self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除互联网边界规则
-    ///
     /// 删除互联网边界规则
     @inlinable
     public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAcRuleResponse {

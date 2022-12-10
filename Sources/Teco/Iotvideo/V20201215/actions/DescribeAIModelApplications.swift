@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 用户AI模型申请记录
-    ///
-    /// 用户AI模型申请记录
     @inlinable
     public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelApplicationsResponse > {
         self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 用户AI模型申请记录
-    ///
     /// 用户AI模型申请记录
     @inlinable
     public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Zj {
     /// 添加短信人群包信息
-    ///
-    /// 添加短信人群包信息
     @inlinable
     public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCrowdPackInfoResponse > {
         self.client.execute(action: "AddCrowdPackInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加短信人群包信息
-    ///
     /// 添加短信人群包信息
     @inlinable
     public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCrowdPackInfoResponse {

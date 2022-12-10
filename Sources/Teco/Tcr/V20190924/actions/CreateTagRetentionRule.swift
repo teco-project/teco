@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 创建版本保留规则
-    ///
-    /// 创建版本保留规则
     @inlinable
     public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagRetentionRuleResponse > {
         self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建版本保留规则
-    ///
     /// 创建版本保留规则
     @inlinable
     public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {

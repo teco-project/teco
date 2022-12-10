@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tci {
     /// 创建词汇
-    ///
-    /// 创建词汇
     @inlinable
     public func createVocab(_ input: CreateVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVocabResponse > {
         self.client.execute(action: "CreateVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建词汇
-    ///
     /// 创建词汇
     @inlinable
     public func createVocab(_ input: CreateVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {

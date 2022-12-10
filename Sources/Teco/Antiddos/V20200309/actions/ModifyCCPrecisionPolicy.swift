@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 修改CC精准防护策略
-    ///
-    /// 修改CC精准防护策略
     @inlinable
     public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCPrecisionPolicyResponse > {
         self.client.execute(action: "ModifyCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改CC精准防护策略
-    ///
     /// 修改CC精准防护策略
     @inlinable
     public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {

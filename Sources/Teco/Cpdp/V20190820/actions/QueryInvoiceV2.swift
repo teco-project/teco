@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 智慧零售-发票查询V2
-    ///
-    /// 智慧零售-发票查询V2
     @inlinable
     public func queryInvoiceV2(_ input: QueryInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInvoiceV2Response > {
         self.client.execute(action: "QueryInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智慧零售-发票查询V2
-    ///
     /// 智慧零售-发票查询V2
     @inlinable
     public func queryInvoiceV2(_ input: QueryInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceV2Response {

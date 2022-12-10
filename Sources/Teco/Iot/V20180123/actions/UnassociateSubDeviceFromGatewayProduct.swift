@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iot {
     /// 取消子设备产品与网关设备产品的关联
-    ///
-    /// 取消子设备产品与网关设备产品的关联
     @inlinable
     public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassociateSubDeviceFromGatewayProductResponse > {
         self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消子设备产品与网关设备产品的关联
-    ///
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
     public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {

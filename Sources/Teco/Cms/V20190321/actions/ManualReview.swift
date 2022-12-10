@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cms {
     /// 人工审核对外接口
-    ///
-    /// 人工审核对外接口
     @inlinable
     public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualReviewResponse > {
         self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 人工审核对外接口
-    ///
     /// 人工审核对外接口
     @inlinable
     public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {

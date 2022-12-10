@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Es {
     /// 智能运维诊断集群
-    ///
-    /// 智能运维诊断集群
     @inlinable
     public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DiagnoseInstanceResponse > {
         self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智能运维诊断集群
-    ///
     /// 智能运维诊断集群
     @inlinable
     public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {

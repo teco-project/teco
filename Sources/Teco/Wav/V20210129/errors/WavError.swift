@@ -24,6 +24,9 @@ public struct TCWavError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -43,11 +46,15 @@ public struct TCWavError: TCErrorType {
     }
     
     /// 授权码无效。
+    ///
+    /// 请重新申请授权码，再申请token
     public static var authFailure_InvalidAuthorizationCode: TCWavError {
         TCWavError(.authFailure_InvalidAuthorizationCode)
     }
     
     /// 令牌无效。
+    ///
+    /// 请重新申请令牌。
     public static var authFailure_MissingAccessToken: TCWavError {
         TCWavError(.authFailure_MissingAccessToken)
     }
@@ -58,6 +65,8 @@ public struct TCWavError: TCErrorType {
     }
     
     /// 开放平台访问错误。
+    ///
+    /// 开放平台访问错误，联系开平看详细。
     public static var failedOperation_OpenPlatformError: TCWavError {
         TCWavError(.failedOperation_OpenPlatformError)
     }
@@ -78,6 +87,8 @@ public struct TCWavError: TCErrorType {
     }
     
     /// 参数值时间跨度超出接口限制。
+    ///
+    /// 请将参数值[StartTime, EndTime] 最大保持在365天内。
     public static var invalidParameterValue_TimeSpanLimitExceeded: TCWavError {
         TCWavError(.invalidParameterValue_TimeSpanLimitExceeded)
     }
@@ -123,5 +134,15 @@ extension TCWavError: Equatable {
 extension TCWavError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCWavError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

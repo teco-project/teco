@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 规则组执行结果分页查询接口
-    ///
-    /// 规则组执行结果分页查询接口
     @inlinable
     public func describeRuleGroupExecResultsByPage(_ input: DescribeRuleGroupExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupExecResultsByPageResponse > {
         self.client.execute(action: "DescribeRuleGroupExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 规则组执行结果分页查询接口
-    ///
     /// 规则组执行结果分页查询接口
     @inlinable
     public func describeRuleGroupExecResultsByPage(_ input: DescribeRuleGroupExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageResponse {

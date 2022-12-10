@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ms {
     /// 获取用户基础信息
-    ///
-    /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserBaseInfoInstanceResponse > {
         self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户基础信息
-    ///
     /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {

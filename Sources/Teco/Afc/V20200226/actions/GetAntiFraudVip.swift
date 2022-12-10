@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Afc {
     /// 反欺诈VIP评分接口
-    ///
-    /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudVipResponse > {
         self.client.execute(action: "GetAntiFraudVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 反欺诈VIP评分接口
-    ///
     /// 反欺诈VIP评分接口
     @inlinable
     public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {

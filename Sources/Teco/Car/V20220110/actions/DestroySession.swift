@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Car {
     /// 销毁会话
-    ///
-    /// 销毁会话
     @inlinable
     public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroySessionResponse > {
         self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 销毁会话
-    ///
     /// 销毁会话
     @inlinable
     public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Zj {
     /// 删除短信模板
-    ///
-    /// 删除短信模板
     @inlinable
     public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelTemplateResponse > {
         self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除短信模板
-    ///
     /// 删除短信模板
     @inlinable
     public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {

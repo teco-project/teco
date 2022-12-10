@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 购买云存服务
-    ///
-    /// 购买云存服务
     @inlinable
     public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageServiceResponse > {
         self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 购买云存服务
-    ///
     /// 购买云存服务
     @inlinable
     public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 导入模型
-    ///
-    /// 导入模型
     @inlinable
     public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingModelResponse > {
         self.client.execute(action: "CreateTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导入模型
-    ///
     /// 导入模型
     @inlinable
     public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingModelResponse {

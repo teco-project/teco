@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eb {
     /// 更新事件连接器
-    ///
-    /// 更新事件连接器
     @inlinable
     public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
         self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新事件连接器
-    ///
     /// 更新事件连接器
     @inlinable
     public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {

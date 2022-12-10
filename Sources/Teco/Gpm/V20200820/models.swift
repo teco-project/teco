@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -114,8 +113,7 @@ extension Gpm {
         
         /// 匹配描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let matchDesc: String?
+        public let matchDesc: String
         
         /// 规则code
         public let ruleCode: String
@@ -134,87 +132,72 @@ extension Gpm {
         
         /// 服务器队列所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let serverRegion: String?
+        public let serverRegion: String
         
         /// 服务器队列
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let serverQueue: String?
+        public let serverQueue: String
         
         /// 自定义推送数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let customPushData: String?
+        public let customPushData: String
         
         /// 游戏服务器会话数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let serverSessionData: String?
+        public let serverSessionData: String
         
         /// 游戏属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let gameProperties: [StringKV]?
+        public let gameProperties: [StringKV]
         
         /// 日志开关，0表示关，1表示开
         public let logSwitch: Int64
         
         /// 日志集id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let logsetId: String?
+        public let logsetId: String
         
         /// 日志集名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let logsetName: String?
+        public let logsetName: String
         
         /// 日志主题id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let logTopicId: String?
+        public let logTopicId: String
         
         /// 日志主题名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let logTopicName: String?
+        public let logTopicName: String
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tags: [StringKV]?
+        public let tags: [StringKV]
         
         /// 地区
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let region: String?
+        public let region: String
         
         /// 用户AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let appId: String?
+        public let appId: String
         
         /// 用户主账号Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let uin: String?
+        public let uin: String
         
         /// 用户创建账号Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let createUin: String?
+        public let createUin: String
         
         /// 规则名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleName: String?
+        public let ruleName: String
         
         /// 日志状态，0表示正常，1表示日志集不存在，2表示日志主题不存在，3表示日志集和日志主题都不存在。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logStatus: Int64?
         
-        public init (matchCode: String, matchName: String, matchDesc: String?, ruleCode: String, createTime: String, timeout: Int64, notifyUrl: String, serverType: Int64, serverRegion: String?, serverQueue: String?, customPushData: String?, serverSessionData: String?, gameProperties: [StringKV]?, logSwitch: Int64, logsetId: String?, logsetName: String?, logTopicId: String?, logTopicName: String?, tags: [StringKV]?, region: String?, appId: String?, uin: String?, createUin: String?, ruleName: String?, logStatus: Int64?) {
+        public init (matchCode: String, matchName: String, matchDesc: String, ruleCode: String, createTime: String, timeout: Int64, notifyUrl: String, serverType: Int64, serverRegion: String, serverQueue: String, customPushData: String, serverSessionData: String, gameProperties: [StringKV], logSwitch: Int64, logsetId: String, logsetName: String, logTopicId: String, logTopicName: String, tags: [StringKV], region: String, appId: String, uin: String, createUin: String, ruleName: String, logStatus: Int64?) {
             self.matchCode = matchCode
             self.matchName = matchName
             self.matchDesc = matchDesc

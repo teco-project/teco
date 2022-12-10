@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -39,6 +38,9 @@ extension TCIvldError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,56 +55,78 @@ extension TCIvldError {
         }
         
         /// SecredId失效。
+        ///
+        /// 检查SecretId是否有效
         public static var invalidSecretId: AuthFailure {
             AuthFailure(.invalidSecretId)
         }
         
         /// MFA失败。
+        ///
+        /// 使用正确的MFA验证
         public static var mfaFailure: AuthFailure {
             AuthFailure(.mfaFailure)
         }
         
         /// SecretId不存在。
+        ///
+        /// 检查SecretId是否存在
         public static var secretIdNotFound: AuthFailure {
             AuthFailure(.secretIdNotFound)
         }
         
         /// 签名已过期。
+        ///
+        /// 使用正确的有效签名
         public static var signatureExpire: AuthFailure {
             AuthFailure(.signatureExpire)
         }
         
         /// 签名校验失败。
+        ///
+        /// 使用正确的有效签名
         public static var signatureFailure: AuthFailure {
             AuthFailure(.signatureFailure)
         }
         
         /// 任务已完成。
+        ///
+        /// 已完成任务无法进行停止操作
         public static var taskFinished: AuthFailure {
             AuthFailure(.taskFinished)
         }
         
         /// 令牌失败。
+        ///
+        /// 使用正确的有效令牌
         public static var tokenFailure: AuthFailure {
             AuthFailure(.tokenFailure)
         }
         
         /// 用户已激活。
+        ///
+        /// 已激活用户无需再次激活
         public static var userActivated: AuthFailure {
             AuthFailure(.userActivated)
         }
         
         /// 用户状态异常。
+        ///
+        /// 请检查用户状态
         public static var userInvalidStatus: AuthFailure {
             AuthFailure(.userInvalidStatus)
         }
         
         /// 用户无权限。
+        ///
+        /// 检查用户是否正确
         public static var userNotFound: AuthFailure {
             AuthFailure(.userNotFound)
         }
         
         /// 用户已欠费停服。
+        ///
+        /// 请充值
         public static var userStopArrear: AuthFailure {
             AuthFailure(.userStopArrear)
         }
@@ -122,10 +146,21 @@ extension TCIvldError.AuthFailure: CustomStringConvertible {
 }
 
 extension TCIvldError.AuthFailure {
+    /// - Returns: ``TCIvldError`` that holds the same error and context.
     public func toIvldError() -> TCIvldError {
         guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIvldError(code, context: self.context)
+    }
+}
+
+extension TCIvldError.AuthFailure {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

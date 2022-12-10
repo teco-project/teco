@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取高防包流量折线图
-    ///
-    /// 获取高防包流量折线图
     @inlinable
     public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBgpBizTrendResponse > {
         self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取高防包流量折线图
-    ///
     /// 获取高防包流量折线图
     @inlinable
     public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {

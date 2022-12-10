@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Eb {
     /// 获取事件规则列表
-    ///
-    /// 获取事件规则列表
     @inlinable
     public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRulesResponse > {
         self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取事件规则列表
-    ///
     /// 获取事件规则列表
     @inlinable
     public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {

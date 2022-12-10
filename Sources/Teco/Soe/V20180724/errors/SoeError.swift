@@ -125,6 +125,9 @@ public struct TCSoeError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -144,6 +147,8 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 账号未开通口语评测服务或账号已欠费隔离，请开通服务或检查账号状态。
+    ///
+    /// 开通服务或检查账号状态。
     public static var authFailure_AccountUnavailable: TCSoeError {
         TCSoeError(.authFailure_AccountUnavailable)
     }
@@ -164,66 +169,92 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 获取用户信息失败。
+    ///
+    /// 获取用户信息失败，请重新初始化后请求。
     public static var failedOperation_ErrorGetUser: TCSoeError {
         TCSoeError(.failedOperation_ErrorGetUser)
     }
     
     /// 评测时间超出限制，请检查音频时间是否过长后重试。
+    ///
+    /// 请参考API文档检查音频时间是否过长后重试。https://cloud.tencent.com/document/product/884/19310
     public static var failedOperation_EvaluateTimeout: TCSoeError {
         TCSoeError(.failedOperation_EvaluateTimeout)
     }
     
     /// 引擎未知错误，请检查一下RefText是否正常后重试。
+    ///
+    /// 请参考API文档检查参数RefText是否正确后重试。https://cloud.tencent.com/document/product/884/19310
     public static var failedOperation_EvaluateUnknownError: TCSoeError {
         TCSoeError(.failedOperation_EvaluateUnknownError)
     }
     
     /// 获取评测引擎IP失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedGetEngineIP: TCSoeError {
         TCSoeError(.failedOperation_FailedGetEngineIP)
     }
     
     /// 结果缓存获取失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedGetResult: TCSoeError {
         TCSoeError(.failedOperation_FailedGetResult)
     }
     
     /// 会话缓存获取失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedGetSession: TCSoeError {
         TCSoeError(.failedOperation_FailedGetSession)
     }
     
     /// 会话分片序号缓存获取失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedGetSessionSeqID: TCSoeError {
         TCSoeError(.failedOperation_FailedGetSessionSeqID)
     }
     
     /// 用户信息缓存获取失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedGetUser: TCSoeError {
         TCSoeError(.failedOperation_FailedGetUser)
     }
     
     /// 请求初始化失败，请检查参数后重新初始化。
+    ///
+    /// 检查参数后重新初始化。https://cloud.tencent.com/document/product/884/19310
     public static var failedOperation_FailedInit: TCSoeError {
         TCSoeError(.failedOperation_FailedInit)
     }
     
     /// 结果缓存保存失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedSetResult: TCSoeError {
         TCSoeError(.failedOperation_FailedSetResult)
     }
     
     /// 会话缓存保存失败，请重新初始化。
+    ///
+    /// 请重新初始化。
     public static var failedOperation_FailedSetSession: TCSoeError {
         TCSoeError(.failedOperation_FailedSetSession)
     }
     
     /// 会话分片序号缓存保存失败，请重新初始化。
+    ///
+    /// 请重新初始化。
     public static var failedOperation_FailedSetSessionSeqID: TCSoeError {
         TCSoeError(.failedOperation_FailedSetSessionSeqID)
     }
     
     /// 用户信息缓存保存失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_FailedSetUser: TCSoeError {
         TCSoeError(.failedOperation_FailedSetUser)
     }
@@ -234,46 +265,64 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 引擎参数错误，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_InvalidParameterValue: TCSoeError {
         TCSoeError(.failedOperation_InvalidParameterValue)
     }
     
     /// Json编解码失败，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_JsonCodecError: TCSoeError {
         TCSoeError(.failedOperation_JsonCodecError)
     }
     
     /// 引擎评估之前没有初始化，请重新初始化成功之后重新传输数据。
+    ///
+    /// 请重新初始化成功之后重新传输数据。
     public static var failedOperation_NeedInitBeforeEvaluation: TCSoeError {
         TCSoeError(.failedOperation_NeedInitBeforeEvaluation)
     }
     
     /// 前序分片缺失，请重新补发前序分片。
+    ///
+    /// 请重发前序分片。
     public static var failedOperation_PastSeqIdLose: TCSoeError {
         TCSoeError(.failedOperation_PastSeqIdLose)
     }
     
     /// 结果缓存已过期，请重新初始化成功之后重新传输数据。
+    ///
+    /// 请重新初始化成功之后重新传输数据。
     public static var failedOperation_ResultExpired: TCSoeError {
         TCSoeError(.failedOperation_ResultExpired)
     }
     
     /// 分片序号缓存已过期，请重新初始化成功之后重新传输数据。
+    ///
+    /// 请重新初始化成功之后重新传输数据。
     public static var failedOperation_SeqIdExpired: TCSoeError {
         TCSoeError(.failedOperation_SeqIdExpired)
     }
     
     /// 引擎服务器过载，请稍后重试。
+    ///
+    /// 请重试当前请求。
     public static var failedOperation_ServerOverload: TCSoeError {
         TCSoeError(.failedOperation_ServerOverload)
     }
     
     /// 评测超时，请通过轮询查询评测结果，后续请使用分片传输或减少单次传输音频时长。
+    ///
+    /// 请通过轮询查询评测结果，后续请使用分片传输或减少单次传输音频时长。
     public static var failedOperation_ServiceTimeout: TCSoeError {
         TCSoeError(.failedOperation_ServiceTimeout)
     }
     
     /// 会话缓存已过期，请重新初始化成功之后重新传输数据。
+    ///
+    /// 请重新初始化成功之后重新传输数据。
     public static var failedOperation_SessionExpired: TCSoeError {
         TCSoeError(.failedOperation_SessionExpired)
     }
@@ -469,16 +518,22 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 输入分片音频大小超过最大限制，请调整分片大小后重新传输数据。
+    ///
+    /// 请调整分片大小后重新传输数据。
     public static var invalidParameterValue_AudioDataSizeLimitExceeded: TCSoeError {
         TCSoeError(.invalidParameterValue_AudioDataSizeLimitExceeded)
     }
     
     /// 音频数据解码失败，请参考API文档中音频要求检查音频数据格式设置是否正确后重新传输数据。
+    ///
+    /// 请参考API文档中音频要求检查音频数据格式设置是否正确后重新传输数据。
     public static var invalidParameterValue_AudioDecodeFailed: TCSoeError {
         TCSoeError(.invalidParameterValue_AudioDecodeFailed)
     }
     
     /// 输入音频时长超过限制，请结束本次评测，后续请根据评测模式设置音频时长限制。
+    ///
+    /// 输入音频时长超过限制，请结束本次评测，后续请根据评测模式设置音频时长限制。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameterValue_AudioLimitExceeded: TCSoeError {
         TCSoeError(.invalidParameterValue_AudioLimitExceeded)
     }
@@ -514,26 +569,36 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 请求参数RefText无效或参考文本为空，请检查RefText是否为空。
+    ///
+    /// 请检查RefText是否为空。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameterValue_RefTextEmpty: TCSoeError {
         TCSoeError(.invalidParameterValue_RefTextEmpty)
     }
     
     /// 请求参数RefText语法错误，请参考API文档检查文本格式，尤其是指定发音格式是否正确。
+    ///
+    /// 请求参数RefText语法错误，请参考API文档检查文本格式确认正确后重试，尤其是指定发音格式是否正确。https://cloud.tencent.com/document/product/884/33698
     public static var invalidParameterValue_RefTextGrammarError: TCSoeError {
         TCSoeError(.invalidParameterValue_RefTextGrammarError)
     }
     
     /// 请求参数RefText的字数超过最大限制，请根据评测模式调整字数后重新初始化。
+    ///
+    /// 请参考API文档检查参数RefText的字数限制。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameterValue_RefTextLimitExceeded: TCSoeError {
         TCSoeError(.invalidParameterValue_RefTextLimitExceeded)
     }
     
     /// 请求参数RefText包含OOV词汇，请使用指定发音或联系我们处理。
+    ///
+    /// 请使用指定发音或联系我们处理。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameterValue_RefTextOOV: TCSoeError {
         TCSoeError(.invalidParameterValue_RefTextOOV)
     }
     
     /// 请检查参考文本中是否包含大量多音字，可通过发音描述块指定标准发音解决。
+    ///
+    /// 可通过发音描述块指定标准发音解决。
     public static var invalidParameterValue_RefTextPolyphonicLimitExceeded: TCSoeError {
         TCSoeError(.invalidParameterValue_RefTextPolyphonicLimitExceeded)
     }
@@ -554,6 +619,8 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// SessionId已存在，建议使用uuid作为SessionId重新初始化。
+    ///
+    /// 建议使用uuid作为SessionId重新初始化。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameterValue_SessionIdInUse: TCSoeError {
         TCSoeError(.invalidParameterValue_SessionIdInUse)
     }
@@ -574,6 +641,9 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 语音文件格式参数VoiceFileType取值错误，请参考API文档检查语音文件格式VoiceFileType是否正确后重新传输数据。
+    ///
+    /// 语音文件格式参数VoiceFileType取值错误，请参考API文档检查语音文件格式VoiceFileType是否正确后重新传输数据。
+    /// https://cloud.tencent.com/document/product/884/32605
     public static var invalidParameterValue_VoiceFileTypeNotFound: TCSoeError {
         TCSoeError(.invalidParameterValue_VoiceFileTypeNotFound)
     }
@@ -599,6 +669,8 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 请求参数RefText的音素Json解码失败，请参考API文档使用标准的Json格式。
+    ///
+    /// 请参考API文档检查参数RefText的Json格式。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameter_ErrorPhoneme: TCSoeError {
         TCSoeError(.invalidParameter_ErrorPhoneme)
     }
@@ -609,16 +681,22 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 请求参数Action不合法，请参考API文档检查参数Action的有效性。
+    ///
+    /// 请参考API文档检查参数Action的有效性。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameter_InvalidAction: TCSoeError {
         TCSoeError(.invalidParameter_InvalidAction)
     }
     
     /// 请求参数不合法，请参考API文档检查参数的有效性。
+    ///
+    /// 请参考API文档检查参数的有效性。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameter_InvalidParameter: TCSoeError {
         TCSoeError(.invalidParameter_InvalidParameter)
     }
     
     /// 请求参数SeqId超过最大值限制，请参考API文档检查参数SeqId是否小于3000。
+    ///
+    /// 请参考API文档检查参数SeqId是否小于3000上限。https://cloud.tencent.com/document/product/884/19310
     public static var invalidParameter_SeqIdLimitExceeded: TCSoeError {
         TCSoeError(.invalidParameter_SeqIdLimitExceeded)
     }
@@ -639,6 +717,8 @@ public struct TCSoeError: TCErrorType {
     }
     
     /// 请求并发数超过配额限制，请减少并发数或联系我们调大并发限额。
+    ///
+    /// 减少并发数或联系我们调大并发限额。
     public static var limitExceeded_ConcurrencyLimitExceeded: TCSoeError {
         TCSoeError(.limitExceeded_ConcurrencyLimitExceeded)
     }
@@ -729,5 +809,15 @@ extension TCSoeError: Equatable {
 extension TCSoeError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSoeError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

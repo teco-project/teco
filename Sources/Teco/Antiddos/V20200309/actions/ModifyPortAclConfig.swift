@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 修改DDoS防护的端口acl策略
-    ///
-    /// 修改DDoS防护的端口acl策略
     @inlinable
     public func modifyPortAclConfig(_ input: ModifyPortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPortAclConfigResponse > {
         self.client.execute(action: "ModifyPortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改DDoS防护的端口acl策略
-    ///
     /// 修改DDoS防护的端口acl策略
     @inlinable
     public func modifyPortAclConfig(_ input: ModifyPortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPortAclConfigResponse {

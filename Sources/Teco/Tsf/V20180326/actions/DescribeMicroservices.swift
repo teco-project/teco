@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 获取微服务列表
-    ///
-    /// 获取微服务列表
     @inlinable
     public func describeMicroservices(_ input: DescribeMicroservicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMicroservicesResponse > {
         self.client.execute(action: "DescribeMicroservices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取微服务列表
-    ///
     /// 获取微服务列表
     @inlinable
     public func describeMicroservices(_ input: DescribeMicroservicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroservicesResponse {

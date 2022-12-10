@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apcas {
     /// 查询画像洞察任务详情
-    ///
-    /// 查询画像洞察任务详情
     @inlinable
     public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskDetailResponse > {
         self.client.execute(action: "GetTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询画像洞察任务详情
-    ///
     /// 查询画像洞察任务详情
     @inlinable
     public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskDetailResponse {

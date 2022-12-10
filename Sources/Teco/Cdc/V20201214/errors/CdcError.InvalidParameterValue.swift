@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -38,6 +37,9 @@ extension TCCdcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -52,35 +54,48 @@ extension TCCdcError {
         }
         
         /// ccdb返回结果不为0。
+        ///
+        /// CCDB执行错误，请检查
         public static var invalidAppIdFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidAppIdFormat)
         }
         
         /// 本地专用集群COS大小不正确。
+        ///
+        /// 它必须是40/60/80/100TB，或者(100 + 20*x)TB
         public static var invalidValueDedicatedClusterCosSize: InvalidParameterValue {
             InvalidParameterValue(.invalidValueDedicatedClusterCosSize)
         }
         
         /// CBS大小不正确，它必须是40的整数倍。
+        ///
+        /// CBS大小不正确，它必须是40的整数倍
         public static var invalidValueDedicatedClusterDataStepSize: InvalidParameterValue {
             InvalidParameterValue(.invalidValueDedicatedClusterDataStepSize)
         }
         
         /// region无效。
+        ///
+        /// region无效
         public static var invalidValueRegion: InvalidParameterValue {
             InvalidParameterValue(.invalidValueRegion)
         }
         
         /// 超出大小限制。
+        ///
+        /// 超出大小限制
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
         
+        /// 请确认Region ID 是否存在。
         public static var region: InvalidParameterValue {
             InvalidParameterValue(.region)
         }
         
         /// 参数名过长。
+        ///
+        /// 参数名过长
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
         }
@@ -115,10 +130,21 @@ extension TCCdcError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCCdcError.InvalidParameterValue {
+    /// - Returns: ``TCCdcError`` that holds the same error and context.
     public func toCdcError() -> TCCdcError {
         guard let code = TCCdcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCdcError(code, context: self.context)
+    }
+}
+
+extension TCCdcError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

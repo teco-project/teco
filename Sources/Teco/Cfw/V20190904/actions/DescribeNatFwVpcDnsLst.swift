@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 展示当前natfw 实例对应的vpc dns开关
-    ///
-    /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
     public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
         self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 展示当前natfw 实例对应的vpc dns开关
-    ///
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
     public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -97,6 +96,9 @@ extension TCEmrError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -111,146 +113,204 @@ extension TCEmrError {
         }
         
         /// 展示策略错误。
+        ///
+        /// 占位符
         public static var displayStrategyNotMatch: InvalidParameter {
             InvalidParameter(.displayStrategyNotMatch)
         }
         
         /// 参数错误。
+        ///
+        /// 占位符
         public static var haLessMasterCount: InvalidParameter {
             InvalidParameter(.haLessMasterCount)
         }
         
         /// Common节点数量无效。
+        ///
+        /// 占位符
         public static var incorrectCommonCount: InvalidParameter {
             InvalidParameter(.incorrectCommonCount)
         }
         
         /// Master节点数量无效。
+        ///
+        /// 占位符
         public static var incorrectMasterCount: InvalidParameter {
             InvalidParameter(.incorrectMasterCount)
         }
         
         /// 无效参数，AppId。
+        ///
+        /// 占位符
         public static var invalidAppId: InvalidParameter {
             InvalidParameter(.invalidAppId)
         }
         
         /// 无效的自动续费标识。
+        ///
+        /// 占位符
         public static var invalidAutoRenew: InvalidParameter {
             InvalidParameter(.invalidAutoRenew)
         }
         
         /// 无效的引导脚本。
+        ///
+        /// 占位符
         public static var invalidBootstrapAction: InvalidParameter {
             InvalidParameter(.invalidBootstrapAction)
         }
         
         /// 无效的ClickHouse集群。
+        ///
+        /// 占位符
         public static var invalidClickHouseCluster: InvalidParameter {
             InvalidParameter(.invalidClickHouseCluster)
         }
         
         /// 无效的ClientToken。
+        ///
+        /// 占位符
         public static var invalidClientToken: InvalidParameter {
             InvalidParameter(.invalidClientToken)
         }
         
         /// 无效参数，ClusterId。
+        ///
+        /// 占位符
         public static var invalidClusterId: InvalidParameter {
             InvalidParameter(.invalidClusterId)
         }
         
         /// 参数错误。
+        ///
+        /// 占位符
         public static var invalidCommonDiskType: InvalidParameter {
             InvalidParameter(.invalidCommonDiskType)
         }
         
         /// 无效的组件。
+        ///
+        /// 占位符
         public static var invalidComponent: InvalidParameter {
             InvalidParameter(.invalidComponent)
         }
         
         /// Core节点数量无效。
+        ///
+        /// 占位符
         public static var invalidCoreCount: InvalidParameter {
             InvalidParameter(.invalidCoreCount)
         }
         
         /// CosFileUri参数值无效。
+        ///
+        /// 占位符
         public static var invalidCosFileURI: InvalidParameter {
             InvalidParameter(.invalidCosFileURI)
         }
         
         /// 扩容数量必须大于0。
+        ///
+        /// 占位符
         public static var invalidCount: InvalidParameter {
             InvalidParameter(.invalidCount)
         }
         
         /// 同一请求只能扩容Task或者Core节点。
+        ///
+        /// 占位符
         public static var invalidCountNum: InvalidParameter {
             InvalidParameter(.invalidCountNum)
         }
         
         /// 错误信息：Invalid PodParameter。
+        ///
+        /// 占位符
         public static var invalidCustomizedPodParam: InvalidParameter {
             InvalidParameter(.invalidCustomizedPodParam)
         }
         
         /// 无效的磁盘大小。
+        ///
+        /// 占位符
         public static var invalidDiskSize: InvalidParameter {
             InvalidParameter(.invalidDiskSize)
         }
         
         /// 无效的EKS实例。
+        ///
+        /// 占位符
         public static var invalidEksInstance: InvalidParameter {
             InvalidParameter(.invalidEksInstance)
         }
         
         /// CustomConfig参数值无效。
+        ///
+        /// 占位符
         public static var invalidExtendField: InvalidParameter {
             InvalidParameter(.invalidExtendField)
         }
         
         /// 无效的任务失败处理策略。
+        ///
+        /// 占位符
         public static var invalidFailurePolicy: InvalidParameter {
             InvalidParameter(.invalidFailurePolicy)
         }
         
         /// 无效参数，EMR实例不符合要求。
+        ///
+        /// 占位符
         public static var invalidInstance: InvalidParameter {
             InvalidParameter(.invalidInstance)
         }
         
         /// 无效的集群名称。
+        ///
+        /// 占位符
         public static var invalidInstanceName: InvalidParameter {
             InvalidParameter(.invalidInstanceName)
         }
         
         /// 无效的集群保留策略。
+        ///
+        /// 占位符
         public static var invalidInstancePolicy: InvalidParameter {
             InvalidParameter(.invalidInstancePolicy)
         }
         
         /// 无效的机型。
+        ///
+        /// 占位符
         public static var invalidInstanceType: InvalidParameter {
             InvalidParameter(.invalidInstanceType)
         }
         
         /// 无效的流程任务。
+        ///
+        /// 占位符
         public static var invalidJobFlow: InvalidParameter {
             InvalidParameter(.invalidJobFlow)
         }
         
         /// 无效的任务步骤类型。
+        ///
+        /// 占位符
         public static var invalidJobType: InvalidParameter {
             InvalidParameter(.invalidJobType)
         }
         
         /// 无效的登录设置。
+        ///
+        /// 占位符
         public static var invalidLoginSetting: InvalidParameter {
             InvalidParameter(.invalidLoginSetting)
         }
         
         /// 参数错误。
+        ///
+        /// 占位符
         public static var invalidMasterDiskType: InvalidParameter {
             InvalidParameter(.invalidMasterDiskType)
         }
@@ -260,191 +320,267 @@ extension TCEmrError {
         }
         
         /// 无效的元数据表类型。
+        ///
+        /// 占位符
         public static var invalidMetaType: InvalidParameter {
             InvalidParameter(.invalidMetaType)
         }
         
         /// 变配规格无效。
+        ///
+        /// 占位符
         public static var invalidModifySpec: InvalidParameter {
             InvalidParameter(.invalidModifySpec)
         }
         
         /// 无效的NodeType。
+        ///
+        /// 占位符
         public static var invalidNodeType: InvalidParameter {
             InvalidParameter(.invalidNodeType)
         }
         
         /// 无效密码。
+        ///
+        /// 占位符
         public static var invalidPassword: InvalidParameter {
             InvalidParameter(.invalidPassword)
         }
         
         /// 无效的付费类型。
+        ///
+        /// 占位符
         public static var invalidPaymode: InvalidParameter {
             InvalidParameter(.invalidPaymode)
         }
         
         /// 无效的引导操作脚本。
+        ///
+        /// 占位符
         public static var invalidPreExecutedFile: InvalidParameter {
             InvalidParameter(.invalidPreExecutedFile)
         }
         
         /// 无效参数，不符合EMR版本。
+        ///
+        /// 占位符
         public static var invalidProduct: InvalidParameter {
             InvalidParameter(.invalidProduct)
         }
         
         /// 无效的产品ID。
+        ///
+        /// 占位符
         public static var invalidProductId: InvalidParameter {
             InvalidParameter(.invalidProductId)
         }
         
         /// 无效的项目ID。
+        ///
+        /// 占位符
         public static var invalidProjectId: InvalidParameter {
             InvalidParameter(.invalidProjectId)
         }
         
         /// 资源ID无效。
+        ///
+        /// 占位符
         public static var invalidResourceIds: InvalidParameter {
             InvalidParameter(.invalidResourceIds)
         }
         
         /// 无效的资源规格。
+        ///
+        /// 占位符
         public static var invalidResourceSpec: InvalidParameter {
             InvalidParameter(.invalidResourceSpec)
         }
         
         /// 该EMR版本不支持开启安全模式。
+        ///
+        /// 占位符
         public static var invalidSecuritySupport: InvalidParameter {
             InvalidParameter(.invalidSecuritySupport)
         }
         
         /// 无效的安全组ID。
+        ///
+        /// 占位符
         public static var invalidSercurityGrpupId: InvalidParameter {
             InvalidParameter(.invalidSercurityGrpupId)
         }
         
         /// 服务名无效。
+        ///
+        /// 占位符
         public static var invalidServiceName: InvalidParameter {
             InvalidParameter(.invalidServiceName)
         }
         
         /// 参数ServiceNodeInfo无效或错误。
+        ///
+        /// 占位符
         public static var invalidServiceNodeInfo: InvalidParameter {
             InvalidParameter(.invalidServiceNodeInfo)
         }
         
         /// 参数InvalidSoftDeployInfo无效或错误。
+        ///
+        /// 占位符
         public static var invalidSoftDeployInfo: InvalidParameter {
             InvalidParameter(.invalidSoftDeployInfo)
         }
         
         /// 无效的SoftInfo。
+        ///
+        /// 占位符
         public static var invalidSoftInfo: InvalidParameter {
             InvalidParameter(.invalidSoftInfo)
         }
         
         /// 参数错误。
+        ///
+        /// 占位符
         public static var invalidSoftWare: InvalidParameter {
             InvalidParameter(.invalidSoftWare)
         }
         
         /// 软件名无效。
+        ///
+        /// 占位符
         public static var invalidSoftWareName: InvalidParameter {
             InvalidParameter(.invalidSoftWareName)
         }
         
         /// 软件版本无效。
+        ///
+        /// 占位符
         public static var invalidSoftWareVersion: InvalidParameter {
             InvalidParameter(.invalidSoftWareVersion)
         }
         
         /// 无效的子网ID。
+        ///
+        /// 占位符
         public static var invalidSubnetId: InvalidParameter {
             InvalidParameter(.invalidSubnetId)
         }
         
         /// 无效的高可用参数。
+        ///
+        /// 占位符
         public static var invalidSupportHA: InvalidParameter {
             InvalidParameter(.invalidSupportHA)
         }
         
         /// 参数错误。
+        ///
+        /// 占位符
         public static var invalidTagsGroup: InvalidParameter {
             InvalidParameter(.invalidTagsGroup)
         }
         
         /// task的数量不能超过20。
+        ///
+        /// 占位符
         public static var invalidTaskCount: InvalidParameter {
             InvalidParameter(.invalidTaskCount)
         }
         
         /// 无效的timespan。
+        ///
+        /// 占位符
         public static var invalidTimeSpan: InvalidParameter {
             InvalidParameter(.invalidTimeSpan)
         }
         
         /// 无效的TimeUnit。
+        ///
+        /// 占位符
         public static var invalidTimeUnit: InvalidParameter {
             InvalidParameter(.invalidTimeUnit)
         }
         
         /// 无效的Tke集群ID，或Tke集群不符合条件。
+        ///
+        /// 占位符
         public static var invalidTkeInstance: InvalidParameter {
             InvalidParameter(.invalidTkeInstance)
         }
         
         /// 无效的统一元数据库。
+        ///
+        /// 占位符
         public static var invalidUnifyMeta: InvalidParameter {
             InvalidParameter(.invalidUnifyMeta)
         }
         
         /// 无效的私有网络ID。
+        ///
+        /// 占位符
         public static var invalidVpcId: InvalidParameter {
             InvalidParameter(.invalidVpcId)
         }
         
         /// 无效的可用区。
+        ///
+        /// 占位符
         public static var invalidZone: InvalidParameter {
             InvalidParameter(.invalidZone)
         }
         
         /// 无效参数，不满足必须组件。
+        ///
+        /// 占位符
         public static var notContainMustSelectSoftware: InvalidParameter {
             InvalidParameter(.notContainMustSelectSoftware)
         }
         
         /// 排序字段错误。
+        ///
+        /// 占位符
         public static var orderFieldNotMatch: InvalidParameter {
             InvalidParameter(.orderFieldNotMatch)
         }
         
         /// 付费模式与资源不匹配。
+        ///
+        /// 占位符
         public static var payModeResourceNotMatch: InvalidParameter {
             InvalidParameter(.payModeResourceNotMatch)
         }
         
         /// 项目与资源不匹配。
+        ///
+        /// 占位符
         public static var projectResourceNotMatch: InvalidParameter {
             InvalidParameter(.projectResourceNotMatch)
         }
         
         /// 存在无效的产品组件。
+        ///
+        /// 占位符
         public static var softwareNotInProduct: InvalidParameter {
             InvalidParameter(.softwareNotInProduct)
         }
         
         /// 策略为授权。
+        ///
+        /// 占位符
         public static var ungrantedPolicy: InvalidParameter {
             InvalidParameter(.ungrantedPolicy)
         }
         
         /// 角色未授权。
+        ///
+        /// 占位符
         public static var ungrantedRole: InvalidParameter {
             InvalidParameter(.ungrantedRole)
         }
         
         /// 可用区与资源不匹配。
+        ///
+        /// 占位符
         public static var zoneResourceNotMatch: InvalidParameter {
             InvalidParameter(.zoneResourceNotMatch)
         }
@@ -469,10 +605,21 @@ extension TCEmrError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCEmrError.InvalidParameter {
+    /// - Returns: ``TCEmrError`` that holds the same error and context.
     public func toEmrError() -> TCEmrError {
         guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEmrError(code, context: self.context)
+    }
+}
+
+extension TCEmrError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

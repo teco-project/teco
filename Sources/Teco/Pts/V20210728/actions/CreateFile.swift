@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 创建文件
-    ///
-    /// 创建文件
     @inlinable
     public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
         self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建文件
-    ///
     /// 创建文件
     @inlinable
     public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {

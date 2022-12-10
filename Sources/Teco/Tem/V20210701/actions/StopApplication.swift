@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 服务停止
-    ///
-    /// 服务停止
     @inlinable
     public func stopApplication(_ input: StopApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopApplicationResponse > {
         self.client.execute(action: "StopApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 服务停止
-    ///
     /// 服务停止
     @inlinable
     public func stopApplication(_ input: StopApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopApplicationResponse {

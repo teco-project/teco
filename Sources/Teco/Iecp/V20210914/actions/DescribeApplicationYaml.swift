@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询应用模板Yaml
-    ///
-    /// 查询应用模板Yaml
     @inlinable
     public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationYamlResponse > {
         self.client.execute(action: "DescribeApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询应用模板Yaml
-    ///
     /// 查询应用模板Yaml
     @inlinable
     public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlResponse {

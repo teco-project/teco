@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 获取呼入实时数据统计指标
-    ///
-    /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallInMetricsResponse > {
         self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取呼入实时数据统计指标
-    ///
     /// 获取呼入实时数据统计指标
     @inlinable
     public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {

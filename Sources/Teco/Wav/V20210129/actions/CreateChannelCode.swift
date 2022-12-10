@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wav {
     /// 新增渠道活码接口
-    ///
-    /// 新增渠道活码接口
     @inlinable
     public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChannelCodeResponse > {
         self.client.execute(action: "CreateChannelCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增渠道活码接口
-    ///
     /// 新增渠道活码接口
     @inlinable
     public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelCodeResponse {

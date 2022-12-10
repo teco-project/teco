@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 创建机构DID
-    ///
-    /// 创建机构DID
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidResponse > {
         self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建机构DID
-    ///
     /// 创建机构DID
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {

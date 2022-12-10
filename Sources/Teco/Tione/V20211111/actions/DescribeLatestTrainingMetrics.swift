@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 查询最近上报的训练自定义指标
-    ///
-    /// 查询最近上报的训练自定义指标
     @inlinable
     public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLatestTrainingMetricsResponse > {
         self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询最近上报的训练自定义指标
-    ///
     /// 查询最近上报的训练自定义指标
     @inlinable
     public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLatestTrainingMetricsResponse {

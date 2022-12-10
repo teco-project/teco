@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 查询边缘操作日志
-    ///
-    /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
         self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询边缘操作日志
-    ///
     /// 查询边缘操作日志
     @inlinable
     public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {

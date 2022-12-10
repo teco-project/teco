@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 获取表格标签
-    ///
-    /// 获取表格标签
     @inlinable
     public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableTagsResponse > {
         self.client.execute(action: "DescribeTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取表格标签
-    ///
     /// 获取表格标签
     @inlinable
     public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableTagsResponse {

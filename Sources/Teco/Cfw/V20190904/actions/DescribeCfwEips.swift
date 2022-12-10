@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 查询防火墙弹性公网IP
-    ///
-    /// 查询防火墙弹性公网IP
     @inlinable
     public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
         self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询防火墙弹性公网IP
-    ///
     /// 查询防火墙弹性公网IP
     @inlinable
     public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {

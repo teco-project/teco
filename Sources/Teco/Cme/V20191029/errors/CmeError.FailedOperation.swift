@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -34,6 +33,9 @@ extension TCCmeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,11 +55,15 @@ extension TCCmeError {
         }
         
         /// 云点播用户无效。
+        ///
+        /// 检查云点播业务状态，如未开通云点播请开通云点播，如欠费停服请充正开服。
         public static var invalidVodUser: FailedOperation {
             FailedOperation(.invalidVodUser)
         }
         
         /// 直播录制功能暂未对使用腾讯云点播存储的平台开放。
+        ///
+        /// 请在非腾讯云点播存储的平台使用直播录制相关功能。
         public static var recordNotSupport: FailedOperation {
             FailedOperation(.recordNotSupport)
         }
@@ -68,6 +74,8 @@ extension TCCmeError {
         }
         
         /// 非法操作，导播中正在工作中。
+        ///
+        /// 先停止导播中。
         public static var switcherOnWorking: FailedOperation {
             FailedOperation(.switcherOnWorking)
         }
@@ -92,10 +100,21 @@ extension TCCmeError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCmeError.FailedOperation {
+    /// - Returns: ``TCCmeError`` that holds the same error and context.
     public func toCmeError() -> TCCmeError {
         guard let code = TCCmeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCmeError(code, context: self.context)
+    }
+}
+
+extension TCCmeError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

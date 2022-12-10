@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 创建实例子账号
-    ///
-    /// 创建实例子账号
     @inlinable
     public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceAccountResponse > {
         self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建实例子账号
-    ///
     /// 创建实例子账号
     @inlinable
     public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {

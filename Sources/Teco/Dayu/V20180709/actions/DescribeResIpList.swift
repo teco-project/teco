@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取资源的IP列表
-    ///
-    /// 获取资源的IP列表
     @inlinable
     public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResIpListResponse > {
         self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取资源的IP列表
-    ///
     /// 获取资源的IP列表
     @inlinable
     public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {

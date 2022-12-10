@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcm {
     /// 关联Prometheus
-    ///
-    /// 关联Prometheus
     @inlinable
     public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkPrometheusResponse > {
         self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关联Prometheus
-    ///
     /// 关联Prometheus
     @inlinable
     public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {

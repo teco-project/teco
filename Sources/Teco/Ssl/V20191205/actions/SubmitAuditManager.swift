@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssl {
     /// 重新提交审核管理人
-    ///
-    /// 重新提交审核管理人
     @inlinable
     public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
         self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重新提交审核管理人
-    ///
     /// 重新提交审核管理人
     @inlinable
     public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {

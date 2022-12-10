@@ -87,6 +87,9 @@ public struct TCTcrError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -111,6 +114,8 @@ public struct TCTcrError: TCErrorType {
     }
     
     /// 依赖服务异常。
+    ///
+    /// 接口操作执行中所依赖的服务异常，请稍候重试。
     public static var failedOperation_DependenceError: TCTcrError {
         TCTcrError(.failedOperation_DependenceError)
     }
@@ -152,6 +157,8 @@ public struct TCTcrError: TCErrorType {
     }
     
     /// 交易失败。
+    ///
+    /// 请检查帐户余额是否充足。
     public static var failedOperation_TradeFailed: TCTcrError {
         TCTcrError(.failedOperation_TradeFailed)
     }
@@ -292,6 +299,8 @@ public struct TCTcrError: TCErrorType {
     }
     
     /// 参数过多。
+    ///
+    /// 减少传入的参数量
     public static var invalidParameter_ErrTooLarge: TCTcrError {
         TCTcrError(.invalidParameter_ErrTooLarge)
     }
@@ -386,6 +395,8 @@ public struct TCTcrError: TCErrorType {
     }
     
     /// Vpc dsn解析状态异常或未删除。
+    ///
+    /// 请先检查vpc dns解析
     public static var resourceInsufficient_ErrorVpcDnsStatus: TCTcrError {
         TCTcrError(.resourceInsufficient_ErrorVpcDnsStatus)
     }
@@ -488,5 +499,15 @@ extension TCTcrError: Equatable {
 extension TCTcrError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTcrError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

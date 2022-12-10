@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdb {
     /// 修改数据库代理VIP或端口
-    ///
-    /// 修改数据库代理VIP或端口
     @inlinable
     public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyVipVPortResponse > {
         self.client.execute(action: "ModifyCDBProxyVipVPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改数据库代理VIP或端口
-    ///
     /// 修改数据库代理VIP或端口
     @inlinable
     public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyVipVPortResponse {

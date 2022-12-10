@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 查询自动外呼任务详情
-    ///
-    /// 查询自动外呼任务详情
     @inlinable
     public func describeAutoCalloutTask(_ input: DescribeAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTaskResponse > {
         self.client.execute(action: "DescribeAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询自动外呼任务详情
-    ///
     /// 查询自动外呼任务详情
     @inlinable
     public func describeAutoCalloutTask(_ input: DescribeAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTaskResponse {

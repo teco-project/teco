@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// ip防护状态查询
-    ///
-    /// ip防护状态查询
     @inlinable
     public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStatusListResponse > {
         self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// ip防护状态查询
-    ///
     /// ip防护状态查询
     @inlinable
     public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {

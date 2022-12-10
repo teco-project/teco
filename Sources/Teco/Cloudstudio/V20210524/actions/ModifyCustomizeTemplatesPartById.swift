@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudstudio {
     /// 全量修改自定义模板，忽略空
-    ///
-    /// 全量修改自定义模板，忽略空
     @inlinable
     public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplatesPartByIdResponse > {
         self.client.execute(action: "ModifyCustomizeTemplatesPartById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 全量修改自定义模板，忽略空
-    ///
     /// 全量修改自定义模板，忽略空
     @inlinable
     public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {

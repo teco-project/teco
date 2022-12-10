@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -41,6 +40,9 @@ extension TCOceanusError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,6 +62,9 @@ extension TCOceanusError {
         }
         
         /// 非法的 MaxParallelism 参数。
+        ///
+        /// MaxParallelism 必须大于等于作业的算子最大并行度，且不能大于 16384.
+        /// 另外，如果当前作业处于暂停中，则不允许修改 MaxParallelism 的值，以防止状态恢复报错。
         public static var illegalMaxParallelism: InvalidParameter {
             InvalidParameter(.illegalMaxParallelism)
         }
@@ -89,16 +94,21 @@ extension TCOceanusError {
             InvalidParameter(.invalidResourceIds)
         }
         
+        /// 请输入有效的日志采集方式或者存储桶名称。
         public static var jobConfigLogCollectParamError: InvalidParameter {
             InvalidParameter(.jobConfigLogCollectParamError)
         }
         
         /// MaxParallelism 过大。
+        ///
+        /// 不建议超过 2048，不允许超过 16384。
         public static var maxParallelismTooLarge: InvalidParameter {
             InvalidParameter(.maxParallelismTooLarge)
         }
         
         /// MaxParallelism 不允许小于算子默认并行度。
+        ///
+        /// 请调小算子默认并行度，或增大 MaxParallelism 取值（无法保留运行状态）。
         public static var maxParallelismTooSmall: InvalidParameter {
             InvalidParameter(.maxParallelismTooSmall)
         }
@@ -133,10 +143,21 @@ extension TCOceanusError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCOceanusError.InvalidParameter {
+    /// - Returns: ``TCOceanusError`` that holds the same error and context.
     public func toOceanusError() -> TCOceanusError {
         guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCOceanusError(code, context: self.context)
+    }
+}
+
+extension TCOceanusError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 直播详情接口
-    ///
-    /// 直播详情接口
     @inlinable
     public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelResponse > {
         self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播详情接口
-    ///
     /// 直播详情接口
     @inlinable
     public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {

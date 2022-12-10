@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ba {
     /// 创建渠道备案小程序二维码
-    ///
-    /// 创建渠道备案小程序二维码
     @inlinable
     public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWeappQRUrlResponse > {
         self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建渠道备案小程序二维码
-    ///
     /// 创建渠道备案小程序二维码
     @inlinable
     public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {

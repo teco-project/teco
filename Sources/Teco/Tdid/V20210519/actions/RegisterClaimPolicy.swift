@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 披露策略Policy注册
-    ///
-    /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterClaimPolicyResponse > {
         self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 披露策略Policy注册
-    ///
     /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {

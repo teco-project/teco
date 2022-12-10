@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// DID添加标签
-    ///
-    /// DID添加标签
     @inlinable
     public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
         self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DID添加标签
-    ///
     /// DID添加标签
     @inlinable
     public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {

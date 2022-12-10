@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Cr {
     /// 机器人任务查询
-    ///
-    /// 机器人任务查询
     @inlinable
     public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallListResponse > {
         self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 机器人任务查询
-    ///
     /// 机器人任务查询
     @inlinable
     public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {

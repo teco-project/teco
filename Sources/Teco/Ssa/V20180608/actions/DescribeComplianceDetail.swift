@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssa {
     /// 合规管理检查项详情
-    ///
-    /// 合规管理检查项详情
     @inlinable
     public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceDetailResponse > {
         self.client.execute(action: "DescribeComplianceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 合规管理检查项详情
-    ///
     /// 合规管理检查项详情
     @inlinable
     public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceDetailResponse {

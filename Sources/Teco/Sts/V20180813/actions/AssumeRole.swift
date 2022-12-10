@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Sts {
     /// 申请扮演角色
-    ///
-    /// 申请扮演角色
     @inlinable
     public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleResponse > {
         self.client.execute(action: "AssumeRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 申请扮演角色
-    ///
     /// 申请扮演角色
     @inlinable
     public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {

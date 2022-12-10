@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 获取源站组详细信息
-    ///
-    /// 获取源站组详细信息
     @inlinable
     public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupDetailResponse > {
         self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取源站组详细信息
-    ///
     /// 获取源站组详细信息
     @inlinable
     public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {

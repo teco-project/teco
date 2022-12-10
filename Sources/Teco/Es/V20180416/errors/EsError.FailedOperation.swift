@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -39,6 +38,9 @@ extension TCEsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,6 +60,8 @@ extension TCEsError {
         }
         
         /// 节点磁盘块数参数检查失败。
+        ///
+        /// 检查节点的磁盘块数是否符合要求，4C16G以下配置节点不支持多盘。
         public static var diskCountParamError: FailedOperation {
             FailedOperation(.diskCountParamError)
         }
@@ -68,11 +72,15 @@ extension TCEsError {
         }
         
         /// 集群索引没有副本存在。
+        ///
+        /// 给集群中0副本的索引添加副本
         public static var errorClusterStateNoReplication: FailedOperation {
             FailedOperation(.errorClusterStateNoReplication)
         }
         
         /// 集群状态不健康。
+        ///
+        /// 等集群状态健康后在进行操作。
         public static var errorClusterStateUnhealth: FailedOperation {
             FailedOperation(.errorClusterStateUnhealth)
         }
@@ -98,6 +106,8 @@ extension TCEsError {
         }
         
         /// 不支持反向调节节点配置和磁盘容量。
+        ///
+        /// 只能同时扩容节点配置和磁盘容量或磁盘数量。
         public static var unsupportReverseRegulationNodeTypeAndDisk: FailedOperation {
             FailedOperation(.unsupportReverseRegulationNodeTypeAndDisk)
         }
@@ -122,10 +132,21 @@ extension TCEsError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCEsError.FailedOperation {
+    /// - Returns: ``TCEsError`` that holds the same error and context.
     public func toEsError() -> TCEsError {
         guard let code = TCEsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEsError(code, context: self.context)
+    }
+}
+
+extension TCEsError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 列出 Prometheus 服务可用区
-    ///
-    /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusZonesResponse > {
         self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出 Prometheus 服务可用区
-    ///
     /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {

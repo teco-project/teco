@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -644,8 +643,7 @@ extension Ssa {
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tag: String?
+        public let tag: String
         
         /// 是否忽略
         public let isIgnore: Int64
@@ -665,7 +663,7 @@ extension Ssa {
         /// 备注内容
         public let remarks: String?
         
-        public init (id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String?, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String?, remarks: String?) {
+        public init (id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String?, remarks: String?) {
             self.id = id
             self.instid = instid
             self.url = url
@@ -803,8 +801,7 @@ extension Ssa {
         
         /// 最近一次检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let lastCheckTime: Date?
+        public let lastCheckTime: Date
         
         /// 资产组类型
         public let assetType: String
@@ -817,18 +814,15 @@ extension Ssa {
         
         /// 标准项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let standardItem: String?
+        public let standardItem: String
         
         /// 章节
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let chapter: String?
+        public let chapter: String
         
         /// 资产类型描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let assetTypeDesc: String?
+        public let assetTypeDesc: String
         
         /// 是否忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -842,7 +836,7 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let title: String?
         
-        public init (id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date?, assetType: String, resCount: Int64, uuid: String, standardItem: String?, chapter: String?, assetTypeDesc: String?, isIgnore: UInt64?, riskItem: String?, title: String?) {
+        public init (id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date, assetType: String, resCount: Int64, uuid: String, standardItem: String, chapter: String, assetTypeDesc: String, isIgnore: UInt64?, riskItem: String?, title: String?) {
             self.id = id
             self.category = category
             self.type = type
@@ -1712,39 +1706,33 @@ extension Ssa {
     public struct SocCheckItemV1: TCInputModel, TCOutputModel {
         /// 检查项id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let checkId: String?
+        public let checkId: String
         
         /// 配置要求
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 检查项类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: String?
+        public let type: String
         
         /// 检查对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let assetType: String?
+        public let assetType: String
         
         /// 默认风险等级 2:低危 3:中危 4:高危
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let level: Int64?
+        public let level: Int64
         
         /// 相关规范
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let standard: String?
+        public let standard: String
         
         /// 检查项是否付费 1:免费 2:付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isFree: Int64?
         
-        public init (checkId: String?, name: String?, type: String?, assetType: String?, level: Int64?, standard: String?, isFree: Int64?) {
+        public init (checkId: String, name: String, type: String, assetType: String, level: Int64, standard: String, isFree: Int64?) {
             self.checkId = checkId
             self.name = name
             self.type = type

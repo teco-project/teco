@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 获取电话服务记录与录音
-    ///
-    /// 获取电话服务记录与录音
     @inlinable
     public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCdrResponse > {
         self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取电话服务记录与录音
-    ///
     /// 获取电话服务记录与录音
     @inlinable
     public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {

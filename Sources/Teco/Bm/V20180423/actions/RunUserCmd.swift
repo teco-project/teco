@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bm {
     /// 运行自定义脚本
-    ///
-    /// 运行自定义脚本
     @inlinable
     public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunUserCmdResponse > {
         self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运行自定义脚本
-    ///
     /// 运行自定义脚本
     @inlinable
     public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {

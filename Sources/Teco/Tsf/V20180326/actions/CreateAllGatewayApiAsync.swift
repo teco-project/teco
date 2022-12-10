@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 一键导入API分组
-    ///
-    /// 一键导入API分组
     @inlinable
     public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAllGatewayApiAsyncResponse > {
         self.client.execute(action: "CreateAllGatewayApiAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 一键导入API分组
-    ///
     /// 一键导入API分组
     @inlinable
     public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAllGatewayApiAsyncResponse {

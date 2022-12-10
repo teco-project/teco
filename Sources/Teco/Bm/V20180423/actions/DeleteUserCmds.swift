@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bm {
     /// 删除自定义脚本
-    ///
-    /// 删除自定义脚本
     @inlinable
     public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
         self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除自定义脚本
-    ///
     /// 删除自定义脚本
     @inlinable
     public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {

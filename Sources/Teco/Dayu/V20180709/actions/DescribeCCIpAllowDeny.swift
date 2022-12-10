@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取CC的IP黑白名单
-    ///
-    /// 获取CC的IP黑白名单
     @inlinable
     public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCIpAllowDenyResponse > {
         self.client.execute(action: "DescribeCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取CC的IP黑白名单
-    ///
     /// 获取CC的IP黑白名单
     @inlinable
     public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCIpAllowDenyResponse {

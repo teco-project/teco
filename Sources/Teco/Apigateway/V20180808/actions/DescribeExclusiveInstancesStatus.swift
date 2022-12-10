@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apigateway {
     /// 查询专享实例列表（新）
-    ///
-    /// 查询专享实例列表（新）
     @inlinable
     public func describeExclusiveInstancesStatus(_ input: DescribeExclusiveInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstancesStatusResponse > {
         self.client.execute(action: "DescribeExclusiveInstancesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询专享实例列表（新）
-    ///
     /// 查询专享实例列表（新）
     @inlinable
     public func describeExclusiveInstancesStatus(_ input: DescribeExclusiveInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesStatusResponse {

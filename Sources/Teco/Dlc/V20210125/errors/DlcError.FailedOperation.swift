@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -36,6 +35,9 @@ extension TCDlcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,18 +56,22 @@ extension TCDlcError {
             FailedOperation(.anotherRequestProcessing)
         }
         
+        /// 请重试或联系我们
         public static var getPolicyFailed: FailedOperation {
             FailedOperation(.getPolicyFailed)
         }
         
+        /// 请重试，如重试也失败，请联系我们。
         public static var getUserInfoFailed: FailedOperation {
             FailedOperation(.getUserInfoFailed)
         }
         
+        /// 请重试或联系我们。
         public static var getWorkGroupInfoFailed: FailedOperation {
             FailedOperation(.getWorkGroupInfoFailed)
         }
         
+        /// 请重试或联系我们。
         public static var grantPolicyFailed: FailedOperation {
             FailedOperation(.grantPolicyFailed)
         }
@@ -75,6 +81,7 @@ extension TCDlcError {
             FailedOperation(.httpClientDoRequestFailed)
         }
         
+        /// 请重试或联系我们。
         public static var revokePolicyFailed: FailedOperation {
             FailedOperation(.revokePolicyFailed)
         }
@@ -99,10 +106,21 @@ extension TCDlcError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCDlcError.FailedOperation {
+    /// - Returns: ``TCDlcError`` that holds the same error and context.
     public func toDlcError() -> TCDlcError {
         guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCDlcError(code, context: self.context)
+    }
+}
+
+extension TCDlcError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

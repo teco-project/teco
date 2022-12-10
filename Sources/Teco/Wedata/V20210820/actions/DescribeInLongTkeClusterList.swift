@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 获取TKE集群列表
-    ///
-    /// 获取TKE集群列表
     @inlinable
     public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongTkeClusterListResponse > {
         self.client.execute(action: "DescribeInLongTkeClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取TKE集群列表
-    ///
     /// 获取TKE集群列表
     @inlinable
     public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongTkeClusterListResponse {

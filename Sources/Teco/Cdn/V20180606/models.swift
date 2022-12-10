@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -49,25 +48,22 @@ extension Cdn {
         /// requestHeader ：对请求头部进行访问控制
         /// url ： 对访问url进行访问控制
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// 封禁内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleContent: String?
+        public let ruleContent: String
         
         /// on ：正则匹配
         /// off ：字面匹配
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let regex: String?
+        public let regex: String
         
         /// RuleType为requestHeader时必填，否则不需要填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleHeader: String?
         
-        public init (ruleType: String?, ruleContent: String?, regex: String?, ruleHeader: String?) {
+        public init (ruleType: String, ruleContent: String, regex: String, ruleHeader: String?) {
             self.ruleType = ruleType
             self.ruleContent = ruleContent
             self.regex = regex
@@ -91,8 +87,7 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// default：源站未返回 max-age 情况下的缓存规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheType: String?
+        public let cacheType: String
         
         /// 对应类型下的匹配内容：
         /// all 时填充 *
@@ -101,16 +96,14 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// default 时填充 "no max-age"
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheContents: [String]?
+        public let cacheContents: [String]
         
         /// 缓存过期时间
         /// 单位为秒，最大可设置为 365 天
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheTime: Int64?
+        public let cacheTime: Int64
         
-        public init (cacheType: String?, cacheContents: [String]?, cacheTime: Int64?) {
+        public init (cacheType: String, cacheContents: [String], cacheTime: Int64) {
             self.cacheType = cacheType
             self.cacheContents = cacheContents
             self.cacheTime = cacheTime
@@ -424,35 +417,29 @@ extension Cdn {
     public struct AdvancedAuthenticationTypeE: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let signParam: String?
+        public let signParam: String
         
         /// uri串中Acl签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let aclSignParam: String?
+        public let aclSignParam: String
         
         /// uri串中开始时间字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let startTimeParam: String?
+        public let startTimeParam: String
         
         /// uri串中过期时间字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let expireTimeParam: String?
+        public let expireTimeParam: String
         
         /// 时间格式，dec
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let timeFormat: String?
+        public let timeFormat: String
         
-        public init (secretKey: String?, signParam: String?, aclSignParam: String?, startTimeParam: String?, expireTimeParam: String?, timeFormat: String?) {
+        public init (secretKey: String, signParam: String, aclSignParam: String, startTimeParam: String, expireTimeParam: String, timeFormat: String) {
             self.secretKey = secretKey
             self.signParam = signParam
             self.aclSignParam = aclSignParam
@@ -475,29 +462,25 @@ extension Cdn {
     public struct AdvancedAuthenticationTypeF: TCInputModel, TCOutputModel {
         /// uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let signParam: String?
+        public let signParam: String
         
         /// uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let timeParam: String?
+        public let timeParam: String
         
         /// uri串中Transaction字段名，字母，数字或下划线构成，同时必须以字母开头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let transactionParam: String?
+        public let transactionParam: String
         
         /// 用于计算签名的主密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// 用于计算签名的备选密钥，主密钥校验失败后再次尝试备选密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
         
-        public init (signParam: String?, timeParam: String?, transactionParam: String?, secretKey: String?, backupSecretKey: String?) {
+        public init (signParam: String, timeParam: String, transactionParam: String, secretKey: String, backupSecretKey: String?) {
             self.signParam = signParam
             self.timeParam = timeParam
             self.transactionParam = transactionParam
@@ -580,8 +563,7 @@ extension Cdn {
     public struct AdvancedCache: TCInputModel, TCOutputModel {
         /// 缓存过期规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheRules: [AdvanceCacheRule]?
+        public let cacheRules: [AdvanceCacheRule]
         
         /// 强制缓存配置
         /// on：开启
@@ -589,18 +571,16 @@ extension Cdn {
         /// 开启时，源站返回 no-cache、no-store 头部时，仍按照缓存过期规则进行节点缓存
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreCacheControl: String?
+        public let ignoreCacheControl: String
         
         /// 当源站返回Set-Cookie头部时，节点是否缓存该头部及body
         /// on：开启，不缓存该头部及body
         /// off：关闭，遵循用户自定义的节点缓存规则
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreSetCookie: String?
+        public let ignoreSetCookie: String
         
-        public init (cacheRules: [AdvanceCacheRule]?, ignoreCacheControl: String?, ignoreSetCookie: String?) {
+        public init (cacheRules: [AdvanceCacheRule], ignoreCacheControl: String, ignoreSetCookie: String) {
             self.cacheRules = cacheRules
             self.ignoreCacheControl = ignoreCacheControl
             self.ignoreSetCookie = ignoreSetCookie
@@ -964,8 +944,7 @@ extension Cdn {
         /// 计算签名的密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// 签名参数名设置
         /// 仅允许大小写字母、数字或下划线，长度 1~100 位，不能以数字开头
@@ -988,7 +967,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
         
-        public init (secretKey: String?, signParam: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String?) {
+        public init (secretKey: String, signParam: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String?) {
             self.secretKey = secretKey
             self.signParam = signParam
             self.expireTime = expireTime
@@ -1012,8 +991,7 @@ extension Cdn {
         /// 计算签名的密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
@@ -1032,7 +1010,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
         
-        public init (secretKey: String?, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String?) {
+        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, backupSecretKey: String?) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
@@ -1057,8 +1035,7 @@ extension Cdn {
         /// 计算签名的密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
@@ -1083,7 +1060,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
         
-        public init (secretKey: String?, expireTime: Int64, fileExtensions: [String], filterType: String, timeFormat: String?, backupSecretKey: String?) {
+        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, timeFormat: String?, backupSecretKey: String?) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
@@ -1110,8 +1087,7 @@ extension Cdn {
         /// 计算签名的密钥
         /// 仅允许大小写字母与数字，长度 6~32 位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
         /// 签名过期时间设置
         /// 单位为秒，最大可设置为 630720000
@@ -1143,7 +1119,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSecretKey: String?
         
-        public init (secretKey: String?, expireTime: Int64, fileExtensions: [String], filterType: String, signParam: String, timeParam: String, timeFormat: String, backupSecretKey: String?) {
+        public init (secretKey: String, expireTime: Int64, fileExtensions: [String], filterType: String, signParam: String, timeParam: String, timeFormat: String, backupSecretKey: String?) {
             self.secretKey = secretKey
             self.expireTime = expireTime
             self.fileExtensions = fileExtensions
@@ -1670,40 +1646,35 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 缓存过期时间设置
         /// 单位为秒，最大可设置为 365 天
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheTime: Int64?
+        public let cacheTime: Int64
         
         /// 高级缓存过期配置，开启时会对比源站返回的 max-age 值与 CacheRules 中设置的缓存过期时间，取最小值在节点进行缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let compareMaxAge: String?
+        public let compareMaxAge: String
         
         /// 强制缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreCacheControl: String?
+        public let ignoreCacheControl: String
         
         /// 当源站返回Set-Cookie头部时，节点是否缓存该头部及body
         /// on：开启，不缓存该头部及body
         /// off：关闭，遵循用户自定义的节点缓存规则
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreSetCookie: String?
+        public let ignoreSetCookie: String
         
-        public init (`switch`: String?, cacheTime: Int64?, compareMaxAge: String?, ignoreCacheControl: String?, ignoreSetCookie: String?) {
+        public init (`switch`: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
             self.`switch` = `switch`
             self.cacheTime = cacheTime
             self.compareMaxAge = compareMaxAge
@@ -1748,18 +1719,16 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 总是回源站校验
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let revalidate: String?
+        public let revalidate: String
         
-        public init (`switch`: String?, revalidate: String?) {
+        public init (`switch`: String, revalidate: String) {
             self.`switch` = `switch`
             self.revalidate = revalidate
         }
@@ -1848,14 +1817,13 @@ extension Cdn {
     public struct CacheTagKey: TCInputModel, TCOutputModel {
         /// 是否使用CacheTag作为CacheKey的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 自定义CacheTag的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String?, value: String?) {
+        public init (`switch`: String, value: String?) {
             self.`switch` = `switch`
             self.value = value
         }
@@ -2017,8 +1985,7 @@ extension Cdn {
         /// 客户端证书
         /// PEM 格式，需要进行 Base 64 编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certificate: String?
+        public let certificate: String
         
         /// 客户端证书名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2034,7 +2001,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployTime: Date?
         
-        public init (certificate: String?, certName: String?, expireTime: Date?, deployTime: Date?) {
+        public init (certificate: String, certName: String?, expireTime: Date?, deployTime: Date?) {
             self.certificate = certificate
             self.certName = certName
             self.expireTime = expireTime
@@ -2182,26 +2149,22 @@ extension Cdn {
     public struct CompressionRule: TCInputModel, TCOutputModel {
         /// true：需要设置为 ture，启用压缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let compress: Bool?
+        public let compress: Bool
         
         /// 触发压缩的文件长度最小值，单位为字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let minLength: Int64?
+        public let minLength: Int64
         
         /// 触发压缩的文件长度最大值，单位为字节数
         /// 最大可设置为 30MB
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let maxLength: Int64?
+        public let maxLength: Int64
         
         /// 文件压缩算法
         /// gzip：指定 GZIP 压缩
         /// brotli：指定Brotli压缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let algorithms: [String]?
+        public let algorithms: [String]
         
         /// 根据文件后缀类型压缩
         /// 例如 jpg、txt
@@ -2227,7 +2190,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
         
-        public init (compress: Bool?, minLength: Int64?, maxLength: Int64?, algorithms: [String]?, fileExtensions: [String]?, ruleType: String?, rulePaths: [String]?) {
+        public init (compress: Bool, minLength: Int64, maxLength: Int64, algorithms: [String], fileExtensions: [String]?, ruleType: String?, rulePaths: [String]?) {
             self.compress = compress
             self.minLength = minLength
             self.maxLength = maxLength
@@ -2252,14 +2215,13 @@ extension Cdn {
     public struct CookieKey: TCInputModel, TCOutputModel {
         /// on | off 是否使用Cookie作为Cache的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 使用的cookie，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String?, value: String?) {
+        public init (`switch`: String, value: String?) {
             self.`switch` = `switch`
             self.value = value
         }
@@ -3013,14 +2975,13 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 状态码重定向规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageRules: [ErrorPageRule]?
         
-        public init (`switch`: String?, pageRules: [ErrorPageRule]?) {
+        public init (`switch`: String, pageRules: [ErrorPageRule]?) {
             self.`switch` = `switch`
             self.pageRules = pageRules
         }
@@ -3116,8 +3077,7 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 访问强制跳转类型
         /// http：强制 http 跳转
@@ -3134,7 +3094,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let carryHeaders: String?
         
-        public init (`switch`: String?, redirectType: String?, redirectStatusCode: Int64?, carryHeaders: String?) {
+        public init (`switch`: String, redirectType: String?, redirectStatusCode: Int64?, carryHeaders: String?) {
             self.`switch` = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
@@ -3257,20 +3217,17 @@ extension Cdn {
         /// del：删除。删除指定的头部参数
         /// add：增加。增加指定的头部参数，默认允许重复添加，即重复添加相同的头部（注：重复添加可能会影响浏览器响应，请优先使用set操作）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerMode: String?
+        public let headerMode: String
         
         /// http 头部名称，最多可设置 100 个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerName: String?
+        public let headerName: String
         
         /// http 头部值，最多可设置 1000 个字符
         /// Mode 为 del 时非必填
         /// Mode 为 add/set 时必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerValue: String?
+        public let headerValue: String
         
         /// 规则类型：
         /// all：所有文件生效
@@ -3278,8 +3235,7 @@ extension Cdn {
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
@@ -3287,10 +3243,9 @@ extension Cdn {
         /// directory 时填充路径，如 /xxx/test/
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
-        public init (headerMode: String?, headerName: String?, headerValue: String?, ruleType: String?, rulePaths: [String]?) {
+        public init (headerMode: String, headerName: String, headerValue: String, ruleType: String, rulePaths: [String]) {
             self.headerMode = headerMode
             self.headerName = headerName
             self.headerValue = headerValue
@@ -3337,8 +3292,7 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// http2 配置开关
         /// on：开启
@@ -3391,7 +3345,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
         
-        public init (`switch`: String?, http2: String?, ocspStapling: String?, verifyClient: String?, certInfo: ServerCert, clientCertInfo: ClientCert, spdy: String?, sslStatus: String?, hsts: Hsts, tlsVersion: [String]?) {
+        public init (`switch`: String, http2: String?, ocspStapling: String?, verifyClient: String?, certInfo: ServerCert, clientCertInfo: ClientCert, spdy: String?, sslStatus: String?, hsts: Hsts, tlsVersion: [String]?) {
             self.`switch` = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
@@ -3527,15 +3481,13 @@ extension Cdn {
         /// whitelist：白名单
         /// blacklist：黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let filterType: String?
+        public let filterType: String
         
         /// IP 黑白名单列表
         /// 支持 X.X.X.X 形式 IP，或 /8、 /16、/24 形式网段
         /// 最多可填充 50 个白名单或 50 个黑名单
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let filters: [String]?
+        public let filters: [String]
         
         /// 规则类型：
         /// all：所有文件生效
@@ -3543,8 +3495,7 @@ extension Cdn {
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// RuleType 对应类型下的匹配内容：
         /// all 时填充 *
@@ -3552,10 +3503,9 @@ extension Cdn {
         /// directory 时填充路径，如 /xxx/test/
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
-        public init (filterType: String?, filters: [String]?, ruleType: String?, rulePaths: [String]?) {
+        public init (filterType: String, filters: [String], ruleType: String, rulePaths: [String]) {
             self.filterType = filterType
             self.filters = filters
             self.ruleType = ruleType
@@ -3641,10 +3591,9 @@ extension Cdn {
     public struct Ipv6Access: TCInputModel, TCOutputModel {
         /// 域名是否开启ipv6访问功能，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
-        public init (`switch`: String?) {
+        public init (`switch`: String) {
             self.`switch` = `switch`
         }
         
@@ -3661,8 +3610,7 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// index 时填充 /
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
         /// 规则类型：
         /// file：指定文件后缀生效
@@ -3670,32 +3618,27 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index：首页
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// 是否开启全路径缓存
         /// on：开启全路径缓存（即关闭参数忽略）
         /// off：关闭全路径缓存（即开启参数忽略）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let fullUrlCache: String?
+        public let fullUrlCache: String
         
         /// 是否忽略大小写缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreCase: String?
+        public let ignoreCase: String
         
         /// CacheKey中包含请求参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let queryString: RuleQueryString
         
         /// 路径缓存键标签，传 user
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleTag: String?
+        public let ruleTag: String
         
-        public init (rulePaths: [String]?, ruleType: String?, fullUrlCache: String?, ignoreCase: String?, queryString: RuleQueryString, ruleTag: String?) {
+        public init (rulePaths: [String], ruleType: String, fullUrlCache: String, ignoreCase: String, queryString: RuleQueryString, ruleTag: String) {
             self.rulePaths = rulePaths
             self.ruleType = ruleType
             self.fullUrlCache = fullUrlCache
@@ -3967,8 +3910,7 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// MaxAge 规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3978,7 +3920,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAgeCodeRule: MaxAgeCodeRule
         
-        public init (`switch`: String?, maxAgeRules: [MaxAgeRule]?, maxAgeCodeRule: MaxAgeCodeRule) {
+        public init (`switch`: String, maxAgeRules: [MaxAgeRule]?, maxAgeCodeRule: MaxAgeCodeRule) {
             self.`switch` = `switch`
             self.maxAgeRules = maxAgeRules
             self.maxAgeCodeRule = maxAgeCodeRule
@@ -4203,14 +4145,13 @@ extension Cdn {
     public struct OriginAuthentication: TCInputModel, TCOutputModel {
         /// 鉴权开关，on或off
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 鉴权类型A配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeA: OriginAuthenticationTypeA
         
-        public init (`switch`: String?, typeA: OriginAuthenticationTypeA) {
+        public init (`switch`: String, typeA: OriginAuthenticationTypeA) {
             self.`switch` = `switch`
             self.typeA = typeA
         }
@@ -4225,10 +4166,9 @@ extension Cdn {
     public struct OriginAuthenticationTypeA: TCInputModel, TCOutputModel {
         /// 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let secretKey: String?
+        public let secretKey: String
         
-        public init (secretKey: String?) {
+        public init (secretKey: String) {
             self.secretKey = secretKey
         }
         
@@ -4289,15 +4229,13 @@ extension Cdn {
     public struct OriginPullTimeout: TCInputModel, TCOutputModel {
         /// 回源建连超时时间，单位为秒，要求5~60之间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let connectTimeout: UInt64?
+        public let connectTimeout: UInt64
         
         /// 回源接收超时时间，单位为秒，要求10 ~ 300之间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let receiveTimeout: UInt64?
+        public let receiveTimeout: UInt64
         
-        public init (connectTimeout: UInt64?, receiveTimeout: UInt64?) {
+        public init (connectTimeout: UInt64, receiveTimeout: UInt64) {
             self.connectTimeout = connectTimeout
             self.receiveTimeout = receiveTimeout
         }
@@ -4567,13 +4505,11 @@ extension Cdn {
         /// false：关闭
         /// true：开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let regex: Bool?
+        public let regex: Bool
         
         /// 匹配的URL路径，仅支持Url路径，不支持参数。默认完全匹配，开启通配符“*”匹配后，最多支持5个通配符，最大长度为1024个字符。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let path: String?
+        public let path: String
         
         /// 路径匹配时的回源源站。暂不支持开了私有读写的COS源。不填写时沿用默认源站。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4604,7 +4540,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullMatch: Bool?
         
-        public init (regex: Bool?, path: String?, origin: String?, serverName: String?, originArea: String?, forwardUri: String?, requestHeaders: [HttpHeaderRule]?, fullMatch: Bool?) {
+        public init (regex: Bool, path: String, origin: String?, serverName: String?, originArea: String?, forwardUri: String?, requestHeaders: [HttpHeaderRule]?, fullMatch: Bool?) {
             self.regex = regex
             self.path = path
             self.origin = origin
@@ -4758,8 +4694,7 @@ extension Cdn {
     public struct QueryStringKey: TCInputModel, TCOutputModel {
         /// on | off CacheKey是否由QueryString组成
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 是否重新排序
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4773,7 +4708,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String?, reorder: String?, action: String?, value: String?) {
+        public init (`switch`: String, reorder: String?, action: String?, value: String?) {
             self.`switch` = `switch`
             self.reorder = reorder
             self.action = action
@@ -4856,18 +4791,16 @@ extension Cdn {
         /// directory：指定路径生效
         /// path：指定绝对路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// RuleType 对应类型下的匹配内容：
         /// file 时填充后缀名，如 jpg、txt
         /// directory 时填充路径，如 /xxx/test
         /// path 时填充绝对路径，如 /xxx/test.html
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
-        public init (`switch`: String, ruleType: String?, rulePaths: [String]?) {
+        public init (`switch`: String, ruleType: String, rulePaths: [String]) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.rulePaths = rulePaths
@@ -4994,8 +4927,7 @@ extension Cdn {
         /// on : 开启;
         /// off: 关闭；
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 远程鉴权规则配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5005,7 +4937,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
         
-        public init (`switch`: String?, remoteAuthenticationRules: [RemoteAuthenticationRule]?, server: String?) {
+        public init (`switch`: String, remoteAuthenticationRules: [RemoteAuthenticationRule]?, server: String?) {
             self.`switch` = `switch`
             self.remoteAuthenticationRules = remoteAuthenticationRules
             self.server = server
@@ -5224,14 +5156,13 @@ extension Cdn {
     public struct Revalidate: TCInputModel, TCOutputModel {
         /// on | off 是否总是回源校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 只在特定请求路径回源站校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
         
-        public init (`switch`: String?, path: String?) {
+        public init (`switch`: String, path: String?) {
             self.`switch` = `switch`
             self.path = path
         }
@@ -5253,8 +5184,7 @@ extension Cdn {
         /// path 时填充绝对路径，如 /xxx/test.html
         /// index 时填充 /
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
         /// 规则类型：
         /// all：所有文件生效
@@ -5263,15 +5193,13 @@ extension Cdn {
         /// path：指定绝对路径生效
         /// index：首页
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// 缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let cacheConfig: RuleCacheConfig
         
-        public init (rulePaths: [String]?, ruleType: String?, cacheConfig: RuleCacheConfig) {
+        public init (rulePaths: [String], ruleType: String, cacheConfig: RuleCacheConfig) {
             self.rulePaths = rulePaths
             self.ruleType = ruleType
             self.cacheConfig = cacheConfig
@@ -5288,17 +5216,14 @@ extension Cdn {
     public struct RuleCacheConfig: TCInputModel, TCOutputModel {
         /// 缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let cache: CacheConfigCache
         
         /// 不缓存配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let noCache: CacheConfigNoCache
         
         /// 遵循源站配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let followOrigin: CacheConfigFollowOrigin
         
         public init (cache: CacheConfigCache, noCache: CacheConfigNoCache, followOrigin: CacheConfigFollowOrigin) {
@@ -5340,20 +5265,17 @@ extension Cdn {
     public struct RuleQueryString: TCInputModel, TCOutputModel {
         /// on | off CacheKey是否由QueryString组成
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// includeCustom 包含部分url参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let action: String?
+        public let action: String
         
         /// 使用/排除的url参数数组，';' 分割
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let value: String?
+        public let value: String
         
-        public init (`switch`: String?, action: String?, value: String?) {
+        public init (`switch`: String, action: String, value: String) {
             self.`switch` = `switch`
             self.action = action
             self.value = value
@@ -6052,10 +5974,9 @@ extension Cdn {
     public struct SchemeKey: TCInputModel, TCOutputModel {
         /// on | off 是否使用scheme作为cache key的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
-        public init (`switch`: String?) {
+        public init (`switch`: String) {
             self.`switch` = `switch`
         }
         
@@ -6080,10 +6001,9 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
-        public init (`switch`: String?) {
+        public init (`switch`: String) {
             self.`switch` = `switch`
         }
         
@@ -6184,8 +6104,7 @@ extension Cdn {
     public struct SimpleCache: TCInputModel, TCOutputModel {
         /// 缓存过期时间规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cacheRules: [SimpleCacheRule]?
+        public let cacheRules: [SimpleCacheRule]
         
         /// 遵循源站 Cache-Control: max-age 配置
         /// on：开启
@@ -6193,38 +6112,34 @@ extension Cdn {
         /// 开启后，未能匹配 CacheRules 规则的资源将根据源站返回的 max-age 值进行节点缓存；匹配了 CacheRules 规则的资源将按照 CacheRules 中设置的缓存过期时间在节点进行缓存
         /// 与 CompareMaxAge 冲突，不能同时开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let followOrigin: String?
+        public let followOrigin: String
         
         /// 强制缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreCacheControl: String?
+        public let ignoreCacheControl: String
         
         /// 忽略源站的Set-Cookie头部
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ignoreSetCookie: String?
+        public let ignoreSetCookie: String
         
         /// 高级缓存过期配置，开启时会对比源站返回的 max-age 值与 CacheRules 中设置的缓存过期时间，取最小值在节点进行缓存
         /// on：开启
         /// off：关闭
         /// 默认为关闭状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let compareMaxAge: String?
+        public let compareMaxAge: String
         
         /// 总是回源站校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revalidate: Revalidate
         
-        public init (cacheRules: [SimpleCacheRule]?, followOrigin: String?, ignoreCacheControl: String?, ignoreSetCookie: String?, compareMaxAge: String?, revalidate: Revalidate) {
+        public init (cacheRules: [SimpleCacheRule], followOrigin: String, ignoreCacheControl: String, ignoreSetCookie: String, compareMaxAge: String, revalidate: Revalidate) {
             self.cacheRules = cacheRules
             self.followOrigin = followOrigin
             self.ignoreCacheControl = ignoreCacheControl
@@ -6390,14 +6305,13 @@ extension Cdn {
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 状态码缓存过期规则明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheRules: [StatusCodeCacheRule]?
         
-        public init (`switch`: String?, cacheRules: [StatusCodeCacheRule]?) {
+        public init (`switch`: String, cacheRules: [StatusCodeCacheRule]?) {
             self.`switch` = `switch`
             self.cacheRules = cacheRules
         }
@@ -6449,15 +6363,13 @@ extension Cdn {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagKey: String?
+        public let tagKey: String
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagValue: String?
+        public let tagValue: String
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -6791,14 +6703,13 @@ extension Cdn {
     public struct UserAgentFilter: TCInputModel, TCOutputModel {
         /// 开关，on或off
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// UA黑白名单生效规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [UserAgentFilterRule]?
         
-        public init (`switch`: String?, filterRules: [UserAgentFilterRule]?) {
+        public init (`switch`: String, filterRules: [UserAgentFilterRule]?) {
             self.`switch` = `switch`
             self.filterRules = filterRules
         }
@@ -6817,25 +6728,21 @@ extension Cdn {
         /// directory: 根据目录生效
         /// path: 根据完整访问路径生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ruleType: String?
+        public let ruleType: String
         
         /// 访问路径生效内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let rulePaths: [String]?
+        public let rulePaths: [String]
         
         /// UserAgent列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let userAgents: [String]?
+        public let userAgents: [String]
         
         /// 黑名单或白名单，blacklist或whitelist
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let filterType: String?
+        public let filterType: String
         
-        public init (ruleType: String?, rulePaths: [String]?, userAgents: [String]?, filterType: String?) {
+        public init (ruleType: String, rulePaths: [String], userAgents: [String], filterType: String) {
             self.ruleType = ruleType
             self.rulePaths = rulePaths
             self.userAgents = userAgents

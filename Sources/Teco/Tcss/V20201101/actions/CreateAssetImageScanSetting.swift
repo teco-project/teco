@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 添加容器安全镜像扫描设置
-    ///
-    /// 添加容器安全镜像扫描设置
     @inlinable
     public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanSettingResponse > {
         self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加容器安全镜像扫描设置
-    ///
     /// 添加容器安全镜像扫描设置
     @inlinable
     public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {

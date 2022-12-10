@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Msp {
     /// 注册迁移任务
-    ///
-    /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterMigrationTaskResponse > {
         self.client.execute(action: "RegisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 注册迁移任务
-    ///
     /// 注册迁移任务
     @inlinable
     public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {

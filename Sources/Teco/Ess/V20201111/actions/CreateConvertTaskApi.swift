@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ess {
     /// 创建文件转换任务
-    ///
-    /// 创建文件转换任务
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConvertTaskApiResponse > {
         self.client.execute(action: "CreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建文件转换任务
-    ///
     /// 创建文件转换任务
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {

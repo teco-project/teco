@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Sts {
     /// 申请OIDC角色临时密钥
-    ///
-    /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
         self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 申请OIDC角色临时密钥
-    ///
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {

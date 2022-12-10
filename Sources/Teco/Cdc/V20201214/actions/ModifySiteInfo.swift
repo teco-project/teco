@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 修改机房信息
-    ///
-    /// 修改机房信息
     @inlinable
     public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteInfoResponse > {
         self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改机房信息
-    ///
     /// 修改机房信息
     @inlinable
     public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {

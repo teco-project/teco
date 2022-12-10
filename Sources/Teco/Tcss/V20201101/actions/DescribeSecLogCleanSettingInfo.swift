@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询安全日志清理设置详情
-    ///
-    /// 查询安全日志清理设置详情
     @inlinable
     public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogCleanSettingInfoResponse > {
         self.client.execute(action: "DescribeSecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询安全日志清理设置详情
-    ///
     /// 查询安全日志清理设置详情
     @inlinable
     public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogCleanSettingInfoResponse {

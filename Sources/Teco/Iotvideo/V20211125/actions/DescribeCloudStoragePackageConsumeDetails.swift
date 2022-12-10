@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Iotvideo {
     /// 获取云存套餐包消耗详细记录
-    ///
-    /// 获取云存套餐包消耗详细记录
     @inlinable
     public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeDetailsResponse > {
         self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取云存套餐包消耗详细记录
-    ///
     /// 获取云存套餐包消耗详细记录
     @inlinable
     public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {

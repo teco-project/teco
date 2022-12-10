@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -87,45 +86,37 @@ extension Cfw {
     public struct AssociatedInstanceInfo: TCInputModel, TCOutputModel {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let instanceId: String?
+        public let instanceId: String
         
         /// 实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let instanceName: String?
+        public let instanceName: String
         
         /// 实例类型，3是cvm实例,4是clb实例,5是eni实例,6是云数据库
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: UInt64?
+        public let type: UInt64
         
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let vpcId: String?
+        public let vpcId: String
         
         /// 私有网络名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let vpcName: String?
+        public let vpcName: String
         
         /// 公网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let publicIp: String?
+        public let publicIp: String
         
         /// 内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let ip: String?
+        public let ip: String
         
         /// 关联安全组数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let securityGroupCount: UInt64?
+        public let securityGroupCount: UInt64
         
-        public init (instanceId: String?, instanceName: String?, type: UInt64?, vpcId: String?, vpcName: String?, publicIp: String?, ip: String?, securityGroupCount: UInt64?) {
+        public init (instanceId: String, instanceName: String, type: UInt64, vpcId: String, vpcName: String, publicIp: String, ip: String, securityGroupCount: UInt64) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.type = type
@@ -743,48 +734,39 @@ extension Cfw {
     public struct SecurityGroupBothWayInfo: TCInputModel, TCOutputModel {
         /// 执行顺序
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let orderIndex: UInt64?
+        public let orderIndex: UInt64
         
         /// 访问源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let sourceId: String?
+        public let sourceId: String
         
         /// 访问源类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let sourceType: UInt64?
+        public let sourceType: UInt64
         
         /// 访问目的
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let targetId: String?
+        public let targetId: String
         
         /// 访问目的类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let targetType: UInt64?
+        public let targetType: UInt64
         
         /// 协议
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `protocol`: String?
+        public let `protocol`: String
         
         /// 目的端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: String?
+        public let port: String
         
         /// 策略, 1：阻断，2：放行
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let strategy: UInt64?
+        public let strategy: UInt64
         
         /// 方向，0：出站，1：入站，默认1
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let direction: UInt64?
+        public let direction: UInt64
         
         /// 地域
         public let region: String
@@ -836,7 +818,7 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
         
-        public init (orderIndex: UInt64?, sourceId: String?, sourceType: UInt64?, targetId: String?, targetType: UInt64?, `protocol`: String?, port: String?, strategy: UInt64?, direction: UInt64?, region: String, detail: String?, status: UInt64?, isNew: UInt64?, bothWay: UInt64?, vpcId: String?, subnetId: String?, instanceName: String?, publicIp: String?, privateIp: String?, cidr: String?, serviceTemplateId: String?, protocolPortType: UInt64?) {
+        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, direction: UInt64, region: String, detail: String?, status: UInt64?, isNew: UInt64?, bothWay: UInt64?, vpcId: String?, subnetId: String?, instanceName: String?, publicIp: String?, privateIp: String?, cidr: String?, serviceTemplateId: String?, protocolPortType: UInt64?) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType

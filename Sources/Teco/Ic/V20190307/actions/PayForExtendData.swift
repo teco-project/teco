@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ic {
     /// 购买套外流量包
-    ///
-    /// 购买套外流量包
     @inlinable
     public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayForExtendDataResponse > {
         self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 购买套外流量包
-    ///
     /// 购买套外流量包
     @inlinable
     public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {

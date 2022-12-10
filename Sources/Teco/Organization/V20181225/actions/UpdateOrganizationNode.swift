@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Organization {
     /// 更新企业组织单元
-    ///
-    /// 更新企业组织单元
     @inlinable
     public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationNodeResponse > {
         self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新企业组织单元
-    ///
     /// 更新企业组织单元
     @inlinable
     public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 删除cmq主题
-    ///
-    /// 删除cmq主题
     @inlinable
     public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCmqTopicResponse > {
         self.client.execute(action: "DeleteCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除cmq主题
-    ///
     /// 删除cmq主题
     @inlinable
     public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {

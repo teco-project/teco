@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -364,10 +363,9 @@ extension Waf {
         
         /// cdc的集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
-        public init (id: String, name: String?) {
+        public init (id: String, name: String) {
             self.id = id
             self.name = name
         }
@@ -385,10 +383,9 @@ extension Waf {
         
         /// 该地域对应的集群信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let clusters: [CdcCluster]?
+        public let clusters: [CdcCluster]
         
-        public init (region: String, clusters: [CdcCluster]?) {
+        public init (region: String, clusters: [CdcCluster]) {
             self.region = region
             self.clusters = clusters
         }

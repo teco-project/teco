@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 会员在途充值(经第三方支付渠道)接口
-    ///
-    /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
     public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RechargeByThirdPayResponse > {
         self.client.execute(action: "RechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 会员在途充值(经第三方支付渠道)接口
-    ///
     /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
     public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeByThirdPayResponse {

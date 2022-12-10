@@ -19,6 +19,9 @@ public struct TCTmsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -43,11 +46,15 @@ public struct TCTmsError: TCErrorType {
     }
     
     /// 请求的文本长度超过限制。
+    ///
+    /// 咨询运营人员，获取接口的文本入参长度限制，调整文本入参长度。
     public static var invalidParameterValue_ErrTextContentLen: TCTmsError {
         TCTmsError(.invalidParameterValue_ErrTextContentLen)
     }
     
     /// 请求的文本格式错误（需要base64编码格式的文本）。
+    ///
+    /// 对请求的文本进行base64编码
     public static var invalidParameterValue_ErrTextContentType: TCTmsError {
         TCTmsError(.invalidParameterValue_ErrTextContentType)
     }
@@ -93,5 +100,15 @@ extension TCTmsError: Equatable {
 extension TCTmsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTmsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

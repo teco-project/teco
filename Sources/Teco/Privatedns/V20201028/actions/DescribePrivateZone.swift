@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Privatedns {
     /// 获取私有域信息
-    ///
-    /// 获取私有域信息
     @inlinable
     public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneResponse > {
         self.client.execute(action: "DescribePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取私有域信息
-    ///
     /// 获取私有域信息
     @inlinable
     public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneResponse {

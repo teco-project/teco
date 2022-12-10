@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 删除新企业安全组规则
-    ///
-    /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
         self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除新企业安全组规则
-    ///
     /// 删除新企业安全组规则
     @inlinable
     public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -43,6 +42,9 @@ extension TCDtsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -62,6 +64,8 @@ extension TCDtsError {
         }
         
         /// 内部调度系统错误。
+        ///
+        /// 内部调度系统错误
         public static var celeryError: InternalError {
             InternalError(.celeryError)
         }
@@ -106,6 +110,8 @@ extension TCDtsError {
         }
         
         /// 用户余额不足。
+        ///
+        /// 充值后可继续购买。
         public static var notEnoughMoneyError: InternalError {
             InternalError(.notEnoughMoneyError)
         }
@@ -116,11 +122,15 @@ extension TCDtsError {
         }
         
         /// 内部错误。
+        ///
+        /// 联系客服
         public static var undefinedError: InternalError {
             InternalError(.undefinedError)
         }
         
         /// 未知的内部错误。
+        ///
+        /// 请联系客服。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
@@ -145,10 +155,21 @@ extension TCDtsError.InternalError: CustomStringConvertible {
 }
 
 extension TCDtsError.InternalError {
+    /// - Returns: ``TCDtsError`` that holds the same error and context.
     public func toDtsError() -> TCDtsError {
         guard let code = TCDtsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCDtsError(code, context: self.context)
+    }
+}
+
+extension TCDtsError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

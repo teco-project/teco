@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 删除弹性网卡
-    ///
-    /// 删除弹性网卡
     @inlinable
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
         self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除弹性网卡
-    ///
     /// 删除弹性网卡
     @inlinable
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {

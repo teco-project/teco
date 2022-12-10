@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 取消AI模型申请
-    ///
-    /// 取消AI模型申请
     @inlinable
     public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAIModelApplicationResponse > {
         self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消AI模型申请
-    ///
     /// 取消AI模型申请
     @inlinable
     public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {

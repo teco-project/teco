@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 披露策略Policy管理列表
-    ///
-    /// 披露策略Policy管理列表
     @inlinable
     public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
         self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 披露策略Policy管理列表
-    ///
     /// 披露策略Policy管理列表
     @inlinable
     public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {

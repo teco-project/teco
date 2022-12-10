@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 设置DDoS防护的协议封禁配置
-    ///
-    /// 设置DDoS防护的协议封禁配置
     @inlinable
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
         self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置DDoS防护的协议封禁配置
-    ///
     /// 设置DDoS防护的协议封禁配置
     @inlinable
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {

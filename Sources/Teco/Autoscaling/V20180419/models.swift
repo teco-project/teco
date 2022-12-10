@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -554,8 +553,7 @@ extension As {
         /// <br><li> 不支持 Windows 实例。
         /// <br><li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let hostName: String?
+        public let hostName: String
         
         /// 云服务器主机名的风格，取值范围包括 ORIGINAL 和  UNIQUE，默认为 ORIGINAL。
         /// <br><li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
@@ -563,7 +561,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNameStyle: String?
         
-        public init (hostName: String?, hostNameStyle: String?) {
+        public init (hostName: String, hostNameStyle: String?) {
             self.hostName = hostName
             self.hostNameStyle = hostNameStyle
         }
@@ -1013,8 +1011,7 @@ extension As {
     public struct LifecycleCommand: TCInputModel, TCOutputModel {
         /// 远程命令ID。若选择执行命令，则此项必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let commandId: String?
+        public let commandId: String
         
         /// 自定义参数。字段类型为 json encoded string。如：{"varA": "222"}。
         /// key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
@@ -1023,7 +1020,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parameters: String?
         
-        public init (commandId: String?, parameters: String?) {
+        public init (commandId: String, parameters: String?) {
             self.commandId = commandId
             self.parameters = parameters
         }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 禁用用户SSO
-    ///
-    /// 禁用用户SSO
     @inlinable
     public func disableUserSSO(_ input: DisableUserSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUserSSOResponse > {
         self.client.execute(action: "DisableUserSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 禁用用户SSO
-    ///
     /// 禁用用户SSO
     @inlinable
     public func disableUserSSO(_ input: DisableUserSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserSSOResponse {

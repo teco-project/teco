@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// 删除工作组
-    ///
-    /// 删除工作组
     @inlinable
     public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkGroupResponse > {
         self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除工作组
-    ///
     /// 删除工作组
     @inlinable
     public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {

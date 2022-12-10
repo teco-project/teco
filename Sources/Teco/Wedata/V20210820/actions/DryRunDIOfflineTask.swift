@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 调试运行集成任务
-    ///
-    /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
         self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 调试运行集成任务
-    ///
     /// 调试运行集成任务
     @inlinable
     public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {

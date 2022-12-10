@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssa {
     /// 资产安全页资产详情
-    ///
-    /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(_ input: DescribeAssetDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDetailResponse > {
         self.client.execute(action: "DescribeAssetDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 资产安全页资产详情
-    ///
     /// 资产安全页资产详情
     @inlinable
     public func describeAssetDetail(_ input: DescribeAssetDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDetailResponse {

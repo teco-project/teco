@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 列出用户关联的策略（包括随组关联）
-    ///
-    /// 列出用户关联的策略（包括随组关联）
     @inlinable
     public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserAllPoliciesResponse > {
         self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出用户关联的策略（包括随组关联）
-    ///
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
     public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {

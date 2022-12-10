@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 编辑配置
-    ///
-    /// 编辑配置
     @inlinable
     public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigDataResponse > {
         self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑配置
-    ///
     /// 编辑配置
     @inlinable
     public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {

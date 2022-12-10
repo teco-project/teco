@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 查询waf攻击日志
-    ///
-    /// 查询waf攻击日志
     @inlinable
     public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesLogResponse > {
         self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询waf攻击日志
-    ///
     /// 查询waf攻击日志
     @inlinable
     public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {

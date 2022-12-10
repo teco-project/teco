@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -105,6 +104,9 @@ extension TCCvmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -159,6 +161,8 @@ extension TCCvmError {
         }
         
         /// SSD云硬盘为数据盘时，购买大小不得小于100GB
+        ///
+        /// 无
         public static var cloudSsdDataDiskSizeTooSmall: InvalidParameterValue {
             InvalidParameterValue(.cloudSsdDataDiskSizeTooSmall)
         }
@@ -183,6 +187,7 @@ extension TCCvmError {
             InvalidParameterValue(.duplicate)
         }
         
+        /// 入参中包含重复的标签信息，请删除重复的标签信息后重试。
         public static var duplicateTags: InvalidParameterValue {
             InvalidParameterValue(.duplicateTags)
         }
@@ -198,6 +203,8 @@ extension TCCvmError {
         }
         
         /// HostName参数值不合法
+        ///
+        /// 无
         public static var illegalHostName: InvalidParameterValue {
             InvalidParameterValue(.illegalHostName)
         }
@@ -217,6 +224,8 @@ extension TCCvmError {
         }
         
         /// 指定机型不存在
+        ///
+        /// 无
         public static var instanceTypeNotFound: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeNotFound)
         }
@@ -272,6 +281,8 @@ extension TCCvmError {
         }
         
         /// 镜像不允许执行该操作
+        ///
+        /// 无
         public static var invalidImageId: InvalidParameterValue {
             InvalidParameterValue(.invalidImageId)
         }
@@ -287,6 +298,8 @@ extension TCCvmError {
         }
         
         /// 镜像被其他操作占用，请检查，并稍后重试。
+        ///
+        /// 无
         public static var invalidImageState: InvalidParameterValue {
             InvalidParameterValue(.invalidImageState)
         }
@@ -297,6 +310,8 @@ extension TCCvmError {
         }
         
         /// IP地址不符合规范
+        ///
+        /// 无
         public static var invalidIpFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidIpFormat)
         }
@@ -337,16 +352,22 @@ extension TCCvmError {
         }
         
         /// 时间格式不合法。
+        ///
+        /// 暂无
         public static var invalidTimeFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTimeFormat)
         }
         
         /// UserData格式错误, 需要base64编码格式
+        ///
+        /// 无
         public static var invalidUserDataFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidUserDataFormat)
         }
         
         /// 无效的模糊查询字符串。
+        ///
+        /// 请使用非空的模糊查询串，比如“myIns”
         public static var invalidVagueName: InvalidParameterValue {
             InvalidParameterValue(.invalidVagueName)
         }
@@ -367,6 +388,8 @@ extension TCCvmError {
         }
         
         /// 不支持删除默认启动模板版本。
+        ///
+        /// 暂无
         public static var launchTemplateDefaultVersion: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateDefaultVersion)
         }
@@ -387,6 +410,8 @@ extension TCCvmError {
         }
         
         /// 指定的实例启动模板id不存在。
+        ///
+        /// 暂无
         public static var launchTemplateIdVerSetAlready: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdVerSetAlready)
         }
@@ -412,6 +437,8 @@ extension TCCvmError {
         }
         
         /// 参数值必须为开启DHCP的VPC
+        ///
+        /// 无
         public static var mustDhcpEnabledVpc: InvalidParameterValue {
             InvalidParameterValue(.mustDhcpEnabledVpc)
         }
@@ -432,16 +459,22 @@ extension TCCvmError {
         }
         
         /// 快照ID不合要求，请提供规范的快照ID，类似snap-xxxxxxxx，字母x代表小写字符或者数字
+        ///
+        /// 无
         public static var snapshotIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.snapshotIdMalformed)
         }
         
         /// 子网ID不合要求，请提供规范的子网ID，类似subnet-xxxxxxxx，字母x代表小写字符或者数字
+        ///
+        /// 无
         public static var subnetIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.subnetIdMalformed)
         }
         
         /// 创建失败，您指定的子网不存在，请您重新指定
+        ///
+        /// 无
         public static var subnetNotExist: InvalidParameterValue {
             InvalidParameterValue(.subnetNotExist)
         }
@@ -451,6 +484,7 @@ extension TCCvmError {
             InvalidParameterValue(.tagKeyNotFound)
         }
         
+        /// 输入的标签信息绑定的资源将超过标签配额上线，请降低CVM购买数量或在标签控制台提高标签配额。
         public static var tagQuotaLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagQuotaLimitExceeded)
         }
@@ -471,6 +505,8 @@ extension TCCvmError {
         }
         
         /// VPC ID<code>xxx</code>不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
+        ///
+        /// 无
         public static var vpcIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.vpcIdMalformed)
         }
@@ -481,6 +517,8 @@ extension TCCvmError {
         }
         
         /// VPC网络与实例不在同一可用区
+        ///
+        /// 无
         public static var vpcIdZoneIdNotMatch: InvalidParameterValue {
             InvalidParameterValue(.vpcIdZoneIdNotMatch)
         }
@@ -491,6 +529,8 @@ extension TCCvmError {
         }
         
         /// 请求不支持该可用区
+        ///
+        /// 无
         public static var zoneNotSupported: InvalidParameterValue {
             InvalidParameterValue(.zoneNotSupported)
         }
@@ -515,10 +555,21 @@ extension TCCvmError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCCvmError.InvalidParameterValue {
+    /// - Returns: ``TCCvmError`` that holds the same error and context.
     public func toCvmError() -> TCCvmError {
         guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCvmError(code, context: self.context)
+    }
+}
+
+extension TCCvmError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

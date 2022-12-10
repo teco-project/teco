@@ -68,6 +68,9 @@ public struct TCEssbasicError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -97,71 +100,99 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 帐号已存在并实名。
+    ///
+    /// 请确定账号是否重复，再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AccountAlreadyExists: TCEssbasicError {
         TCEssbasicError(.failedOperation_AccountAlreadyExists)
     }
     
     /// 实名认证错误。
+    ///
+    /// 当前用户实名认证失败，优先检查参数及重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AccountVerifyFail: TCEssbasicError {
         TCEssbasicError(.failedOperation_AccountVerifyFail)
     }
     
     /// 鉴权失败。
+    ///
+    /// 请检查参数，确保账号信息正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_AuthFail: TCEssbasicError {
         TCEssbasicError(.failedOperation_AuthFail)
     }
     
     /// 加锁失败。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_DLockFailed: TCEssbasicError {
         TCEssbasicError(.failedOperation_DLockFailed)
     }
     
     /// 已绑定其它手机号码或手机号码已被其它终端(微信)绑定。
+    ///
+    /// 请检查当前账号是否已绑定手机号或当前手机号是否已经被使用。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_ErrBindingRepeated: TCEssbasicError {
         TCEssbasicError(.failedOperation_ErrBindingRepeated)
     }
     
     /// 生成企业印章失败。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的RequestId。
     public static var failedOperation_GenerateOrgSeal: TCEssbasicError {
         TCEssbasicError(.failedOperation_GenerateOrgSeal)
     }
     
     /// 生成个人印章失败。
+    ///
+    /// 请检查生成个人印章参数，确保用户，印章信息正确；请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_GenerateUserSeal: TCEssbasicError {
         TCEssbasicError(.failedOperation_GenerateUserSeal)
     }
     
     /// 无角色。
+    ///
+    /// 无相关角色权限，请联系管理员进行授权操作。
     public static var failedOperation_NoRole: TCEssbasicError {
         TCEssbasicError(.failedOperation_NoRole)
     }
     
     /// 注册的OpenId已存在。
+    ///
+    /// 当前用户已经存在, 请确认。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_OpenIdAlreadyExists: TCEssbasicError {
         TCEssbasicError(.failedOperation_OpenIdAlreadyExists)
     }
     
     /// 注册的企业证件号码已存在。
+    ///
+    /// 注册的企业证件号码已存在，请确认后再重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_OrgIdCardNumberAlreadyExists: TCEssbasicError {
         TCEssbasicError(.failedOperation_OrgIdCardNumberAlreadyExists)
     }
     
     /// 请求的次数超过了频率限制。
+    ///
+    /// 请求的次数超过了频率限制。请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_RequestLimitExceeded: TCEssbasicError {
         TCEssbasicError(.failedOperation_RequestLimitExceeded)
     }
     
     /// 今日验证码发送量已超出限制，请联系工作人员处理。
+    ///
+    /// 今日验证码发送量已超出限制，请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_RequestLimitExceeded1D: TCEssbasicError {
         TCEssbasicError(.failedOperation_RequestLimitExceeded1D)
     }
     
     /// 本小时验证码发送数量超出限制，请稍后重试。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_RequestLimitExceeded1H: TCEssbasicError {
         TCEssbasicError(.failedOperation_RequestLimitExceeded1H)
     }
     
     /// 短信发送频率超出限制，请等待一分钟后重试。
+    ///
+    /// 短信发送频率超出限制，请等待一分钟后重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var failedOperation_RequestLimitExceeded30S: TCEssbasicError {
         TCEssbasicError(.failedOperation_RequestLimitExceeded30S)
     }
@@ -172,66 +203,92 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 其他API错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Api: TCEssbasicError {
         TCEssbasicError(.internalError_Api)
     }
     
     /// 缓存错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Cache: TCEssbasicError {
         TCEssbasicError(.internalError_Cache)
     }
     
     /// 回调错误。
+    ///
+    /// 优先检查参数、回调地址的正确性。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Callback: TCEssbasicError {
         TCEssbasicError(.internalError_Callback)
     }
     
     /// 数据库错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Db: TCEssbasicError {
         TCEssbasicError(.internalError_Db)
     }
     
     /// 解密错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Decryption: TCEssbasicError {
         TCEssbasicError(.internalError_Decryption)
     }
     
     /// 加密错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Encryption: TCEssbasicError {
         TCEssbasicError(.internalError_Encryption)
     }
     
     /// 生成唯一ID错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_GenerateId: TCEssbasicError {
         TCEssbasicError(.internalError_GenerateId)
     }
     
     /// MQ错误。
+    ///
+    /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
     public static var internalError_Mq: TCEssbasicError {
         TCEssbasicError(.internalError_Mq)
     }
     
     /// Pdf错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Pdf: TCEssbasicError {
         TCEssbasicError(.internalError_Pdf)
     }
     
     /// 序列化错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Serialize: TCEssbasicError {
         TCEssbasicError(.internalError_Serialize)
     }
     
     /// 存储错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_Storage: TCEssbasicError {
         TCEssbasicError(.internalError_Storage)
     }
     
     /// 第三方错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_ThirdParty: TCEssbasicError {
         TCEssbasicError(.internalError_ThirdParty)
     }
     
     /// 反序列化错误。
+    ///
+    /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var internalError_UnSerialize: TCEssbasicError {
         TCEssbasicError(.internalError_UnSerialize)
     }
@@ -247,16 +304,22 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 重复添加签署人。
+    ///
+    /// 请参考错误信息，检查合同签署人手机号或身份证号，是否唯一。
     public static var invalidParameter_BizApproverAlreadyExists: TCEssbasicError {
         TCEssbasicError(.invalidParameter_BizApproverAlreadyExists)
     }
     
     /// 无效的意愿确认票据。
+    ///
+    /// 请输入正确的验证码，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_InvalidVerifyResult: TCEssbasicError {
         TCEssbasicError(.invalidParameter_InvalidVerifyResult)
     }
     
     /// 状态异常。
+    ///
+    /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_Status: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Status)
     }
@@ -277,46 +340,64 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 应用号已被禁止。
+    ///
+    /// 当前应用号已经被禁止，请联系运营人员处理。
     public static var operationDenied_BannedApplication: TCEssbasicError {
         TCEssbasicError(.operationDenied_BannedApplication)
     }
     
     /// 没有API权限。
+    ///
+    /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
     public static var operationDenied_NoApiAuth: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoApiAuth)
     }
     
     /// 未通过补充实名。
+    ///
+    /// 请检查补充实名信息正确性。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoExtraVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoExtraVerify)
     }
     
     /// 未通过个人实名。
+    ///
+    /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoIdentityVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoIdentityVerify)
     }
     
     /// 未在腾讯云实名打款。
+    ///
+    /// 请登录腾讯云官网进行实名打款。
     public static var operationDenied_NoPaymentVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoPaymentVerify)
     }
     
     /// 没有登录态需要登录。
+    ///
+    /// 当前用户没有登录，请登录后进行重试。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoSession: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoSession)
     }
     
     /// 未在腾讯云实名。
+    ///
+    /// 未在腾讯云实名，请登录腾讯云官网进行实名。https://cloud.tencent.com/
     public static var operationDenied_NoVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoVerify)
     }
     
     /// 非企业主账号。
+    ///
+    /// 请检查参数，确定是主企业账号。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NotOwnerUin: TCEssbasicError {
         TCEssbasicError(.operationDenied_NotOwnerUin)
     }
     
     /// 用户与企业不对应。
+    ///
+    /// 请确认用户是否已经在企业中。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_UserNotInOrganization: TCEssbasicError {
         TCEssbasicError(.operationDenied_UserNotInOrganization)
     }
@@ -342,6 +423,8 @@ public struct TCEssbasicError: TCErrorType {
     }
     
     /// 未找到对应流程。
+    ///
+    /// 请检查流程Id是否存在。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var resourceNotFound_Flow: TCEssbasicError {
         TCEssbasicError(.resourceNotFound_Flow)
     }
@@ -387,5 +470,15 @@ extension TCEssbasicError: Equatable {
 extension TCEssbasicError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCEssbasicError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

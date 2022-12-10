@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ame {
     /// 获取直播互动曲库歌手分类信息
-    ///
-    /// 获取直播互动曲库歌手分类信息
     @inlinable
     public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerCategoriesResponse > {
         self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取直播互动曲库歌手分类信息
-    ///
     /// 获取直播互动曲库歌手分类信息
     @inlinable
     public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 漏洞管理-导出漏洞列表
-    ///
-    /// 漏洞管理-导出漏洞列表
     @inlinable
     public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
         self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 漏洞管理-导出漏洞列表
-    ///
     /// 漏洞管理-导出漏洞列表
     @inlinable
     public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {

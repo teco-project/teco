@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cr {
     /// 上传机器人文件
-    ///
-    /// 上传机器人文件
     @inlinable
     public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
         self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 上传机器人文件
-    ///
     /// 上传机器人文件
     @inlinable
     public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Yunjing {
     /// 新增或修改高危命令规则
-    ///
-    /// 新增或修改高危命令规则
     @inlinable
     public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
         self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增或修改高危命令规则
-    ///
     /// 新增或修改高危命令规则
     @inlinable
     public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Dayu {
     /// 获取黑洞解封次数
-    ///
-    /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
         self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取黑洞解封次数
-    ///
     /// 获取黑洞解封次数
     @inlinable
     public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {

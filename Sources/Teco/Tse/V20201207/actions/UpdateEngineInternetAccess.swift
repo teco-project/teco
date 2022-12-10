@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tse {
     /// 修改引擎公网访问配置
-    ///
-    /// 修改引擎公网访问配置
     @inlinable
     public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEngineInternetAccessResponse > {
         self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改引擎公网访问配置
-    ///
     /// 修改引擎公网访问配置
     @inlinable
     public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {

@@ -289,6 +289,9 @@ public struct TCScfError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -323,6 +326,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 当前异步事件状态不支持此操作，请稍后重试。
+    ///
+    /// 异步事件状态可能为等待中、运行中、运行失败、已完成等，部分操作只允许作用于部分状态的事件，比如终止操作只能作用于运行中的事件。
     public static var failedOperation_AsyncEventStatus: TCScfError {
         TCScfError(.failedOperation_AsyncEventStatus)
     }
@@ -643,6 +648,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// Args 参数值有误。
+    ///
+    /// 请确认不包含逗号、单引号、斜杠等非法字符
     public static var invalidParameterValue_Args: TCScfError {
         TCScfError(.invalidParameterValue_Args)
     }
@@ -683,6 +690,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 运行函数时的参数传入有误。
+    ///
+    /// 运行函数时的参数，以json格式传入，同步调用最大支持 6MB，异步调用最大支持 128 KB
     public static var invalidParameterValue_ClientContext: TCScfError {
         TCScfError(.invalidParameterValue_ClientContext)
     }
@@ -718,6 +727,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// Command[Entrypoint] 参数值有误。
+    ///
+    /// 请确认不包含空格，逗号、单引号、双引号、斜杠等非法字符
     public static var invalidParameterValue_Command: TCScfError {
         TCScfError(.invalidParameterValue_Command)
     }
@@ -747,6 +758,7 @@ public struct TCScfError: TCErrorType {
         TCScfError(.invalidParameterValue_CosBucketRegion)
     }
     
+    /// 请传递有效的COS通知规则。
     public static var invalidParameterValue_CosNotifyRuleConflict: TCScfError {
         TCScfError(.invalidParameterValue_CosNotifyRuleConflict)
     }
@@ -792,6 +804,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 环境变量DNS[OS_NAMESERVER]配置有误。
+    ///
+    /// 请确认ip格式，多个ip用分号(;)分割
     public static var invalidParameterValue_DnsInfo: TCScfError {
         TCScfError(.invalidParameterValue_DnsInfo)
     }
@@ -907,6 +921,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// imageUri 传入有误。
+    ///
+    /// 请确认格式是否正确（字符格式[ASCII]，参数个数：tag/digest信息是否传入）。
     public static var invalidParameterValue_ImageUri: TCScfError {
         TCScfError(.invalidParameterValue_ImageUri)
     }
@@ -1062,6 +1078,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 企业版镜像实例ID[RegistryId]传值错误。
+    ///
+    /// RegistryId 取值要求：小写字母、数字和 - 的组合，且不能以 - 开头或结尾，长度为5-50字符
     public static var invalidParameterValue_RegistryId: TCScfError {
         TCScfError(.invalidParameterValue_RegistryId)
     }
@@ -1182,10 +1200,13 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 压缩文件base64解码失败: <code>Incorrect padding</code>，请修正后再试。
+    ///
+    /// 检查压缩文件base64编码是否合法
     public static var invalidParameterValue_ZipFileBase64BinasciiError: TCScfError {
         TCScfError(.invalidParameterValue_ZipFileBase64BinasciiError)
     }
     
+    /// 请传递有效的日志相关参数。
     public static var invalidParameter_Cls: TCScfError {
         TCScfError(.invalidParameter_Cls)
     }
@@ -1205,6 +1226,7 @@ public struct TCScfError: TCErrorType {
         TCScfError(.invalidParameter_Payload)
     }
     
+    /// 请求大小超限，请参照官方文档
     public static var invalidParameter_RequestTooLarge: TCScfError {
         TCScfError(.invalidParameter_RequestTooLarge)
     }
@@ -1363,6 +1385,7 @@ public struct TCScfError: TCErrorType {
         TCScfError(.missingParameter_Runtime)
     }
     
+    /// 查询账号是否因欠费或其他原因被隔离。
     public static var operationDenied_AccountIsolate: TCScfError {
         TCScfError(.operationDenied_AccountIsolate)
     }
@@ -1513,6 +1536,8 @@ public struct TCScfError: TCErrorType {
     }
     
     /// 未找到指定的ImageConfig，请创建后再试。
+    ///
+    /// 检查入参Code是否包含ImageConfig成员或ImageConfig是否有效
     public static var resourceNotFound_ImageConfig: TCScfError {
         TCScfError(.resourceNotFound_ImageConfig)
     }
@@ -1667,6 +1692,7 @@ public struct TCScfError: TCErrorType {
         TCScfError(.unsupportedOperation_EipFixed)
     }
     
+    /// 请传递正确的地域。
     public static var unsupportedOperation_NotSupportRegion: TCScfError {
         TCScfError(.unsupportedOperation_NotSupportRegion)
     }
@@ -1707,5 +1733,15 @@ extension TCScfError: Equatable {
 extension TCScfError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCScfError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

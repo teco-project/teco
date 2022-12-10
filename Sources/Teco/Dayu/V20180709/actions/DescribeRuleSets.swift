@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取资源的规则数
-    ///
-    /// 获取资源的规则数
     @inlinable
     public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleSetsResponse > {
         self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取资源的规则数
-    ///
     /// 获取资源的规则数
     @inlinable
     public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {

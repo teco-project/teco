@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 删除站点
-    ///
-    /// 删除站点
     @inlinable
     public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSitesResponse > {
         self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除站点
-    ///
     /// 删除站点
     @inlinable
     public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 删除CC四层黑白名单
-    ///
-    /// 删除CC四层黑白名单
     @inlinable
     public func deleteCcBlackWhiteIpList(_ input: DeleteCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCcBlackWhiteIpListResponse > {
         self.client.execute(action: "DeleteCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除CC四层黑白名单
-    ///
     /// 删除CC四层黑白名单
     @inlinable
     public func deleteCcBlackWhiteIpList(_ input: DeleteCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcBlackWhiteIpListResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 批量删除镜像版本
-    ///
-    /// 批量删除镜像版本
     @inlinable
     public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageTagsResponse > {
         self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量删除镜像版本
-    ///
     /// 批量删除镜像版本
     @inlinable
     public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {

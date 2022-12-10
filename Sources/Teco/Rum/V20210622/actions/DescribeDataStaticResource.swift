@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Rum {
     /// 获取DescribeDataStaticResource信息
-    ///
-    /// 获取DescribeDataStaticResource信息
     @inlinable
     public func describeDataStaticResource(_ input: DescribeDataStaticResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataStaticResourceResponse > {
         self.client.execute(action: "DescribeDataStaticResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取DescribeDataStaticResource信息
-    ///
     /// 获取DescribeDataStaticResource信息
     @inlinable
     public func describeDataStaticResource(_ input: DescribeDataStaticResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataStaticResourceResponse {

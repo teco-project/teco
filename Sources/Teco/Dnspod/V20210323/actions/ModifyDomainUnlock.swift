@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 域名锁定解锁
-    ///
-    /// 域名锁定解锁
     @inlinable
     public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainUnlockResponse > {
         self.client.execute(action: "ModifyDomainUnlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 域名锁定解锁
-    ///
     /// 域名锁定解锁
     @inlinable
     public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {

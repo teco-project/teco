@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 灵云-重新绑定账号
-    ///
-    /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
         self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 灵云-重新绑定账号
-    ///
     /// 灵云-重新绑定账号
     @inlinable
     public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {

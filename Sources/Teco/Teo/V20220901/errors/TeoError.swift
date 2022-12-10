@@ -146,6 +146,9 @@ public struct TCTeoError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -239,6 +242,8 @@ public struct TCTeoError: TCErrorType {
     }
     
     /// 内部错误。
+    ///
+    /// 内部错误-系统错误。
     public static var internalError_SystemError: TCTeoError {
         TCTeoError(.internalError_SystemError)
     }
@@ -391,38 +396,47 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_DomainOnTrafficScheduling)
     }
     
+    /// 非法操作。
     public static var invalidParameter_ErrInvalidAction: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidAction)
     }
     
+    /// 非法操作-非法参数。
     public static var invalidParameter_ErrInvalidActionParam: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidActionParam)
     }
     
+    /// 非法操作-非法参数-参数名重复。
     public static var invalidParameter_ErrInvalidActionParamDuplicateName: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidActionParamDuplicateName)
     }
     
+    /// 非法操作-非法参数-参数值数量超出限制。
     public static var invalidParameter_ErrInvalidActionParamTooManyValues: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidActionParamTooManyValues)
     }
     
+    /// 非法条件-非法忽略大小写。
     public static var invalidParameter_ErrInvalidConditionIgnoreCase: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionIgnoreCase)
     }
     
+    /// 非法条件-非法参数名称-匹配类型不支持参数名称。
     public static var invalidParameter_ErrInvalidConditionNameTargetNotSupportName: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionNameTargetNotSupportName)
     }
     
+    /// 非法条件-非法参数值-无效的参数值。
     public static var invalidParameter_ErrInvalidConditionValueBadValue: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionValueBadValue)
     }
     
+    /// 非法条件-非法参数值-无效的参数值-文件名不应包含文件后缀。
     public static var invalidParameter_ErrInvalidConditionValueBadValueContainFileNameExtension: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionValueBadValueContainFileNameExtension)
     }
     
+    /// 非法条件-非法参数值-参数值长度超出限制。
     public static var invalidParameter_ErrInvalidConditionValueTooLongValue: TCTeoError {
         TCTeoError(.invalidParameter_ErrInvalidConditionValueTooLongValue)
     }
@@ -496,6 +510,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_InvalidParameter)
     }
     
+    /// 套餐包不支持最大上传大小。
     public static var invalidParameter_InvalidPostMaxSizeBilling: TCTeoError {
         TCTeoError(.invalidParameter_InvalidPostMaxSizeBilling)
     }
@@ -510,6 +525,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_InvalidRequestHeaderName)
     }
     
+    /// 无套餐包。
     public static var invalidParameter_InvalidResourceIdBilling: TCTeoError {
         TCTeoError(.invalidParameter_InvalidResourceIdBilling)
     }
@@ -573,6 +589,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_KeyRulesInvalidQueryStringValue)
     }
     
+    /// 参数长度超过限制。
     public static var invalidParameter_LengthExceedsLimit: TCTeoError {
         TCTeoError(.invalidParameter_LengthExceedsLimit)
     }
@@ -582,6 +599,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_ParameterError)
     }
     
+    /// 套餐不存在。
     public static var invalidParameter_PlanNotFound: TCTeoError {
         TCTeoError(.invalidParameter_PlanNotFound)
     }
@@ -592,6 +610,8 @@ public struct TCTeoError: TCErrorType {
     }
     
     /// 域名配置错误。
+    ///
+    /// 参数错误-setting非法参数。
     public static var invalidParameter_SettingInvalidParam: TCTeoError {
         TCTeoError(.invalidParameter_SettingInvalidParam)
     }
@@ -611,6 +631,7 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.invalidParameter_UploadUrl)
     }
     
+    /// 站点已被绑定。
     public static var invalidParameter_ZoneHasBeenBound: TCTeoError {
         TCTeoError(.invalidParameter_ZoneHasBeenBound)
     }
@@ -645,10 +666,12 @@ public struct TCTeoError: TCErrorType {
         TCTeoError(.operationDenied)
     }
     
+    /// 域名被封禁，暂时无法操作。
     public static var operationDenied_DomainIsBlocked: TCTeoError {
         TCTeoError(.operationDenied_DomainIsBlocked)
     }
     
+    /// 域名尚未备案。
     public static var operationDenied_DomainNoICP: TCTeoError {
         TCTeoError(.operationDenied_DomainNoICP)
     }
@@ -818,5 +841,15 @@ extension TCTeoError: Equatable {
 extension TCTeoError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTeoError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

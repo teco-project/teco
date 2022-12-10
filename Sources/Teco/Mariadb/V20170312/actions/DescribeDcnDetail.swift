@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mariadb {
     /// 获取实例灾备详情
-    ///
-    /// 获取实例灾备详情
     @inlinable
     public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDcnDetailResponse > {
         self.client.execute(action: "DescribeDcnDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取实例灾备详情
-    ///
     /// 获取实例灾备详情
     @inlinable
     public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDcnDetailResponse {

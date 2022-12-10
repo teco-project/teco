@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCTdmqError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -46,6 +48,8 @@ extension TCTdmqError {
         }
         
         /// 发货异常。
+        ///
+        /// 请检查账户状态
         public static var createFailed: ResourceUnavailable {
             ResourceUnavailable(.createFailed)
         }
@@ -56,6 +60,8 @@ extension TCTdmqError {
         }
         
         /// 系统升级。
+        ///
+        /// 升级完成后可用。
         public static var systemUpgrade: ResourceUnavailable {
             ResourceUnavailable(.systemUpgrade)
         }
@@ -80,10 +86,21 @@ extension TCTdmqError.ResourceUnavailable: CustomStringConvertible {
 }
 
 extension TCTdmqError.ResourceUnavailable {
+    /// - Returns: ``TCTdmqError`` that holds the same error and context.
     public func toTdmqError() -> TCTdmqError {
         guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTdmqError(code, context: self.context)
+    }
+}
+
+extension TCTdmqError.ResourceUnavailable {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

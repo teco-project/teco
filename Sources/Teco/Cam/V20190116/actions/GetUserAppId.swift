@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 获取用户AppId
-    ///
-    /// 获取用户AppId
     @inlinable
     public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
         self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户AppId
-    ///
     /// 获取用户AppId
     @inlinable
     public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {

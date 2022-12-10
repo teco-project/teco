@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 扩容独立集群master节点
-    ///
-    /// 扩容独立集群master节点
     @inlinable
     public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutClusterMasterResponse > {
         self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 扩容独立集群master节点
-    ///
     /// 扩容独立集群master节点
     @inlinable
     public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {

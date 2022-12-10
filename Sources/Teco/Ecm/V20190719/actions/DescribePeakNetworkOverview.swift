@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 获取网络峰值数据
-    ///
-    /// 获取网络峰值数据
     @inlinable
     public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePeakNetworkOverviewResponse > {
         self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取网络峰值数据
-    ///
     /// 获取网络峰值数据
     @inlinable
     public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {

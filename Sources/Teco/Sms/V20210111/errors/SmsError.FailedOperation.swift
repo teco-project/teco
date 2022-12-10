@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -53,6 +52,9 @@ extension TCSmsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -157,6 +159,8 @@ extension TCSmsError {
         }
         
         /// 签名未审批或格式错误。（1）可登录 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查签名是否已审批并且审批通过；（2）核查是否符合格式规范，签名只能由中英文、数字组成，要求2 - 12个字，若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        ///
+        /// 可参考 [短信发送提示：FailedOperation.SignatureIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.signatureincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var signatureIncorrectOrUnapproved: FailedOperation {
             FailedOperation(.signatureIncorrectOrUnapproved)
         }
@@ -167,11 +171,15 @@ extension TCSmsError {
         }
         
         /// 模板 ID 或签名 ID 不存在。
+        ///
+        /// 请排查模板 ID 或签名 ID 是否填写正确
         public static var templateIdNotExist: FailedOperation {
             FailedOperation(.templateIdNotExist)
         }
         
         /// 模板未审批或内容不匹配。（1）可登陆 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查模板是否已审批并审批通过；（2）核查是否符合 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">格式规范</a>，若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        ///
+        /// 可参考 [短信发送提示：FailedOperation.TemplateIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var templateIncorrectOrUnapproved: FailedOperation {
             FailedOperation(.templateIncorrectOrUnapproved)
         }
@@ -182,11 +190,15 @@ extension TCSmsError {
         }
         
         /// 请求内容与审核通过的模板内容不匹配。请检查请求中模板参数的个数是否与申请的模板一致。若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        ///
+        /// 请检查请求中模板参数的个数是否与申请的模板一致。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var templateParamSetNotMatchApprovedTemplate: FailedOperation {
             FailedOperation(.templateParamSetNotMatchApprovedTemplate)
         }
         
         /// 模板未审批或不存在。可登陆 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查模板是否已审批并审批通过。若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        ///
+        /// 可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var templateUnapprovedOrNotExist: FailedOperation {
             FailedOperation(.templateUnapprovedOrNotExist)
         }
@@ -206,10 +218,21 @@ extension TCSmsError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCSmsError.FailedOperation {
+    /// - Returns: ``TCSmsError`` that holds the same error and context.
     public func toSmsError() -> TCSmsError {
         guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSmsError(code, context: self.context)
+    }
+}
+
+extension TCSmsError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

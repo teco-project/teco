@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dts {
     /// 修改订阅实例自动续费标识
-    ///
-    /// 修改订阅实例自动续费标识
     @inlinable
     public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeAutoRenewFlagResponse > {
         self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改订阅实例自动续费标识
-    ///
     /// 修改订阅实例自动续费标识
     @inlinable
     public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 创建防火墙实例和接入域名（Region参数必填）
-    ///
-    /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
     public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
         self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建防火墙实例和接入域名（Region参数必填）
-    ///
     /// 创建防火墙实例和接入域名（Region参数必填）
     @inlinable
     public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {

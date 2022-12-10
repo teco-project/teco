@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 删除告警规则
-    ///
-    /// 删除告警规则
     @inlinable
     public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusAlertRuleResponse > {
         self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除告警规则
-    ///
     /// 删除告警规则
     @inlinable
     public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {

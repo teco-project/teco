@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCPrivatednsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,21 +49,29 @@ extension TCPrivatednsError {
         }
         
         /// 账号未绑定。
+        ///
+        /// 账号未绑定，请绑定账号后再试
         public static var accountNotBound: UnsupportedOperation {
             UnsupportedOperation(.accountNotBound)
         }
         
         /// 存在绑定的VPC资源。
+        ///
+        /// 存在绑定的VPC资源，先解绑VPC资源后再删除绑定账号
         public static var existBoundVpc: UnsupportedOperation {
             UnsupportedOperation(.existBoundVpc)
         }
         
         /// 接口调用超过限频。
+        ///
+        /// 减少单位之间内的调用次数
         public static var frequencyLimit: UnsupportedOperation {
             UnsupportedOperation(.frequencyLimit)
         }
         
         /// 不支持设置子域名递归解析。
+        ///
+        /// 目前暂不支持设置子域名递归解析，不开启子域名递归解析即可
         public static var notSupportDnsForward: UnsupportedOperation {
             UnsupportedOperation(.notSupportDnsForward)
         }
@@ -86,10 +96,21 @@ extension TCPrivatednsError.UnsupportedOperation: CustomStringConvertible {
 }
 
 extension TCPrivatednsError.UnsupportedOperation {
+    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
     public func toPrivatednsError() -> TCPrivatednsError {
         guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCPrivatednsError(code, context: self.context)
+    }
+}
+
+extension TCPrivatednsError.UnsupportedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

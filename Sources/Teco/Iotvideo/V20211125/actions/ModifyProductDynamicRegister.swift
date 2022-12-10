@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 修改产品动态注册
-    ///
-    /// 修改产品动态注册
     @inlinable
     public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
         self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改产品动态注册
-    ///
     /// 修改产品动态注册
     @inlinable
     public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {

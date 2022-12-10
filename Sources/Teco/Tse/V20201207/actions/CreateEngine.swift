@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tse {
     /// 创建引擎实例
-    ///
-    /// 创建引擎实例
     @inlinable
     public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEngineResponse > {
         self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建引擎实例
-    ///
     /// 创建引擎实例
     @inlinable
     public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {

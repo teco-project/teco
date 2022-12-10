@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfs {
     /// 删除文件系统快照
-    ///
-    /// 删除文件系统快照
     @inlinable
     public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsSnapshotResponse > {
         self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除文件系统快照
-    ///
     /// 删除文件系统快照
     @inlinable
     public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {

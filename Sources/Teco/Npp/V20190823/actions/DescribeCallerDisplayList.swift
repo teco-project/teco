@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Npp {
     /// 回拨拉取主叫显号号码集合
-    ///
-    /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallerDisplayListResponse > {
         self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 回拨拉取主叫显号号码集合
-    ///
     /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {

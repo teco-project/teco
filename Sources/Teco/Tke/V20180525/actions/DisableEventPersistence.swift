@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 关闭事件持久化功能
-    ///
-    /// 关闭事件持久化功能
     @inlinable
     public func disableEventPersistence(_ input: DisableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableEventPersistenceResponse > {
         self.client.execute(action: "DisableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 关闭事件持久化功能
-    ///
     /// 关闭事件持久化功能
     @inlinable
     public func disableEventPersistence(_ input: DisableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {

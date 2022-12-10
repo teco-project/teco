@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// Waf ip黑白名单查询
-    ///
-    /// Waf ip黑白名单查询
     @inlinable
     public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpAccessControlResponse > {
         self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// Waf ip黑白名单查询
-    ///
     /// Waf ip黑白名单查询
     @inlinable
     public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {

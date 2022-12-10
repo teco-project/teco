@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 更新动态 DNS 记录
-    ///
-    /// 更新动态 DNS 记录
     @inlinable
     public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDynamicDNSResponse > {
         self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新动态 DNS 记录
-    ///
     /// 更新动态 DNS 记录
     @inlinable
     public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {

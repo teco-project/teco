@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Yunjing {
     /// 编辑反弹Shell规则
-    ///
-    /// 编辑反弹Shell规则
     @inlinable
     public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditReverseShellRuleResponse > {
         self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑反弹Shell规则
-    ///
     /// 编辑反弹Shell规则
     @inlinable
     public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {

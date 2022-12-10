@@ -80,6 +80,9 @@ public struct TCCbsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -398,6 +401,8 @@ public struct TCCbsError: TCErrorType {
     }
     
     /// 授权角色不存在。
+    ///
+    /// 该操作涉及的服务角色或者服务相关角色不存在，请根据控制台提示进行授权后再执行操作。
     public static var unauthorizedOperation_RoleNotExists: TCCbsError {
         TCCbsError(.unauthorizedOperation_RoleNotExists)
     }
@@ -458,5 +463,15 @@ extension TCCbsError: Equatable {
 extension TCCbsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCCbsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

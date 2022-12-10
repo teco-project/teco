@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取边缘计算集群的认证信息
-    ///
-    /// 获取边缘计算集群的认证信息
     @inlinable
     public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterCredentialResponse > {
         self.client.execute(action: "DescribeTKEEdgeClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取边缘计算集群的认证信息
-    ///
     /// 获取边缘计算集群的认证信息
     @inlinable
     public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterCredentialResponse {

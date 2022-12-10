@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Solar {
     /// 复制活动渠道的策略
-    ///
-    /// 复制活动渠道的策略
     @inlinable
     public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyActivityChannelResponse > {
         self.client.execute(action: "CopyActivityChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 复制活动渠道的策略
-    ///
     /// 复制活动渠道的策略
     @inlinable
     public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {

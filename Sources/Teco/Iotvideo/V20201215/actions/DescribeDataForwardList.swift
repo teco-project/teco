@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 获取数据转发列表
-    ///
-    /// 获取数据转发列表
     @inlinable
     public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataForwardListResponse > {
         self.client.execute(action: "DescribeDataForwardList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取数据转发列表
-    ///
     /// 获取数据转发列表
     @inlinable
     public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataForwardListResponse {

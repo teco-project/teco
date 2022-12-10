@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Oceanus {
     /// 查询树状结构资源列表
-    ///
-    /// 查询树状结构资源列表
     @inlinable
     public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeResourcesResponse > {
         self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询树状结构资源列表
-    ///
     /// 查询树状结构资源列表
     @inlinable
     public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {

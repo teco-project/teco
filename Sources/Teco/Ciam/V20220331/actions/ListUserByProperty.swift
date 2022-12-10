@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ciam {
     /// 根据属性查询用户列表
-    ///
-    /// 根据属性查询用户列表
     @inlinable
     public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
         self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据属性查询用户列表
-    ///
     /// 根据属性查询用户列表
     @inlinable
     public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 镜像仓库敏感信息列表导出
-    ///
-    /// 镜像仓库敏感信息列表导出
     @inlinable
     public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskListExportResponse > {
         self.client.execute(action: "DescribeAssetImageRegistryRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 镜像仓库敏感信息列表导出
-    ///
     /// 镜像仓库敏感信息列表导出
     @inlinable
     public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskListExportResponse {

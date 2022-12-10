@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 创建微信云托管
-    ///
-    /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWxCloudBaseRunEnvResponse > {
         self.client.execute(action: "CreateWxCloudBaseRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建微信云托管
-    ///
     /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Captcha {
     /// 安全验证码获取用户注册所有APPId和应用名称
-    ///
-    /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaUserAllAppIdResponse > {
         self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 安全验证码获取用户注册所有APPId和应用名称
-    ///
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {

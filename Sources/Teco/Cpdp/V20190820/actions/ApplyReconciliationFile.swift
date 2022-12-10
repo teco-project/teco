@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 聚鑫-申请对账文件
-    ///
-    /// 聚鑫-申请对账文件
     @inlinable
     public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReconciliationFileResponse > {
         self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 聚鑫-申请对账文件
-    ///
     /// 聚鑫-申请对账文件
     @inlinable
     public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {

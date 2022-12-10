@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 新增或编辑本地镜像自动授权规则
-    ///
-    /// 新增或编辑本地镜像自动授权规则
     @inlinable
     public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditImageAutoAuthorizedRuleResponse > {
         self.client.execute(action: "AddEditImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增或编辑本地镜像自动授权规则
-    ///
     /// 新增或编辑本地镜像自动授权规则
     @inlinable
     public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {

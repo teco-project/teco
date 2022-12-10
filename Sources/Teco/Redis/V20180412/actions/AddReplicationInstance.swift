@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 添加复制组成员
-    ///
-    /// 添加复制组成员
     @inlinable
     public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddReplicationInstanceResponse > {
         self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加复制组成员
-    ///
     /// 添加复制组成员
     @inlinable
     public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Rum {
     /// 恢复实例
-    ///
-    /// 恢复实例
     @inlinable
     public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeInstanceResponse > {
         self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 恢复实例
-    ///
     /// 恢复实例
     @inlinable
     public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 镜像仓库创建镜像一键扫描任务
-    ///
-    /// 镜像仓库创建镜像一键扫描任务
     @inlinable
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageRegistryScanTaskOneKeyResponse > {
         self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 镜像仓库创建镜像一键扫描任务
-    ///
     /// 镜像仓库创建镜像一键扫描任务
     @inlinable
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {

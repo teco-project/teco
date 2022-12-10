@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取关联目标集群的实例列表
-    ///
-    /// 获取关联目标集群的实例列表
     @inlinable
     public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentInstancesResponse > {
         self.client.execute(action: "DescribePrometheusAgentInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取关联目标集群的实例列表
-    ///
     /// 获取关联目标集群的实例列表
     @inlinable
     public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentInstancesResponse {

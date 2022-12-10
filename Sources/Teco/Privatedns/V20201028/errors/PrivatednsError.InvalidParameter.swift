@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -54,6 +53,9 @@ extension TCPrivatednsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -68,6 +70,8 @@ extension TCPrivatednsError {
         }
         
         /// 已经存在绑定的账号。
+        ///
+        /// 数据已经存在，无需重复操作。
         public static var accountExist: InvalidParameter {
             InvalidParameter(.accountExist)
         }
@@ -178,11 +182,15 @@ extension TCPrivatednsError {
         }
         
         /// 当前VPC已关联相同主域名。
+        ///
+        /// 检查解析记录+私有域名是否绑定了相同的VPC
         public static var vpcBindedMainDomain: InvalidParameter {
             InvalidParameter(.vpcBindedMainDomain)
         }
         
         /// VPC关联反解析域超过限制。
+        ///
+        /// 确认vpc关联的反解析域数量
         public static var vpcPtrZoneBindExceed: InvalidParameter {
             InvalidParameter(.vpcPtrZoneBindExceed)
         }
@@ -212,10 +220,21 @@ extension TCPrivatednsError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCPrivatednsError.InvalidParameter {
+    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
     public func toPrivatednsError() -> TCPrivatednsError {
         guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCPrivatednsError(code, context: self.context)
+    }
+}
+
+extension TCPrivatednsError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

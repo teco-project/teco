@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -836,8 +835,7 @@ extension Tcb {
     public struct CloudBaseRunVersionFlowItem: TCInputModel, TCOutputModel {
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let versionName: String?
+        public let versionName: String
         
         /// 流量占比
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -855,7 +853,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefaultPriority: Bool?
         
-        public init (versionName: String?, flowRatio: Int64?, urlParam: ObjectKV, priority: Int64?, isDefaultPriority: Bool?) {
+        public init (versionName: String, flowRatio: Int64?, urlParam: ObjectKV, priority: Int64?, isDefaultPriority: Bool?) {
             self.versionName = versionName
             self.flowRatio = flowRatio
             self.urlParam = urlParam

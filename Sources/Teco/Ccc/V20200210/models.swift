@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -292,15 +291,13 @@ extension Ccc {
     public struct Filter: TCInputModel {
         /// 筛选字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 筛选条件值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let values: [String]?
+        public let values: [String]
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String, values: [String]) {
             self.name = name
             self.values = values
         }

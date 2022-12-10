@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ocr {
     /// 菲律宾VoteID识别
-    ///
-    /// 菲律宾VoteID识别
     @inlinable
     public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesVoteIDOCRResponse > {
         self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 菲律宾VoteID识别
-    ///
     /// 菲律宾VoteID识别
     @inlinable
     public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {

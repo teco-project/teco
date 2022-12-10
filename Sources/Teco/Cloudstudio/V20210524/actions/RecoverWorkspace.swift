@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudstudio {
     /// 恢复工作空间
-    ///
-    /// 恢复工作空间
     @inlinable
     public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverWorkspaceResponse > {
         self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 恢复工作空间
-    ///
     /// 恢复工作空间
     @inlinable
     public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {

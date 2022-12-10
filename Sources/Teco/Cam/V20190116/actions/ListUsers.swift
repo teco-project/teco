@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 拉取子用户
-    ///
-    /// 拉取子用户
     @inlinable
     public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersResponse > {
         self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取子用户
-    ///
     /// 拉取子用户
     @inlinable
     public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {

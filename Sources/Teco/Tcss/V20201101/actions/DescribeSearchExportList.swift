@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 导出ES查询文档列表
-    ///
-    /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchExportListResponse > {
         self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 导出ES查询文档列表
-    ///
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {

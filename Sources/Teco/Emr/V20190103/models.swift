@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -977,10 +976,9 @@ extension Emr {
     public struct HostVolumeContext: TCInputModel, TCOutputModel {
         /// Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let volumePath: String?
+        public let volumePath: String
         
-        public init (volumePath: String?) {
+        public init (volumePath: String) {
             self.volumePath = volumePath
         }
         
@@ -1093,16 +1091,14 @@ extension Emr {
     public struct JobResult: TCInputModel, TCOutputModel {
         /// 任务步骤名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 任务步骤失败时的处理策略，可以为以下值：
         /// "CONTINUE"，跳过当前失败步骤，继续后续步骤。
         /// “TERMINATE_CLUSTER”，终止当前及后续步骤，并销毁集群。
         /// “CANCEL_AND_WAIT”，取消当前步骤并阻塞等待处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let actionOnFailure: String?
+        public let actionOnFailure: String
         
         /// 当前步骤的状态，可以为以下值：
         /// “JobFlowStepStatusInit”，初始化状态，等待执行。
@@ -1110,14 +1106,13 @@ extension Emr {
         /// “JobFlowStepStatusFailed”，任务步骤执行失败。
         /// “JobFlowStepStatusSucceed”，任务步骤执行成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let jobState: String?
+        public let jobState: String
         
         /// YARN任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
         
-        public init (name: String?, actionOnFailure: String?, jobState: String?, applicationId: String?) {
+        public init (name: String, actionOnFailure: String, jobState: String, applicationId: String?) {
             self.name = name
             self.actionOnFailure = actionOnFailure
             self.jobState = jobState
@@ -1206,8 +1201,7 @@ extension Emr {
     public struct MultiDiskMC: TCInputModel, TCOutputModel {
         /// 该类型云盘个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let count: Int64?
+        public let count: Int64
         
         /// 磁盘类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1217,7 +1211,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volume: Int64?
         
-        public init (count: Int64?, type: Int64?, volume: Int64?) {
+        public init (count: Int64, type: Int64?, volume: Int64?) {
             self.count = count
             self.type = type
             self.volume = volume
@@ -1945,8 +1939,7 @@ extension Emr {
     public struct PodVolume: TCInputModel, TCOutputModel {
         /// 存储类型，可为"pvc"，"hostpath"。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let volumeType: String?
+        public let volumeType: String
         
         /// 当VolumeType为"pvc"时，该字段生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1956,7 +1949,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostVolume: HostVolumeContext
         
-        public init (volumeType: String?, pvcVolume: PersistentVolumeContext, hostVolume: HostVolumeContext) {
+        public init (volumeType: String, pvcVolume: PersistentVolumeContext, hostVolume: HostVolumeContext) {
             self.volumeType = volumeType
             self.pvcVolume = pvcVolume
             self.hostVolume = hostVolume
@@ -2204,8 +2197,7 @@ extension Emr {
     public struct Resource: TCInputModel, TCOutputModel {
         /// 节点规格描述，如CVM.SA2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let spec: String?
+        public let spec: String
         
         /// 存储类型
         /// 取值范围：
@@ -2215,8 +2207,7 @@ extension Emr {
         /// <li>11：表示吞吐型云硬盘。</li>
         /// <li>12：表示极速型SSD云硬盘。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let storageType: Int64?
+        public let storageType: Int64
         
         /// 磁盘类型
         /// 取值范围：
@@ -2224,23 +2215,19 @@ extension Emr {
         /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
         /// <li>CLOUD_BASIC：表示云硬盘。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let diskType: String?
+        public let diskType: String
         
         /// 内存容量,单位为M
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let memSize: Int64?
+        public let memSize: Int64
         
         /// CPU核数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cpu: Int64?
+        public let cpu: Int64
         
         /// 数据盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let diskSize: Int64?
+        public let diskSize: Int64
         
         /// 系统盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2266,7 +2253,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskNum: UInt64?
         
-        public init (spec: String?, storageType: Int64?, diskType: String?, memSize: Int64?, cpu: Int64?, diskSize: Int64?, rootSize: Int64?, multiDisks: [MultiDisk]?, tags: [Tag]?, instanceType: String?, localDiskNum: UInt64?, diskNum: UInt64?) {
+        public init (spec: String, storageType: Int64, diskType: String, memSize: Int64, cpu: Int64, diskSize: Int64, rootSize: Int64?, multiDisks: [MultiDisk]?, tags: [Tag]?, instanceType: String?, localDiskNum: UInt64?, diskNum: UInt64?) {
             self.spec = spec
             self.storageType = storageType
             self.diskType = diskType

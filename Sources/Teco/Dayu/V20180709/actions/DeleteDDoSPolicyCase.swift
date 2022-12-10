@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 删除策略场景
-    ///
-    /// 删除策略场景
     @inlinable
     public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSPolicyCaseResponse > {
         self.client.execute(action: "DeleteDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除策略场景
-    ///
     /// 删除策略场景
     @inlinable
     public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyCaseResponse {

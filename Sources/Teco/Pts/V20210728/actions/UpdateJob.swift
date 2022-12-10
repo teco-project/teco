@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 更新任务
-    ///
-    /// 更新任务
     @inlinable
     public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJobResponse > {
         self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新任务
-    ///
     /// 更新任务
     @inlinable
     public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {

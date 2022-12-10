@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 查询消费分组信息
-    ///
-    /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(_ input: DescribeConsumerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerGroupResponse > {
         self.client.execute(action: "DescribeConsumerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询消费分组信息
-    ///
     /// 查询消费分组信息
     @inlinable
     public func describeConsumerGroup(_ input: DescribeConsumerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerGroupResponse {

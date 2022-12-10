@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Cpdp {
     /// 直播平台-查询代理商结算单链接
-    ///
-    /// 直播平台-查询代理商结算单链接
     @inlinable
     public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentStatementsResponse > {
         self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-查询代理商结算单链接
-    ///
     /// 直播平台-查询代理商结算单链接
     @inlinable
     public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentStatementsResponse {

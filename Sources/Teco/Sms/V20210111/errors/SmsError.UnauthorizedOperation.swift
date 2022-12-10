@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -34,6 +33,9 @@ extension TCSmsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -73,6 +75,8 @@ extension TCSmsError {
         }
         
         /// SmsSdkAppId 校验失败，请检查 <a href="https://console.cloud.tencent.com/smsv2/app-manage">SmsSdkAppId</a> 是否属于 <a href="https://console.cloud.tencent.com/cam/capi">云API密钥</a> 的关联账户。
+        ///
+        /// 可参考 [短信发送提示：UnauthorizedOperation.SmsSdkAppIdVerifyFail 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunauthorizedoperation.smssdkappidverifyfail-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var smsSdkAppIdVerifyFail: UnauthorizedOperation {
             UnauthorizedOperation(.smsSdkAppIdVerifyFail)
         }
@@ -92,10 +96,21 @@ extension TCSmsError.UnauthorizedOperation: CustomStringConvertible {
 }
 
 extension TCSmsError.UnauthorizedOperation {
+    /// - Returns: ``TCSmsError`` that holds the same error and context.
     public func toSmsError() -> TCSmsError {
         guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSmsError(code, context: self.context)
+    }
+}
+
+extension TCSmsError.UnauthorizedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

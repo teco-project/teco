@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 直播平台-主播入驻
-    ///
-    /// 直播平台-主播入驻
     @inlinable
     public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnchorResponse > {
         self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-主播入驻
-    ///
     /// 直播平台-主播入驻
     @inlinable
     public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {

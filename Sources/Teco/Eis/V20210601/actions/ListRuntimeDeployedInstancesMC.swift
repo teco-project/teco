@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Eis {
     /// 获取运行时部署的应用实例列表
-    ///
-    /// 获取运行时部署的应用实例列表
     @inlinable
     public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRuntimeDeployedInstancesMCResponse > {
         self.client.execute(action: "ListRuntimeDeployedInstancesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取运行时部署的应用实例列表
-    ///
     /// 获取运行时部署的应用实例列表
     @inlinable
     public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {

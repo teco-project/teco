@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 创建企业安全组规则
-    ///
-    /// 创建企业安全组规则
     @inlinable
     public func createSecurityGroupRules(_ input: CreateSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupRulesResponse > {
         self.client.execute(action: "CreateSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建企业安全组规则
-    ///
     /// 创建企业安全组规则
     @inlinable
     public func createSecurityGroupRules(_ input: CreateSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupRulesResponse {

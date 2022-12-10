@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ie {
     /// 获取媒体质检任务结果
-    ///
-    /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityControlTaskResultResponse > {
         self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取媒体质检任务结果
-    ///
     /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {

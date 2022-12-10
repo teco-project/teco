@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -43,6 +42,9 @@ extension TCLighthouseError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -97,6 +99,8 @@ extension TCLighthouseError {
         }
         
         /// 无法找到此接口。
+        ///
+        /// 请确认接口是否存在。
         public static var invalidActionNotFound: InternalError {
             InternalError(.invalidActionNotFound)
         }
@@ -117,6 +121,8 @@ extension TCLighthouseError {
         }
         
         /// 调用计费网关服务失败。
+        ///
+        /// 请稍后再次重试。
         public static var tradeCallBillingGatewayFailed: InternalError {
             InternalError(.tradeCallBillingGatewayFailed)
         }
@@ -146,10 +152,21 @@ extension TCLighthouseError.InternalError: CustomStringConvertible {
 }
 
 extension TCLighthouseError.InternalError {
+    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
     public func toLighthouseError() -> TCLighthouseError {
         guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCLighthouseError(code, context: self.context)
+    }
+}
+
+extension TCLighthouseError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

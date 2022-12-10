@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 生成包预签名下载链接
-    ///
-    /// 生成包预签名下载链接
     @inlinable
     public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDownloadUrlResponse > {
         self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 生成包预签名下载链接
-    ///
     /// 生成包预签名下载链接
     @inlinable
     public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {

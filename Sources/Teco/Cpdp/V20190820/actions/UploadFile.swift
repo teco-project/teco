@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 直播平台-文件上传
-    ///
-    /// 直播平台-文件上传
     @inlinable
     public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
         self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-文件上传
-    ///
     /// 直播平台-文件上传
     @inlinable
     public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {

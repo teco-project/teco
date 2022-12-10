@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -113,6 +112,9 @@ extension TCEcmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -347,6 +349,8 @@ extension TCEcmError {
         }
         
         /// 秘钥名称异常。
+        ///
+        /// 请检查实例ID是否重复
         public static var invalidKeyPairName: InvalidParameterValue {
             InvalidParameterValue(.invalidKeyPairName)
         }
@@ -496,6 +500,7 @@ extension TCEcmError {
             InvalidParameterValue(.subnetConflict)
         }
         
+        /// 更换子网。
         public static var subnetNotExist: InvalidParameterValue {
             InvalidParameterValue(.subnetNotExist)
         }
@@ -565,10 +570,21 @@ extension TCEcmError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCEcmError.InvalidParameterValue {
+    /// - Returns: ``TCEcmError`` that holds the same error and context.
     public func toEcmError() -> TCEcmError {
         guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEcmError(code, context: self.context)
+    }
+}
+
+extension TCEcmError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

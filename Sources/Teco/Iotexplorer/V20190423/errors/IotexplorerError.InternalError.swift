@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -36,6 +35,9 @@ extension TCIotexplorerError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -59,6 +61,8 @@ extension TCIotexplorerError {
         }
         
         /// 内部LoRaServer错误。
+        ///
+        /// 用户无需操作，产品已第一时间获得该告警，正在处理中，请稍后重试。
         public static var internalLoRaServerError: InternalError {
             InternalError(.internalLoRaServerError)
         }
@@ -103,10 +107,21 @@ extension TCIotexplorerError.InternalError: CustomStringConvertible {
 }
 
 extension TCIotexplorerError.InternalError {
+    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
     public func toIotexplorerError() -> TCIotexplorerError {
         guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIotexplorerError(code, context: self.context)
+    }
+}
+
+extension TCIotexplorerError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

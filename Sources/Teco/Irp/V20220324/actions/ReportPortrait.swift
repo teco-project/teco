@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Irp {
     /// 上报用户画像
-    ///
-    /// 上报用户画像
     @inlinable
     public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportPortraitResponse > {
         self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 上报用户画像
-    ///
     /// 上报用户画像
     @inlinable
     public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {

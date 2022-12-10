@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Wedata {
     /// 离线任务周期统计明细
-    ///
-    /// 离线任务周期统计明细
     @inlinable
     public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskReportDetailListResponse > {
         self.client.execute(action: "DescribeTaskReportDetailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 离线任务周期统计明细
-    ///
     /// 离线任务周期统计明细
     @inlinable
     public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportDetailListResponse {

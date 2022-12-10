@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取高防IP可添加的最多7层规则数量
-    ///
-    /// 获取高防IP可添加的最多7层规则数量
     @inlinable
     public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBGPIPL7RuleMaxCntResponse > {
         self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取高防IP可添加的最多7层规则数量
-    ///
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
     public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {

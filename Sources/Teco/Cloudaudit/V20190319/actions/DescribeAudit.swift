@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 查询跟踪集详情
-    ///
-    /// 查询跟踪集详情
     @inlinable
     public func describeAudit(_ input: DescribeAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditResponse > {
         self.client.execute(action: "DescribeAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询跟踪集详情
-    ///
     /// 查询跟踪集详情
     @inlinable
     public func describeAudit(_ input: DescribeAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditResponse {

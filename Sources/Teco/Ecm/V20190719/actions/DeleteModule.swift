@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 删除业务模块
-    ///
-    /// 删除业务模块
     @inlinable
     public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
         self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除业务模块
-    ///
     /// 删除业务模块
     @inlinable
     public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {

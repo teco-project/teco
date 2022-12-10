@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssm {
     /// 查询支持的云产品列表
-    ///
-    /// 查询支持的云产品列表
     @inlinable
     public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedProductsResponse > {
         self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询支持的云产品列表
-    ///
     /// 查询支持的云产品列表
     @inlinable
     public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedProductsResponse {

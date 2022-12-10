@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 中止安全组规则下发
-    ///
-    /// 中止安全组规则下发
     @inlinable
     public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopSecurityGroupRuleDispatchResponse > {
         self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 中止安全组规则下发
-    ///
     /// 中止安全组规则下发
     @inlinable
     public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {

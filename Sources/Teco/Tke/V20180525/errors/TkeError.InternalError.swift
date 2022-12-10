@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -97,6 +96,9 @@ extension TCTkeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -311,6 +313,8 @@ extension TCTkeError {
         }
         
         /// Kubernetes未知错误。
+        ///
+        /// 如果您是独立集群请检查集群master组件是否正常，如果您是托管集群请立即提工单给我们。
         public static var kubernetesInternal: InternalError {
             InternalError(.kubernetesInternal)
         }
@@ -321,6 +325,8 @@ extension TCTkeError {
         }
         
         /// 底层调用CLB未知错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var lbCommon: InternalError {
             InternalError(.lbCommon)
         }
@@ -381,6 +387,8 @@ extension TCTkeError {
         }
         
         /// 已有相同任务执行中。
+        ///
+        /// 等待任务执行完毕
         public static var taskAlreadyRunning: InternalError {
             InternalError(.taskAlreadyRunning)
         }
@@ -470,10 +478,21 @@ extension TCTkeError.InternalError: CustomStringConvertible {
 }
 
 extension TCTkeError.InternalError {
+    /// - Returns: ``TCTkeError`` that holds the same error and context.
     public func toTkeError() -> TCTkeError {
         guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTkeError(code, context: self.context)
+    }
+}
+
+extension TCTkeError.InternalError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

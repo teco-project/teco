@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 增加安全域名
-    ///
-    /// 增加安全域名
     @inlinable
     public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuthDomainResponse > {
         self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 增加安全域名
-    ///
     /// 增加安全域名
     @inlinable
     public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {

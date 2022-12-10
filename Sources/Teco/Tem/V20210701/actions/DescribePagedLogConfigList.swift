@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 查询分页的日志收集配置列表
-    ///
-    /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
         self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询分页的日志收集配置列表
-    ///
     /// 查询分页的日志收集配置列表
     @inlinable
     public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {

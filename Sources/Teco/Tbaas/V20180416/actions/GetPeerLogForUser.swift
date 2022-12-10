@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 获取节点日志
-    ///
-    /// 获取节点日志
     @inlinable
     public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
         self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取节点日志
-    ///
     /// 获取节点日志
     @inlinable
     public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {

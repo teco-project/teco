@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 设置域名备注
-    ///
-    /// 设置域名备注
     @inlinable
     public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainRemarkResponse > {
         self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置域名备注
-    ///
     /// 设置域名备注
     @inlinable
     public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {

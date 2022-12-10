@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 批量重跑集成任务实例
-    ///
-    /// 批量重跑集成任务实例
     @inlinable
     public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRerunIntegrationTaskInstancesResponse > {
         self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量重跑集成任务实例
-    ///
     /// 批量重跑集成任务实例
     @inlinable
     public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {

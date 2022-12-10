@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 更新RocketMQ主题信息
-    ///
-    /// 更新RocketMQ主题信息
     @inlinable
     public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
         self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新RocketMQ主题信息
-    ///
     /// 更新RocketMQ主题信息
     @inlinable
     public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 删除场景
-    ///
-    /// 删除场景
     @inlinable
     public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScenariosResponse > {
         self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除场景
-    ///
     /// 删除场景
     @inlinable
     public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {

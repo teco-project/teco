@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 获取X-P2P的统计数据
-    ///
-    /// 获取X-P2P的统计数据
     @inlinable
     public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeXP2PDataResponse > {
         self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取X-P2P的统计数据
-    ///
     /// 获取X-P2P的统计数据
     @inlinable
     public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {

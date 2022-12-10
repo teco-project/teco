@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 修改集群审批状态
-    ///
-    /// 修改集群审批状态
     @inlinable
     public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
         self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改集群审批状态
-    ///
     /// 修改集群审批状态
     @inlinable
     public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {

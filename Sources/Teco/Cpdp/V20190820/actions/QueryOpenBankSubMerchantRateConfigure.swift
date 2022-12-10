@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云企付-子商户费率配置结果查询
-    ///
-    /// 云企付-子商户费率配置结果查询
     @inlinable
     public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSubMerchantRateConfigureResponse > {
         self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云企付-子商户费率配置结果查询
-    ///
     /// 云企付-子商户费率配置结果查询
     @inlinable
     public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -545,19 +544,17 @@ extension Dts {
     public struct SubscribeObject: TCInputModel, TCOutputModel {
         /// 数据订阅对象的类型，0-数据库，1-数据库内的表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let objectsType: Int64?
+        public let objectsType: Int64
         
         /// 订阅数据库的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let databaseName: String?
+        public let databaseName: String
         
         /// 订阅数据库中表名称数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableNames: [String]?
         
-        public init (objectsType: Int64?, databaseName: String?, tableNames: [String]?) {
+        public init (objectsType: Int64, databaseName: String, tableNames: [String]?) {
             self.objectsType = objectsType
             self.databaseName = databaseName
             self.tableNames = tableNames

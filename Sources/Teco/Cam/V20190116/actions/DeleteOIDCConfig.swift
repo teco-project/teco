@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 删除OIDC身份提供商
-    ///
-    /// 删除OIDC身份提供商
     @inlinable
     public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOIDCConfigResponse > {
         self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除OIDC身份提供商
-    ///
     /// 删除OIDC身份提供商
     @inlinable
     public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {

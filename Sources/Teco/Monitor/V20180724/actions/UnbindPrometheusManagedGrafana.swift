@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 解除实例绑定的 Grafana 可视化实例
-    ///
-    /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
     public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
         self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 解除实例绑定的 Grafana 可视化实例
-    ///
     /// 解除实例绑定的 Grafana 可视化实例
     @inlinable
     public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {

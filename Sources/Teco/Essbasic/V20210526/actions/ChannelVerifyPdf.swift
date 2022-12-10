@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Essbasic {
     /// 合同文件验签
-    ///
-    /// 合同文件验签
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelVerifyPdfResponse > {
         self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 合同文件验签
-    ///
     /// 合同文件验签
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {

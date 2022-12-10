@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -146,23 +145,19 @@ extension Cloudstudio {
     public struct UserDefinedTemplateParams: TCInputModel, TCOutputModel {
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 模板图标地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let icon: String?
+        public let icon: String
         
         /// 模板标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tags: [String]?
+        public let tags: [String]
         
         /// 模板来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let source: String?
+        public let source: String
         
         /// 模板描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -176,7 +171,7 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionControlUrl: String?
         
-        public init (name: String?, icon: String?, tags: [String]?, source: String?, description: String?, versionControlType: String?, versionControlUrl: String?) {
+        public init (name: String, icon: String, tags: [String], source: String, description: String?, versionControlType: String?, versionControlUrl: String?) {
             self.name = name
             self.icon = icon
             self.tags = tags
@@ -201,8 +196,7 @@ extension Cloudstudio {
     public struct UserDefinedTemplatePatchedParams: TCInputModel, TCOutputModel {
         /// 模板来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let source: String?
+        public let source: String
         
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -220,7 +214,7 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [String]?
         
-        public init (source: String?, name: String?, icon: String?, description: String?, tags: [String]?) {
+        public init (source: String, name: String?, icon: String?, description: String?, tags: [String]?) {
             self.source = source
             self.name = name
             self.icon = icon

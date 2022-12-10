@@ -297,6 +297,9 @@ public struct TCVpcError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -499,6 +502,8 @@ public struct TCVpcError: TCErrorType {
     }
     
     /// 带宽超出限制。
+    ///
+    /// 带宽值在产品规定范围内。
     public static var invalidParameterValue_BandwidthOutOfRange: TCVpcError {
         TCVpcError(.invalidParameterValue_BandwidthOutOfRange)
     }
@@ -554,6 +559,8 @@ public struct TCVpcError: TCErrorType {
     }
     
     /// 值超过上限。
+    ///
+    /// 调整带宽值
     public static var invalidParameterValue_EIPBrandWidthOutInvalid: TCVpcError {
         TCVpcError(.invalidParameterValue_EIPBrandWidthOutInvalid)
     }
@@ -861,6 +868,8 @@ public struct TCVpcError: TCErrorType {
     }
     
     /// 当前功能不支持此专线网关。
+    ///
+    /// 请明确专线网关类型，目前此功能只支持VXLAN和HYBIRD两种专线网关。
     public static var invalidParameterValue_VpgTypeNotMatch: TCVpcError {
         TCVpcError(.invalidParameterValue_VpgTypeNotMatch)
     }
@@ -1417,6 +1426,8 @@ public struct TCVpcError: TCErrorType {
     }
     
     /// 无效的实例状态。
+    ///
+    /// 请确保实例状态正常，再进行操作。
     public static var unsupportedOperation_InvalidInstanceState: TCVpcError {
         TCVpcError(.unsupportedOperation_InvalidInstanceState)
     }
@@ -1518,6 +1529,7 @@ public struct TCVpcError: TCErrorType {
         TCVpcError(.unsupportedOperation_NotSupportDeleteDefaultRouteTable)
     }
     
+    /// 确认云联网是否开启了路由重叠选项。
     public static var unsupportedOperation_NotSupportedUpdateCcnRoutePublish: TCVpcError {
         TCVpcError(.unsupportedOperation_NotSupportedUpdateCcnRoutePublish)
     }
@@ -1586,10 +1598,13 @@ public struct TCVpcError: TCErrorType {
     }
     
     /// 未找到相关角色，请确认角色是否授权。
+    ///
+    /// 进行角色授权
     public static var unsupportedOperation_RoleNotFound: TCVpcError {
         TCVpcError(.unsupportedOperation_RoleNotFound)
     }
     
+    /// 请解除该路由表和子网的绑定后重试。
     public static var unsupportedOperation_RouteTableHasSubnetRule: TCVpcError {
         TCVpcError(.unsupportedOperation_RouteTableHasSubnetRule)
     }
@@ -1718,5 +1733,15 @@ extension TCVpcError: Equatable {
 extension TCVpcError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCVpcError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

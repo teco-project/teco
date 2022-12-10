@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 停止模型训练任务
-    ///
-    /// 停止模型训练任务
     @inlinable
     public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
         self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 停止模型训练任务
-    ///
     /// 停止模型训练任务
     @inlinable
     public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {

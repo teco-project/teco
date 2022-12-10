@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 集群关联的伸缩组列表
-    ///
-    /// 集群关联的伸缩组列表
     @inlinable
     public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAsGroupsResponse > {
         self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 集群关联的伸缩组列表
-    ///
     /// 集群关联的伸缩组列表
     @inlinable
     public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupsResponse {

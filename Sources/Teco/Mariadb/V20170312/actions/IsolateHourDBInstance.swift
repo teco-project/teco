@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Mariadb {
     /// 隔离后付费实例
-    ///
-    /// 隔离后付费实例
     @inlinable
     public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDBInstanceResponse > {
         self.client.execute(action: "IsolateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 隔离后付费实例
-    ///
     /// 隔离后付费实例
     @inlinable
     public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDBInstanceResponse {

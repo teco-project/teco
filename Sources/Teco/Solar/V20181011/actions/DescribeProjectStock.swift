@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Solar {
     /// 项目库存详情
-    ///
-    /// 项目库存详情
     @inlinable
     public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectStockResponse > {
         self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 项目库存详情
-    ///
     /// 项目库存详情
     @inlinable
     public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcm {
     /// 删除网格
-    ///
-    /// 删除网格
     @inlinable
     public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMeshResponse > {
         self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除网格
-    ///
     /// 删除网格
     @inlinable
     public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {

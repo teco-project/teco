@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 获取 Prometheus Agent 管理相关的命令行
-    ///
-    /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
     public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPrometheusAgentManagementCommandResponse > {
         self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取 Prometheus Agent 管理相关的命令行
-    ///
     /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
     public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {

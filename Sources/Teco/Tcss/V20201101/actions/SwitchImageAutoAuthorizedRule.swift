@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 编辑本地镜像自动授权开关
-    ///
-    /// 编辑本地镜像自动授权开关
     @inlinable
     public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
         self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑本地镜像自动授权开关
-    ///
     /// 编辑本地镜像自动授权开关
     @inlinable
     public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {

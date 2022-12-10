@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Oceanus {
     /// 获取资源关联作业信息
-    ///
-    /// 获取资源关联作业信息
     @inlinable
     public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceRelatedJobsResponse > {
         self.client.execute(action: "DescribeResourceRelatedJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取资源关联作业信息
-    ///
     /// 获取资源关联作业信息
     @inlinable
     public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceRelatedJobsResponse {

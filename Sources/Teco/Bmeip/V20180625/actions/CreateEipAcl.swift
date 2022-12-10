@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 创建黑石弹性公网 EIPACL
-    ///
-    /// 创建黑石弹性公网 EIPACL
     @inlinable
     public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEipAclResponse > {
         self.client.execute(action: "CreateEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建黑石弹性公网 EIPACL
-    ///
     /// 创建黑石弹性公网 EIPACL
     @inlinable
     public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {

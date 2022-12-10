@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -47,7 +46,6 @@ extension Scf {
         
         /// 别名的路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let routingConfig: RoutingConfig
         
         /// 描述信息
@@ -1165,24 +1163,21 @@ extension Scf {
     public struct TriggerAction: TCInputModel, TCOutputModel {
         /// 定时预置名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let triggerName: String?
+        public let triggerName: String
         
         /// 定时预置并发数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let triggerProvisionedConcurrencyNum: UInt64?
+        public let triggerProvisionedConcurrencyNum: UInt64
         
         /// 设置定时触发器的时间配置，cron表达式。Cron 表达式有七个必需字段，按空格分隔。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let triggerCronConfig: String?
+        public let triggerCronConfig: String
         
         /// 预置类型 Default
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let provisionedType: String?
         
-        public init (triggerName: String?, triggerProvisionedConcurrencyNum: UInt64?, triggerCronConfig: String?, provisionedType: String?) {
+        public init (triggerName: String, triggerProvisionedConcurrencyNum: UInt64, triggerCronConfig: String, provisionedType: String?) {
             self.triggerName = triggerName
             self.triggerProvisionedConcurrencyNum = triggerProvisionedConcurrencyNum
             self.triggerCronConfig = triggerCronConfig

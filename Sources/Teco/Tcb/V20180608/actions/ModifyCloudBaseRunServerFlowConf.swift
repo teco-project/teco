@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 修改容器内的版本流量配置
-    ///
-    /// 修改容器内的版本流量配置
     @inlinable
     public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerFlowConfResponse > {
         self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改容器内的版本流量配置
-    ///
     /// 修改容器内的版本流量配置
     @inlinable
     public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {

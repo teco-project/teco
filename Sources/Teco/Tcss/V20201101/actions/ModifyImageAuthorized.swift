@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 批量授权镜像扫描V2.0
-    ///
-    /// 批量授权镜像扫描V2.0
     @inlinable
     public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAuthorizedResponse > {
         self.client.execute(action: "ModifyImageAuthorized", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量授权镜像扫描V2.0
-    ///
     /// 批量授权镜像扫描V2.0
     @inlinable
     public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAuthorizedResponse {

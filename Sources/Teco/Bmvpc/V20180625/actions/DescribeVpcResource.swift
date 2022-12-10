@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 查询黑石私有网络关联资源
-    ///
-    /// 查询黑石私有网络关联资源
     @inlinable
     public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceResponse > {
         self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询黑石私有网络关联资源
-    ///
     /// 查询黑石私有网络关联资源
     @inlinable
     public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bm {
     /// 查看自定义镜像列表
-    ///
-    /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImagesResponse > {
         self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看自定义镜像列表
-    ///
     /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {

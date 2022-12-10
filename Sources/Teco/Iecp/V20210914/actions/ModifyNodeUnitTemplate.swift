@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 修改边缘单元NodeUnit模板
-    ///
-    /// 修改边缘单元NodeUnit模板
     @inlinable
     public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodeUnitTemplateResponse > {
         self.client.execute(action: "ModifyNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改边缘单元NodeUnit模板
-    ///
     /// 修改边缘单元NodeUnit模板
     @inlinable
     public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {

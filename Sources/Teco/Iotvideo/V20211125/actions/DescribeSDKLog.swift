@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 获取设备sdk日志
-    ///
-    /// 获取设备sdk日志
     @inlinable
     public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSDKLogResponse > {
         self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取设备sdk日志
-    ///
     /// 获取设备sdk日志
     @inlinable
     public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {

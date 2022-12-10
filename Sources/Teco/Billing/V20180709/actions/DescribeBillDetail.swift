@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Billing {
     /// 查询账单明细数据
-    ///
-    /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
         self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询账单明细数据
-    ///
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 修改安全组出站和入站规则
-    ///
-    /// 修改安全组出站和入站规则
     @inlinable
     public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupPoliciesResponse > {
         self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改安全组出站和入站规则
-    ///
     /// 修改安全组出站和入站规则
     @inlinable
     public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {

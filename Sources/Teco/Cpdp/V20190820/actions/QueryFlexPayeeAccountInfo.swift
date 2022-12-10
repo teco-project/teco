@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 灵云V2-收款用户账户信息查询
-    ///
-    /// 灵云V2-收款用户账户信息查询
     @inlinable
     public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeAccountInfoResponse > {
         self.client.execute(action: "QueryFlexPayeeAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 灵云V2-收款用户账户信息查询
-    ///
     /// 灵云V2-收款用户账户信息查询
     @inlinable
     public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {

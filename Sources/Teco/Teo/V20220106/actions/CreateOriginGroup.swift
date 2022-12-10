@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 源站组创建
-    ///
-    /// 源站组创建
     @inlinable
     public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
         self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 源站组创建
-    ///
     /// 源站组创建
     @inlinable
     public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {

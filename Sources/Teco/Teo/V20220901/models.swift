@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1828,8 +1827,7 @@ extension Teo {
     public struct DefaultServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certId: String?
+        public let certId: String
         
         /// 证书备注名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1873,7 +1871,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signAlgo: String?
         
-        public init (certId: String?, alias: String?, type: String?, expireTime: Date?, effectiveTime: Date?, commonName: String?, subjectAltName: [String]?, status: String?, message: String?, signAlgo: String?) {
+        public init (certId: String, alias: String?, type: String?, expireTime: Date?, effectiveTime: Date?, commonName: String?, subjectAltName: [String]?, status: String?, message: String?, signAlgo: String?) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -2722,14 +2720,13 @@ extension Teo {
         /// <li>on：开启；</li>
         /// <li>off：关闭；</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let `switch`: String?
+        public let `switch`: String
         
         /// 基础管控规则。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipTableRules: [IpTableRule]?
         
-        public init (`switch`: String?, ipTableRules: [IpTableRule]?) {
+        public init (`switch`: String, ipTableRules: [IpTableRule]?) {
             self.`switch` = `switch`
             self.ipTableRules = ipTableRules
         }
@@ -4634,8 +4631,7 @@ extension Teo {
     public struct ServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let certId: String?
+        public let certId: String
         
         /// 证书备注名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4664,7 +4660,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commonName: String?
         
-        public init (certId: String?, alias: String?, type: String?, expireTime: Date?, deployTime: Date?, signAlgo: String?, commonName: String?) {
+        public init (certId: String, alias: String?, type: String?, expireTime: Date?, deployTime: Date?, signAlgo: String?, commonName: String?) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -5129,15 +5125,13 @@ extension Teo {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagKey: String?
+        public let tagKey: String
         
         /// 标签值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagValue: String?
+        public let tagValue: String
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

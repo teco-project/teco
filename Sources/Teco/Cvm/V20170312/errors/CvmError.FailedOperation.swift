@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -52,6 +51,9 @@ extension TCCvmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,11 +68,15 @@ extension TCCvmError {
         }
         
         /// 账号已经存在
+        ///
+        /// 无
         public static var accountAlreadyExists: FailedOperation {
             FailedOperation(.accountAlreadyExists)
         }
         
         /// 账号为当前用户
+        ///
+        /// 无
         public static var accountIsYourSelf: FailedOperation {
             FailedOperation(.accountIsYourSelf)
         }
@@ -80,26 +86,36 @@ extension TCCvmError {
         }
         
         /// 未找到指定的容灾组
+        ///
+        /// 无
         public static var disasterRecoverGroupNotFound: FailedOperation {
             FailedOperation(.disasterRecoverGroupNotFound)
         }
         
         /// 标签键存在不合法字符
+        ///
+        /// 无
         public static var illegalTagKey: FailedOperation {
             FailedOperation(.illegalTagKey)
         }
         
         /// 标签值存在不合法字符。
+        ///
+        /// 暂无
         public static var illegalTagValue: FailedOperation {
             FailedOperation(.illegalTagValue)
         }
         
         /// 询价失败
+        ///
+        /// 无
         public static var inquiryPriceFailed: FailedOperation {
             FailedOperation(.inquiryPriceFailed)
         }
         
         /// 查询退换价格失败，找不到付款订单，请检查设备 <code>ins-xxxxxxx</code> 是否已过期。
+        ///
+        /// 无
         public static var inquiryRefundPriceFailed: FailedOperation {
             FailedOperation(.inquiryRefundPriceFailed)
         }
@@ -109,6 +125,8 @@ extension TCCvmError {
         }
         
         /// 请求不支持<code>EMR</code>的实例<code>ins-xxxxxxxx</code>。
+        ///
+        /// 无
         public static var invalidInstanceApplicationRoleEmr: FailedOperation {
             FailedOperation(.invalidInstanceApplicationRoleEmr)
         }
@@ -119,11 +137,15 @@ extension TCCvmError {
         }
         
         /// 当前实例没有弹性IP
+        ///
+        /// 无
         public static var notFoundEIP: FailedOperation {
             FailedOperation(.notFoundEIP)
         }
         
         /// 账号为协作者，请填写主账号
+        ///
+        /// 无
         public static var notMasterAccount: FailedOperation {
             FailedOperation(.notMasterAccount)
         }
@@ -144,16 +166,22 @@ extension TCCvmError {
         }
         
         /// 镜像共享失败。
+        ///
+        /// 无
         public static var qImageShareFailed: FailedOperation {
             FailedOperation(.qImageShareFailed)
         }
         
         /// 镜像共享失败。
+        ///
+        /// 无
         public static var rImageShareFailed: FailedOperation {
             FailedOperation(.rImageShareFailed)
         }
         
         /// 安全组操作失败。
+        ///
+        /// 无
         public static var securityGroupActionFailed: FailedOperation {
             FailedOperation(.securityGroupActionFailed)
         }
@@ -164,11 +192,15 @@ extension TCCvmError {
         }
         
         /// 不支持快照size小于云盘size。
+        ///
+        /// 暂无
         public static var snapshotSizeLessThanDataSize: FailedOperation {
             FailedOperation(.snapshotSizeLessThanDataSize)
         }
         
         /// 请求中指定的标签键为系统预留标签，禁止创建
+        ///
+        /// 无
         public static var tagKeyReserved: FailedOperation {
             FailedOperation(.tagKeyReserved)
         }
@@ -198,10 +230,21 @@ extension TCCvmError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCvmError.FailedOperation {
+    /// - Returns: ``TCCvmError`` that holds the same error and context.
     public func toCvmError() -> TCCvmError {
         guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCvmError(code, context: self.context)
+    }
+}
+
+extension TCCvmError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 创建工作流
-    ///
-    /// 创建工作流
     @inlinable
     public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFlowResponse > {
         self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建工作流
-    ///
     /// 创建工作流
     @inlinable
     public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {

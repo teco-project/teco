@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 获取DNS请求数统计曲线
-    ///
-    /// 获取DNS请求数统计曲线
     @inlinable
     public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnsDataResponse > {
         self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取DNS请求数统计曲线
-    ///
     /// 获取DNS请求数统计曲线
     @inlinable
     public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -37,6 +36,9 @@ extension TCSesError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,26 +68,36 @@ extension TCSesError {
         }
         
         /// 收件人列表正在被操作，请稍后操作。
+        ///
+        /// 可能是收件人列表正在上传收件人地址，等待一段时间再操作，必要时可以反馈问题
         public static var receiverIsOperating: OperationDenied {
             OperationDenied(.receiverIsOperating)
         }
         
         /// 收件人列表不存在。
+        ///
+        /// 确认一下收件人Id是否正确真实，必须为已创建的收件人列表的id
         public static var receiverNotExist: OperationDenied {
             OperationDenied(.receiverNotExist)
         }
         
         /// 收件人列表空或状态不是上传完成。
+        ///
+        /// 检查收件人列表中是否存在收件人地址或者正在进行上传，尚未完成全部上传工作
         public static var receiverStatusError: OperationDenied {
             OperationDenied(.receiverStatusError)
         }
         
         /// 发信地址不存在或者状态不是通过状态。
+        ///
+        /// 发信地址不存在或者状态不是通过,请检查发信地址是否创建
         public static var sendAddressStatusError: OperationDenied {
             OperationDenied(.sendAddressStatusError)
         }
         
         /// 发信模板不存在或者状态不是审核通过状态。
+        ///
+        /// 发信模板不存在或者状态不是审核通过，请检查
         public static var templateStatusError: OperationDenied {
             OperationDenied(.templateStatusError)
         }
@@ -110,10 +122,21 @@ extension TCSesError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCSesError.OperationDenied {
+    /// - Returns: ``TCSesError`` that holds the same error and context.
     public func toSesError() -> TCSesError {
         guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSesError(code, context: self.context)
+    }
+}
+
+extension TCSesError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

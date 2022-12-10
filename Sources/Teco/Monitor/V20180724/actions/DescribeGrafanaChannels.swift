@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 列出 Grafana 所有告警通道
-    ///
-    /// 列出 Grafana 所有告警通道
     @inlinable
     public func describeGrafanaChannels(_ input: DescribeGrafanaChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaChannelsResponse > {
         self.client.execute(action: "DescribeGrafanaChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出 Grafana 所有告警通道
-    ///
     /// 列出 Grafana 所有告警通道
     @inlinable
     public func describeGrafanaChannels(_ input: DescribeGrafanaChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaChannelsResponse {

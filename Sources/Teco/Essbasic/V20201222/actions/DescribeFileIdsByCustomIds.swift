@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Essbasic {
     /// 根据用户自定义id查询文件id
-    ///
-    /// 根据用户自定义id查询文件id
     @inlinable
     public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileIdsByCustomIdsResponse > {
         self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据用户自定义id查询文件id
-    ///
     /// 根据用户自定义id查询文件id
     @inlinable
     public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {

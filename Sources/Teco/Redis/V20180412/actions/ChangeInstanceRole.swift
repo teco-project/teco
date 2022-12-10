@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 复制组实例更换角色
-    ///
-    /// 复制组实例更换角色
     @inlinable
     public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeInstanceRoleResponse > {
         self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 复制组实例更换角色
-    ///
     /// 复制组实例更换角色
     @inlinable
     public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {

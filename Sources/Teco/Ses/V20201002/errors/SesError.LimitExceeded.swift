@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCSesError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -46,14 +48,18 @@ extension TCSesError {
         }
         
         /// 收件人列表数量超过限制。
+        ///
+        /// 收件人列表数量最多10个，具体数量参考页面提示，可以先删除不需要用的列表，然后重新创建
         public static var exceedReceiverLimit: LimitExceeded {
             LimitExceeded(.exceedReceiverLimit)
         }
         
+        /// 该收件人列表包含的收件人地址总量超过限制。请查询一下该收件人列表已存在的地址总数，加上本次请求的地址数量是否超过地址总量限制。总量限制请参考接口描述。
         public static var receiverDetailCountLimit: LimitExceeded {
             LimitExceeded(.receiverDetailCountLimit)
         }
         
+        /// 请求的收件人地址数量超过限制。参考接口文档，调整请求的收件人地址的数量。
         public static var receiverDetailRequestLimit: LimitExceeded {
             LimitExceeded(.receiverDetailRequestLimit)
         }
@@ -78,10 +84,21 @@ extension TCSesError.LimitExceeded: CustomStringConvertible {
 }
 
 extension TCSesError.LimitExceeded {
+    /// - Returns: ``TCSesError`` that holds the same error and context.
     public func toSesError() -> TCSesError {
         guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSesError(code, context: self.context)
+    }
+}
+
+extension TCSesError.LimitExceeded {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

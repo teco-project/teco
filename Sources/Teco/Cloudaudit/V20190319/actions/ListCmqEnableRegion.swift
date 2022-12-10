@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 查询云审计支持的cmq的可用区
-    ///
-    /// 查询云审计支持的cmq的可用区
     @inlinable
     public func listCmqEnableRegion(_ input: ListCmqEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCmqEnableRegionResponse > {
         self.client.execute(action: "ListCmqEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询云审计支持的cmq的可用区
-    ///
     /// 查询云审计支持的cmq的可用区
     @inlinable
     public func listCmqEnableRegion(_ input: ListCmqEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCmqEnableRegionResponse {

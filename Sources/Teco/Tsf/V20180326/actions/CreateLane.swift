@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 创建泳道
-    ///
-    /// 创建泳道
     @inlinable
     public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
         self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建泳道
-    ///
     /// 创建泳道
     @inlinable
     public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {

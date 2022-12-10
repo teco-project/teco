@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 角色修改
-    ///
-    /// 角色修改
     @inlinable
     public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoleResponse > {
         self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 角色修改
-    ///
     /// 角色修改
     @inlinable
     public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {

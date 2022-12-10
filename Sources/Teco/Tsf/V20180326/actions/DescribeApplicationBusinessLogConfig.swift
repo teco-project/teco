@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 查询应用关联日志配置项信息
-    ///
-    /// 查询应用关联日志配置项信息
     @inlinable
     public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationBusinessLogConfigResponse > {
         self.client.execute(action: "DescribeApplicationBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询应用关联日志配置项信息
-    ///
     /// 查询应用关联日志配置项信息
     @inlinable
     public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationBusinessLogConfigResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -32,6 +31,9 @@ extension TCEssbasicError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -46,16 +48,22 @@ extension TCEssbasicError {
         }
         
         /// 重复添加签署人。
+        ///
+        /// 请参考错误信息，检查合同签署人手机号或身份证号，是否唯一。
         public static var bizApproverAlreadyExists: InvalidParameter {
             InvalidParameter(.bizApproverAlreadyExists)
         }
         
         /// 无效的意愿确认票据。
+        ///
+        /// 请输入正确的验证码，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var invalidVerifyResult: InvalidParameter {
             InvalidParameter(.invalidVerifyResult)
         }
         
         /// 状态异常。
+        ///
+        /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var status: InvalidParameter {
             InvalidParameter(.status)
         }
@@ -80,10 +88,21 @@ extension TCEssbasicError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCEssbasicError.InvalidParameter {
+    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
     public func toEssbasicError() -> TCEssbasicError {
         guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEssbasicError(code, context: self.context)
+    }
+}
+
+extension TCEssbasicError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

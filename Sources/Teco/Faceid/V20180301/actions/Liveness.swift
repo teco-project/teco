@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Faceid {
     /// 活体检测
-    ///
-    /// 活体检测
     @inlinable
     public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessResponse > {
         self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 活体检测
-    ///
     /// 活体检测
     @inlinable
     public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 修改CC的防护阈值
-    ///
-    /// 修改CC的防护阈值
     @inlinable
     public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdResponse > {
         self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改CC的防护阈值
-    ///
     /// 修改CC的防护阈值
     @inlinable
     public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdResponse {

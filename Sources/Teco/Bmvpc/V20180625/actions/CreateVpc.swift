@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 创建黑石私有网络
-    ///
-    /// 创建黑石私有网络
     @inlinable
     public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
         self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建黑石私有网络
-    ///
     /// 创建黑石私有网络
     @inlinable
     public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {

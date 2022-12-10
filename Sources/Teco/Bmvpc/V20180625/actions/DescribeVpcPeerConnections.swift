@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 获取对等连接列表
-    ///
-    /// 获取对等连接列表
     @inlinable
     public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcPeerConnectionsResponse > {
         self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取对等连接列表
-    ///
     /// 获取对等连接列表
     @inlinable
     public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {

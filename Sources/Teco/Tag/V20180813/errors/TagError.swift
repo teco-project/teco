@@ -58,6 +58,9 @@ public struct TCTagError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -107,6 +110,8 @@ public struct TCTagError: TCErrorType {
     }
     
     /// 标签已经关联配额。
+    ///
+    /// 标签已经关联配额不能删除。
     public static var failedOperation_TagAttachedQuota: TCTagError {
         TCTagError(.failedOperation_TagAttachedQuota)
     }
@@ -327,5 +332,15 @@ extension TCTagError: Equatable {
 extension TCTagError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTagError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

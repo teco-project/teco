@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 查看推送通道
-    ///
-    /// 查看推送通道
     @inlinable
     public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushChannelResponse > {
         self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看推送通道
-    ///
     /// 查看推送通道
     @inlinable
     public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {

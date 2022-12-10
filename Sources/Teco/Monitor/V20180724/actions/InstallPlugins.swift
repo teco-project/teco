@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 安装 Grafana Plugin
-    ///
-    /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
         self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 安装 Grafana Plugin
-    ///
     /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {

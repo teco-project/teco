@@ -25,6 +25,9 @@ public struct TCBmError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -44,6 +47,8 @@ public struct TCBmError: TCErrorType {
     }
     
     /// 存在未结束故障单，操作失败。
+    ///
+    /// 设备仍处于故障状态中，请前往 维护平台-维修任务 进行故障处理，处理完毕稍后再试。
     public static var failedOperation_ExistRepairTask: TCBmError {
         TCBmError(.failedOperation_ExistRepairTask)
     }
@@ -129,5 +134,15 @@ extension TCBmError: Equatable {
 extension TCBmError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCBmError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 智慧零售-发票开具
-    ///
-    /// 智慧零售-发票开具
     @inlinable
     public func createInvoice(_ input: CreateInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvoiceResponse > {
         self.client.execute(action: "CreateInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智慧零售-发票开具
-    ///
     /// 智慧零售-发票开具
     @inlinable
     public func createInvoice(_ input: CreateInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvoiceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -54,6 +53,9 @@ extension TCSoeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -68,16 +70,22 @@ extension TCSoeError {
         }
         
         /// 输入分片音频大小超过最大限制，请调整分片大小后重新传输数据。
+        ///
+        /// 请调整分片大小后重新传输数据。
         public static var audioDataSizeLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.audioDataSizeLimitExceeded)
         }
         
         /// 音频数据解码失败，请参考API文档中音频要求检查音频数据格式设置是否正确后重新传输数据。
+        ///
+        /// 请参考API文档中音频要求检查音频数据格式设置是否正确后重新传输数据。
         public static var audioDecodeFailed: InvalidParameterValue {
             InvalidParameterValue(.audioDecodeFailed)
         }
         
         /// 输入音频时长超过限制，请结束本次评测，后续请根据评测模式设置音频时长限制。
+        ///
+        /// 输入音频时长超过限制，请结束本次评测，后续请根据评测模式设置音频时长限制。https://cloud.tencent.com/document/product/884/19310
         public static var audioLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.audioLimitExceeded)
         }
@@ -113,26 +121,36 @@ extension TCSoeError {
         }
         
         /// 请求参数RefText无效或参考文本为空，请检查RefText是否为空。
+        ///
+        /// 请检查RefText是否为空。https://cloud.tencent.com/document/product/884/19310
         public static var refTextEmpty: InvalidParameterValue {
             InvalidParameterValue(.refTextEmpty)
         }
         
         /// 请求参数RefText语法错误，请参考API文档检查文本格式，尤其是指定发音格式是否正确。
+        ///
+        /// 请求参数RefText语法错误，请参考API文档检查文本格式确认正确后重试，尤其是指定发音格式是否正确。https://cloud.tencent.com/document/product/884/33698
         public static var refTextGrammarError: InvalidParameterValue {
             InvalidParameterValue(.refTextGrammarError)
         }
         
         /// 请求参数RefText的字数超过最大限制，请根据评测模式调整字数后重新初始化。
+        ///
+        /// 请参考API文档检查参数RefText的字数限制。https://cloud.tencent.com/document/product/884/19310
         public static var refTextLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.refTextLimitExceeded)
         }
         
         /// 请求参数RefText包含OOV词汇，请使用指定发音或联系我们处理。
+        ///
+        /// 请使用指定发音或联系我们处理。https://cloud.tencent.com/document/product/884/19310
         public static var refTextOOV: InvalidParameterValue {
             InvalidParameterValue(.refTextOOV)
         }
         
         /// 请检查参考文本中是否包含大量多音字，可通过发音描述块指定标准发音解决。
+        ///
+        /// 可通过发音描述块指定标准发音解决。
         public static var refTextPolyphonicLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.refTextPolyphonicLimitExceeded)
         }
@@ -153,6 +171,8 @@ extension TCSoeError {
         }
         
         /// SessionId已存在，建议使用uuid作为SessionId重新初始化。
+        ///
+        /// 建议使用uuid作为SessionId重新初始化。https://cloud.tencent.com/document/product/884/19310
         public static var sessionIdInUse: InvalidParameterValue {
             InvalidParameterValue(.sessionIdInUse)
         }
@@ -173,6 +193,9 @@ extension TCSoeError {
         }
         
         /// 语音文件格式参数VoiceFileType取值错误，请参考API文档检查语音文件格式VoiceFileType是否正确后重新传输数据。
+        ///
+        /// 语音文件格式参数VoiceFileType取值错误，请参考API文档检查语音文件格式VoiceFileType是否正确后重新传输数据。
+        /// https://cloud.tencent.com/document/product/884/32605
         public static var voiceFileTypeNotFound: InvalidParameterValue {
             InvalidParameterValue(.voiceFileTypeNotFound)
         }
@@ -212,10 +235,21 @@ extension TCSoeError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCSoeError.InvalidParameterValue {
+    /// - Returns: ``TCSoeError`` that holds the same error and context.
     public func toSoeError() -> TCSoeError {
         guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCSoeError(code, context: self.context)
+    }
+}
+
+extension TCSoeError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

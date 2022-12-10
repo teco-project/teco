@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 获取基础告警列表
-    ///
-    /// 获取基础告警列表
     @inlinable
     public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicAlarmListResponse > {
         self.client.execute(action: "DescribeBasicAlarmList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取基础告警列表
-    ///
     /// 获取基础告警列表
     @inlinable
     public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicAlarmListResponse {

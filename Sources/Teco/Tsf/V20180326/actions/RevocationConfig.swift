@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 撤回已发布的配置
-    ///
-    /// 撤回已发布的配置
     @inlinable
     public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationConfigResponse > {
         self.client.execute(action: "RevocationConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 撤回已发布的配置
-    ///
     /// 撤回已发布的配置
     @inlinable
     public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationConfigResponse {

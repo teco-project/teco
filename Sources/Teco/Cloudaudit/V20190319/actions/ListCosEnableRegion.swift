@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 查询云审计支持的cos可用区
-    ///
-    /// 查询云审计支持的cos可用区
     @inlinable
     public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCosEnableRegionResponse > {
         self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询云审计支持的cos可用区
-    ///
     /// 查询云审计支持的cos可用区
     @inlinable
     public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {

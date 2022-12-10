@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// DMS元数据删除库
-    ///
-    /// DMS元数据删除库
     @inlinable
     public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSDatabaseResponse > {
         self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DMS元数据删除库
-    ///
     /// DMS元数据删除库
     @inlinable
     public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -59,6 +58,9 @@ extension TCCdnError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -98,6 +100,8 @@ extension TCCdnError {
         }
         
         /// 该域名涉及违法违规风险，不可接入。
+        ///
+        /// 您可前往工业和信息化部政务服务平台-ICP/IP地址/域名信息备案管理系统查询。
         public static var cdnHostInIcpBlacklist: UnauthorizedOperation {
             UnauthorizedOperation(.cdnHostInIcpBlacklist)
         }
@@ -178,6 +182,8 @@ extension TCCdnError {
         }
         
         /// CLS服务未开通，请先在CLS控制台开通服务。
+        ///
+        /// 使用cdn-cls服务，需先在CLS控制台开通服务。
         public static var clsServiceNotActivated: UnauthorizedOperation {
             UnauthorizedOperation(.clsServiceNotActivated)
         }
@@ -213,6 +219,8 @@ extension TCCdnError {
         }
         
         /// 操作超出调用频次限制。
+        ///
+        /// 接口有调用频率限制，请降低调用频率。如果您需要提升频率，请联系腾讯云工程师进一步处理。
         public static var operationTooOften: UnauthorizedOperation {
             UnauthorizedOperation(.operationTooOften)
         }
@@ -242,10 +250,21 @@ extension TCCdnError.UnauthorizedOperation: CustomStringConvertible {
 }
 
 extension TCCdnError.UnauthorizedOperation {
+    /// - Returns: ``TCCdnError`` that holds the same error and context.
     public func toCdnError() -> TCCdnError {
         guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCdnError(code, context: self.context)
+    }
+}
+
+extension TCCdnError.UnauthorizedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

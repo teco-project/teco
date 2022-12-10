@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 创建或修改安全网关路由
-    ///
-    /// 创建或修改安全网关路由
     @inlinable
     public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishWxGatewayRouteResponse > {
         self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建或修改安全网关路由
-    ///
     /// 创建或修改安全网关路由
     @inlinable
     public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {

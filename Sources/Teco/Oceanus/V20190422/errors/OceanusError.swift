@@ -96,6 +96,9 @@ public struct TCOceanusError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -315,6 +318,9 @@ public struct TCOceanusError: TCErrorType {
     }
     
     /// 非法的 MaxParallelism 参数。
+    ///
+    /// MaxParallelism 必须大于等于作业的算子最大并行度，且不能大于 16384.
+    /// 另外，如果当前作业处于暂停中，则不允许修改 MaxParallelism 的值，以防止状态恢复报错。
     public static var invalidParameter_IllegalMaxParallelism: TCOceanusError {
         TCOceanusError(.invalidParameter_IllegalMaxParallelism)
     }
@@ -344,16 +350,21 @@ public struct TCOceanusError: TCErrorType {
         TCOceanusError(.invalidParameter_InvalidResourceIds)
     }
     
+    /// 请输入有效的日志采集方式或者存储桶名称。
     public static var invalidParameter_JobConfigLogCollectParamError: TCOceanusError {
         TCOceanusError(.invalidParameter_JobConfigLogCollectParamError)
     }
     
     /// MaxParallelism 过大。
+    ///
+    /// 不建议超过 2048，不允许超过 16384。
     public static var invalidParameter_MaxParallelismTooLarge: TCOceanusError {
         TCOceanusError(.invalidParameter_MaxParallelismTooLarge)
     }
     
     /// MaxParallelism 不允许小于算子默认并行度。
+    ///
+    /// 请调小算子默认并行度，或增大 MaxParallelism 取值（无法保留运行状态）。
     public static var invalidParameter_MaxParallelismTooSmall: TCOceanusError {
         TCOceanusError(.invalidParameter_MaxParallelismTooSmall)
     }
@@ -529,6 +540,8 @@ public struct TCOceanusError: TCErrorType {
     }
     
     /// 权限拦截,没有进入权限。
+    ///
+    /// 先赋权，再作业
     public static var unsupportedOperation_NoPermissionAccess: TCOceanusError {
         TCOceanusError(.unsupportedOperation_NoPermissionAccess)
     }
@@ -554,5 +567,15 @@ extension TCOceanusError: Equatable {
 extension TCOceanusError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCOceanusError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

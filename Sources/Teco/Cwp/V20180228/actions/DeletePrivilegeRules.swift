@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 删除本地提权规则
-    ///
-    /// 删除本地提权规则
     @inlinable
     public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeRulesResponse > {
         self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除本地提权规则
-    ///
     /// 删除本地提权规则
     @inlinable
     public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {

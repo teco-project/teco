@@ -48,6 +48,9 @@ public struct TCTcssError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -172,16 +175,22 @@ public struct TCTcssError: TCErrorType {
     }
     
     /// 参数格式错误。
+    ///
+    /// 修正参数格式。
     public static var invalidParameter_InvalidFormat: TCTcssError {
         TCTcssError(.invalidParameter_InvalidFormat)
     }
     
     /// 缺少必须参数。
+    ///
+    /// 修正输入
     public static var invalidParameter_MissingParameter: TCTcssError {
         TCTcssError(.invalidParameter_MissingParameter)
     }
     
     /// 参数解析错误。
+    ///
+    /// 修正输入参数
     public static var invalidParameter_ParsingError: TCTcssError {
         TCTcssError(.invalidParameter_ParsingError)
     }
@@ -267,5 +276,15 @@ extension TCTcssError: Equatable {
 extension TCTcssError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTcssError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询本地镜像漏洞列表导出
-    ///
-    /// 查询本地镜像漏洞列表导出
     @inlinable
     public func createVulExportJob(_ input: CreateVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulExportJobResponse > {
         self.client.execute(action: "CreateVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询本地镜像漏洞列表导出
-    ///
     /// 查询本地镜像漏洞列表导出
     @inlinable
     public func createVulExportJob(_ input: CreateVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulExportJobResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 编辑环境
-    ///
-    /// 编辑环境
     @inlinable
     public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentResponse > {
         self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑环境
-    ///
     /// 编辑环境
     @inlinable
     public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 删除ECM实例
-    ///
-    /// 删除ECM实例
     @inlinable
     public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteECMInstancesResponse > {
         self.client.execute(action: "DeleteECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除ECM实例
-    ///
     /// 删除ECM实例
     @inlinable
     public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteECMInstancesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Fmu {
     /// 视频美颜
-    ///
-    /// 视频美颜
     @inlinable
     public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyVideoResponse > {
         self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 视频美颜
-    ///
     /// 视频美颜
     @inlinable
     public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {

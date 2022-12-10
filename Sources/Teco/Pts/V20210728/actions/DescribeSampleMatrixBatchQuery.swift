@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Pts {
     /// 批量查询指标矩阵
-    ///
-    /// 批量查询指标矩阵
     @inlinable
     public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixBatchQueryResponse > {
         self.client.execute(action: "DescribeSampleMatrixBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量查询指标矩阵
-    ///
     /// 批量查询指标矩阵
     @inlinable
     public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixBatchQueryResponse {

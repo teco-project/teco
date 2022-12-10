@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Smpn {
     /// 号码营销监控
-    ///
-    /// 号码营销监控
     @inlinable
     public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMhmResponse > {
         self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 号码营销监控
-    ///
     /// 号码营销监控
     @inlinable
     public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {

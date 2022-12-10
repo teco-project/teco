@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Organization {
     /// 获取企业组织成员
-    ///
-    /// 获取企业组织成员
     @inlinable
     public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOrganizationMemberResponse > {
         self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取企业组织成员
-    ///
     /// 获取企业组织成员
     @inlinable
     public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 黑石EIP绑定VPCIP
-    ///
-    /// 黑石EIP绑定VPCIP
     @inlinable
     public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindVpcIpResponse > {
         self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 黑石EIP绑定VPCIP
-    ///
     /// 黑石EIP绑定VPCIP
     @inlinable
     public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {

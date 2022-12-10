@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 修改集群认证配置
-    ///
-    /// 修改集群认证配置
     @inlinable
     public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAuthenticationOptionsResponse > {
         self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改集群认证配置
-    ///
     /// 修改集群认证配置
     @inlinable
     public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {

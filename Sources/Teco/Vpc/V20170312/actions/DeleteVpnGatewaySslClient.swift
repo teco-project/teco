@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Vpc {
     /// 删除SSL-VPN-CLIENT
-    ///
-    /// 删除SSL-VPN-CLIENT
     @inlinable
     public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslClientResponse > {
         self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除SSL-VPN-CLIENT
-    ///
     /// 删除SSL-VPN-CLIENT
     @inlinable
     public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {

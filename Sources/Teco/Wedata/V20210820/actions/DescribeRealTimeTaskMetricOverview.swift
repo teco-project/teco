@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 实时任务运行指标概览
-    ///
-    /// 实时任务运行指标概览
     @inlinable
     public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskMetricOverviewResponse > {
         self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 实时任务运行指标概览
-    ///
     /// 实时任务运行指标概览
     @inlinable
     public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {

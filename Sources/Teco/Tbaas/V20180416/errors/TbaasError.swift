@@ -123,6 +123,9 @@ public struct TCTbaasError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -142,6 +145,8 @@ public struct TCTbaasError: TCErrorType {
     }
     
     /// 用户无权限访问。
+    ///
+    /// 用户需要在主账号配置当前子账号/协作者账号的接口和资源的访问权限
     public static var authFailure_UnauthorizedOperation: TCTbaasError {
         TCTbaasError(.authFailure_UnauthorizedOperation)
     }
@@ -402,6 +407,8 @@ public struct TCTbaasError: TCErrorType {
     }
     
     /// 交易请求异常。
+    ///
+    /// ManageService service internal error, please try again later or contact with us.
     public static var failedOperation_ManageService: TCTbaasError {
         TCTbaasError(.failedOperation_ManageService)
     }
@@ -717,5 +724,15 @@ extension TCTbaasError: Equatable {
 extension TCTbaasError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTbaasError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

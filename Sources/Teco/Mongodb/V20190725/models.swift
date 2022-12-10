@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -230,8 +229,7 @@ extension Mongodb {
     public struct DBInstancePrice: TCInputModel, TCOutputModel {
         /// 单价
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let unitPrice: Float?
+        public let unitPrice: Float
         
         /// 原价
         public let originalPrice: Float
@@ -239,7 +237,7 @@ extension Mongodb {
         /// 折扣加
         public let discountPrice: Float
         
-        public init (unitPrice: Float?, originalPrice: Float, discountPrice: Float) {
+        public init (unitPrice: Float, originalPrice: Float, discountPrice: Float) {
             self.unitPrice = unitPrice
             self.originalPrice = originalPrice
             self.discountPrice = discountPrice

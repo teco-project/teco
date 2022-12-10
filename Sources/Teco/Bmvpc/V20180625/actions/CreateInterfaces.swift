@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmvpc {
     /// 物理机加入子网
-    ///
-    /// 物理机加入子网
     @inlinable
     public func createInterfaces(_ input: CreateInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInterfacesResponse > {
         self.client.execute(action: "CreateInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 物理机加入子网
-    ///
     /// 物理机加入子网
     @inlinable
     public func createInterfaces(_ input: CreateInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {

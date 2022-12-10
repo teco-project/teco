@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取集群资源使用量
-    ///
-    /// 获取集群资源使用量
     @inlinable
     public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageResponse > {
         self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取集群资源使用量
-    ///
     /// 获取集群资源使用量
     @inlinable
     public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {

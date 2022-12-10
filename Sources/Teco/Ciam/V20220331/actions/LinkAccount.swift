@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ciam {
     /// 账号融合
-    ///
-    /// 账号融合
     @inlinable
     public func linkAccount(_ input: LinkAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkAccountResponse > {
         self.client.execute(action: "LinkAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 账号融合
-    ///
     /// 账号融合
     @inlinable
     public func linkAccount(_ input: LinkAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkAccountResponse {

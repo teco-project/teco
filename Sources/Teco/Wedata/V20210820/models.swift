@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -336,10 +335,9 @@ extension Wedata {
     public struct CommonId: TCInputModel, TCOutputModel {
         /// Id值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let id: String?
+        public let id: String
         
-        public init (id: String?) {
+        public init (id: String) {
             self.id = id
         }
         
@@ -1100,13 +1098,11 @@ extension Wedata {
     public struct FunctionResource: TCInputModel, TCOutputModel {
         /// 资源路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let path: String?
+        public let path: String
         
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 资源唯一标识
         public let id: String?
@@ -1119,7 +1115,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (path: String?, name: String?, id: String?, md5: String?, type: String?) {
+        public init (path: String, name: String, id: String?, md5: String?, type: String?) {
             self.path = path
             self.name = name
             self.id = id
@@ -2171,8 +2167,7 @@ extension Wedata {
         
         /// crontab
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let crontabExpression: String?
+        public let crontabExpression: String
         
         /// 重试等待
         public let retryWait: UInt64
@@ -2207,7 +2202,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionStartTime: String?
         
-        public init (workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String?, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String?, executionEndTime: String?, executionStartTime: String?) {
+        public init (workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String?, executionEndTime: String?, executionStartTime: String?) {
             self.workflowName = workflowName
             self.dependencyWorkflow = dependencyWorkflow
             self.startTime = startTime
@@ -2417,8 +2412,7 @@ extension Wedata {
     public struct ProdSchedulerTask: TCInputModel, TCOutputModel {
         /// 生产调度任务工作流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let workflowId: String?
+        public let workflowId: String
         
         /// 生产调度任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2428,7 +2422,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
         
-        public init (workflowId: String?, taskId: String?, taskName: String?) {
+        public init (workflowId: String, taskId: String?, taskName: String?) {
             self.workflowId = workflowId
             self.taskId = taskId
             self.taskName = taskName
@@ -4540,8 +4534,7 @@ extension Wedata {
         
         /// 告警接收人昵称，多个用逗号隔开
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let alarmRecipientName: String?
+        public let alarmRecipientName: String
         
         /// 主键ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4582,7 +4575,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
         
-        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String?, id: String?, regularId: String?, triggerType: UInt64?, estimatedTime: UInt64?, projectId: String?, creater: String?, alarmIndicatorDesc: String?, `operator`: UInt64?, nodeId: String?, nodeName: String?) {
+        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String?, regularId: String?, triggerType: UInt64?, estimatedTime: UInt64?, projectId: String?, creater: String?, alarmIndicatorDesc: String?, `operator`: UInt64?, nodeId: String?, nodeName: String?) {
             self.taskId = taskId
             self.regularName = regularName
             self.regularStatus = regularStatus

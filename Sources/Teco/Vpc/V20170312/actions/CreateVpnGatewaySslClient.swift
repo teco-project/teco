@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Vpc {
     /// 创建SSL-VPN-CLIENT
-    ///
-    /// 创建SSL-VPN-CLIENT
     @inlinable
     public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewaySslClientResponse > {
         self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建SSL-VPN-CLIENT
-    ///
     /// 创建SSL-VPN-CLIENT
     @inlinable
     public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {

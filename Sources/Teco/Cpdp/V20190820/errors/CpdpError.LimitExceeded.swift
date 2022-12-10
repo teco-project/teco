@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -37,6 +36,9 @@ extension TCCpdpError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -51,46 +53,64 @@ extension TCCpdpError {
         }
         
         /// 聚鑫文件过大。
+        ///
+        /// 请联系我们
         public static var midasLargeFile: LimitExceeded {
             LimitExceeded(.midasLargeFile)
         }
         
         /// 聚鑫不允许并发下单。
+        ///
+        /// 请联系我们
         public static var midasOrder: LimitExceeded {
             LimitExceeded(.midasOrder)
         }
         
         /// 聚鑫订单已取消。
+        ///
+        /// 请联系我们
         public static var midasOrderCanceled: LimitExceeded {
             LimitExceeded(.midasOrderCanceled)
         }
         
         /// 聚鑫已关单。
+        ///
+        /// 请联系我们
         public static var midasOrderClosed: LimitExceeded {
             LimitExceeded(.midasOrderClosed)
         }
         
         /// 聚鑫订单已过期，包括超时未支付、超过退款期限等情况。
+        ///
+        /// 请联系我们
         public static var midasOrderExpired: LimitExceeded {
             LimitExceeded(.midasOrderExpired)
         }
         
         /// 聚鑫处理失败。
+        ///
+        /// 请联系我们
         public static var midasOrderFailed: LimitExceeded {
             LimitExceeded(.midasOrderFailed)
         }
         
         /// 聚鑫处理部分成功部分失败。
+        ///
+        /// 请联系我们
         public static var midasOrderPartialSuccess: LimitExceeded {
             LimitExceeded(.midasOrderPartialSuccess)
         }
         
         /// 聚鑫处理中。
+        ///
+        /// 请联系我们
         public static var midasOrderProcessing: LimitExceeded {
             LimitExceeded(.midasOrderProcessing)
         }
         
         /// 聚鑫处理成功，请勿再提交。
+        ///
+        /// 请联系我们
         public static var midasOrderSuccess: LimitExceeded {
             LimitExceeded(.midasOrderSuccess)
         }
@@ -110,10 +130,21 @@ extension TCCpdpError.LimitExceeded: CustomStringConvertible {
 }
 
 extension TCCpdpError.LimitExceeded {
+    /// - Returns: ``TCCpdpError`` that holds the same error and context.
     public func toCpdpError() -> TCCpdpError {
         guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCpdpError(code, context: self.context)
+    }
+}
+
+extension TCCpdpError.LimitExceeded {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

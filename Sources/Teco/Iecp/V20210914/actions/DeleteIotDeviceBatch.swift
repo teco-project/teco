@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 批量删除设备
-    ///
-    /// 批量删除设备
     @inlinable
     public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceBatchResponse > {
         self.client.execute(action: "DeleteIotDeviceBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量删除设备
-    ///
     /// 批量删除设备
     @inlinable
     public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {

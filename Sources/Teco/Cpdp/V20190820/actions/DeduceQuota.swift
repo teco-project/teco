@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 直播平台-扣减额度
-    ///
-    /// 直播平台-扣减额度
     @inlinable
     public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeduceQuotaResponse > {
         self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-扣减额度
-    ///
     /// 直播平台-扣减额度
     @inlinable
     public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {

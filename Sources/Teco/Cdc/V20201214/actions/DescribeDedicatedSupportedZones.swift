@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 查询专用集群支持的可用区列表
-    ///
-    /// 查询专用集群支持的可用区列表
     @inlinable
     public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedSupportedZonesResponse > {
         self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询专用集群支持的可用区列表
-    ///
     /// 查询专用集群支持的可用区列表
     @inlinable
     public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {

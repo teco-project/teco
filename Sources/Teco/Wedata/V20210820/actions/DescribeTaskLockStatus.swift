@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 查看任务锁状态信息
-    ///
-    /// 查看任务锁状态信息
     @inlinable
     public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
         self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看任务锁状态信息
-    ///
     /// 查看任务锁状态信息
     @inlinable
     public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云企付-跨境支付下单
-    ///
-    /// 云企付-跨境支付下单
     @inlinable
     public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankGlobalPaymentOrderResponse > {
         self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云企付-跨境支付下单
-    ///
     /// 云企付-跨境支付下单
     @inlinable
     public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankGlobalPaymentOrderResponse {

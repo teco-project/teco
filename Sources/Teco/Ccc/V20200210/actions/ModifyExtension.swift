@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 修改话机账号(绑定技能组、绑定坐席账号)
-    ///
-    /// 修改话机账号(绑定技能组、绑定坐席账号)
     @inlinable
     public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExtensionResponse > {
         self.client.execute(action: "ModifyExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改话机账号(绑定技能组、绑定坐席账号)
-    ///
     /// 修改话机账号(绑定技能组、绑定坐席账号)
     @inlinable
     public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotcloud {
     /// 编辑固件信息
-    ///
-    /// 编辑固件信息
     @inlinable
     public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
         self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑固件信息
-    ///
     /// 编辑固件信息
     @inlinable
     public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {

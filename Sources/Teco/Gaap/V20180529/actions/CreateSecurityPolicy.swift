@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gaap {
     /// 创建安全策略
-    ///
-    /// 创建安全策略
     @inlinable
     public func createSecurityPolicy(_ input: CreateSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityPolicyResponse > {
         self.client.execute(action: "CreateSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建安全策略
-    ///
     /// 创建安全策略
     @inlinable
     public func createSecurityPolicy(_ input: CreateSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPolicyResponse {

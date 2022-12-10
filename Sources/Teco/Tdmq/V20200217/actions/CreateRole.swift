@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 创建角色
-    ///
-    /// 创建角色
     @inlinable
     public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
         self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建角色
-    ///
     /// 创建角色
     @inlinable
     public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {

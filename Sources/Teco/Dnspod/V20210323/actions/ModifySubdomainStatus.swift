@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 暂停子域名的解析记录
-    ///
-    /// 暂停子域名的解析记录
     @inlinable
     public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubdomainStatusResponse > {
         self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 暂停子域名的解析记录
-    ///
     /// 暂停子域名的解析记录
     @inlinable
     public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {

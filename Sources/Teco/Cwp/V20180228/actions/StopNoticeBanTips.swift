@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 不再提醒爆破阻断提示弹窗
-    ///
-    /// 不再提醒爆破阻断提示弹窗
     @inlinable
     public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNoticeBanTipsResponse > {
         self.client.execute(action: "StopNoticeBanTips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 不再提醒爆破阻断提示弹窗
-    ///
     /// 不再提醒爆破阻断提示弹窗
     @inlinable
     public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {

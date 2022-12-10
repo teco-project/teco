@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 容器部署组列表
-    ///
-    /// 容器部署组列表
     @inlinable
     public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupsResponse > {
         self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 容器部署组列表
-    ///
     /// 容器部署组列表
     @inlinable
     public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {

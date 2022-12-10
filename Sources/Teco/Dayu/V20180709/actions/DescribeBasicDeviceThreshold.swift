@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取基础防护黑洞阈值
-    ///
-    /// 获取基础防护黑洞阈值
     @inlinable
     public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceThresholdResponse > {
         self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取基础防护黑洞阈值
-    ///
     /// 获取基础防护黑洞阈值
     @inlinable
     public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {

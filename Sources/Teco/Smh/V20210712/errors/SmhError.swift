@@ -34,6 +34,9 @@ public struct TCSmhError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -122,6 +125,8 @@ public struct TCSmhError: TCErrorType {
     }
     
     /// 多租户空间媒体库中存在正在使用的租户空间。
+    ///
+    /// 在删除多租户空间媒体库时，需首先删除该媒体库下的全部租户空间。
     public static var resourceInUse_MultiSpace: TCSmhError {
         TCSmhError(.resourceInUse_MultiSpace)
     }
@@ -181,5 +186,15 @@ extension TCSmhError: Equatable {
 extension TCSmhError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSmhError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -51,6 +50,9 @@ extension TCDlcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -80,6 +82,8 @@ extension TCDlcError {
         }
         
         /// 无效的数据引擎名。
+        ///
+        /// 一般是引擎名字重复或包含不支持的符号。
         public static var invalidDataEngineName: InvalidParameter {
             InvalidParameter(.invalidDataEngineName)
         }
@@ -94,6 +98,7 @@ extension TCDlcError {
             InvalidParameter(.invalidFailureTolerance)
         }
         
+        /// 请更换过滤条件。
         public static var invalidFilterKey: InvalidParameter {
             InvalidParameter(.invalidFilterKey)
         }
@@ -108,6 +113,7 @@ extension TCDlcError {
             InvalidParameter(.invalidOffset)
         }
         
+        /// 请使用正确的已经授权的CAM role arn
         public static var invalidRoleArn: InvalidParameter {
             InvalidParameter(.invalidRoleArn)
         }
@@ -118,6 +124,8 @@ extension TCDlcError {
         }
         
         /// SQL数量不符合规范。
+        ///
+        /// 单次提交的SQL数量应该小于等于50，大于等于1。
         public static var invalidSQLNum: InvalidParameter {
             InvalidParameter(.invalidSQLNum)
         }
@@ -142,6 +150,8 @@ extension TCDlcError {
         }
         
         /// 无效的任务类型。
+        ///
+        /// 填写正确的任务类型SQLTask
         public static var invalidTaskType: InvalidParameter {
             InvalidParameter(.invalidTaskType)
         }
@@ -157,6 +167,8 @@ extension TCDlcError {
         }
         
         /// 无效的用户类型。
+        ///
+        /// 请检查用户类型是否存在或者其余入参是否符合所选用户类型的要求。
         public static var invalidUserType: InvalidParameter {
             InvalidParameter(.invalidUserType)
         }
@@ -167,6 +179,8 @@ extension TCDlcError {
         }
         
         /// 任务已经结束，不能取消。
+        ///
+        /// 等待任务状态更新。
         public static var taskAlreadyFinished: InvalidParameter {
             InvalidParameter(.taskAlreadyFinished)
         }
@@ -191,10 +205,21 @@ extension TCDlcError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCDlcError.InvalidParameter {
+    /// - Returns: ``TCDlcError`` that holds the same error and context.
     public func toDlcError() -> TCDlcError {
         guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCDlcError(code, context: self.context)
+    }
+}
+
+extension TCDlcError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

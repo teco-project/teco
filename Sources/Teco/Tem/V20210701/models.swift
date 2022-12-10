@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -674,8 +673,7 @@ extension Tem {
     public struct IngressInfo: TCInputModel, TCOutputModel {
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let environmentId: String?
+        public let environmentId: String
         
         /// 环境namespace
         public let clusterNamespace: String
@@ -718,7 +716,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteType: String?
         
-        public init (environmentId: String?, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?, rewriteType: String?) {
+        public init (environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?, rewriteType: String?) {
             self.environmentId = environmentId
             self.clusterNamespace = clusterNamespace
             self.addressIPVersion = addressIPVersion
@@ -2074,7 +2072,6 @@ extension Tem {
         
         /// 弹性配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let esInfo: EsInfo
         
         /// 环境配置
@@ -2100,13 +2097,11 @@ extension Tem {
         
         /// 挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let storageMountConfs: [StorageMountConf]?
+        public let storageMountConfs: [StorageMountConf]
         
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let versionName: String?
+        public let versionName: String
         
         /// 日志输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2359,7 +2354,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
         
-        public init (versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf]?, versionName: String?, logOutputConf: LogOutputConf, applicationName: String?, applicationDescription: String?, environmentName: String?, environmentId: String?, publicDomain: String?, enablePublicAccess: Bool?, currentInstances: Int64?, expectedInstances: Int64?, codingLanguage: String?, pkgName: String?, esEnable: Int64?, esStrategy: Int64?, imageTag: String?, logEnable: Int64?, minAliveInstances: String?, securityGroupIds: [String]?, imageCommand: String?, imageArgs: [String]?, useRegistryDefaultConfig: Bool?, service: EksService, settingConfs: [MountedSettingConf]?, logConfs: [String]?, postStart: String?, preStop: String?, liveness: HealthCheckConfig, readiness: HealthCheckConfig, horizontalAutoscaler: [HorizontalAutoscaler]?, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?, zones: [String]?, lastDeployDate: String?, lastDeploySuccessDate: String?, nodeInfos: [NodeInfo]?, imageType: Int64?, enableTracing: UInt64?, enableTracingReport: UInt64?, repoType: UInt64?, batchDeployStatus: String?, apmInstanceId: String?, workloadInfo: WorkloadInfo, speedUp: Bool?, startupProbe: HealthCheckConfig, osFlavour: String?, repoServer: String?, underDeploying: Bool?, enablePrometheusConf: EnablePrometheusConf, stoppedManually: Bool?, tcrInstanceId: String?, enableMetrics: Int64?, appId: String?, subAccountUin: String?, uin: String?, region: String?, groupId: String?, enableRegistry: Int64?, autoscalerList: [Autoscaler]?, modifier: String?, creator: String?, deployStrategyConf: DeployStrategyConf, podList: DescribeRunPodPage, confEdited: Bool?, tags: [Tag]?) {
+        public init (versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf, applicationName: String?, applicationDescription: String?, environmentName: String?, environmentId: String?, publicDomain: String?, enablePublicAccess: Bool?, currentInstances: Int64?, expectedInstances: Int64?, codingLanguage: String?, pkgName: String?, esEnable: Int64?, esStrategy: Int64?, imageTag: String?, logEnable: Int64?, minAliveInstances: String?, securityGroupIds: [String]?, imageCommand: String?, imageArgs: [String]?, useRegistryDefaultConfig: Bool?, service: EksService, settingConfs: [MountedSettingConf]?, logConfs: [String]?, postStart: String?, preStop: String?, liveness: HealthCheckConfig, readiness: HealthCheckConfig, horizontalAutoscaler: [HorizontalAutoscaler]?, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?, zones: [String]?, lastDeployDate: String?, lastDeploySuccessDate: String?, nodeInfos: [NodeInfo]?, imageType: Int64?, enableTracing: UInt64?, enableTracingReport: UInt64?, repoType: UInt64?, batchDeployStatus: String?, apmInstanceId: String?, workloadInfo: WorkloadInfo, speedUp: Bool?, startupProbe: HealthCheckConfig, osFlavour: String?, repoServer: String?, underDeploying: Bool?, enablePrometheusConf: EnablePrometheusConf, stoppedManually: Bool?, tcrInstanceId: String?, enableMetrics: Int64?, appId: String?, subAccountUin: String?, uin: String?, region: String?, groupId: String?, enableRegistry: Int64?, autoscalerList: [Autoscaler]?, modifier: String?, creator: String?, deployStrategyConf: DeployStrategyConf, podList: DescribeRunPodPage, confEdited: Bool?, tags: [Tag]?) {
             self.versionId = versionId
             self.applicationId = applicationId
             self.deployMode = deployMode

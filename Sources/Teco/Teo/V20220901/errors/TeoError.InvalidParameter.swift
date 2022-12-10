@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -95,6 +94,9 @@ extension TCTeoError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -192,38 +194,47 @@ extension TCTeoError {
             InvalidParameter(.domainOnTrafficScheduling)
         }
         
+        /// 非法操作。
         public static var errInvalidAction: InvalidParameter {
             InvalidParameter(.errInvalidAction)
         }
         
+        /// 非法操作-非法参数。
         public static var errInvalidActionParam: InvalidParameter {
             InvalidParameter(.errInvalidActionParam)
         }
         
+        /// 非法操作-非法参数-参数名重复。
         public static var errInvalidActionParamDuplicateName: InvalidParameter {
             InvalidParameter(.errInvalidActionParamDuplicateName)
         }
         
+        /// 非法操作-非法参数-参数值数量超出限制。
         public static var errInvalidActionParamTooManyValues: InvalidParameter {
             InvalidParameter(.errInvalidActionParamTooManyValues)
         }
         
+        /// 非法条件-非法忽略大小写。
         public static var errInvalidConditionIgnoreCase: InvalidParameter {
             InvalidParameter(.errInvalidConditionIgnoreCase)
         }
         
+        /// 非法条件-非法参数名称-匹配类型不支持参数名称。
         public static var errInvalidConditionNameTargetNotSupportName: InvalidParameter {
             InvalidParameter(.errInvalidConditionNameTargetNotSupportName)
         }
         
+        /// 非法条件-非法参数值-无效的参数值。
         public static var errInvalidConditionValueBadValue: InvalidParameter {
             InvalidParameter(.errInvalidConditionValueBadValue)
         }
         
+        /// 非法条件-非法参数值-无效的参数值-文件名不应包含文件后缀。
         public static var errInvalidConditionValueBadValueContainFileNameExtension: InvalidParameter {
             InvalidParameter(.errInvalidConditionValueBadValueContainFileNameExtension)
         }
         
+        /// 非法条件-非法参数值-参数值长度超出限制。
         public static var errInvalidConditionValueTooLongValue: InvalidParameter {
             InvalidParameter(.errInvalidConditionValueTooLongValue)
         }
@@ -297,6 +308,7 @@ extension TCTeoError {
             InvalidParameter(.invalidParameter)
         }
         
+        /// 套餐包不支持最大上传大小。
         public static var invalidPostMaxSizeBilling: InvalidParameter {
             InvalidParameter(.invalidPostMaxSizeBilling)
         }
@@ -311,6 +323,7 @@ extension TCTeoError {
             InvalidParameter(.invalidRequestHeaderName)
         }
         
+        /// 无套餐包。
         public static var invalidResourceIdBilling: InvalidParameter {
             InvalidParameter(.invalidResourceIdBilling)
         }
@@ -374,6 +387,7 @@ extension TCTeoError {
             InvalidParameter(.keyRulesInvalidQueryStringValue)
         }
         
+        /// 参数长度超过限制。
         public static var lengthExceedsLimit: InvalidParameter {
             InvalidParameter(.lengthExceedsLimit)
         }
@@ -383,6 +397,7 @@ extension TCTeoError {
             InvalidParameter(.parameterError)
         }
         
+        /// 套餐不存在。
         public static var planNotFound: InvalidParameter {
             InvalidParameter(.planNotFound)
         }
@@ -393,6 +408,8 @@ extension TCTeoError {
         }
         
         /// 域名配置错误。
+        ///
+        /// 参数错误-setting非法参数。
         public static var settingInvalidParam: InvalidParameter {
             InvalidParameter(.settingInvalidParam)
         }
@@ -412,6 +429,7 @@ extension TCTeoError {
             InvalidParameter(.uploadUrl)
         }
         
+        /// 站点已被绑定。
         public static var zoneHasBeenBound: InvalidParameter {
             InvalidParameter(.zoneHasBeenBound)
         }
@@ -441,10 +459,21 @@ extension TCTeoError.InvalidParameter: CustomStringConvertible {
 }
 
 extension TCTeoError.InvalidParameter {
+    /// - Returns: ``TCTeoError`` that holds the same error and context.
     public func toTeoError() -> TCTeoError {
         guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTeoError(code, context: self.context)
+    }
+}
+
+extension TCTeoError.InvalidParameter {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 批量停止集成任务
-    ///
-    /// 批量停止集成任务
     @inlinable
     public func batchStopIntegrationTasks(_ input: BatchStopIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStopIntegrationTasksResponse > {
         self.client.execute(action: "BatchStopIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量停止集成任务
-    ///
     /// 批量停止集成任务
     @inlinable
     public func batchStopIntegrationTasks(_ input: BatchStopIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopIntegrationTasksResponse {

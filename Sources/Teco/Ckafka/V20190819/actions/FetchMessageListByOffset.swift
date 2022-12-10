@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 根据位点查询消息列表
-    ///
-    /// 根据位点查询消息列表
     @inlinable
     public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchMessageListByOffsetResponse > {
         self.client.execute(action: "FetchMessageListByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据位点查询消息列表
-    ///
     /// 根据位点查询消息列表
     @inlinable
     public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {

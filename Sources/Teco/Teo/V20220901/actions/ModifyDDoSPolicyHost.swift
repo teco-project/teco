@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 域名DDoS高可用开关
-    ///
-    /// 域名DDoS高可用开关
     @inlinable
     public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyHostResponse > {
         self.client.execute(action: "ModifyDDoSPolicyHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 域名DDoS高可用开关
-    ///
     /// 域名DDoS高可用开关
     @inlinable
     public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {

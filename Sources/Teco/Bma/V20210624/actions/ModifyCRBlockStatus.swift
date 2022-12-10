@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bma {
     /// 协查处置申请
-    ///
-    /// 协查处置申请
     @inlinable
     public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRBlockStatusResponse > {
         self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 协查处置申请
-    ///
     /// 协查处置申请
     @inlinable
     public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRBlockStatusResponse {

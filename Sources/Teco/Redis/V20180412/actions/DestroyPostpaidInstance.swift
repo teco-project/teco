@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 按量计费实例销毁
-    ///
-    /// 按量计费实例销毁
     @inlinable
     public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPostpaidInstanceResponse > {
         self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 按量计费实例销毁
-    ///
     /// 按量计费实例销毁
     @inlinable
     public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {

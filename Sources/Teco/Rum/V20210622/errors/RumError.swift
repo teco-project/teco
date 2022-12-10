@@ -35,6 +35,9 @@ public struct TCRumError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -63,14 +66,17 @@ public struct TCRumError: TCErrorType {
         TCRumError(.failedOperation)
     }
     
+    /// 购买资源时账户余额不足，请先充值再进行购买。
     public static var failedOperation_ChargeNoBalance: TCRumError {
         TCRumError(.failedOperation_ChargeNoBalance)
     }
     
+    /// 该账号没有付费权限，请联系对应账号管理员。
     public static var failedOperation_ChargeNoPayRight: TCRumError {
         TCRumError(.failedOperation_ChargeNoPayRight)
     }
     
+    /// 请联系腾讯云助手与产品开发
     public static var failedOperation_ChargeParamInvalid: TCRumError {
         TCRumError(.failedOperation_ChargeParamInvalid)
     }
@@ -186,5 +192,15 @@ extension TCRumError: Equatable {
 extension TCRumError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCRumError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

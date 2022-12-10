@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 获取后付费免费额度
-    ///
-    /// 获取后付费免费额度
     @inlinable
     public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayPackageFreeQuotasResponse > {
         self.client.execute(action: "DescribePostpayPackageFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取后付费免费额度
-    ///
     /// 获取后付费免费额度
     @inlinable
     public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayPackageFreeQuotasResponse {

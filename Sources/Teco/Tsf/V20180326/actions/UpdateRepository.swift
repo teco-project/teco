@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 更新仓库信息
-    ///
-    /// 更新仓库信息
     @inlinable
     public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRepositoryResponse > {
         self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新仓库信息
-    ///
     /// 更新仓库信息
     @inlinable
     public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRepositoryResponse {

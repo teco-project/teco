@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1961,18 +1960,15 @@ extension Pts {
     public struct TestData: TCInputModel, TCOutputModel {
         /// 测试数据集所在的文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 测试数据集是否分片
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let split: Bool?
+        public let split: Bool
         
         /// 首行是否为参数名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let headerInFile: Bool?
+        public let headerInFile: Bool
         
         /// 参数名数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2006,7 +2002,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
         
-        public init (name: String?, split: Bool?, headerInFile: Bool?, headerColumns: [String]?, lineCount: Int64?, updatedAt: Date?, size: Int64?, headLines: [String]?, tailLines: [String]?, type: String?, fileId: String?) {
+        public init (name: String, split: Bool, headerInFile: Bool, headerColumns: [String]?, lineCount: Int64?, updatedAt: Date?, size: Int64?, headLines: [String]?, tailLines: [String]?, type: String?, fileId: String?) {
             self.name = name
             self.split = split
             self.headerInFile = headerInFile

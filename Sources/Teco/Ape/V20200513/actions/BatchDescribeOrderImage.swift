@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ape {
     /// 批量获取图片下载地址
-    ///
-    /// 批量获取图片下载地址
     @inlinable
     public func batchDescribeOrderImage(_ input: BatchDescribeOrderImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderImageResponse > {
         self.client.execute(action: "BatchDescribeOrderImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 批量获取图片下载地址
-    ///
     /// 批量获取图片下载地址
     @inlinable
     public func batchDescribeOrderImage(_ input: BatchDescribeOrderImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderImageResponse {

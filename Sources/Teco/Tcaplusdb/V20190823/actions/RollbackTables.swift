@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Tcaplusdb {
     /// 表格数据回档
-    ///
-    /// 表格数据回档
     @inlinable
     public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
         self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 表格数据回档
-    ///
     /// 表格数据回档
     @inlinable
     public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 获取设备位置列表
-    ///
-    /// 获取设备位置列表
     @inlinable
     public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionListResponse > {
         self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取设备位置列表
-    ///
     /// 获取设备位置列表
     @inlinable
     public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取集群规模价格
-    ///
-    /// 获取集群规模价格
     @inlinable
     public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterLevelPriceResponse > {
         self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取集群规模价格
-    ///
     /// 获取集群规模价格
     @inlinable
     public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {

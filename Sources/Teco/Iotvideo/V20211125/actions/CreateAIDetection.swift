@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 发起AI推理请求
-    ///
-    /// 发起AI推理请求
     @inlinable
     public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIDetectionResponse > {
         self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 发起AI推理请求
-    ///
     /// 发起AI推理请求
     @inlinable
     public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {

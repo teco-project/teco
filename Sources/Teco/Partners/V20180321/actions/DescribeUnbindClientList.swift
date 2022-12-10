@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Partners {
     /// 代理商名下客户解绑记录查询接口
-    ///
-    /// 代理商名下客户解绑记录查询接口
     @inlinable
     public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnbindClientListResponse > {
         self.client.execute(action: "DescribeUnbindClientList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 代理商名下客户解绑记录查询接口
-    ///
     /// 代理商名下客户解绑记录查询接口
     @inlinable
     public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {

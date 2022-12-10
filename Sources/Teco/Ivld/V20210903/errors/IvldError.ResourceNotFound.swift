@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCIvldError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,26 +49,36 @@ extension TCIvldError {
         }
         
         /// 自定义人物类型不存在。
+        ///
+        /// 自定义人物类型不存在，检查是否调用CreateCustomCategory
         public static var customCategoryNotFound: ResourceNotFound {
             ResourceNotFound(.customCategoryNotFound)
         }
         
         /// 自定义人物库不存在。
+        ///
+        /// 人脸库不存在，检查是否调用CreateCustomGroup
         public static var customGroupNotFound: ResourceNotFound {
             ResourceNotFound(.customGroupNotFound)
         }
         
         /// 媒资文件不存在。
+        ///
+        /// 检查媒资文件是否存在
         public static var mediaNotFound: ResourceNotFound {
             ResourceNotFound(.mediaNotFound)
         }
         
         /// 记录不存在。
+        ///
+        /// 检查记录Id是否正确
         public static var recordNotFound: ResourceNotFound {
             ResourceNotFound(.recordNotFound)
         }
         
         /// 任务不存在。
+        ///
+        /// 检查TaskId的内容是否正确
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
@@ -86,10 +98,21 @@ extension TCIvldError.ResourceNotFound: CustomStringConvertible {
 }
 
 extension TCIvldError.ResourceNotFound {
+    /// - Returns: ``TCIvldError`` that holds the same error and context.
     public func toIvldError() -> TCIvldError {
         guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIvldError(code, context: self.context)
+    }
+}
+
+extension TCIvldError.ResourceNotFound {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

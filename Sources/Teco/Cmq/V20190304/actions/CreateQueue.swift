@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cmq {
     /// 创建队列接口
-    ///
-    /// 创建队列接口
     @inlinable
     public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateQueueResponse > {
         self.client.execute(action: "CreateQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建队列接口
-    ///
     /// 创建队列接口
     @inlinable
     public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQueueResponse {

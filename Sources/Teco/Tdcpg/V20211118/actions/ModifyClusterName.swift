@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdcpg {
     /// 修改集群名字
-    ///
-    /// 修改集群名字
     @inlinable
     public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterNameResponse > {
         self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改集群名字
-    ///
     /// 修改集群名字
     @inlinable
     public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tiw {
     /// 停止实时录制
-    ///
-    /// 停止实时录制
     @inlinable
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopOnlineRecordResponse > {
         self.client.execute(action: "StopOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 停止实时录制
-    ///
     /// 停止实时录制
     @inlinable
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {

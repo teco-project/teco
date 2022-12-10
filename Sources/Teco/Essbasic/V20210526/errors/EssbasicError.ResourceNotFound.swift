@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -42,6 +41,9 @@ extension TCEssbasicError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,6 +58,8 @@ extension TCEssbasicError {
         }
         
         /// 应用号不存在。
+        ///
+        /// 请检查应用号(AppId)参数是否正确。
         public static var application: ResourceNotFound {
             ResourceNotFound(.application)
         }
@@ -73,6 +77,8 @@ extension TCEssbasicError {
         }
         
         /// 未找到对应流程。
+        ///
+        /// 请检查流程Id是否存在。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var flow: ResourceNotFound {
             ResourceNotFound(.flow)
         }
@@ -82,6 +88,8 @@ extension TCEssbasicError {
         }
         
         /// 机构不存在。
+        ///
+        /// 请确认企业机构是否在电子签注册。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var organization: ResourceNotFound {
             ResourceNotFound(.organization)
         }
@@ -99,6 +107,8 @@ extension TCEssbasicError {
         }
         
         /// 模板不存在。
+        ///
+        /// 请检查参数TemplateId是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var template: ResourceNotFound {
             ResourceNotFound(.template)
         }
@@ -131,10 +141,21 @@ extension TCEssbasicError.ResourceNotFound: CustomStringConvertible {
 }
 
 extension TCEssbasicError.ResourceNotFound {
+    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
     public func toEssbasicError() -> TCEssbasicError {
         guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCEssbasicError(code, context: self.context)
+    }
+}
+
+extension TCEssbasicError.ResourceNotFound {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 删除商户
-    ///
-    /// 删除商户
     @inlinable
     public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
         self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除商户
-    ///
     /// 删除商户
     @inlinable
     public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {

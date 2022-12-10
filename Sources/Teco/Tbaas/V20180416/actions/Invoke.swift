@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 新增交易
-    ///
-    /// 新增交易
     @inlinable
     public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
         self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增交易
-    ///
     /// 新增交易
     @inlinable
     public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {

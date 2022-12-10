@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 根据地域获取KMS密钥别名
-    ///
-    /// 根据地域获取KMS密钥别名
     @inlinable
     public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
         self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 根据地域获取KMS密钥别名
-    ///
     /// 根据地域获取KMS密钥别名
     @inlinable
     public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Organization {
     /// 取消企业组织邀请
-    ///
-    /// 取消企业组织邀请
     @inlinable
     public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelOrganizationInvitationResponse > {
         self.client.execute(action: "CancelOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消企业组织邀请
-    ///
     /// 取消企业组织邀请
     @inlinable
     public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {

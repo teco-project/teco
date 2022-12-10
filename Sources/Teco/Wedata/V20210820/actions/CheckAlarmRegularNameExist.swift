@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 判断告警规则重名
-    ///
-    /// 判断告警规则重名
     @inlinable
     public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAlarmRegularNameExistResponse > {
         self.client.execute(action: "CheckAlarmRegularNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 判断告警规则重名
-    ///
     /// 判断告警规则重名
     @inlinable
     public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {

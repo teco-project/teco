@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 务工卡-核身预下单带授权
-    ///
-    /// 务工卡-核身预下单带授权
     @inlinable
     public func createPayRollPreOrderWithAuth(_ input: CreatePayRollPreOrderWithAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRollPreOrderWithAuthResponse > {
         self.client.execute(action: "CreatePayRollPreOrderWithAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 务工卡-核身预下单带授权
-    ///
     /// 务工卡-核身预下单带授权
     @inlinable
     public func createPayRollPreOrderWithAuth(_ input: CreatePayRollPreOrderWithAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderWithAuthResponse {

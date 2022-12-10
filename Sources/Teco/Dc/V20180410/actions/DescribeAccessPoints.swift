@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dc {
     /// 查询物理专线接入点
-    ///
-    /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
         self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询物理专线接入点
-    ///
     /// 查询物理专线接入点
     @inlinable
     public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {

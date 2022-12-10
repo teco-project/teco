@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cat {
     /// 获取拨测节点
-    ///
-    /// 获取拨测节点
     @inlinable
     public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodesResponse > {
         self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取拨测节点
-    ///
     /// 获取拨测节点
     @inlinable
     public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {

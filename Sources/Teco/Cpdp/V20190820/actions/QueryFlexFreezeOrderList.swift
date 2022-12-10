@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 灵云V2-查询冻结订单列表
-    ///
-    /// 灵云V2-查询冻结订单列表
     @inlinable
     public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexFreezeOrderListResponse > {
         self.client.execute(action: "QueryFlexFreezeOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 灵云V2-查询冻结订单列表
-    ///
     /// 灵云V2-查询冻结订单列表
     @inlinable
     public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexFreezeOrderListResponse {

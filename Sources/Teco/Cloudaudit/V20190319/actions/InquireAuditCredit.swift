@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudaudit {
     /// 查询用户可创建跟踪集的数量
-    ///
-    /// 查询用户可创建跟踪集的数量
     @inlinable
     public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
         self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询用户可创建跟踪集的数量
-    ///
     /// 查询用户可创建跟踪集的数量
     @inlinable
     public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {

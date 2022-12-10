@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 创建围栏绑定信息
-    ///
-    /// 创建围栏绑定信息
     @inlinable
     public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFenceBindResponse > {
         self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建围栏绑定信息
-    ///
     /// 创建围栏绑定信息
     @inlinable
     public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {

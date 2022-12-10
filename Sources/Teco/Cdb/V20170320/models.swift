@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -2382,15 +2381,13 @@ extension Cdb {
     public struct RollbackDBName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let databaseName: String?
+        public let databaseName: String
         
         /// 回档后的新数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let newDatabaseName: String?
+        public let newDatabaseName: String
         
-        public init (databaseName: String?, newDatabaseName: String?) {
+        public init (databaseName: String, newDatabaseName: String) {
             self.databaseName = databaseName
             self.newDatabaseName = newDatabaseName
         }
@@ -2405,8 +2402,7 @@ extension Cdb {
     public struct RollbackInstancesInfo: TCInputModel, TCOutputModel {
         /// 云数据库实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let instanceId: String?
+        public let instanceId: String
         
         /// 回档策略。可选值为：table、db、full；默认值为full。table - 极速回档模式，仅导入所选中表级别的备份和binlog，如有跨表操作，且关联表未被同时选中，将会导致回档失败，该模式下参数Databases必须为空；db - 快速模式，仅导入所选中库级别的备份和binlog，如有跨库操作，且关联库未被同时选中，将会导致回档失败；full - 普通回档模式，将导入整个实例的备份和binlog，速度较慢。
         public let strategy: String
@@ -2422,7 +2418,7 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [RollbackTables]?
         
-        public init (instanceId: String?, strategy: String, rollbackTime: String, databases: [RollbackDBName]?, tables: [RollbackTables]?) {
+        public init (instanceId: String, strategy: String, rollbackTime: String, databases: [RollbackDBName]?, tables: [RollbackTables]?) {
             self.instanceId = instanceId
             self.strategy = strategy
             self.rollbackTime = rollbackTime
@@ -2443,15 +2439,13 @@ extension Cdb {
     public struct RollbackTableName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tableName: String?
+        public let tableName: String
         
         /// 回档后的新数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let newTableName: String?
+        public let newTableName: String
         
-        public init (tableName: String?, newTableName: String?) {
+        public init (tableName: String, newTableName: String) {
             self.tableName = tableName
             self.newTableName = newTableName
         }
@@ -2466,15 +2460,13 @@ extension Cdb {
     public struct RollbackTables: TCInputModel, TCOutputModel {
         /// 数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let database: String?
+        public let database: String
         
         /// 数据库表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let table: [RollbackTableName]?
+        public let table: [RollbackTableName]
         
-        public init (database: String?, table: [RollbackTableName]?) {
+        public init (database: String, table: [RollbackTableName]) {
             self.database = database
             self.table = table
         }

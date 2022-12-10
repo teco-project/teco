@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Apm {
     /// 获取Apm Agent信息
-    ///
-    /// 获取Apm Agent信息
     @inlinable
     public func describeApmAgent(_ input: DescribeApmAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApmAgentResponse > {
         self.client.execute(action: "DescribeApmAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取Apm Agent信息
-    ///
     /// 获取Apm Agent信息
     @inlinable
     public func describeApmAgent(_ input: DescribeApmAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取Web站点列表
-    ///
-    /// 获取Web站点列表
     @inlinable
     public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebLocationListResponse > {
         self.client.execute(action: "DescribeAssetWebLocationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取Web站点列表
-    ///
     /// 获取Web站点列表
     @inlinable
     public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationListResponse {

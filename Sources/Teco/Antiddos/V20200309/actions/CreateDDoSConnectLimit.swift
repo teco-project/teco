@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 配置DDoS连接抑制选项
-    ///
-    /// 配置DDoS连接抑制选项
     @inlinable
     public func createDDoSConnectLimit(_ input: CreateDDoSConnectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSConnectLimitResponse > {
         self.client.execute(action: "CreateDDoSConnectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 配置DDoS连接抑制选项
-    ///
     /// 配置DDoS连接抑制选项
     @inlinable
     public func createDDoSConnectLimit(_ input: CreateDDoSConnectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSConnectLimitResponse {

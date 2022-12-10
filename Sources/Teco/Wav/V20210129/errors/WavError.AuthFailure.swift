@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -31,6 +30,9 @@ extension TCWavError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -45,11 +47,15 @@ extension TCWavError {
         }
         
         /// 授权码无效。
+        ///
+        /// 请重新申请授权码，再申请token
         public static var invalidAuthorizationCode: AuthFailure {
             AuthFailure(.invalidAuthorizationCode)
         }
         
         /// 令牌无效。
+        ///
+        /// 请重新申请令牌。
         public static var missingAccessToken: AuthFailure {
             AuthFailure(.missingAccessToken)
         }
@@ -74,10 +80,21 @@ extension TCWavError.AuthFailure: CustomStringConvertible {
 }
 
 extension TCWavError.AuthFailure {
+    /// - Returns: ``TCWavError`` that holds the same error and context.
     public func toWavError() -> TCWavError {
         guard let code = TCWavError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCWavError(code, context: self.context)
+    }
+}
+
+extension TCWavError.AuthFailure {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

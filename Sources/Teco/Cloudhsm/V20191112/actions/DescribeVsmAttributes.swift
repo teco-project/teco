@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cloudhsm {
     /// 获取VSM属性
-    ///
-    /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmAttributesResponse > {
         self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取VSM属性
-    ///
     /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {

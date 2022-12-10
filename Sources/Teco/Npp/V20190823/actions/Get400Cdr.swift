@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Npp {
     /// 直拨话单获取接口
-    ///
-    /// 直拨话单获取接口
     @inlinable
     public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < Get400CdrResponse > {
         self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直拨话单获取接口
-    ///
     /// 直拨话单获取接口
     @inlinable
     public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {

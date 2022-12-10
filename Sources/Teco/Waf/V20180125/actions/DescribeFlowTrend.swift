@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Waf {
     /// 获取waf流量访问趋势
-    ///
-    /// 获取waf流量访问趋势
     @inlinable
     public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTrendResponse > {
         self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取waf流量访问趋势
-    ///
     /// 获取waf流量访问趋势
     @inlinable
     public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTrendResponse {

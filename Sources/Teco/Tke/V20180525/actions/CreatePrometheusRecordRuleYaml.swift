@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 以Yaml的方式创建聚合规则
-    ///
-    /// 以Yaml的方式创建聚合规则
     @inlinable
     public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusRecordRuleYamlResponse > {
         self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 以Yaml的方式创建聚合规则
-    ///
     /// 以Yaml的方式创建聚合规则
     @inlinable
     public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {

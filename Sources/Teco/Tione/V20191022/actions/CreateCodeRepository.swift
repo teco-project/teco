@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 创建存储库
-    ///
-    /// 创建存储库
     @inlinable
     public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeRepositoryResponse > {
         self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建存储库
-    ///
     /// 创建存储库
     @inlinable
     public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeRepositoryResponse {

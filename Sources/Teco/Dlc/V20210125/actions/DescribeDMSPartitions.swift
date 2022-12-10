@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dlc {
     /// DMS元数据获取分区
-    ///
-    /// DMS元数据获取分区
     @inlinable
     public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSPartitionsResponse > {
         self.client.execute(action: "DescribeDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DMS元数据获取分区
-    ///
     /// DMS元数据获取分区
     @inlinable
     public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSPartitionsResponse {

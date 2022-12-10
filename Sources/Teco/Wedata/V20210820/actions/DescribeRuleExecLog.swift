@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 规则执行日志查询
-    ///
-    /// 规则执行日志查询
     @inlinable
     public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecLogResponse > {
         self.client.execute(action: "DescribeRuleExecLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 规则执行日志查询
-    ///
     /// 规则执行日志查询
     @inlinable
     public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecLogResponse {

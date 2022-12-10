@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 添加策略场景
-    ///
-    /// 添加策略场景
     @inlinable
     public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSPolicyCaseResponse > {
         self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加策略场景
-    ///
     /// 添加策略场景
     @inlinable
     public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {

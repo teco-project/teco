@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 修改规则引擎规则优先级
-    ///
-    /// 修改规则引擎规则优先级
     @inlinable
     public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRulePriorityResponse > {
         self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改规则引擎规则优先级
-    ///
     /// 修改规则引擎规则优先级
     @inlinable
     public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {

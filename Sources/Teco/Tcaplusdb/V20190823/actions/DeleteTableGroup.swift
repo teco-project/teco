@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcaplusdb {
     /// 删除表格组
-    ///
-    /// 删除表格组
     @inlinable
     public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableGroupResponse > {
         self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除表格组
-    ///
     /// 删除表格组
     @inlinable
     public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {

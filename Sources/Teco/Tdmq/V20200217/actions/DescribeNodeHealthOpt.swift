@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 运营端获节点健康状态
-    ///
-    /// 运营端获节点健康状态
     @inlinable
     public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeHealthOptResponse > {
         self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运营端获节点健康状态
-    ///
     /// 运营端获节点健康状态
     @inlinable
     public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {

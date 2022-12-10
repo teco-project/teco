@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 获取环境下单地域
-    ///
-    /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
         self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取环境下单地域
-    ///
     /// 获取环境下单地域
     @inlinable
     public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {

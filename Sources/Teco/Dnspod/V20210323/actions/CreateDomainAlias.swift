@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 创建域名别名
-    ///
-    /// 创建域名别名
     @inlinable
     public func createDomainAlias(_ input: CreateDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainAliasResponse > {
         self.client.execute(action: "CreateDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建域名别名
-    ///
     /// 创建域名别名
     @inlinable
     public func createDomainAlias(_ input: CreateDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainAliasResponse {

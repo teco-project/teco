@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 智能代发-单笔代发转账接口
-    ///
-    /// 智能代发-单笔代发转账接口
     @inlinable
     public func transferSinglePay(_ input: TransferSinglePayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferSinglePayResponse > {
         self.client.execute(action: "TransferSinglePay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智能代发-单笔代发转账接口
-    ///
     /// 智能代发-单笔代发转账接口
     @inlinable
     public func transferSinglePay(_ input: TransferSinglePayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {

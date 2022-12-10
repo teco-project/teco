@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 编辑版本描述信息
-    ///
-    /// 编辑版本描述信息
     @inlinable
     public func modifyVerContent(_ input: ModifyVerContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVerContentResponse > {
         self.client.execute(action: "ModifyVerContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 编辑版本描述信息
-    ///
     /// 编辑版本描述信息
     @inlinable
     public func modifyVerContent(_ input: ModifyVerContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {

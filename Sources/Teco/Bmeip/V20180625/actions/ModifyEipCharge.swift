@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Bmeip {
     /// 黑石EIP修改计费方式
-    ///
-    /// 黑石EIP修改计费方式
     @inlinable
     public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipChargeResponse > {
         self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 黑石EIP修改计费方式
-    ///
     /// 黑石EIP修改计费方式
     @inlinable
     public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {

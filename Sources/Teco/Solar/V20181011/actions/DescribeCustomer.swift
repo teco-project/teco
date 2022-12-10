@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Solar {
     /// 客户档案查询客户详情
-    ///
-    /// 客户档案查询客户详情
     @inlinable
     public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerResponse > {
         self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 客户档案查询客户详情
-    ///
     /// 客户档案查询客户详情
     @inlinable
     public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {

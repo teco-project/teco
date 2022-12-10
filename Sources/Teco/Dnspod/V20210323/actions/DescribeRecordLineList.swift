@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// 获取等级允许的线路
-    ///
-    /// 获取等级允许的线路
     @inlinable
     public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordLineListResponse > {
         self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取等级允许的线路
-    ///
     /// 获取等级允许的线路
     @inlinable
     public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {

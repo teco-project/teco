@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Batch {
     /// 获取批量计算可用区机型配置信息
-    ///
-    /// 获取批量计算可用区机型配置信息
     @inlinable
     public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmZoneInstanceConfigInfosResponse > {
         self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取批量计算可用区机型配置信息
-    ///
     /// 获取批量计算可用区机型配置信息
     @inlinable
     public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 智慧零售-查询管理端商户
-    ///
-    /// 智慧零售-查询管理端商户
     @inlinable
     public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantInfoForManagementResponse > {
         self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 智慧零售-查询管理端商户
-    ///
     /// 智慧零售-查询管理端商户
     @inlinable
     public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {

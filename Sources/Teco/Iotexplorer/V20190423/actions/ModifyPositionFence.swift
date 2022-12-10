@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 更新围栏
-    ///
-    /// 更新围栏
     @inlinable
     public func modifyPositionFence(_ input: ModifyPositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionFenceResponse > {
         self.client.execute(action: "ModifyPositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新围栏
-    ///
     /// 更新围栏
     @inlinable
     public func modifyPositionFence(_ input: ModifyPositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {

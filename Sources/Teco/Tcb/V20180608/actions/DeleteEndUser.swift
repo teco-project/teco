@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 删除终端用户
-    ///
-    /// 删除终端用户
     @inlinable
     public func deleteEndUser(_ input: DeleteEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEndUserResponse > {
         self.client.execute(action: "DeleteEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除终端用户
-    ///
     /// 删除终端用户
     @inlinable
     public func deleteEndUser(_ input: DeleteEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {

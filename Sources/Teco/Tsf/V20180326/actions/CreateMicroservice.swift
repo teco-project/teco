@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 新增微服务
-    ///
-    /// 新增微服务
     @inlinable
     public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMicroserviceResponse > {
         self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新增微服务
-    ///
     /// 新增微服务
     @inlinable
     public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {

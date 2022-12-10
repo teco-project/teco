@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云支付-查询订单付款状态
-    ///
-    /// 云支付-查询订单付款状态
     @inlinable
     public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderStatusResponse > {
         self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云支付-查询订单付款状态
-    ///
     /// 云支付-查询订单付款状态
     @inlinable
     public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {

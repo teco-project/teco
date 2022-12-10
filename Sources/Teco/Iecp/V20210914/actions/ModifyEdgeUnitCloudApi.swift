@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 更新边缘单元信息
-    ///
-    /// 更新边缘单元信息
     @inlinable
     public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitCloudApiResponse > {
         self.client.execute(action: "ModifyEdgeUnitCloudApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新边缘单元信息
-    ///
     /// 更新边缘单元信息
     @inlinable
     public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {

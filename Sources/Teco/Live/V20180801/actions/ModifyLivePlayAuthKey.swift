@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Live {
     /// 修改播放鉴权key
-    ///
-    /// 修改播放鉴权key
     @inlinable
     public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayAuthKeyResponse > {
         self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改播放鉴权key
-    ///
     /// 修改播放鉴权key
     @inlinable
     public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {

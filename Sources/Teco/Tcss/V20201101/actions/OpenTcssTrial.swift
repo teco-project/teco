@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 开通容器安全服务试用
-    ///
-    /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenTcssTrialResponse > {
         self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 开通容器安全服务试用
-    ///
     /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {

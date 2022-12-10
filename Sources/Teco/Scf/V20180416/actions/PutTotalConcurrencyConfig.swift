@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Scf {
     /// 修改账号并发限制配额
-    ///
-    /// 修改账号并发限制配额
     @inlinable
     public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutTotalConcurrencyConfigResponse > {
         self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改账号并发限制配额
-    ///
     /// 修改账号并发限制配额
     @inlinable
     public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {

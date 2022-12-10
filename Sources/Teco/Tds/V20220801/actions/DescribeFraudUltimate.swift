@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tds {
     /// 查询设备标识及风险（旗舰版）
-    ///
-    /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
         self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询设备标识及风险（旗舰版）
-    ///
     /// 查询设备标识及风险（旗舰版）
     @inlinable
     public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {

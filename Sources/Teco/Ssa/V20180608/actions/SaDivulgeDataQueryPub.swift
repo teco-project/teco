@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssa {
     /// 查询【通用字段】【泄露监测数据列表】
-    ///
-    /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
     public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaDivulgeDataQueryPubResponse > {
         self.client.execute(action: "SaDivulgeDataQueryPub", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询【通用字段】【泄露监测数据列表】
-    ///
     /// 查询【通用字段】【泄露监测数据列表】
     @inlinable
     public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaDivulgeDataQueryPubResponse {

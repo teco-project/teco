@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Cam {
     /// 查询SAML身份提供商详情
-    ///
-    /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
         self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询SAML身份提供商详情
-    ///
     /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {

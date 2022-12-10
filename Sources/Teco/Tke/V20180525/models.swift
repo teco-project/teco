@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -1180,15 +1179,13 @@ extension Tke {
     public struct DNSConfigOption: TCInputModel, TCOutputModel {
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 项值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let value: String?
+        public let value: String
         
-        public init (name: String?, value: String?) {
+        public init (name: String, value: String) {
             self.name = name
             self.value = value
         }
@@ -1556,14 +1553,13 @@ extension Tke {
     public struct EdgeClusterInternalLB: TCInputModel, TCOutputModel {
         /// 是否开启内网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let enabled: Bool?
+        public let enabled: Bool
         
         /// 内网访问LB关联的子网Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: [String]?
         
-        public init (enabled: Bool?, subnetId: [String]?) {
+        public init (enabled: Bool, subnetId: [String]?) {
             self.enabled = enabled
             self.subnetId = subnetId
         }
@@ -1578,14 +1574,13 @@ extension Tke {
     public struct EdgeClusterPublicLB: TCInputModel, TCOutputModel {
         /// 是否开启公网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let enabled: Bool?
+        public let enabled: Bool
         
         /// 允许访问的公网cidr
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowFromCidrs: [String]?
         
-        public init (enabled: Bool?, allowFromCidrs: [String]?) {
+        public init (enabled: Bool, allowFromCidrs: [String]?) {
             self.enabled = enabled
             self.allowFromCidrs = allowFromCidrs
         }
@@ -2210,20 +2205,17 @@ extension Tke {
     public struct HttpGet: TCInputModel, TCOutputModel {
         /// HttpGet检测的路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let path: String?
+        public let path: String
         
         /// HttpGet检测的端口号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let port: Int64?
+        public let port: Int64
         
         /// HTTP or HTTPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let scheme: String?
+        public let scheme: String
         
-        public init (path: String?, port: Int64?, scheme: String?) {
+        public init (path: String, port: Int64, scheme: String) {
             self.path = path
             self.port = port
             self.scheme = scheme
@@ -2672,7 +2664,6 @@ extension Tke {
     public struct LivenessOrReadinessProbe: TCInputModel, TCOutputModel {
         /// 探针参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let probe: Probe
         
         /// HttpGet检测参数
@@ -4947,13 +4938,11 @@ extension Tke {
     public struct VolumeMount: TCInputModel, TCOutputModel {
         /// volume名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let name: String?
+        public let name: String
         
         /// 挂载路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let mountPath: String?
+        public let mountPath: String
         
         /// 是否只读
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4971,7 +4960,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subPathExpr: String?
         
-        public init (name: String?, mountPath: String?, readOnly: Bool?, subPath: String?, mountPropagation: String?, subPathExpr: String?) {
+        public init (name: String, mountPath: String, readOnly: Bool?, subPath: String?, mountPropagation: String?, subPathExpr: String?) {
             self.name = name
             self.mountPath = mountPath
             self.readOnly = readOnly

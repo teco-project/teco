@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 列出 Grafana 白名单
-    ///
-    /// 列出 Grafana 白名单
     @inlinable
     public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
         self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出 Grafana 白名单
-    ///
     /// 列出 Grafana 白名单
     @inlinable
     public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {

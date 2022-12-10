@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 获取用户购买信息列表
-    ///
-    /// 获取用户购买信息列表
     @inlinable
     public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCCBuyInfoListResponse > {
         self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取用户购买信息列表
-    ///
     /// 获取用户购买信息列表
     @inlinable
     public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {

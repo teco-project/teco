@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -30,6 +29,9 @@ extension TCIvldError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -44,6 +46,8 @@ extension TCIvldError {
         }
         
         /// 用户未激活该产品。
+        ///
+        /// 请开通相关产品权限
         public static var unauthorizedProduct: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorizedProduct)
         }
@@ -68,10 +72,21 @@ extension TCIvldError.UnauthorizedOperation: CustomStringConvertible {
 }
 
 extension TCIvldError.UnauthorizedOperation {
+    /// - Returns: ``TCIvldError`` that holds the same error and context.
     public func toIvldError() -> TCIvldError {
         guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCIvldError(code, context: self.context)
+    }
+}
+
+extension TCIvldError.UnauthorizedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

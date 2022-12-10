@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 灵云V2-查询结算订单列表
-    ///
-    /// 灵云V2-查询结算订单列表
     @inlinable
     public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexSettlementOrderListResponse > {
         self.client.execute(action: "QueryFlexSettlementOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 灵云V2-查询结算订单列表
-    ///
     /// 灵云V2-查询结算订单列表
     @inlinable
     public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {

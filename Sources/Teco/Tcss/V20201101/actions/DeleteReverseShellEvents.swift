@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 删除运行时反弹shell事件
-    ///
-    /// 删除运行时反弹shell事件
     @inlinable
     public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
         self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除运行时反弹shell事件
-    ///
     /// 删除运行时反弹shell事件
     @inlinable
     public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 运营端获取命名空间bundle列表
-    ///
-    /// 运营端获取命名空间bundle列表
     @inlinable
     public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
         self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运营端获取命名空间bundle列表
-    ///
     /// 运营端获取命名空间bundle列表
     @inlinable
     public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {

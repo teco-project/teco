@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 删除负载均衡
-    ///
-    /// 删除负载均衡
     @inlinable
     public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancingResponse > {
         self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除负载均衡
-    ///
     /// 删除负载均衡
     @inlinable
     public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancingResponse {

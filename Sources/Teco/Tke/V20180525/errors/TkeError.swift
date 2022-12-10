@@ -183,6 +183,9 @@ public struct TCTkeError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -202,64 +205,88 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 获取用户认证信息失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_AccountCommon: TCTkeError {
         TCTkeError(.failedOperation_AccountCommon)
     }
     
     /// 账户未通过认证。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_AccountUserNotAuthenticated: TCTkeError {
         TCTkeError(.failedOperation_AccountUserNotAuthenticated)
     }
     
     /// 伸缩组资源创建报错。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_AsCommon: TCTkeError {
         TCTkeError(.failedOperation_AsCommon)
     }
     
     /// CVM未知错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_CVMUnexpectedError: TCTkeError {
         TCTkeError(.failedOperation_CVMUnexpectedError)
     }
     
     /// 无该接口CAM权限。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_CamNoAuth: TCTkeError {
         TCTkeError(.failedOperation_CamNoAuth)
     }
     
+    /// 请先删除包年包月计费资源。
     public static var failedOperation_ClusterForbiddenToDelete: TCTkeError {
         TCTkeError(.failedOperation_ClusterForbiddenToDelete)
     }
     
     /// 集群未找到。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ClusterNotFound: TCTkeError {
         TCTkeError(.failedOperation_ClusterNotFound)
     }
     
     /// 集群状态错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ClusterState: TCTkeError {
         TCTkeError(.failedOperation_ClusterState)
     }
     
     /// 集群节点版本过低。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ClusterUpgradeNodeVersion: TCTkeError {
         TCTkeError(.failedOperation_ClusterUpgradeNodeVersion)
     }
     
+    /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_ComponentClientCommon: TCTkeError {
         TCTkeError(.failedOperation_ComponentClientCommon)
     }
     
     /// 内部HTTP客户端错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ComponentClientHttp: TCTkeError {
         TCTkeError(.failedOperation_ComponentClientHttp)
     }
     
     /// 内部HTTP解包失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ComponentClientUnpack: TCTkeError {
         TCTkeError(.failedOperation_ComponentClientUnpack)
     }
     
     /// 请求(http请求)其他云服务失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_ComponentClinetHttp: TCTkeError {
         TCTkeError(.failedOperation_ComponentClinetHttp)
     }
@@ -284,36 +311,49 @@ public struct TCTkeError: TCErrorType {
         TCTkeError(.failedOperation_CreateClsMachineGroup)
     }
     
+    /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_CreateClsTopic: TCTkeError {
         TCTkeError(.failedOperation_CreateClsTopic)
     }
     
     /// cvm创建节点报错。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_CvmCommon: TCTkeError {
         TCTkeError(.failedOperation_CvmCommon)
     }
     
     /// 存在云服务器在CVM侧查询不到。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_CvmNumberNotMatch: TCTkeError {
         TCTkeError(.failedOperation_CvmNumberNotMatch)
     }
     
     /// CVM 和 VPC ID 不匹配。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_CvmVpcidNotMatch: TCTkeError {
         TCTkeError(.failedOperation_CvmVpcidNotMatch)
     }
     
     /// db错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_Db: TCTkeError {
         TCTkeError(.failedOperation_Db)
     }
     
     /// 记录未找到。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_DbRecordNotFound: TCTkeError {
         TCTkeError(.failedOperation_DbRecordNotFound)
     }
     
     /// 获得安全组配额失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_DfwGetUSGQuota: TCTkeError {
         TCTkeError(.failedOperation_DfwGetUSGQuota)
     }
@@ -330,6 +370,7 @@ public struct TCTkeError: TCErrorType {
         TCTkeError(.failedOperation_GetClsConfig)
     }
     
+    /// 请向腾讯云提工单寻求支持。
     public static var failedOperation_GetClsLogSet: TCTkeError {
         TCTkeError(.failedOperation_GetClsLogSet)
     }
@@ -343,25 +384,34 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 连接用户Kubernetes集群失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_KubeClientConnection: TCTkeError {
         TCTkeError(.failedOperation_KubeClientConnection)
     }
     
     /// KubernetesAPI错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_KubeCommon: TCTkeError {
         TCTkeError(.failedOperation_KubeCommon)
     }
     
     /// Kubernetes client建立失败。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_KubernetesClientBuildError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesClientBuildError)
     }
     
     /// 创建集群Client出错。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_KubernetesCreateOperationError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesCreateOperationError)
     }
     
+    /// 请重试。
     public static var failedOperation_KubernetesDeleteOperationError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesDeleteOperationError)
     }
@@ -372,15 +422,20 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// Kubernetes未知错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_KubernetesInternal: TCTkeError {
         TCTkeError(.failedOperation_KubernetesInternal)
     }
     
+    /// 请重试。
     public static var failedOperation_KubernetesPatchOperationError: TCTkeError {
         TCTkeError(.failedOperation_KubernetesPatchOperationError)
     }
     
     /// 底层调用CLB未知错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_LbCommon: TCTkeError {
         TCTkeError(.failedOperation_LbCommon)
     }
@@ -390,31 +445,43 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 网络扩展错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_NetworkScaleError: TCTkeError {
         TCTkeError(.failedOperation_NetworkScaleError)
     }
     
     /// 镜像OS不支持。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_OsNotSupport: TCTkeError {
         TCTkeError(.failedOperation_OsNotSupport)
     }
     
     /// 参数错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_Param: TCTkeError {
         TCTkeError(.failedOperation_Param)
     }
     
     /// 超过配额限制。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_QuotaMaxClsLimit: TCTkeError {
         TCTkeError(.failedOperation_QuotaMaxClsLimit)
     }
     
     /// 超过配额限制。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_QuotaMaxNodLimit: TCTkeError {
         TCTkeError(.failedOperation_QuotaMaxNodLimit)
     }
     
     /// 安全组配额不足。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_QuotaUSGLimit: TCTkeError {
         TCTkeError(.failedOperation_QuotaUSGLimit)
     }
@@ -429,11 +496,15 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 已有相同任务执行中。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_TaskAlreadyRunning: TCTkeError {
         TCTkeError(.failedOperation_TaskAlreadyRunning)
     }
     
     /// 询价错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_TradeCommon: TCTkeError {
         TCTkeError(.failedOperation_TradeCommon)
     }
@@ -443,20 +514,27 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// VPC未知错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_VPCUnexpectedError: TCTkeError {
         TCTkeError(.failedOperation_VPCUnexpectedError)
     }
     
     /// VPC报错。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_VpcCommon: TCTkeError {
         TCTkeError(.failedOperation_VpcCommon)
     }
     
     /// 未发现vpc记录。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var failedOperation_VpcRecodrNotFound: TCTkeError {
         TCTkeError(.failedOperation_VpcRecodrNotFound)
     }
     
+    /// 请提单申请。
     public static var failedOperation_WhitelistUnexpectedError: TCTkeError {
         TCTkeError(.failedOperation_WhitelistUnexpectedError)
     }
@@ -667,6 +745,8 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// Kubernetes未知错误。
+    ///
+    /// 如果您是独立集群请检查集群master组件是否正常，如果您是托管集群请立即提工单给我们。
     public static var internalError_KubernetesInternal: TCTkeError {
         TCTkeError(.internalError_KubernetesInternal)
     }
@@ -677,6 +757,8 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 底层调用CLB未知错误。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var internalError_LbCommon: TCTkeError {
         TCTkeError(.internalError_LbCommon)
     }
@@ -737,6 +819,8 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 已有相同任务执行中。
+    ///
+    /// 等待任务执行完毕
     public static var internalError_TaskAlreadyRunning: TCTkeError {
         TCTkeError(.internalError_TaskAlreadyRunning)
     }
@@ -847,11 +931,15 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// CIDR无效。
+    ///
+    /// 请提交工单联系我们协助处理
     public static var invalidParameter_CidrInvali: TCTkeError {
         TCTkeError(.invalidParameter_CidrInvali)
     }
     
     /// 参数错误，CIDR不符合规范。
+    ///
+    /// 请检查提交的CIDR相关参数是否合法。
     public static var invalidParameter_CidrInvalid: TCTkeError {
         TCTkeError(.invalidParameter_CidrInvalid)
     }
@@ -876,6 +964,7 @@ public struct TCTkeError: TCErrorType {
         TCTkeError(.invalidParameter_InvalidPrivateNetworkCIDR)
     }
     
+    /// 请向腾讯云提工单寻求支持。
     public static var invalidParameter_OsNotSupport: TCTkeError {
         TCTkeError(.invalidParameter_OsNotSupport)
     }
@@ -1005,6 +1094,8 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// 无该接口CAM权限。
+    ///
+    /// 联系主账号或管理员前往CAM控制台配置该Action的权限
     public static var unauthorizedOperation_CamNoAuth: TCTkeError {
         TCTkeError(.unauthorizedOperation_CamNoAuth)
     }
@@ -1020,6 +1111,8 @@ public struct TCTkeError: TCErrorType {
     }
     
     /// AS伸缩关闭导致无法开启CA。
+    ///
+    /// 如果需要开启伸缩(CA)功能，请打开对应伸缩组的伸缩开关，重新操作即可
     public static var unsupportedOperation_CaEnableFailed: TCTkeError {
         TCTkeError(.unsupportedOperation_CaEnableFailed)
     }
@@ -1053,5 +1146,15 @@ extension TCTkeError: Equatable {
 extension TCTkeError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTkeError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

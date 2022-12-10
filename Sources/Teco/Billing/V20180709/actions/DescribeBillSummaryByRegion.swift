@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Billing {
     /// 获取按地域汇总费用分布
-    ///
-    /// 获取按地域汇总费用分布
     @inlinable
     public func describeBillSummaryByRegion(_ input: DescribeBillSummaryByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByRegionResponse > {
         self.client.execute(action: "DescribeBillSummaryByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取按地域汇总费用分布
-    ///
     /// 获取按地域汇总费用分布
     @inlinable
     public func describeBillSummaryByRegion(_ input: DescribeBillSummaryByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByRegionResponse {

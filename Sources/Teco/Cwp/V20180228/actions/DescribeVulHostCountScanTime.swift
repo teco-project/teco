@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取待处理漏洞数+影响主机数
-    ///
-    /// 获取待处理漏洞数+影响主机数
     @inlinable
     public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostCountScanTimeResponse > {
         self.client.execute(action: "DescribeVulHostCountScanTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取待处理漏洞数+影响主机数
-    ///
     /// 获取待处理漏洞数+影响主机数
     @inlinable
     public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostCountScanTimeResponse {

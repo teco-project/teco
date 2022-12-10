@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideo {
     /// 查询设备消息数量统计
-    ///
-    /// 查询设备消息数量统计
     @inlinable
     public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageDataStatsResponse > {
         self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询设备消息数量统计
-    ///
     /// 查询设备消息数量统计
     @inlinable
     public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageDataStatsResponse {

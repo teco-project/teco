@@ -112,6 +112,9 @@ public struct TCRedisError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -316,6 +319,8 @@ public struct TCRedisError: TCErrorType {
     }
     
     /// 腾讯集团内部账号禁止使用免密实例。
+    ///
+    /// 请选择非免密实例，并按照规范设置实例密码。
     public static var invalidParameterValue_PasswordFreeDenied: TCRedisError {
         TCRedisError(.invalidParameterValue_PasswordFreeDenied)
     }
@@ -624,6 +629,7 @@ public struct TCRedisError: TCErrorType {
         TCRedisError(.unsupportedOperation_IsAutoRenewError)
     }
     
+    /// 实例版本过低，如需使用该功能请提交工单申请。
     public static var unsupportedOperation_LimitProxyVersion: TCRedisError {
         TCRedisError(.unsupportedOperation_LimitProxyVersion)
     }
@@ -649,5 +655,15 @@ extension TCRedisError: Equatable {
 extension TCRedisError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCRedisError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

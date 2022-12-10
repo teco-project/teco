@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 设置单IP默认告警阈值配置
-    ///
-    /// 设置单IP默认告警阈值配置
     @inlinable
     public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultAlarmThresholdResponse > {
         self.client.execute(action: "CreateDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置单IP默认告警阈值配置
-    ///
     /// 设置单IP默认告警阈值配置
     @inlinable
     public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {

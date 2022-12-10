@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Live {
     /// 获取证书信息
-    ///
-    /// 获取证书信息
     @inlinable
     public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
         self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取证书信息
-    ///
     /// 获取证书信息
     @inlinable
     public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {

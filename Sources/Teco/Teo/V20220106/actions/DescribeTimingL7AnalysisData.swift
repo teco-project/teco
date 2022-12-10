@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 查询七层数据分析类时序流量数据
-    ///
-    /// 查询七层数据分析类时序流量数据
     @inlinable
     public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7AnalysisDataResponse > {
         self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询七层数据分析类时序流量数据
-    ///
     /// 查询七层数据分析类时序流量数据
     @inlinable
     public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {

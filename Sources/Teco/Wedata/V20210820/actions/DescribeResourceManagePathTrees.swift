@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 获取资源管理目录树
-    ///
-    /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceManagePathTreesResponse > {
         self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取资源管理目录树
-    ///
     /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {

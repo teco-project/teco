@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Pts {
     /// 查询采样日志
-    ///
-    /// 查询采样日志
     @inlinable
     public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleLogsResponse > {
         self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询采样日志
-    ///
     /// 查询采样日志
     @inlinable
     public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -42,6 +41,9 @@ extension TCDlcError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,66 +58,92 @@ extension TCDlcError {
         }
         
         /// 子用户不是管理员，无权将用户添加到工作组。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var addUsersToWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.addUsersToWorkgroup)
         }
         
         /// 子用户不是管理员，无权绑定工作组到用户。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var bindWorkgroupsToUser: UnauthorizedOperation {
             UnauthorizedOperation(.bindWorkgroupsToUser)
         }
         
         /// 子用户不是管理员，无权创建工作组。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var createWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.createWorkgroup)
         }
         
         /// 子用户不是管理员，无权删除用户。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteUser: UnauthorizedOperation {
             UnauthorizedOperation(.deleteUser)
         }
         
         /// 子用户不是管理员，无权将用户从工作组解绑。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteUsersFromWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.deleteUsersFromWorkgroup)
         }
         
         /// 子用户不是管理员，无权删除工作组。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var deleteWorkgroup: UnauthorizedOperation {
             UnauthorizedOperation(.deleteWorkgroup)
         }
         
         /// 子用户无权授予特定权限。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var grantPolicy: UnauthorizedOperation {
             UnauthorizedOperation(.grantPolicy)
         }
         
         /// 子用户不是管理员，无权修改用户信息。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var modifyUserInfo: UnauthorizedOperation {
             UnauthorizedOperation(.modifyUserInfo)
         }
         
         /// 子用户不是管理员，无权修改工作组信息。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var modifyWorkgroupInfo: UnauthorizedOperation {
             UnauthorizedOperation(.modifyWorkgroupInfo)
         }
         
         /// 子用户无权取消特定权限。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var revokePolicy: UnauthorizedOperation {
             UnauthorizedOperation(.revokePolicy)
         }
         
         /// 子用户不是管理员，无权将工作组和用户解绑。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var unbindWorkgroupsFromUser: UnauthorizedOperation {
             UnauthorizedOperation(.unbindWorkgroupsFromUser)
         }
         
         /// 子用户无权使用计算引擎。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
         public static var useComputingEngine: UnauthorizedOperation {
             UnauthorizedOperation(.useComputingEngine)
         }
         
         /// 子用户不存在。
+        ///
+        /// 请DLC管理员前往【权限管理】新建用户并授权后重试操作
         public static var userNotExist: UnauthorizedOperation {
             UnauthorizedOperation(.userNotExist)
         }
@@ -140,10 +168,21 @@ extension TCDlcError.UnauthorizedOperation: CustomStringConvertible {
 }
 
 extension TCDlcError.UnauthorizedOperation {
+    /// - Returns: ``TCDlcError`` that holds the same error and context.
     public func toDlcError() -> TCDlcError {
         guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCDlcError(code, context: self.context)
+    }
+}
+
+extension TCDlcError.UnauthorizedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

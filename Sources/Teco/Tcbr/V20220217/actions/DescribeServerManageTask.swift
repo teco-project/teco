@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcbr {
     /// 查询服务管理任务信息
-    ///
-    /// 查询服务管理任务信息
     @inlinable
     public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerManageTaskResponse > {
         self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询服务管理任务信息
-    ///
     /// 查询服务管理任务信息
     @inlinable
     public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {

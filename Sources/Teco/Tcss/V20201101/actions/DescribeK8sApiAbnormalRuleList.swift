@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询k8sapi异常请求规则列表
-    ///
-    /// 查询k8sapi异常请求规则列表
     @inlinable
     public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalRuleListResponse > {
         self.client.execute(action: "DescribeK8sApiAbnormalRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询k8sapi异常请求规则列表
-    ///
     /// 查询k8sapi异常请求规则列表
     @inlinable
     public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleListResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Vpc {
     /// 查询账户在指定地域IPV6转换实例和规则的配额
-    ///
-    /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
     public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIp6TranslatorQuotaResponse > {
         self.client.execute(action: "DescribeIp6TranslatorQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询账户在指定地域IPV6转换实例和规则的配额
-    ///
     /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
     public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -85,6 +84,9 @@ extension TCTkeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -99,59 +101,81 @@ extension TCTkeError {
         }
         
         /// 获取用户认证信息失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var accountCommon: FailedOperation {
             FailedOperation(.accountCommon)
         }
         
         /// 账户未通过认证。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var accountUserNotAuthenticated: FailedOperation {
             FailedOperation(.accountUserNotAuthenticated)
         }
         
         /// 伸缩组资源创建报错。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var asCommon: FailedOperation {
             FailedOperation(.asCommon)
         }
         
         /// 无该接口CAM权限。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var camNoAuth: FailedOperation {
             FailedOperation(.camNoAuth)
         }
         
+        /// 请先删除包年包月计费资源。
         public static var clusterForbiddenToDelete: FailedOperation {
             FailedOperation(.clusterForbiddenToDelete)
         }
         
         /// 集群未找到。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var clusterNotFound: FailedOperation {
             FailedOperation(.clusterNotFound)
         }
         
         /// 集群状态错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var clusterState: FailedOperation {
             FailedOperation(.clusterState)
         }
         
         /// 集群节点版本过低。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var clusterUpgradeNodeVersion: FailedOperation {
             FailedOperation(.clusterUpgradeNodeVersion)
         }
         
+        /// 请向腾讯云提工单寻求支持。
         public static var componentClientCommon: FailedOperation {
             FailedOperation(.componentClientCommon)
         }
         
         /// 内部HTTP客户端错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var componentClientHttp: FailedOperation {
             FailedOperation(.componentClientHttp)
         }
         
         /// 内部HTTP解包失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var componentClientUnpack: FailedOperation {
             FailedOperation(.componentClientUnpack)
         }
         
         /// 请求(http请求)其他云服务失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var componentClinetHttp: FailedOperation {
             FailedOperation(.componentClinetHttp)
         }
@@ -176,41 +200,56 @@ extension TCTkeError {
             FailedOperation(.createClsMachineGroup)
         }
         
+        /// 请向腾讯云提工单寻求支持。
         public static var createClsTopic: FailedOperation {
             FailedOperation(.createClsTopic)
         }
         
         /// cvm创建节点报错。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var cvmCommon: FailedOperation {
             FailedOperation(.cvmCommon)
         }
         
         /// 存在云服务器在CVM侧查询不到。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var cvmNumberNotMatch: FailedOperation {
             FailedOperation(.cvmNumberNotMatch)
         }
         
         /// CVM未知错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var cvmUnexpectedError: FailedOperation {
             FailedOperation(.cvmUnexpectedError)
         }
         
         /// CVM 和 VPC ID 不匹配。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var cvmVpcidNotMatch: FailedOperation {
             FailedOperation(.cvmVpcidNotMatch)
         }
         
         /// db错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var db: FailedOperation {
             FailedOperation(.db)
         }
         
         /// 记录未找到。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var dbRecordNotFound: FailedOperation {
             FailedOperation(.dbRecordNotFound)
         }
         
         /// 获得安全组配额失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var dfwGetUSGQuota: FailedOperation {
             FailedOperation(.dfwGetUSGQuota)
         }
@@ -227,6 +266,7 @@ extension TCTkeError {
             FailedOperation(.getClsConfig)
         }
         
+        /// 请向腾讯云提工单寻求支持。
         public static var getClsLogSet: FailedOperation {
             FailedOperation(.getClsLogSet)
         }
@@ -240,25 +280,34 @@ extension TCTkeError {
         }
         
         /// 连接用户Kubernetes集群失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var kubeClientConnection: FailedOperation {
             FailedOperation(.kubeClientConnection)
         }
         
         /// KubernetesAPI错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var kubeCommon: FailedOperation {
             FailedOperation(.kubeCommon)
         }
         
         /// Kubernetes client建立失败。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var kubernetesClientBuildError: FailedOperation {
             FailedOperation(.kubernetesClientBuildError)
         }
         
         /// 创建集群Client出错。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var kubernetesCreateOperationError: FailedOperation {
             FailedOperation(.kubernetesCreateOperationError)
         }
         
+        /// 请重试。
         public static var kubernetesDeleteOperationError: FailedOperation {
             FailedOperation(.kubernetesDeleteOperationError)
         }
@@ -269,15 +318,20 @@ extension TCTkeError {
         }
         
         /// Kubernetes未知错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var kubernetesInternal: FailedOperation {
             FailedOperation(.kubernetesInternal)
         }
         
+        /// 请重试。
         public static var kubernetesPatchOperationError: FailedOperation {
             FailedOperation(.kubernetesPatchOperationError)
         }
         
         /// 底层调用CLB未知错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var lbCommon: FailedOperation {
             FailedOperation(.lbCommon)
         }
@@ -287,31 +341,43 @@ extension TCTkeError {
         }
         
         /// 网络扩展错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var networkScaleError: FailedOperation {
             FailedOperation(.networkScaleError)
         }
         
         /// 镜像OS不支持。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var osNotSupport: FailedOperation {
             FailedOperation(.osNotSupport)
         }
         
         /// 参数错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var param: FailedOperation {
             FailedOperation(.param)
         }
         
         /// 超过配额限制。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var quotaMaxClsLimit: FailedOperation {
             FailedOperation(.quotaMaxClsLimit)
         }
         
         /// 超过配额限制。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var quotaMaxNodLimit: FailedOperation {
             FailedOperation(.quotaMaxNodLimit)
         }
         
         /// 安全组配额不足。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var quotaUSGLimit: FailedOperation {
             FailedOperation(.quotaUSGLimit)
         }
@@ -326,11 +392,15 @@ extension TCTkeError {
         }
         
         /// 已有相同任务执行中。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var taskAlreadyRunning: FailedOperation {
             FailedOperation(.taskAlreadyRunning)
         }
         
         /// 询价错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var tradeCommon: FailedOperation {
             FailedOperation(.tradeCommon)
         }
@@ -340,20 +410,27 @@ extension TCTkeError {
         }
         
         /// VPC报错。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var vpcCommon: FailedOperation {
             FailedOperation(.vpcCommon)
         }
         
         /// 未发现vpc记录。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var vpcRecodrNotFound: FailedOperation {
             FailedOperation(.vpcRecodrNotFound)
         }
         
         /// VPC未知错误。
+        ///
+        /// 请提交工单联系我们协助处理
         public static var vpcUnexpectedError: FailedOperation {
             FailedOperation(.vpcUnexpectedError)
         }
         
+        /// 请提单申请。
         public static var whitelistUnexpectedError: FailedOperation {
             FailedOperation(.whitelistUnexpectedError)
         }
@@ -378,10 +455,21 @@ extension TCTkeError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCTkeError.FailedOperation {
+    /// - Returns: ``TCTkeError`` that holds the same error and context.
     public func toTkeError() -> TCTkeError {
         guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTkeError(code, context: self.context)
+    }
+}
+
+extension TCTkeError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

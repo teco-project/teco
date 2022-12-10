@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Clb {
     /// 删除目标组
-    ///
-    /// 删除目标组
     @inlinable
     public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetGroupsResponse > {
         self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除目标组
-    ///
     /// 删除目标组
     @inlinable
     public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 删除安全网关路由
-    ///
-    /// 删除安全网关路由
     @inlinable
     public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
         self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除安全网关路由
-    ///
     /// 删除安全网关路由
     @inlinable
     public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {

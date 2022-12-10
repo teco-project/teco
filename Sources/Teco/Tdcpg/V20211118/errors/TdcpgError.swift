@@ -57,6 +57,9 @@ public struct TCTdcpgError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -164,6 +167,7 @@ public struct TCTdcpgError: TCErrorType {
         TCTdcpgError(.invalidParameterValue_ClusterNotFound)
     }
     
+    /// DBMajorVersion、DBVersion、DBKernelVersion三个参数只能选择一个传递，且必须传递一个。
     public static var invalidParameterValue_DatabaseVersionParamCountError: TCTdcpgError {
         TCTdcpgError(.invalidParameterValue_DatabaseVersionParamCountError)
     }
@@ -198,6 +202,7 @@ public struct TCTdcpgError: TCErrorType {
         TCTdcpgError(.invalidParameterValue_InvalidDBVersion)
     }
     
+    /// 请检查DBMajorVersion、DBVersion、DBKernelVersion参数值是否合法。
     public static var invalidParameterValue_InvalidDatabaseVersion: TCTdcpgError {
         TCTdcpgError(.invalidParameterValue_InvalidDatabaseVersion)
     }
@@ -318,5 +323,15 @@ extension TCTdcpgError: Equatable {
 extension TCTdcpgError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTdcpgError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

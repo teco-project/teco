@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 企业安全组规则快速排序
-    ///
-    /// 企业安全组规则快速排序
     @inlinable
     public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupSequenceRulesResponse > {
         self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 企业安全组规则快速排序
-    ///
     /// 企业安全组规则快速排序
     @inlinable
     public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 创建消费者组
-    ///
-    /// 创建消费者组
     @inlinable
     public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConsumerResponse > {
         self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建消费者组
-    ///
     /// 创建消费者组
     @inlinable
     public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {

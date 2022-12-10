@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 查询实例公网访问入口状态
-    ///
-    /// 查询实例公网访问入口状态
     @inlinable
     public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalEndpointStatusResponse > {
         self.client.execute(action: "DescribeExternalEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询实例公网访问入口状态
-    ///
     /// 查询实例公网访问入口状态
     @inlinable
     public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalEndpointStatusResponse {

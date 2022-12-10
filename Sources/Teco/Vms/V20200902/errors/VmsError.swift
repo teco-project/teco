@@ -34,6 +34,9 @@ public struct TCVmsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -128,6 +131,8 @@ public struct TCVmsError: TCErrorType {
     }
     
     /// 被叫手机号码格式校验失败。
+    ///
+    /// 请参考CalledNumber参数描述。
     public static var invalidParameterValue_CalledNumberVerifyFail: TCVmsError {
         TCVmsError(.invalidParameterValue_CalledNumberVerifyFail)
     }
@@ -183,5 +188,15 @@ extension TCVmsError: Equatable {
 extension TCVmsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCVmsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

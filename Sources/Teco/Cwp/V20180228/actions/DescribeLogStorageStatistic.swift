@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取日志检索容量使用统计
-    ///
-    /// 获取日志检索容量使用统计
     @inlinable
     public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogStorageStatisticResponse > {
         self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取日志检索容量使用统计
-    ///
     /// 获取日志检索容量使用统计
     @inlinable
     public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {

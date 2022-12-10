@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取集群可以升级的所有版本
-    ///
-    /// 获取集群可以升级的所有版本
     @inlinable
     public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableClusterVersionResponse > {
         self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取集群可以升级的所有版本
-    ///
     /// 获取集群可以升级的所有版本
     @inlinable
     public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {

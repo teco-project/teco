@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Essbasic {
     /// 查询流程文件
-    ///
-    /// 查询流程文件
     @inlinable
     public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowFilesResponse > {
         self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询流程文件
-    ///
     /// 查询流程文件
     @inlinable
     public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {

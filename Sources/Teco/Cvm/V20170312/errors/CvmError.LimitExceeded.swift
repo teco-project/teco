@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -48,6 +47,9 @@ extension TCCvmError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -62,6 +64,8 @@ extension TCCvmError {
         }
         
         /// 一个实例绑定安全组数量不能超过5个
+        ///
+        /// 无
         public static var associateUSGLimitExceeded: LimitExceeded {
             LimitExceeded(.associateUSGLimitExceeded)
         }
@@ -97,16 +101,22 @@ extension TCCvmError {
         }
         
         /// IP数量超过网卡上限。
+        ///
+        /// 暂无
         public static var iPv6AddressNum: LimitExceeded {
             LimitExceeded(.iPv6AddressNum)
         }
         
         /// 实例指定的弹性网卡数目超过了实例弹性网卡数目配额。
+        ///
+        /// 请确认机型的弹性网卡配额后再操作。
         public static var instanceEniNumLimit: LimitExceeded {
             LimitExceeded(.instanceEniNumLimit)
         }
         
         /// 当前配额不足够生产指定数量的实例
+        ///
+        /// 无
         public static var instanceQuota: LimitExceeded {
             LimitExceeded(.instanceQuota)
         }
@@ -132,11 +142,15 @@ extension TCCvmError {
         }
         
         /// 安全组限额不足
+        ///
+        /// 无
         public static var singleUSGQuota: LimitExceeded {
             LimitExceeded(.singleUSGQuota)
         }
         
         /// 竞价实例类型配额不足
+        ///
+        /// 无
         public static var spotQuota: LimitExceeded {
             LimitExceeded(.spotQuota)
         }
@@ -151,11 +165,15 @@ extension TCCvmError {
         }
         
         /// 竞价实例配额不足
+        ///
+        /// 无
         public static var userSpotQuota: LimitExceeded {
             LimitExceeded(.userSpotQuota)
         }
         
         /// 子网IP不足
+        ///
+        /// 无
         public static var vpcSubnetNum: LimitExceeded {
             LimitExceeded(.vpcSubnetNum)
         }
@@ -175,10 +193,21 @@ extension TCCvmError.LimitExceeded: CustomStringConvertible {
 }
 
 extension TCCvmError.LimitExceeded {
+    /// - Returns: ``TCCvmError`` that holds the same error and context.
     public func toCvmError() -> TCCvmError {
         guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCvmError(code, context: self.context)
+    }
+}
+
+extension TCCvmError.LimitExceeded {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

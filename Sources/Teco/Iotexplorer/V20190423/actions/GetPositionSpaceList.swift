@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotexplorer {
     /// 获取位置空间列表
-    ///
-    /// 获取位置空间列表
     @inlinable
     public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPositionSpaceListResponse > {
         self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取位置空间列表
-    ///
     /// 获取位置空间列表
     @inlinable
     public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {

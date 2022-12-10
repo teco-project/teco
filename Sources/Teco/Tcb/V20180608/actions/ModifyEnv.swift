@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcb {
     /// 更新环境信息
-    ///
-    /// 更新环境信息
     @inlinable
     public func modifyEnv(_ input: ModifyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvResponse > {
         self.client.execute(action: "ModifyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新环境信息
-    ///
     /// 更新环境信息
     @inlinable
     public func modifyEnv(_ input: ModifyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvResponse {

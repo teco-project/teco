@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 创建边缘计算ECM机器
-    ///
-    /// 创建边缘计算ECM机器
     @inlinable
     public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateECMInstancesResponse > {
         self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建边缘计算ECM机器
-    ///
     /// 创建边缘计算ECM机器
     @inlinable
     public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {

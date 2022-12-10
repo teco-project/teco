@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 查询话机列表信息
-    ///
-    /// 查询话机列表信息
     @inlinable
     public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionsResponse > {
         self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询话机列表信息
-    ///
     /// 查询话机列表信息
     @inlinable
     public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -428,20 +427,17 @@ extension Tione {
     public struct CosPathInfo: TCInputModel, TCOutputModel {
         /// 存储桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let bucket: String?
+        public let bucket: String
         
         /// 所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let region: String?
+        public let region: String
         
         /// 路径列表，目前只支持单个
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let paths: [String]?
+        public let paths: [String]
         
-        public init (bucket: String?, region: String?, paths: [String]?) {
+        public init (bucket: String, region: String, paths: [String]) {
             self.bucket = bucket
             self.region = region
             self.paths = paths
@@ -1167,20 +1163,17 @@ extension Tione {
     public struct HorizontalPodAutoscaler: TCInputModel, TCOutputModel {
         /// 最小实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let minReplicas: Int64?
+        public let minReplicas: Int64
         
         /// 最大实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let maxReplicas: Int64?
+        public let maxReplicas: Int64
         
         /// 扩缩容指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let hpaMetrics: [Option]?
+        public let hpaMetrics: [Option]
         
-        public init (minReplicas: Int64?, maxReplicas: Int64?, hpaMetrics: [Option]?) {
+        public init (minReplicas: Int64, maxReplicas: Int64, hpaMetrics: [Option]) {
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.hpaMetrics = hpaMetrics
@@ -1417,15 +1410,13 @@ extension Tione {
     public struct LogConfig: TCInputModel, TCOutputModel {
         /// 日志需要投递到cls的日志集
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let logsetId: String?
+        public let logsetId: String
         
         /// 日志需要投递到cls的主题
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let topicId: String?
+        public let topicId: String
         
-        public init (logsetId: String?, topicId: String?) {
+        public init (logsetId: String, topicId: String) {
             self.logsetId = logsetId
             self.topicId = topicId
         }
@@ -1727,15 +1718,13 @@ extension Tione {
         /// FIXED：固定
         /// RANGE：浮动
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let modelInputType: String?
+        public let modelInputType: String
         
         /// input数据尺寸
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let modelInputDimension: [String]?
+        public let modelInputDimension: [String]
         
-        public init (modelInputType: String?, modelInputDimension: [String]?) {
+        public init (modelInputType: String, modelInputDimension: [String]) {
             self.modelInputType = modelInputType
             self.modelInputDimension = modelInputDimension
         }
@@ -1956,13 +1945,11 @@ extension Tione {
     public struct ResourceInfo: TCInputModel, TCOutputModel {
         /// 处理器资源, 单位为1/1000核
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let cpu: UInt64?
+        public let cpu: UInt64
         
         /// 内存资源, 单位为1M
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let memory: UInt64?
+        public let memory: UInt64
         
         /// Gpu卡个数资源, 单位为0.01单位的GpuType.
         /// Gpu=100表示使用了“一张”gpu卡, 但此处的“一张”卡有可能是虚拟化后的1/4卡, 也有可能是整张卡. 取决于实例的机型
@@ -1985,7 +1972,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realGpuDetailSet: [GpuDetail]?
         
-        public init (cpu: UInt64?, memory: UInt64?, gpu: UInt64?, gpuType: String?, realGpu: UInt64?, realGpuDetailSet: [GpuDetail]?) {
+        public init (cpu: UInt64, memory: UInt64, gpu: UInt64?, gpuType: String?, realGpu: UInt64?, realGpuDetailSet: [GpuDetail]?) {
             self.cpu = cpu
             self.memory = memory
             self.gpu = gpu
@@ -2626,30 +2613,25 @@ extension Tione {
     public struct StatefulSetCondition: TCInputModel, TCOutputModel {
         /// 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let message: String?
+        public let message: String
         
         /// 原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let reason: String?
+        public let reason: String
         
         /// Status of the condition, one of True, False, Unknown.
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let status: String?
+        public let status: String
         
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let type: String?
+        public let type: String
         
         /// 上次更新的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let lastTransitionTime: String?
+        public let lastTransitionTime: String
         
-        public init (message: String?, reason: String?, status: String?, type: String?, lastTransitionTime: String?) {
+        public init (message: String, reason: String, status: String, type: String, lastTransitionTime: String) {
             self.message = message
             self.reason = reason
             self.status = status
@@ -2670,15 +2652,13 @@ extension Tione {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagKey: String?
+        public let tagKey: String
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let tagValue: String?
+        public let tagValue: String
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

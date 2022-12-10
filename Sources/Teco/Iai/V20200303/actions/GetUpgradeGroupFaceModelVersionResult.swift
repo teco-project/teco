@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iai {
     /// 人员库升级结果查询
-    ///
-    /// 人员库升级结果查询
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionResultResponse > {
         self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 人员库升级结果查询
-    ///
     /// 人员库升级结果查询
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询导出任务的结果
-    ///
-    /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
         self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询导出任务的结果
-    ///
     /// 查询导出任务的结果
     @inlinable
     public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {

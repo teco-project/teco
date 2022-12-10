@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 直播平台-上传代理商完税证明
-    ///
-    /// 直播平台-上传代理商完税证明
     @inlinable
     public func uploadTaxPayment(_ input: UploadTaxPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxPaymentResponse > {
         self.client.execute(action: "UploadTaxPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 直播平台-上传代理商完税证明
-    ///
     /// 直播平台-上传代理商完税证明
     @inlinable
     public func uploadTaxPayment(_ input: UploadTaxPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxPaymentResponse {

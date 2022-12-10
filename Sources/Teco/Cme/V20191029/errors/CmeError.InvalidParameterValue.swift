@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -78,6 +77,9 @@ extension TCCmeError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -156,6 +158,8 @@ extension TCCmeError {
         }
         
         /// 原始媒资信息不存在。
+        ///
+        /// 检查填写的原始媒资信息是否有效。
         public static var externalMediaInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.externalMediaInfoNotExist)
         }
@@ -201,6 +205,8 @@ extension TCCmeError {
         }
         
         /// 非团队成员。
+        ///
+        /// 检查操作者是否是团队成员。
         public static var notTeamMemberError: InvalidParameterValue {
             InvalidParameterValue(.notTeamMemberError)
         }
@@ -246,6 +252,8 @@ extension TCCmeError {
         }
         
         /// 轨道素材替换类型无效或不匹配。
+        ///
+        /// 需要保证新替换的素材类型与模板的素材类型一致，视频只能使用视频替换，音频只能使用音频替换。
         public static var replacementType: InvalidParameterValue {
             InvalidParameterValue(.replacementType)
         }
@@ -281,11 +289,15 @@ extension TCCmeError {
         }
         
         /// 导播台项目输入信息无效。
+        ///
+        /// 更新导播台项目输入信息。
         public static var switcherProjectInput: InvalidParameterValue {
             InvalidParameterValue(.switcherProjectInput)
         }
         
         /// 任务 Id 无效。
+        ///
+        /// 检查任务  Id 是否存在。
         public static var taskId: InvalidParameterValue {
             InvalidParameterValue(.taskId)
         }
@@ -355,10 +367,21 @@ extension TCCmeError.InvalidParameterValue: CustomStringConvertible {
 }
 
 extension TCCmeError.InvalidParameterValue {
+    /// - Returns: ``TCCmeError`` that holds the same error and context.
     public func toCmeError() -> TCCmeError {
         guard let code = TCCmeError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCmeError(code, context: self.context)
+    }
+}
+
+extension TCCmeError.InvalidParameterValue {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

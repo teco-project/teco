@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 获取企业微信子用户列表
-    ///
-    /// 获取企业微信子用户列表
     @inlinable
     public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListWeChatWorkSubAccountsResponse > {
         self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取企业微信子用户列表
-    ///
     /// 获取企业微信子用户列表
     @inlinable
     public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListWeChatWorkSubAccountsResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 绑定坐席所属技能组
-    ///
-    /// 绑定坐席所属技能组
     @inlinable
     public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindStaffSkillGroupListResponse > {
         self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 绑定坐席所属技能组
-    ///
     /// 绑定坐席所属技能组
     @inlinable
     public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {

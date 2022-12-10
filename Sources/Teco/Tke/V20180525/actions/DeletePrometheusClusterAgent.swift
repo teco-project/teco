@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 解除TMP实例的集群关联
-    ///
-    /// 解除TMP实例的集群关联
     @inlinable
     public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusClusterAgentResponse > {
         self.client.execute(action: "DeletePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 解除TMP实例的集群关联
-    ///
     /// 解除TMP实例的集群关联
     @inlinable
     public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {

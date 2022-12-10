@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 更新安全日志投递kafka设置
-    ///
-    /// 更新安全日志投递kafka设置
     @inlinable
     public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryKafkaSettingResponse > {
         self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新安全日志投递kafka设置
-    ///
     /// 更新安全日志投递kafka设置
     @inlinable
     public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsw {
     /// 获取告警对象-服务告警表
-    ///
-    /// 获取告警对象-服务告警表
     @inlinable
     public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceAlertObjectResponse > {
         self.client.execute(action: "DescribeServiceAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取告警对象-服务告警表
-    ///
     /// 获取告警对象-服务告警表
     @inlinable
     public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {

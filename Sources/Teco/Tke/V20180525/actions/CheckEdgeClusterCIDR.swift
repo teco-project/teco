@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 检查边缘计算集群的CIDR是否冲突
-    ///
-    /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
     public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEdgeClusterCIDRResponse > {
         self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 检查边缘计算集群的CIDR是否冲突
-    ///
     /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
     public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {

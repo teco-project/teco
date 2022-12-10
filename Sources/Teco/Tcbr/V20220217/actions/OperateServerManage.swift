@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcbr {
     /// 操作发布单
-    ///
-    /// 操作发布单
     @inlinable
     public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateServerManageResponse > {
         self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 操作发布单
-    ///
     /// 操作发布单
     @inlinable
     public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {

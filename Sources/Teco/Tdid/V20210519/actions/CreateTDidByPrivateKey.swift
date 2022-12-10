@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 新建DID根据私钥生成Tdid
-    ///
-    /// 新建DID根据私钥生成Tdid
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPrivateKeyResponse > {
         self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新建DID根据私钥生成Tdid
-    ///
     /// 新建DID根据私钥生成Tdid
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {

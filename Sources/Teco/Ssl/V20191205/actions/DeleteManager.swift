@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ssl {
     /// 删除管理人
-    ///
-    /// 删除管理人
     @inlinable
     public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
         self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除管理人
-    ///
     /// 删除管理人
     @inlinable
     public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {

@@ -186,6 +186,9 @@ public struct TCLiveError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -219,6 +222,7 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_AlterTaskState)
     }
     
+    /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_AuthError: TCLiveError {
         TCLiveError(.failedOperation_AuthError)
     }
@@ -238,29 +242,38 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_CancelSessionNotExist)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CannotBeDeletedIssued: TCLiveError {
         TCLiveError(.failedOperation_CannotBeDeletedIssued)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CannotBeDeletedWithinHour: TCLiveError {
         TCLiveError(.failedOperation_CannotBeDeletedWithinHour)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateExists: TCLiveError {
         TCLiveError(.failedOperation_CertificateExists)
     }
     
     /// ssl接口返回：证书格式错误。
+    ///
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateInvalid: TCLiveError {
         TCLiveError(.failedOperation_CertificateInvalid)
     }
     
     /// ssl接口返回：私钥与证书不匹配。
+    ///
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateMismatch: TCLiveError {
         TCLiveError(.failedOperation_CertificateMismatch)
     }
     
     /// 证书在证书中心不存在。
+    ///
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateNotFound: TCLiveError {
         TCLiveError(.failedOperation_CertificateNotFound)
     }
@@ -292,22 +305,27 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_DeleteDomainInLockedTime)
     }
     
+    /// 当前域名已添加，不可重复添加。
     public static var failedOperation_DomainAdded: TCLiveError {
         TCLiveError(.failedOperation_DomainAdded)
     }
     
+    /// 自动配置域名规则失败，可能由于您的域名是人工维护，请联系售后同学解决。
     public static var failedOperation_DomainGslbFail: TCLiveError {
         TCLiveError(.failedOperation_DomainGslbFail)
     }
     
+    /// 国内域名需要您通过实名认证。
     public static var failedOperation_DomainNeedRealName: TCLiveError {
         TCLiveError(.failedOperation_DomainNeedRealName)
     }
     
+    /// 请按提示进行域名归属验证。
     public static var failedOperation_DomainNeedVerifyOwner: TCLiveError {
         TCLiveError(.failedOperation_DomainNeedVerifyOwner)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_ExceedsFreeLimit: TCLiveError {
         TCLiveError(.failedOperation_ExceedsFreeLimit)
     }
@@ -332,11 +350,14 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_HostOutLimit)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_InvalidCertificateStatusCode: TCLiveError {
         TCLiveError(.failedOperation_InvalidCertificateStatusCode)
     }
     
     /// ssl接口返回：Type参数错误。
+    ///
+    /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_InvalidParam: TCLiveError {
         TCLiveError(.failedOperation_InvalidParam)
     }
@@ -356,15 +377,19 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_JiFeiNoEnoughFund)
     }
     
+    /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_NetworkError: TCLiveError {
         TCLiveError(.failedOperation_NetworkError)
     }
     
     /// ssl接口返回：没有项目权限。
+    ///
+    /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_NoProjectPermission: TCLiveError {
         TCLiveError(.failedOperation_NoProjectPermission)
     }
     
+    /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_NoRealNameAuth: TCLiveError {
         TCLiveError(.failedOperation_NoRealNameAuth)
     }
@@ -374,6 +399,7 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_NotFound)
     }
     
+    /// 您已添加该域名父域名，与当前域名冲突。
     public static var failedOperation_ParentDomainAdded: TCLiveError {
         TCLiveError(.failedOperation_ParentDomainAdded)
     }
@@ -403,6 +429,7 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.failedOperation_StreamNotExist)
     }
     
+    /// 您已添加该域名子域名，与当前域名冲突。
     public static var failedOperation_SubDomainAdded: TCLiveError {
         TCLiveError(.failedOperation_SubDomainAdded)
     }
@@ -753,6 +780,8 @@ public struct TCLiveError: TCErrorType {
     }
     
     /// 当前域名在黑名单中。
+    ///
+    /// 重新其他填写域名。
     public static var invalidParameter_DomainHitBlackList: TCLiveError {
         TCLiveError(.invalidParameter_DomainHitBlackList)
     }
@@ -910,6 +939,7 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.limitExceeded_MaximumTask)
     }
     
+    /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var limitExceeded_RateLimitExceeded: TCLiveError {
         TCLiveError(.limitExceeded_RateLimitExceeded)
     }
@@ -969,10 +999,12 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.resourceNotFound_DomainNotExist)
     }
     
+    /// 请确认您在使用服务过程中是否有违规内容。
     public static var resourceNotFound_ForbidService: TCLiveError {
         TCLiveError(.resourceNotFound_ForbidService)
     }
     
+    /// 用户长时间未使用，服务已被冻结，请提工单恢复。
     public static var resourceNotFound_FreezeService: TCLiveError {
         TCLiveError(.resourceNotFound_FreezeService)
     }
@@ -1002,6 +1034,7 @@ public struct TCLiveError: TCErrorType {
         TCLiveError(.resourceNotFound_TaskId)
     }
     
+    /// 用户主动停服，可重新开通。
     public static var resourceNotFound_UserDisableService: TCLiveError {
         TCLiveError(.resourceNotFound_UserDisableService)
     }
@@ -1052,6 +1085,8 @@ public struct TCLiveError: TCErrorType {
     }
     
     /// 非直播码/新版控制台模式。
+    ///
+    /// 请升级至新版直播控制台
     public static var unsupportedOperation_NotLVBCodeMode: TCLiveError {
         TCLiveError(.unsupportedOperation_NotLVBCodeMode)
     }
@@ -1072,5 +1107,15 @@ extension TCLiveError: Equatable {
 extension TCLiveError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCLiveError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

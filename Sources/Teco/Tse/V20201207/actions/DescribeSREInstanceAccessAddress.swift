@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tse {
     /// 查询引擎实例访问地址
-    ///
-    /// 查询引擎实例访问地址
     @inlinable
     public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstanceAccessAddressResponse > {
         self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询引擎实例访问地址
-    ///
     /// 查询引擎实例访问地址
     @inlinable
     public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {

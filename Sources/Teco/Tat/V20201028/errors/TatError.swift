@@ -68,6 +68,9 @@ public struct TCTatError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -112,6 +115,8 @@ public struct TCTatError: TCErrorType {
     }
     
     /// Agent不支持此命令类型。
+    ///
+    /// 请确认执行机器是否支持此类型命令
     public static var invalidParameterValue_AgentUnsupportedCommandType: TCTatError {
         TCTatError(.invalidParameterValue_AgentUnsupportedCommandType)
     }
@@ -132,6 +137,8 @@ public struct TCTatError: TCErrorType {
     }
     
     /// 实例ID与执行活动无关。
+    ///
+    /// 检查参数InstanceIds。
     public static var invalidParameterValue_InstanceIsNotRelatedToInvocation: TCTatError {
         TCTatError(.invalidParameterValue_InstanceIsNotRelatedToInvocation)
     }
@@ -182,6 +189,8 @@ public struct TCTatError: TCErrorType {
     }
     
     /// OutputCOSBucketUrl 无效。
+    ///
+    /// OutputCOSBucketUrl 应该形如：https://tat-123454321.cos.ap-beijing.myqcloud.com。
     public static var invalidParameterValue_InvalidOutputCOSBucketUrl: TCTatError {
         TCTatError(.invalidParameterValue_InvalidOutputCOSBucketUrl)
     }
@@ -309,6 +318,8 @@ public struct TCTatError: TCErrorType {
     }
     
     /// 执行活动未找到。
+    ///
+    /// 检查参数InvocationId
     public static var resourceNotFound_InvocationNotFound: TCTatError {
         TCTatError(.resourceNotFound_InvocationNotFound)
     }
@@ -338,6 +349,7 @@ public struct TCTatError: TCErrorType {
         TCTatError(.resourceUnavailable_InstanceStateNotRunning)
     }
     
+    /// 请确认所填实例是否为所请求的地域的资源。
     public static var resourceUnavailable_LighthouseUnsupportedRegion: TCTatError {
         TCTatError(.resourceUnavailable_LighthouseUnsupportedRegion)
     }
@@ -383,5 +395,15 @@ extension TCTatError: Equatable {
 extension TCTatError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCTatError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

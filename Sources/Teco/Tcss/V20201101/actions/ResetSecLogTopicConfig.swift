@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 重置安全日志主题设置
-    ///
-    /// 重置安全日志主题设置
     @inlinable
     public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSecLogTopicConfigResponse > {
         self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重置安全日志主题设置
-    ///
     /// 重置安全日志主题设置
     @inlinable
     public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {

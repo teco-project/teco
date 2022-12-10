@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 离线任务重名校验
-    ///
-    /// 离线任务重名校验
     @inlinable
     public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTaskNameExistResponse > {
         self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 离线任务重名校验
-    ///
     /// 离线任务重名校验
     @inlinable
     public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {

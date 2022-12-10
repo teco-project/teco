@@ -71,6 +71,9 @@ public struct TCDlcError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -99,18 +102,22 @@ public struct TCDlcError: TCErrorType {
         TCDlcError(.failedOperation_AnotherRequestProcessing)
     }
     
+    /// 请重试或联系我们
     public static var failedOperation_GetPolicyFailed: TCDlcError {
         TCDlcError(.failedOperation_GetPolicyFailed)
     }
     
+    /// 请重试，如重试也失败，请联系我们。
     public static var failedOperation_GetUserInfoFailed: TCDlcError {
         TCDlcError(.failedOperation_GetUserInfoFailed)
     }
     
+    /// 请重试或联系我们。
     public static var failedOperation_GetWorkGroupInfoFailed: TCDlcError {
         TCDlcError(.failedOperation_GetWorkGroupInfoFailed)
     }
     
+    /// 请重试或联系我们。
     public static var failedOperation_GrantPolicyFailed: TCDlcError {
         TCDlcError(.failedOperation_GrantPolicyFailed)
     }
@@ -120,6 +127,7 @@ public struct TCDlcError: TCErrorType {
         TCDlcError(.failedOperation_HttpClientDoRequestFailed)
     }
     
+    /// 请重试或联系我们。
     public static var failedOperation_RevokePolicyFailed: TCDlcError {
         TCDlcError(.failedOperation_RevokePolicyFailed)
     }
@@ -160,6 +168,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 无效的数据引擎名。
+    ///
+    /// 一般是引擎名字重复或包含不支持的符号。
     public static var invalidParameter_InvalidDataEngineName: TCDlcError {
         TCDlcError(.invalidParameter_InvalidDataEngineName)
     }
@@ -174,6 +184,7 @@ public struct TCDlcError: TCErrorType {
         TCDlcError(.invalidParameter_InvalidFailureTolerance)
     }
     
+    /// 请更换过滤条件。
     public static var invalidParameter_InvalidFilterKey: TCDlcError {
         TCDlcError(.invalidParameter_InvalidFilterKey)
     }
@@ -188,6 +199,7 @@ public struct TCDlcError: TCErrorType {
         TCDlcError(.invalidParameter_InvalidOffset)
     }
     
+    /// 请使用正确的已经授权的CAM role arn
     public static var invalidParameter_InvalidRoleArn: TCDlcError {
         TCDlcError(.invalidParameter_InvalidRoleArn)
     }
@@ -198,6 +210,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// SQL数量不符合规范。
+    ///
+    /// 单次提交的SQL数量应该小于等于50，大于等于1。
     public static var invalidParameter_InvalidSQLNum: TCDlcError {
         TCDlcError(.invalidParameter_InvalidSQLNum)
     }
@@ -222,6 +236,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 无效的任务类型。
+    ///
+    /// 填写正确的任务类型SQLTask
     public static var invalidParameter_InvalidTaskType: TCDlcError {
         TCDlcError(.invalidParameter_InvalidTaskType)
     }
@@ -237,6 +253,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 无效的用户类型。
+    ///
+    /// 请检查用户类型是否存在或者其余入参是否符合所选用户类型的要求。
     public static var invalidParameter_InvalidUserType: TCDlcError {
         TCDlcError(.invalidParameter_InvalidUserType)
     }
@@ -247,6 +265,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 任务已经结束，不能取消。
+    ///
+    /// 等待任务状态更新。
     public static var invalidParameter_TaskAlreadyFinished: TCDlcError {
         TCDlcError(.invalidParameter_TaskAlreadyFinished)
     }
@@ -276,6 +296,8 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 账号余额不足，无法执行SQL任务。
+    ///
+    /// 请充值。
     public static var resourceUnavailable_BalanceInsufficient: TCDlcError {
         TCDlcError(.resourceUnavailable_BalanceInsufficient)
     }
@@ -306,66 +328,92 @@ public struct TCDlcError: TCErrorType {
     }
     
     /// 子用户不是管理员，无权将用户添加到工作组。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_AddUsersToWorkgroup: TCDlcError {
         TCDlcError(.unauthorizedOperation_AddUsersToWorkgroup)
     }
     
     /// 子用户不是管理员，无权绑定工作组到用户。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_BindWorkgroupsToUser: TCDlcError {
         TCDlcError(.unauthorizedOperation_BindWorkgroupsToUser)
     }
     
     /// 子用户不是管理员，无权创建工作组。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_CreateWorkgroup: TCDlcError {
         TCDlcError(.unauthorizedOperation_CreateWorkgroup)
     }
     
     /// 子用户不是管理员，无权删除用户。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_DeleteUser: TCDlcError {
         TCDlcError(.unauthorizedOperation_DeleteUser)
     }
     
     /// 子用户不是管理员，无权将用户从工作组解绑。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_DeleteUsersFromWorkgroup: TCDlcError {
         TCDlcError(.unauthorizedOperation_DeleteUsersFromWorkgroup)
     }
     
     /// 子用户不是管理员，无权删除工作组。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_DeleteWorkgroup: TCDlcError {
         TCDlcError(.unauthorizedOperation_DeleteWorkgroup)
     }
     
     /// 子用户无权授予特定权限。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_GrantPolicy: TCDlcError {
         TCDlcError(.unauthorizedOperation_GrantPolicy)
     }
     
     /// 子用户不是管理员，无权修改用户信息。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_ModifyUserInfo: TCDlcError {
         TCDlcError(.unauthorizedOperation_ModifyUserInfo)
     }
     
     /// 子用户不是管理员，无权修改工作组信息。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_ModifyWorkgroupInfo: TCDlcError {
         TCDlcError(.unauthorizedOperation_ModifyWorkgroupInfo)
     }
     
     /// 子用户无权取消特定权限。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_RevokePolicy: TCDlcError {
         TCDlcError(.unauthorizedOperation_RevokePolicy)
     }
     
     /// 子用户不是管理员，无权将工作组和用户解绑。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_UnbindWorkgroupsFromUser: TCDlcError {
         TCDlcError(.unauthorizedOperation_UnbindWorkgroupsFromUser)
     }
     
     /// 子用户无权使用计算引擎。
+    ///
+    /// 请DLC管理员前往【权限管理】为您授权后重试操作
     public static var unauthorizedOperation_UseComputingEngine: TCDlcError {
         TCDlcError(.unauthorizedOperation_UseComputingEngine)
     }
     
     /// 子用户不存在。
+    ///
+    /// 请DLC管理员前往【权限管理】新建用户并授权后重试操作
     public static var unauthorizedOperation_UserNotExist: TCDlcError {
         TCDlcError(.unauthorizedOperation_UserNotExist)
     }
@@ -396,5 +444,15 @@ extension TCDlcError: Equatable {
 extension TCDlcError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCDlcError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

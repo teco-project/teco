@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdmq {
     /// 创建环境角色授权
-    ///
-    /// 创建环境角色授权
     @inlinable
     public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentRoleResponse > {
         self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建环境角色授权
-    ///
     /// 创建环境角色授权
     @inlinable
     public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {

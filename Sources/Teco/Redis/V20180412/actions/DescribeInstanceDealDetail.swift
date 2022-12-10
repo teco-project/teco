@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Redis {
     /// 查询订单信息
-    ///
-    /// 查询订单信息
     @inlinable
     public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDealDetailResponse > {
         self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询订单信息
-    ///
     /// 查询订单信息
     @inlinable
     public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {

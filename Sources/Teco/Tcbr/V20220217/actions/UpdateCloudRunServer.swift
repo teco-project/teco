@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcbr {
     /// 更新云托管服务
-    ///
-    /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
         self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 更新云托管服务
-    ///
     /// 更新云托管服务
     @inlinable
     public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {

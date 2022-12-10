@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -73,6 +72,9 @@ extension TCLiveError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,6 +98,7 @@ extension TCLiveError {
             FailedOperation(.alterTaskState)
         }
         
+        /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var authError: FailedOperation {
             FailedOperation(.authError)
         }
@@ -115,29 +118,38 @@ extension TCLiveError {
             FailedOperation(.cancelSessionNotExist)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedIssued: FailedOperation {
             FailedOperation(.cannotBeDeletedIssued)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedWithinHour: FailedOperation {
             FailedOperation(.cannotBeDeletedWithinHour)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateExists: FailedOperation {
             FailedOperation(.certificateExists)
         }
         
         /// ssl接口返回：证书格式错误。
+        ///
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateInvalid: FailedOperation {
             FailedOperation(.certificateInvalid)
         }
         
         /// ssl接口返回：私钥与证书不匹配。
+        ///
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateMismatch: FailedOperation {
             FailedOperation(.certificateMismatch)
         }
         
         /// 证书在证书中心不存在。
+        ///
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateNotFound: FailedOperation {
             FailedOperation(.certificateNotFound)
         }
@@ -169,22 +181,27 @@ extension TCLiveError {
             FailedOperation(.deleteDomainInLockedTime)
         }
         
+        /// 当前域名已添加，不可重复添加。
         public static var domainAdded: FailedOperation {
             FailedOperation(.domainAdded)
         }
         
+        /// 自动配置域名规则失败，可能由于您的域名是人工维护，请联系售后同学解决。
         public static var domainGslbFail: FailedOperation {
             FailedOperation(.domainGslbFail)
         }
         
+        /// 国内域名需要您通过实名认证。
         public static var domainNeedRealName: FailedOperation {
             FailedOperation(.domainNeedRealName)
         }
         
+        /// 请按提示进行域名归属验证。
         public static var domainNeedVerifyOwner: FailedOperation {
             FailedOperation(.domainNeedVerifyOwner)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var exceedsFreeLimit: FailedOperation {
             FailedOperation(.exceedsFreeLimit)
         }
@@ -209,11 +226,14 @@ extension TCLiveError {
             FailedOperation(.hostOutLimit)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var invalidCertificateStatusCode: FailedOperation {
             FailedOperation(.invalidCertificateStatusCode)
         }
         
         /// ssl接口返回：Type参数错误。
+        ///
+        /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var invalidParam: FailedOperation {
             FailedOperation(.invalidParam)
         }
@@ -233,15 +253,19 @@ extension TCLiveError {
             FailedOperation(.jiFeiNoEnoughFund)
         }
         
+        /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var networkError: FailedOperation {
             FailedOperation(.networkError)
         }
         
         /// ssl接口返回：没有项目权限。
+        ///
+        /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noProjectPermission: FailedOperation {
             FailedOperation(.noProjectPermission)
         }
         
+        /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noRealNameAuth: FailedOperation {
             FailedOperation(.noRealNameAuth)
         }
@@ -251,6 +275,7 @@ extension TCLiveError {
             FailedOperation(.notFound)
         }
         
+        /// 您已添加该域名父域名，与当前域名冲突。
         public static var parentDomainAdded: FailedOperation {
             FailedOperation(.parentDomainAdded)
         }
@@ -280,6 +305,7 @@ extension TCLiveError {
             FailedOperation(.streamNotExist)
         }
         
+        /// 您已添加该域名子域名，与当前域名冲突。
         public static var subDomainAdded: FailedOperation {
             FailedOperation(.subDomainAdded)
         }
@@ -309,10 +335,21 @@ extension TCLiveError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCLiveError.FailedOperation {
+    /// - Returns: ``TCLiveError`` that holds the same error and context.
     public func toLiveError() -> TCLiveError {
         guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCLiveError(code, context: self.context)
+    }
+}
+
+extension TCLiveError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

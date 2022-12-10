@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -138,6 +137,9 @@ extension TCCpdpError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -242,6 +244,8 @@ extension TCCpdpError {
         }
         
         /// 渠道方退款失败。
+        ///
+        /// 渠道方拒绝该笔退款请求，请联系米大师定位具体问题原因。
         public static var channelRefundFailed: FailedOperation {
             FailedOperation(.channelRefundFailed)
         }
@@ -437,6 +441,8 @@ extension TCCpdpError {
         }
         
         /// 聚鑫内部系统错误。
+        ///
+        /// 请联系我们
         public static var midasInternalError: FailedOperation {
             FailedOperation(.midasInternalError)
         }
@@ -446,21 +452,29 @@ extension TCCpdpError {
         }
         
         /// 聚鑫需要重试。
+        ///
+        /// 请联系我们
         public static var midasNeedRetry: FailedOperation {
             FailedOperation(.midasNeedRetry)
         }
         
         /// 聚鑫当前企业对该产品能力有未完成的申请单。
+        ///
+        /// 请联系我们
         public static var midasRegisterUnfinished: FailedOperation {
             FailedOperation(.midasRegisterUnfinished)
         }
         
         /// 聚鑫订单已经提交。
+        ///
+        /// 请联系我们
         public static var midasRepeatOrder: FailedOperation {
             FailedOperation(.midasRepeatOrder)
         }
         
         /// 通用风控系统错误，被风控拦截。
+        ///
+        /// 请联系我们
         public static var midasRisk: FailedOperation {
             FailedOperation(.midasRisk)
         }
@@ -470,6 +484,8 @@ extension TCCpdpError {
         }
         
         /// 聚鑫不支持该操作。
+        ///
+        /// 请联系我们
         public static var midasUnsupportedAction: FailedOperation {
             FailedOperation(.midasUnsupportedAction)
         }
@@ -484,6 +500,7 @@ extension TCCpdpError {
             FailedOperation(.modifyMerchantFailed)
         }
         
+        /// 未查询到相关记录
         public static var mountNotFound: FailedOperation {
             FailedOperation(.mountNotFound)
         }
@@ -609,6 +626,8 @@ extension TCCpdpError {
         }
         
         /// 退款处理中。
+        ///
+        /// 待渠道完成退款操作，请稍后查看退款结果。
         public static var refundProcessIng: FailedOperation {
             FailedOperation(.refundProcessIng)
         }
@@ -713,10 +732,21 @@ extension TCCpdpError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCpdpError.FailedOperation {
+    /// - Returns: ``TCCpdpError`` that holds the same error and context.
     public func toCpdpError() -> TCCpdpError {
         guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCpdpError(code, context: self.context)
+    }
+}
+
+extension TCCpdpError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

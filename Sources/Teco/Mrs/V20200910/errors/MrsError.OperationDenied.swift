@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -29,6 +28,9 @@ extension TCMrsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -43,6 +45,8 @@ extension TCMrsError {
         }
         
         /// 不支持的报告类型。
+        ///
+        /// 请检查上传报告是否正确。
         public static var unSupportThisType: OperationDenied {
             OperationDenied(.unSupportThisType)
         }
@@ -62,10 +66,21 @@ extension TCMrsError.OperationDenied: CustomStringConvertible {
 }
 
 extension TCMrsError.OperationDenied {
+    /// - Returns: ``TCMrsError`` that holds the same error and context.
     public func toMrsError() -> TCMrsError {
         guard let code = TCMrsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCMrsError(code, context: self.context)
+    }
+}
+
+extension TCMrsError.OperationDenied {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

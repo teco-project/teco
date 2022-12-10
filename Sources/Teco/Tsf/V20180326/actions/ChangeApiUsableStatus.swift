@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 启用或禁用API
-    ///
-    /// 启用或禁用API
     @inlinable
     public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeApiUsableStatusResponse > {
         self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 启用或禁用API
-    ///
     /// 启用或禁用API
     @inlinable
     public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {

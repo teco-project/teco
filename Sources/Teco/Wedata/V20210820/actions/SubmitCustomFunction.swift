@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Wedata {
     /// 提交自定义函数
-    ///
-    /// 提交自定义函数
     @inlinable
     public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCustomFunctionResponse > {
         self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 提交自定义函数
-    ///
     /// 提交自定义函数
     @inlinable
     public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {

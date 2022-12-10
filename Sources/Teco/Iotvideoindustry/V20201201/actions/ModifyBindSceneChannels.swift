@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iotvideoindustry {
     /// 场景绑定解绑通道接口
-    ///
-    /// 场景绑定解绑通道接口
     @inlinable
     public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindSceneChannelsResponse > {
         self.client.execute(action: "ModifyBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 场景绑定解绑通道接口
-    ///
     /// 场景绑定解绑通道接口
     @inlinable
     public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {

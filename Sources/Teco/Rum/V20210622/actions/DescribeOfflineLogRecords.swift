@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Rum {
     /// 获取所有离线日志记录(最多100条)
-    ///
-    /// 获取所有离线日志记录(最多100条)
     @inlinable
     public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogRecordsResponse > {
         self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取所有离线日志记录(最多100条)
-    ///
     /// 获取所有离线日志记录(最多100条)
     @inlinable
     public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogRecordsResponse {

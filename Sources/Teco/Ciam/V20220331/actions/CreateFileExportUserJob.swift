@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ciam {
     /// 新建文件导出用户任务
-    ///
-    /// 新建文件导出用户任务
     @inlinable
     public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileExportUserJobResponse > {
         self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新建文件导出用户任务
-    ///
     /// 新建文件导出用户任务
     @inlinable
     public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gs {
     /// 强制退出游戏
-    ///
-    /// 强制退出游戏
     @inlinable
     public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
         self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 强制退出游戏
-    ///
     /// 强制退出游戏
     @inlinable
     public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {

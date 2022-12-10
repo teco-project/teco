@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ckafka {
     /// 创建Datahub连接源
-    ///
-    /// 创建Datahub连接源
     @inlinable
     public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectResourceResponse > {
         self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建Datahub连接源
-    ///
     /// 创建Datahub连接源
     @inlinable
     public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {

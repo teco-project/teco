@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 获取CC频率限制策略列表
-    ///
-    /// 获取CC频率限制策略列表
     @inlinable
     public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCReqLimitPolicyListResponse > {
         self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取CC频率限制策略列表
-    ///
     /// 获取CC频率限制策略列表
     @inlinable
     public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {

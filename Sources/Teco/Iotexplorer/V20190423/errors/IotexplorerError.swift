@@ -178,6 +178,9 @@ public struct TCIotexplorerError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -286,6 +289,8 @@ public struct TCIotexplorerError: TCErrorType {
     }
     
     /// 内部LoRaServer错误。
+    ///
+    /// 用户无需操作，产品已第一时间获得该告警，正在处理中，请稍后重试。
     public static var internalError_InternalLoRaServerError: TCIotexplorerError {
         TCIotexplorerError(.internalError_InternalLoRaServerError)
     }
@@ -1043,5 +1048,15 @@ extension TCIotexplorerError: Equatable {
 extension TCIotexplorerError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCIotexplorerError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

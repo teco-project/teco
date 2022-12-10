@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdn {
     /// Waf统计数据查询
-    ///
-    /// Waf统计数据查询
     @inlinable
     public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafDataResponse > {
         self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// Waf统计数据查询
-    ///
     /// Waf统计数据查询
     @inlinable
     public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 查询生效运营商白名单规则
-    ///
-    /// 查询生效运营商白名单规则
     @inlinable
     public func describeActiveCarrierPrivilegeNumber(_ input: DescribeActiveCarrierPrivilegeNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActiveCarrierPrivilegeNumberResponse > {
         self.client.execute(action: "DescribeActiveCarrierPrivilegeNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询生效运营商白名单规则
-    ///
     /// 查询生效运营商白名单规则
     @inlinable
     public func describeActiveCarrierPrivilegeNumber(_ input: DescribeActiveCarrierPrivilegeNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActiveCarrierPrivilegeNumberResponse {

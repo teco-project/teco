@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 创建NAT防火墙实例（Region参数必填）
-    ///
-    /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
     public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceResponse > {
         self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建NAT防火墙实例（Region参数必填）
-    ///
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
     public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {

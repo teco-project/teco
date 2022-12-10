@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dasb {
     /// 删除资产组成员
-    ///
-    /// 删除资产组成员
     @inlinable
     public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupMembersResponse > {
         self.client.execute(action: "DeleteDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除资产组成员
-    ///
     /// 删除资产组成员
     @inlinable
     public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {

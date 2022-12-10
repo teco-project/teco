@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 设置阻断开关状态
-    ///
-    /// 设置阻断开关状态
     @inlinable
     public func modifyBanStatus(_ input: ModifyBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBanStatusResponse > {
         self.client.execute(action: "ModifyBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置阻断开关状态
-    ///
     /// 设置阻断开关状态
     @inlinable
     public func modifyBanStatus(_ input: ModifyBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanStatusResponse {

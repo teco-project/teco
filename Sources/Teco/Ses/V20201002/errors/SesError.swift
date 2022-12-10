@@ -97,6 +97,9 @@ public struct TCSesError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -211,6 +214,8 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 收件人已退订。
+    ///
+    /// 收件人已经退订当前发送者的邮件。
     public static var failedOperation_ReceiverHasUnsubscribed: TCSesError {
         TCSesError(.failedOperation_ReceiverHasUnsubscribed)
     }
@@ -286,6 +291,8 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 开始时间不能早于当前时间。
+    ///
+    /// 开始时间不能早于当前时间。请检查
     public static var invalidParameterValue_BeginTimeBeforeNow: TCSesError {
         TCSesError(.invalidParameterValue_BeginTimeBeforeNow)
     }
@@ -310,10 +317,12 @@ public struct TCSesError: TCErrorType {
         TCSesError(.invalidParameterValue_IllegalEmailAddress)
     }
     
+    /// 创建发信人地址时，别名错误。别名不能为一个邮箱地址
     public static var invalidParameterValue_IllegalSenderName: TCSesError {
         TCSesError(.invalidParameterValue_IllegalSenderName)
     }
     
+    /// 存在某一个收件人地址附带的模板参数不能包含html标签。请逐条检查收件人地址附带的模板参数。
     public static var invalidParameterValue_InValidTemplateData: TCSesError {
         TCSesError(.invalidParameterValue_InValidTemplateData)
     }
@@ -338,11 +347,14 @@ public struct TCSesError: TCErrorType {
         TCSesError(.invalidParameterValue_ReceiverDescIllegal)
     }
     
+    /// 批量发信或单条发信，，收件人地址错误
     public static var invalidParameterValue_ReceiverEmailInvalid: TCSesError {
         TCSesError(.invalidParameterValue_ReceiverEmailInvalid)
     }
     
     /// 收件人列表名字不合法，请检查字符内容及大小。
+    ///
+    /// 收件人列表名字不合法，没有传列表名字或者列表名字长度超长，调整列表名字后，重新保存
     public static var invalidParameterValue_ReceiverNameIllegal: TCSesError {
         TCSesError(.invalidParameterValue_ReceiverNameIllegal)
     }
@@ -358,6 +370,8 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 收件人列表名称重复。
+    ///
+    /// 收件人列表名称重复，修改列表名称，保证列表名称在自己所有的收件人列表中不重复。
     public static var invalidParameterValue_RepeatReceiverName: TCSesError {
         TCSesError(.invalidParameterValue_RepeatReceiverName)
     }
@@ -378,14 +392,18 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 变量设置必须为json格式。
+    ///
+    /// 模板参数必须为json格式。
     public static var invalidParameterValue_TemplateDataError: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataError)
     }
     
+    /// 模板参数变量与之前不一致。向收件人列表追加收件人地址及模板参数变量时，模板参数变量名与首次上传时不一致造成。请修改模板参数变量名。
     public static var invalidParameterValue_TemplateDataInconsistent: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataInconsistent)
     }
     
+    /// 收件人地址附带的模板参数长度超过限制，具体指TemplateData字段的长度。在控制台上传时，变量名和变量值为转成成json字符串，再计算长度。请参考API文档，调整TemplateData字段长度，在控制台上传时，减少变量个数或者缩短变量值
     public static var invalidParameterValue_TemplateDataLenLimit: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataLenLimit)
     }
@@ -406,6 +424,8 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 模板变量与收件人列表参数不一一对应。
+    ///
+    /// 调整模板或删除收件人列表，重新调整列表中的参数并上传
     public static var invalidParameterValue_TemplateNotMatchData: TCSesError {
         TCSesError(.invalidParameterValue_TemplateNotMatchData)
     }
@@ -421,14 +441,18 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 收件人列表数量超过限制。
+    ///
+    /// 收件人列表数量最多10个，具体数量参考页面提示，可以先删除不需要用的列表，然后重新创建
     public static var limitExceeded_ExceedReceiverLimit: TCSesError {
         TCSesError(.limitExceeded_ExceedReceiverLimit)
     }
     
+    /// 该收件人列表包含的收件人地址总量超过限制。请查询一下该收件人列表已存在的地址总数，加上本次请求的地址数量是否超过地址总量限制。总量限制请参考接口描述。
     public static var limitExceeded_ReceiverDetailCountLimit: TCSesError {
         TCSesError(.limitExceeded_ReceiverDetailCountLimit)
     }
     
+    /// 请求的收件人地址数量超过限制。参考接口文档，调整请求的收件人地址的数量。
     public static var limitExceeded_ReceiverDetailRequestLimit: TCSesError {
         TCSesError(.limitExceeded_ReceiverDetailRequestLimit)
     }
@@ -439,16 +463,22 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 周期发送任务需选择开始时间和间隔时间。
+    ///
+    /// 周期发送任务需选择开始时间和间隔时间
     public static var missingParameter_CycleParamNecessary: TCSesError {
         TCSesError(.missingParameter_CycleParamNecessary)
     }
     
     /// 收件人地址必须传。
+    ///
+    /// 参数中补上收件人地址
     public static var missingParameter_EmailsNecessary: TCSesError {
         TCSesError(.missingParameter_EmailsNecessary)
     }
     
     /// 收件人列表Id必传。
+    ///
+    /// 收件人列表Id必传
     public static var missingParameter_ReceiverIdNecessary: TCSesError {
         TCSesError(.missingParameter_ReceiverIdNecessary)
     }
@@ -459,6 +489,8 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 定时发送任务需选择开始时间。
+    ///
+    /// 定时发送任务需选择开始时间
     public static var missingParameter_TimedParamNecessary: TCSesError {
         TCSesError(.missingParameter_TimedParamNecessary)
     }
@@ -484,26 +516,36 @@ public struct TCSesError: TCErrorType {
     }
     
     /// 收件人列表正在被操作，请稍后操作。
+    ///
+    /// 可能是收件人列表正在上传收件人地址，等待一段时间再操作，必要时可以反馈问题
     public static var operationDenied_ReceiverIsOperating: TCSesError {
         TCSesError(.operationDenied_ReceiverIsOperating)
     }
     
     /// 收件人列表不存在。
+    ///
+    /// 确认一下收件人Id是否正确真实，必须为已创建的收件人列表的id
     public static var operationDenied_ReceiverNotExist: TCSesError {
         TCSesError(.operationDenied_ReceiverNotExist)
     }
     
     /// 收件人列表空或状态不是上传完成。
+    ///
+    /// 检查收件人列表中是否存在收件人地址或者正在进行上传，尚未完成全部上传工作
     public static var operationDenied_ReceiverStatusError: TCSesError {
         TCSesError(.operationDenied_ReceiverStatusError)
     }
     
     /// 发信地址不存在或者状态不是通过状态。
+    ///
+    /// 发信地址不存在或者状态不是通过,请检查发信地址是否创建
     public static var operationDenied_SendAddressStatusError: TCSesError {
         TCSesError(.operationDenied_SendAddressStatusError)
     }
     
     /// 发信模板不存在或者状态不是审核通过状态。
+    ///
+    /// 发信模板不存在或者状态不是审核通过，请检查
     public static var operationDenied_TemplateStatusError: TCSesError {
         TCSesError(.operationDenied_TemplateStatusError)
     }
@@ -554,5 +596,15 @@ extension TCSesError: Equatable {
 extension TCSesError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSesError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

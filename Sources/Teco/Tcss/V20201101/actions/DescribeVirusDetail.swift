@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 运行时查询木马文件信息
-    ///
-    /// 运行时查询木马文件信息
     @inlinable
     public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusDetailResponse > {
         self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 运行时查询木马文件信息
-    ///
     /// 运行时查询木马文件信息
     @inlinable
     public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusDetailResponse {

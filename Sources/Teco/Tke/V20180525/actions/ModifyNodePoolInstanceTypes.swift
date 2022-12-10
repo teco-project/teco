@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 修改节点池的机型配置
-    ///
-    /// 修改节点池的机型配置
     @inlinable
     public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodePoolInstanceTypesResponse > {
         self.client.execute(action: "ModifyNodePoolInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改节点池的机型配置
-    ///
     /// 修改节点池的机型配置
     @inlinable
     public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {

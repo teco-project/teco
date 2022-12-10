@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Irp {
     /// 上报物料
-    ///
-    /// 上报物料
     @inlinable
     public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportMaterialResponse > {
         self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 上报物料
-    ///
     /// 上报物料
     @inlinable
     public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {

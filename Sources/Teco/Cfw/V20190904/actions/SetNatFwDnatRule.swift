@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 配置防火墙Dnat规则
-    ///
-    /// 配置防火墙Dnat规则
     @inlinable
     public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNatFwDnatRuleResponse > {
         self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 配置防火墙Dnat规则
-    ///
     /// 配置防火墙Dnat规则
     @inlinable
     public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {

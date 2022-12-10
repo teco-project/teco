@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -618,14 +617,13 @@ extension Ivld {
         
         /// 媒资素材二级类型，参见MediaPreknownInfo结构体定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let mediaSecondLabel: Int64?
+        public let mediaSecondLabel: Int64
         
         /// 媒资音频类型，参见MediaPreknownInfo结构体定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaLang: Int64?
         
-        public init (mediaType: Int64, mediaLabel: Int64, mediaSecondLabel: Int64?, mediaLang: Int64?) {
+        public init (mediaType: Int64, mediaLabel: Int64, mediaSecondLabel: Int64, mediaLang: Int64?) {
             self.mediaType = mediaType
             self.mediaLabel = mediaLabel
             self.mediaSecondLabel = mediaSecondLabel

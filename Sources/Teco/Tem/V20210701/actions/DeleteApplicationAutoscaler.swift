@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 删除应用弹性策略组合
-    ///
-    /// 删除应用弹性策略组合
     @inlinable
     public func deleteApplicationAutoscaler(_ input: DeleteApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationAutoscalerResponse > {
         self.client.execute(action: "DeleteApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除应用弹性策略组合
-    ///
     /// 删除应用弹性策略组合
     @inlinable
     public func deleteApplicationAutoscaler(_ input: DeleteApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationAutoscalerResponse {

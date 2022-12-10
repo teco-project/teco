@@ -94,6 +94,9 @@ public struct TCSmsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -198,6 +201,8 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// 签名未审批或格式错误。（1）可登录 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查签名是否已审批并且审批通过；（2）核查是否符合格式规范，签名只能由中英文、数字组成，要求2 - 12个字，若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+    ///
+    /// 可参考 [短信发送提示：FailedOperation.SignatureIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.signatureincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_SignatureIncorrectOrUnapproved: TCSmsError {
         TCSmsError(.failedOperation_SignatureIncorrectOrUnapproved)
     }
@@ -208,11 +213,15 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// 模板 ID 或签名 ID 不存在。
+    ///
+    /// 请排查模板 ID 或签名 ID 是否填写正确
     public static var failedOperation_TemplateIdNotExist: TCSmsError {
         TCSmsError(.failedOperation_TemplateIdNotExist)
     }
     
     /// 模板未审批或内容不匹配。（1）可登陆 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查模板是否已审批并审批通过；（2）核查是否符合 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">格式规范</a>，若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+    ///
+    /// 可参考 [短信发送提示：FailedOperation.TemplateIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_TemplateIncorrectOrUnapproved: TCSmsError {
         TCSmsError(.failedOperation_TemplateIncorrectOrUnapproved)
     }
@@ -223,11 +232,15 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// 请求内容与审核通过的模板内容不匹配。请检查请求中模板参数的个数是否与申请的模板一致。若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+    ///
+    /// 请检查请求中模板参数的个数是否与申请的模板一致。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_TemplateParamSetNotMatchApprovedTemplate: TCSmsError {
         TCSmsError(.failedOperation_TemplateParamSetNotMatchApprovedTemplate)
     }
     
     /// 模板未审批或不存在。可登陆 <a href="https://console.cloud.tencent.com/smsv2">短信控制台</a>，核查模板是否已审批并审批通过。若存在疑问可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+    ///
+    /// 可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_TemplateUnapprovedOrNotExist: TCSmsError {
         TCSmsError(.failedOperation_TemplateUnapprovedOrNotExist)
     }
@@ -358,6 +371,8 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// SdkAppId 不存在。
+    ///
+    /// 请检查该应用ID是否属于该账号。
     public static var invalidParameterValue_SdkAppIdNotExist: TCSmsError {
         TCSmsError(.invalidParameterValue_SdkAppIdNotExist)
     }
@@ -498,6 +513,8 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// SmsSdkAppId 校验失败，请检查 <a href="https://console.cloud.tencent.com/smsv2/app-manage">SmsSdkAppId</a> 是否属于 <a href="https://console.cloud.tencent.com/cam/capi">云API密钥</a> 的关联账户。
+    ///
+    /// 可参考 [短信发送提示：UnauthorizedOperation.SmsSdkAppIdVerifyFail 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunauthorizedoperation.smssdkappidverifyfail-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var unauthorizedOperation_SmsSdkAppIdVerifyFail: TCSmsError {
         TCSmsError(.unauthorizedOperation_SmsSdkAppIdVerifyFail)
     }
@@ -508,16 +525,22 @@ public struct TCSmsError: TCErrorType {
     }
     
     /// 国内短信模板不支持发送国际/港澳台手机号。发送国际/港澳台手机号请使用国际/港澳台短信正文模板。
+    ///
+    /// 发送国际/港澳台手机号请使用国际/港澳台短信正文模板。
     public static var unsupportedOperation_ChineseMainlandTemplateToGlobalPhone: TCSmsError {
         TCSmsError(.unsupportedOperation_ChineseMainlandTemplateToGlobalPhone)
     }
     
     /// 群发请求里既有国内手机号也有国际手机号。请排查是否存在（1）使用国内签名或模板却发送短信到国际手机号；（2）使用国际签名或模板却发送短信到国内手机号。
+    ///
+    /// 可参考 [短信发送提示：UnsupportedOperation.ContainDomesticAndInternationalPhoneNumber 如何处理](hhttps://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunsupportedoperation.containdomesticandinternationalphonenumber-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var unsupportedOperation_ContainDomesticAndInternationalPhoneNumber: TCSmsError {
         TCSmsError(.unsupportedOperation_ContainDomesticAndInternationalPhoneNumber)
     }
     
     /// 国际/港澳台短信模板不支持发送国内手机号。发送国内手机号请使用国内短信正文模板。
+    ///
+    /// 发送国内手机号请使用国内短信正文模板。
     public static var unsupportedOperation_GlobalTemplateToChineseMainlandPhone: TCSmsError {
         TCSmsError(.unsupportedOperation_GlobalTemplateToChineseMainlandPhone)
     }
@@ -543,5 +566,15 @@ extension TCSmsError: Equatable {
 extension TCSmsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCSmsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

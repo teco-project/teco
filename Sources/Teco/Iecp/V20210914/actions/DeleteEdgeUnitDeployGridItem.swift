@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Iecp {
     /// 重新部署边缘单元指定Grid下应用
-    ///
-    /// 重新部署边缘单元指定Grid下应用
     @inlinable
     public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitDeployGridItemResponse > {
         self.client.execute(action: "DeleteEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 重新部署边缘单元指定Grid下应用
-    ///
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
     public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {

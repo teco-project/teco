@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -34,6 +33,9 @@ extension TCTatError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,6 +74,7 @@ extension TCTatError {
             ResourceUnavailable(.instanceStateNotRunning)
         }
         
+        /// 请确认所填实例是否为所请求的地域的资源。
         public static var lighthouseUnsupportedRegion: ResourceUnavailable {
             ResourceUnavailable(.lighthouseUnsupportedRegion)
         }
@@ -91,10 +94,21 @@ extension TCTatError.ResourceUnavailable: CustomStringConvertible {
 }
 
 extension TCTatError.ResourceUnavailable {
+    /// - Returns: ``TCTatError`` that holds the same error and context.
     public func toTatError() -> TCTatError {
         guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTatError(code, context: self.context)
+    }
+}
+
+extension TCTatError.ResourceUnavailable {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

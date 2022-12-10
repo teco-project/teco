@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 跨境-查询汇率
-    ///
-    /// 跨境-查询汇率
     @inlinable
     public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExchangeRateResponse > {
         self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 跨境-查询汇率
-    ///
     /// 跨境-查询汇率
     @inlinable
     public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {

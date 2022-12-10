@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cam {
     /// 验证自定义多因子Token
-    ///
-    /// 验证自定义多因子Token
     @inlinable
     public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConsumeCustomMFATokenResponse > {
         self.client.execute(action: "ConsumeCustomMFAToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 验证自定义多因子Token
-    ///
     /// 验证自定义多因子Token
     @inlinable
     public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConsumeCustomMFATokenResponse {

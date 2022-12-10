@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 修改DDoS防护的区域封禁配置
-    ///
-    /// 修改DDoS防护的区域封禁配置
     @inlinable
     public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSGeoIPBlockConfigResponse > {
         self.client.execute(action: "ModifyDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改DDoS防护的区域封禁配置
-    ///
     /// 修改DDoS防护的区域封禁配置
     @inlinable
     public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSGeoIPBlockConfigResponse {

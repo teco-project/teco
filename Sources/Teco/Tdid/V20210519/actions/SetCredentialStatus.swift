@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 设置凭证链上状态
-    ///
-    /// 设置凭证链上状态
     @inlinable
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
         self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 设置凭证链上状态
-    ///
     /// 设置凭证链上状态
     @inlinable
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {

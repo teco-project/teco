@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 添加DDoS防护的访问限速配置
-    ///
-    /// 添加DDoS防护的访问限速配置
     @inlinable
     public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSSpeedLimitConfigResponse > {
         self.client.execute(action: "CreateDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 添加DDoS防护的访问限速配置
-    ///
     /// 添加DDoS防护的访问限速配置
     @inlinable
     public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSSpeedLimitConfigResponse {

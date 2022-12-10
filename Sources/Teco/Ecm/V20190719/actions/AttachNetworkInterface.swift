@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 弹性网卡绑定云主机
-    ///
-    /// 弹性网卡绑定云主机
     @inlinable
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
         self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 弹性网卡绑定云主机
-    ///
     /// 弹性网卡绑定云主机
     @inlinable
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 拉取防护概览攻击趋势
-    ///
-    /// 拉取防护概览攻击趋势
     @inlinable
     public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
         self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取防护概览攻击趋势
-    ///
     /// 拉取防护概览攻击趋势
     @inlinable
     public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {

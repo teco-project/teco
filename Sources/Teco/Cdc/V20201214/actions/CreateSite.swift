@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdc {
     /// 创建站点
-    ///
-    /// 创建站点
     @inlinable
     public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSiteResponse > {
         self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建站点
-    ///
     /// 创建站点
     @inlinable
     public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {

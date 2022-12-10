@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 修改集群伸缩组属性
-    ///
-    /// 修改集群伸缩组属性
     @inlinable
     public func modifyClusterAsGroupAttribute(_ input: ModifyClusterAsGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupAttributeResponse > {
         self.client.execute(action: "ModifyClusterAsGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改集群伸缩组属性
-    ///
     /// 修改集群伸缩组属性
     @inlinable
     public func modifyClusterAsGroupAttribute(_ input: ModifyClusterAsGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {

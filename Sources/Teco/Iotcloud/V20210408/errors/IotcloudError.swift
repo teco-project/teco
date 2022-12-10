@@ -112,6 +112,9 @@ public struct TCIotcloudError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -131,6 +134,8 @@ public struct TCIotcloudError: TCErrorType {
     }
     
     /// 操作失败，账号已欠费隔离。
+    ///
+    /// 请检查账号余额情况，及时充值。
     public static var failedOperation_AccountIsolated: TCIotcloudError {
         TCIotcloudError(.failedOperation_AccountIsolated)
     }
@@ -340,6 +345,8 @@ public struct TCIotcloudError: TCErrorType {
     }
     
     /// 修改规则的操作被禁止。
+    ///
+    /// 先禁用规则，然后修改后启用。
     public static var invalidParameterValue_OperationDenied: TCIotcloudError {
         TCIotcloudError(.invalidParameterValue_OperationDenied)
     }
@@ -400,6 +407,8 @@ public struct TCIotcloudError: TCErrorType {
     }
     
     /// 请确认规则相关数据是否有更新。
+    ///
+    /// 修改规则详情，保证规则详情相关字段有值跟以前不一样。
     public static var invalidParameterValue_UpdateTopicRuleDBFail: TCIotcloudError {
         TCIotcloudError(.invalidParameterValue_UpdateTopicRuleDBFail)
     }
@@ -650,5 +659,15 @@ extension TCIotcloudError: Equatable {
 extension TCIotcloudError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCIotcloudError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -41,6 +40,9 @@ extension TCCdnError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -105,11 +107,15 @@ extension TCCdnError {
         }
         
         /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
+        ///
+        /// 购买安全套餐
         public static var scdnUserNoPackage: ResourceUnavailable {
             ResourceUnavailable(.scdnUserNoPackage)
         }
         
         /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
+        ///
+        /// 购买 SCDN 套餐。
         public static var scdnUserSuspend: ResourceUnavailable {
             ResourceUnavailable(.scdnUserSuspend)
         }
@@ -134,10 +140,21 @@ extension TCCdnError.ResourceUnavailable: CustomStringConvertible {
 }
 
 extension TCCdnError.ResourceUnavailable {
+    /// - Returns: ``TCCdnError`` that holds the same error and context.
     public func toCdnError() -> TCCdnError {
         guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCdnError(code, context: self.context)
+    }
+}
+
+extension TCCdnError.ResourceUnavailable {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cdn {
     /// 获取CC攻击Top数据
-    ///
-    /// 获取CC攻击Top数据
     @inlinable
     public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopCcDataResponse > {
         self.client.execute(action: "ListTopCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取CC攻击Top数据
-    ///
     /// 获取CC攻击Top数据
     @inlinable
     public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopCcDataResponse {

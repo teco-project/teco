@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Captcha {
     /// 核查验证码票据结果(Web及APP)
-    ///
-    /// 核查验证码票据结果(Web及APP)
     @inlinable
     public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaResultResponse > {
         self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 核查验证码票据结果(Web及APP)
-    ///
     /// 核查验证码票据结果(Web及APP)
     @inlinable
     public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaResultResponse {

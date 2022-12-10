@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcr {
     /// 检查待创建的实例名称是否符合规范
-    ///
-    /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceNameResponse > {
         self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 检查待创建的实例名称是否符合规范
-    ///
     /// 检查待创建的实例名称是否符合规范
     @inlinable
     public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {

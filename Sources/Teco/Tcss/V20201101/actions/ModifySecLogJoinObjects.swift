@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 修改安全日志接入对象
-    ///
-    /// 修改安全日志接入对象
     @inlinable
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
         self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改安全日志接入对象
-    ///
     /// 修改安全日志接入对象
     @inlinable
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {

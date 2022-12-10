@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gaap {
     /// 修改安全策略规则名
-    ///
-    /// 修改安全策略规则名
     @inlinable
     public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityRuleResponse > {
         self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改安全策略规则名
-    ///
     /// 修改安全策略规则名
     @inlinable
     public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 获取概览页统计的基本数据
-    ///
-    /// 获取概览页统计的基本数据
     @inlinable
     public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseOverviewResponse > {
         self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取概览页统计的基本数据
-    ///
     /// 获取概览页统计的基本数据
     @inlinable
     public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {

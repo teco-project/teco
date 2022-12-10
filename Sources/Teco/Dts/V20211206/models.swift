@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -139,14 +138,13 @@ extension Dts {
     public struct CompareObject: TCInputModel, TCOutputModel {
         /// 迁移对象模式 all(所有迁移对象)，partial(部分对象迁移)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let objectMode: String?
+        public let objectMode: String
         
         /// 迁移对象库表配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectItems: [CompareObjectItem]?
         
-        public init (objectMode: String?, objectItems: [CompareObjectItem]?) {
+        public init (objectMode: String, objectItems: [CompareObjectItem]?) {
             self.objectMode = objectMode
             self.objectItems = objectItems
         }
@@ -161,13 +159,11 @@ extension Dts {
     public struct CompareObjectItem: TCInputModel, TCOutputModel {
         /// 迁移的库
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let dbName: String?
+        public let dbName: String
         
         /// 数据库选择模式: all 为当前对象下的所有对象,partial 为部分对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let dbMode: String?
+        public let dbMode: String
         
         /// 迁移的 schema
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -189,7 +185,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let views: [CompareViewItem]?
         
-        public init (dbName: String?, dbMode: String?, schemaName: String?, tableMode: String?, tables: [CompareTableItem]?, viewMode: String?, views: [CompareViewItem]?) {
+        public init (dbName: String, dbMode: String, schemaName: String?, tableMode: String?, tables: [CompareTableItem]?, viewMode: String?, views: [CompareViewItem]?) {
             self.dbName = dbName
             self.dbMode = dbMode
             self.schemaName = schemaName
@@ -363,28 +359,23 @@ extension Dts {
     public struct DBEndpointInfo: TCInputModel, TCOutputModel {
         /// 实例所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let region: String?
+        public let region: String
         
         /// 实例网络接入类型，如：extranet(外网)、ipv6(公网ipv6)、cvm(云主机自建)、dcg(专线接入)、vpncloud(vpn接入的实例)、cdb(云数据库)、ccn(云联网)、intranet(自研上云)、vpc(私有网络)等，注意具体可选值依赖当前链路
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let accessType: String?
+        public let accessType: String
         
         /// 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let databaseType: String?
+        public let databaseType: String
         
         /// 节点类型，为空或者"simple":表示普通节点，"cluster": 集群节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let nodeType: String?
+        public let nodeType: String
         
         /// 数据库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let info: [DBInfo]?
+        public let info: [DBInfo]
         
         /// 实例服务提供商，如:"aliyun","others"
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -395,7 +386,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraAttr: [KeyValuePairOption]?
         
-        public init (region: String?, accessType: String?, databaseType: String?, nodeType: String?, info: [DBInfo]?, supplier: String?, extraAttr: [KeyValuePairOption]?) {
+        public init (region: String, accessType: String, databaseType: String, nodeType: String, info: [DBInfo], supplier: String?, extraAttr: [KeyValuePairOption]?) {
             self.region = region
             self.accessType = accessType
             self.databaseType = databaseType
@@ -765,8 +756,7 @@ extension Dts {
     public struct DatabaseTableObject: TCInputModel, TCOutputModel {
         /// 迁移对象类型 all(全实例)，partial(部分对象)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let objectMode: String?
+        public let objectMode: String
         
         /// 迁移对象，当 ObjectMode 为 partial 时，不为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -776,7 +766,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
         
-        public init (objectMode: String?, databases: [DBItem]?, advancedObjects: [String]?) {
+        public init (objectMode: String, databases: [DBItem]?, advancedObjects: [String]?) {
             self.objectMode = objectMode
             self.databases = databases
             self.advancedObjects = advancedObjects
@@ -1294,7 +1284,6 @@ extension Dts {
     public struct MigrateOption: TCInputModel, TCOutputModel {
         /// 迁移对象选项，需要告知迁移服务迁移哪些库表对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
         public let databaseTable: DatabaseTableObject
         
         /// 迁移类型，full(全量迁移)，structure(结构迁移)，fullAndIncrement(全量加增量迁移)， 默认为fullAndIncrement

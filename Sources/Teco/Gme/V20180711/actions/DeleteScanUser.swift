@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gme {
     /// 删除自定义送检用户
-    ///
-    /// 删除自定义送检用户
     @inlinable
     public func deleteScanUser(_ input: DeleteScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanUserResponse > {
         self.client.execute(action: "DeleteScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 删除自定义送检用户
-    ///
     /// 删除自定义送检用户
     @inlinable
     public func deleteScanUser(_ input: DeleteScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {

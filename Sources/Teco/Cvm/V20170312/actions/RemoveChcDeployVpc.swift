@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cvm {
     /// 清理CHC物理服务器的部署网络
-    ///
-    /// 清理CHC物理服务器的部署网络
     @inlinable
     public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveChcDeployVpcResponse > {
         self.client.execute(action: "RemoveChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 清理CHC物理服务器的部署网络
-    ///
     /// 清理CHC物理服务器的部署网络
     @inlinable
     public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {

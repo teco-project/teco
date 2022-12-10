@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfg {
     /// 从经验库创建演练
-    ///
-    /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFromTemplateResponse > {
         self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 从经验库创建演练
-    ///
     /// 从经验库创建演练
     @inlinable
     public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {

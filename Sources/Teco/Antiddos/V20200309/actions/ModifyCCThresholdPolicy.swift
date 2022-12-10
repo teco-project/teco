@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Antiddos {
     /// 修改CC清洗阈值
-    ///
-    /// 修改CC清洗阈值
     @inlinable
     public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdPolicyResponse > {
         self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改CC清洗阈值
-    ///
     /// 修改CC清洗阈值
     @inlinable
     public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {

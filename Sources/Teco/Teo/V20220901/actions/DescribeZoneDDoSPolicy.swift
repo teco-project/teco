@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Teo {
     /// 查询所有DDoS防护分区
-    ///
-    /// 查询所有DDoS防护分区
     @inlinable
     public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneDDoSPolicyResponse > {
         self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询所有DDoS防护分区
-    ///
     /// 查询所有DDoS防护分区
     @inlinable
     public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {

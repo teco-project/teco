@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 单个修改互联网边界防火墙开关
-    ///
-    /// 单个修改互联网边界防火墙开关
     @inlinable
     public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublicIPSwitchStatusResponse > {
         self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 单个修改互联网边界防火墙开关
-    ///
     /// 单个修改互联网边界防火墙开关
     @inlinable
     public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {

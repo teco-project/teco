@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dasb {
     /// 修改资产绑定的堡垒机服务
-    ///
-    /// 修改资产绑定的堡垒机服务
     @inlinable
     public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
         self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改资产绑定的堡垒机服务
-    ///
     /// 修改资产绑定的堡垒机服务
     @inlinable
     public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {

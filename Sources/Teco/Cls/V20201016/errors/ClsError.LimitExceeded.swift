@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -43,6 +42,9 @@ extension TCClsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -101,11 +103,14 @@ extension TCClsError {
             LimitExceeded(.partition)
         }
         
+        /// 修改检索语句，减少查询范围。
         public static var searchResources: LimitExceeded {
             LimitExceeded(.searchResources)
         }
         
         /// 检索接口返回的日志量太大， 超过20MB限制。
+        ///
+        /// 可以把limit参数降低一点
         public static var searchResultTooLarge: LimitExceeded {
             LimitExceeded(.searchResultTooLarge)
         }
@@ -145,10 +150,21 @@ extension TCClsError.LimitExceeded: CustomStringConvertible {
 }
 
 extension TCClsError.LimitExceeded {
+    /// - Returns: ``TCClsError`` that holds the same error and context.
     public func toClsError() -> TCClsError {
         guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCClsError(code, context: self.context)
+    }
+}
+
+extension TCClsError.LimitExceeded {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

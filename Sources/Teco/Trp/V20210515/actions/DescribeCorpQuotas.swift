@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Trp {
     /// 查询渠道商下属企业额度使用情况
-    ///
-    /// 查询渠道商下属企业额度使用情况
     @inlinable
     public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCorpQuotasResponse > {
         self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询渠道商下属企业额度使用情况
-    ///
     /// 查询渠道商下属企业额度使用情况
     @inlinable
     public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {

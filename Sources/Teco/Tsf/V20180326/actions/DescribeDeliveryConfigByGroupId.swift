@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 用部署组id获取绑定信息
-    ///
-    /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigByGroupIdResponse > {
         self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 用部署组id获取绑定信息
-    ///
     /// 用部署组id获取绑定信息
     @inlinable
     public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {

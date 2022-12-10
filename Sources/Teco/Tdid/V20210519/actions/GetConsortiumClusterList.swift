@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 获取联盟bcos网络列表
-    ///
-    /// 获取联盟bcos网络列表
     @inlinable
     public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetConsortiumClusterListResponse > {
         self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取联盟bcos网络列表
-    ///
     /// 获取联盟bcos网络列表
     @inlinable
     public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {

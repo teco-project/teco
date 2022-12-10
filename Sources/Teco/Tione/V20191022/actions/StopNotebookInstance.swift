@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tione {
     /// 停止Notebook实例
-    ///
-    /// 停止Notebook实例
     @inlinable
     public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNotebookInstanceResponse > {
         self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 停止Notebook实例
-    ///
     /// 停止Notebook实例
     @inlinable
     public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {

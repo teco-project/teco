@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Pts {
     /// 创建定时任务
-    ///
-    /// 创建定时任务
     @inlinable
     public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCronJobResponse > {
         self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建定时任务
-    ///
     /// 创建定时任务
     @inlinable
     public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {

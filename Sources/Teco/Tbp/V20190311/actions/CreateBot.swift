@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbp {
     /// 创建机器人
-    ///
-    /// 创建机器人
     @inlinable
     public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
         self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建机器人
-    ///
     /// 创建机器人
     @inlinable
     public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {

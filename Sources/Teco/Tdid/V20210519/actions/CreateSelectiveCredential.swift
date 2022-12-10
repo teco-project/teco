@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tdid {
     /// 创建选择性批露凭证
-    ///
-    /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
         self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建选择性批露凭证
-    ///
     /// 创建选择性批露凭证
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {

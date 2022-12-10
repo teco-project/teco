@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dnspod {
     /// DNSPod商品余额支付
-    ///
-    /// DNSPod商品余额支付
     @inlinable
     public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayOrderWithBalanceResponse > {
         self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// DNSPod商品余额支付
-    ///
     /// DNSPod商品余额支付
     @inlinable
     public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {

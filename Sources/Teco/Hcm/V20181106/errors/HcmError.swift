@@ -25,6 +25,9 @@ public struct TCHcmError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -44,11 +47,15 @@ public struct TCHcmError: TCErrorType {
     }
     
     /// 引擎请求失败。
+    ///
+    /// 请检查图片是否正确后重试请求。
     public static var internalError_EngineRequestFailed: TCHcmError {
         TCHcmError(.internalError_EngineRequestFailed)
     }
     
     /// 引擎识别失败。
+    ///
+    /// 请检查图片是否正确后重试请求。
     public static var internalError_EngineResultError: TCHcmError {
         TCHcmError(.internalError_EngineResultError)
     }
@@ -129,5 +136,15 @@ extension TCHcmError: Equatable {
 extension TCHcmError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCHcmError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

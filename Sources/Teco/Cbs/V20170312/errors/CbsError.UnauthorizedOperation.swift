@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -33,6 +32,9 @@ extension TCCbsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -62,6 +64,8 @@ extension TCCbsError {
         }
         
         /// 授权角色不存在。
+        ///
+        /// 该操作涉及的服务角色或者服务相关角色不存在，请根据控制台提示进行授权后再执行操作。
         public static var roleNotExists: UnauthorizedOperation {
             UnauthorizedOperation(.roleNotExists)
         }
@@ -86,10 +90,21 @@ extension TCCbsError.UnauthorizedOperation: CustomStringConvertible {
 }
 
 extension TCCbsError.UnauthorizedOperation {
+    /// - Returns: ``TCCbsError`` that holds the same error and context.
     public func toCbsError() -> TCCbsError {
         guard let code = TCCbsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCbsError(code, context: self.context)
+    }
+}
+
+extension TCCbsError.UnauthorizedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

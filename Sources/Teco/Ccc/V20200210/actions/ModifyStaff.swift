@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ccc {
     /// 修改客服账号
-    ///
-    /// 修改客服账号
     @inlinable
     public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
         self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改客服账号
-    ///
     /// 修改客服账号
     @inlinable
     public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {

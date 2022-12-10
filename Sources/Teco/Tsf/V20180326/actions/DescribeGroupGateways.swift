@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tsf {
     /// 查询某个网关绑定的API 分组信息列表
-    ///
-    /// 查询某个网关绑定的API 分组信息列表
     @inlinable
     public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupGatewaysResponse > {
         self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询某个网关绑定的API 分组信息列表
-    ///
     /// 查询某个网关绑定的API 分组信息列表
     @inlinable
     public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {

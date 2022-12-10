@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tem {
     /// 创建服务
-    ///
-    /// 创建服务
     @inlinable
     public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceV2Response > {
         self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 创建服务
-    ///
     /// 创建服务
     @inlinable
     public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {

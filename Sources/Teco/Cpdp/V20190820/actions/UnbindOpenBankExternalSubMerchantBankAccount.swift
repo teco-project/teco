@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cpdp {
     /// 云企付-子商户银行卡解绑
-    ///
-    /// 云企付-子商户银行卡解绑
     @inlinable
     public func unbindOpenBankExternalSubMerchantBankAccount(_ input: UnbindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindOpenBankExternalSubMerchantBankAccountResponse > {
         self.client.execute(action: "UnbindOpenBankExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 云企付-子商户银行卡解绑
-    ///
     /// 云企付-子商户银行卡解绑
     @inlinable
     public func unbindOpenBankExternalSubMerchantBankAccount(_ input: UnbindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindOpenBankExternalSubMerchantBankAccountResponse {

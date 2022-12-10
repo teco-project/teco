@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tke {
     /// 获取TKE支持的App列表
-    ///
-    /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTkeAppChartListResponse > {
         self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取TKE支持的App列表
-    ///
     /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {

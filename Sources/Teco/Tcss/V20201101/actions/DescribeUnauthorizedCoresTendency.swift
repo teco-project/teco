@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查询当天未授权核数趋势
-    ///
-    /// 查询当天未授权核数趋势
     @inlinable
     public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnauthorizedCoresTendencyResponse > {
         self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询当天未授权核数趋势
-    ///
     /// 查询当天未授权核数趋势
     @inlinable
     public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {

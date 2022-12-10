@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,15 +18,11 @@
 
 extension Teo {
     /// 查询Web托管攻击事件
-    ///
-    /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesAttackEventsResponse > {
         self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询Web托管攻击事件
-    ///
     /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {

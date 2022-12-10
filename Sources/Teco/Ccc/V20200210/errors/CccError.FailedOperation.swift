@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -36,6 +35,9 @@ extension TCCccError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,6 +52,8 @@ extension TCCccError {
         }
         
         /// 外呼失败。
+        ///
+        /// 外呼失败，请检查主叫或被叫号码是否正常。
         public static var callOutFailed: FailedOperation {
             FailedOperation(.callOutFailed)
         }
@@ -76,6 +80,8 @@ extension TCCccError {
         }
         
         /// 权限不足。
+        ///
+        /// 检查账号权限
         public static var permissionDenied: FailedOperation {
             FailedOperation(.permissionDenied)
         }
@@ -99,10 +105,21 @@ extension TCCccError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCCccError.FailedOperation {
+    /// - Returns: ``TCCccError`` that holds the same error and context.
     public func toCccError() -> TCCccError {
         guard let code = TCCccError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCCccError(code, context: self.context)
+    }
+}
+
+extension TCCccError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

@@ -33,6 +33,9 @@ public struct TCMnaError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -91,6 +94,9 @@ public struct TCMnaError: TCErrorType {
     }
     
     /// 无法获取到可加速的运营商信息
+    ///
+    /// - 若错误码返回提示为无法确定运营商 ，请检查SrcPublicIpv4 是否填写正确或在接口中传入正确的运营商信息(DeviceInfo.Vendor)
+    /// - 若错误码返回提示为该运营商无法支持加速，说明目前不支持该运营商加速服务
     public static var invalidParameterValue_VendorNotFound: TCMnaError {
         TCMnaError(.invalidParameterValue_VendorNotFound)
     }
@@ -106,41 +112,57 @@ public struct TCMnaError: TCErrorType {
     }
     
     /// 不建议加速。
+    ///
+    /// 网络状况较良好，不建议发起加速。
     public static var operationDenied_AccelerationNotSuggest: TCMnaError {
         TCMnaError(.operationDenied_AccelerationNotSuggest)
     }
     
     /// 中国电信加速token过期。
+    ///
+    /// 重新申请中国电信加速token。
     public static var operationDenied_CTCCTokenExpired: TCMnaError {
         TCMnaError(.operationDenied_CTCCTokenExpired)
     }
     
     /// 相同加速间隔时间过短。
+    ///
+    /// 加速成功并且未取消，加速结束前5秒不能再发起相同源IP和目标IP的加速
     public static var operationDenied_CreateQosExceedLimit: TCMnaError {
         TCMnaError(.operationDenied_CreateQosExceedLimit)
     }
     
     /// 请求运营商加速超时。
+    ///
+    /// 运营商返回超时，请稍后重试。
     public static var operationDenied_RequestQosTimeout: TCMnaError {
         TCMnaError(.operationDenied_RequestQosTimeout)
     }
     
     /// 该用户加速已取消，不处于加速状态。
+    ///
+    /// 该用户已不在加速状态，不用再重复取消加速
     public static var operationDenied_UserNonAccelerated: TCMnaError {
         TCMnaError(.operationDenied_UserNonAccelerated)
     }
     
     /// 该用户不在运营商网络可加速范围内
+    ///
+    /// 请检查用户IP地址信息是否填写正确，填写的是蜂窝网络下的IP，若正确可能是运营商目前不支持该用户手机卡类型的加速
     public static var operationDenied_UserOutOfCoverage: TCMnaError {
         TCMnaError(.operationDenied_UserOutOfCoverage)
     }
     
     /// 运营商返回结果错误。
+    ///
+    /// 该错误可能由于当前用户网络下运营商无法保证该用户加速导致。
     public static var operationDenied_VendorReturnError: TCMnaError {
         TCMnaError(.operationDenied_VendorReturnError)
     }
     
     /// 运营商服务器临时错误。
+    ///
+    /// 运营商服务器临时错误，请稍后重试。
     public static var operationDenied_VendorServerError: TCMnaError {
         TCMnaError(.operationDenied_VendorServerError)
     }
@@ -171,5 +193,15 @@ extension TCMnaError: Equatable {
 extension TCMnaError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCMnaError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

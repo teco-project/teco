@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cwp {
     /// 获取主机相关统计
-    ///
-    /// 获取主机相关统计
     @inlinable
     public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralStatResponse > {
         self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取主机相关统计
-    ///
     /// 获取主机相关统计
     @inlinable
     public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {

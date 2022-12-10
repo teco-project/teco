@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Organization {
     /// 取消组织成员和组织管理员子账号的授权关系
-    ///
-    /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
     public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelOrganizationMemberAuthAccountResponse > {
         self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 取消组织成员和组织管理员子账号的授权关系
-    ///
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
     public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 查看单个镜像仓库详细信息
-    ///
-    /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(_ input: DescribeAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRegistryDetailResponse > {
         self.client.execute(action: "DescribeAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查看单个镜像仓库详细信息
-    ///
     /// 查看单个镜像仓库详细信息
     @inlinable
     public func describeAssetImageRegistryRegistryDetail(_ input: DescribeAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryDetailResponse {

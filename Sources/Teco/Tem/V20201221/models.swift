@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -275,8 +274,7 @@ extension Tem {
     public struct IngressInfo: TCInputModel, TCOutputModel {
         /// tem namespaceId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let namespaceId: String?
+        public let namespaceId: String
         
         /// eks namespace
         public let eksNamespace: String
@@ -313,7 +311,7 @@ extension Tem {
         /// 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
         public let mixed: Bool?
         
-        public init (namespaceId: String?, eksNamespace: String, addressIPVersion: String, name: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?) {
+        public init (namespaceId: String, eksNamespace: String, addressIPVersion: String, name: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.addressIPVersion = addressIPVersion

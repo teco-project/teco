@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tbaas {
     /// 动态部署并发布Bcos合约
-    ///
-    /// 动态部署并发布Bcos合约
     @inlinable
     public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployDynamicBcosContractResponse > {
         self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 动态部署并发布Bcos合约
-    ///
     /// 动态部署并发布Bcos合约
     @inlinable
     public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {

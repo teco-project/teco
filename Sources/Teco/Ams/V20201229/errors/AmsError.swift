@@ -40,6 +40,9 @@ public struct TCAmsError: TCErrorType {
         self.error.rawValue
     }
     
+    /// Initializer used by ``TCClient`` to match an error of this type.
+    ///
+    /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
     public init ?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
@@ -139,6 +142,8 @@ public struct TCAmsError: TCErrorType {
     }
     
     /// 缺少参数错误。
+    ///
+    /// 缺少参数错误，必传参数没填
     public static var missingParameter: TCAmsError {
         TCAmsError(.missingParameter)
     }
@@ -184,6 +189,8 @@ public struct TCAmsError: TCErrorType {
     }
     
     /// 未授权操作。
+    ///
+    /// 未授权操作
     public static var unauthorizedOperation: TCAmsError {
         TCAmsError(.unauthorizedOperation)
     }
@@ -193,6 +200,8 @@ public struct TCAmsError: TCErrorType {
     }
     
     /// 未知参数错误。
+    ///
+    /// 未知参数错误，用户多传未定义的参数会导致错误
     public static var unknownParameter: TCAmsError {
         TCAmsError(.unknownParameter)
     }
@@ -218,5 +227,15 @@ extension TCAmsError: Equatable {
 extension TCAmsError: CustomStringConvertible {
     public var description: String {
         return "\(self.error.rawValue): \(message ?? "")"
+    }
+}
+
+extension TCAmsError {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

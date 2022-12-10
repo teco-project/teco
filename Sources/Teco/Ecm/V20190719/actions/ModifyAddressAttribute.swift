@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Ecm {
     /// 修改弹性公网IP属性
-    ///
-    /// 修改弹性公网IP属性
     @inlinable
     public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
         self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改弹性公网IP属性
-    ///
     /// 修改弹性公网IP属性
     @inlinable
     public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {

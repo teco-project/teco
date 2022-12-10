@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -25,16 +24,14 @@ extension Cr {
         
         /// 操作类型，A为新增，D为删除。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let operType: String?
+        public let operType: String
         
         /// 黑名单值，BlackType为01时，填写11位手机号码。
         public let blackValue: String
         
         /// 备注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        // FIXME: Required optional field is not supported yet.
-        public let blackDescription: String?
+        public let blackDescription: String
         
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -47,7 +44,7 @@ extension Cr {
         /// 0-生效 1-失效
         public let blackStatus: String?
         
-        public init (blackType: String, operType: String?, blackValue: String, blackDescription: String?, blackValidDate: Date?, blackAddDate: Date?, blackStatus: String?) {
+        public init (blackType: String, operType: String, blackValue: String, blackDescription: String, blackValidDate: Date?, blackAddDate: Date?, blackStatus: String?) {
             self.blackType = blackType
             self.operType = operType
             self.blackValue = blackValue

@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 容器网络创建网络策略更新并发布任务
-    ///
-    /// 容器网络创建网络策略更新并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyDetail(_ input: UpdateAndPublishNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAndPublishNetworkFirewallPolicyDetailResponse > {
         self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 容器网络创建网络策略更新并发布任务
-    ///
     /// 容器网络创建网络策略更新并发布任务
     @inlinable
     public func updateAndPublishNetworkFirewallPolicyDetail(_ input: UpdateAndPublishNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAndPublishNetworkFirewallPolicyDetailResponse {

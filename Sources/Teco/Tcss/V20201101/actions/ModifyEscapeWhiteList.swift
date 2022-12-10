@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Tcss {
     /// 修改逃逸白名单
-    ///
-    /// 修改逃逸白名单
     @inlinable
     public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeWhiteListResponse > {
         self.client.execute(action: "ModifyEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 修改逃逸白名单
-    ///
     /// 修改逃逸白名单
     @inlinable
     public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeWhiteListResponse {

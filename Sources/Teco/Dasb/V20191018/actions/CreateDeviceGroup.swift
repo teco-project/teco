@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dasb {
     /// 新建资产组
-    ///
-    /// 新建资产组
     @inlinable
     public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
         self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 新建资产组
-    ///
     /// 新建资产组
     @inlinable
     public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {

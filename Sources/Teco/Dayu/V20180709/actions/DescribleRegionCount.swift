@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取地域的资源实例数
-    ///
-    /// 获取地域的资源实例数
     @inlinable
     public func describleRegionCount(_ input: DescribleRegionCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleRegionCountResponse > {
         self.client.execute(action: "DescribleRegionCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取地域的资源实例数
-    ///
     /// 获取地域的资源实例数
     @inlinable
     public func describleRegionCount(_ input: DescribleRegionCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleRegionCountResponse {

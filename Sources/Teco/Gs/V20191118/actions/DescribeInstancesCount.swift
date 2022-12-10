@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Gs {
     /// 获取并发总数和运行数
-    ///
-    /// 获取并发总数和运行数
     @inlinable
     public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesCountResponse > {
         self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取并发总数和运行数
-    ///
     /// 获取并发总数和运行数
     @inlinable
     public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {

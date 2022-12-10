@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Monitor {
     /// 列出 Grafana 环境变量
-    ///
-    /// 列出 Grafana 环境变量
     @inlinable
     public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaEnvironmentsResponse > {
         self.client.execute(action: "DescribeGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 列出 Grafana 环境变量
-    ///
     /// 列出 Grafana 环境变量
     @inlinable
     public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {

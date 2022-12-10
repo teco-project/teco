@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Scf {
     /// 拉取函数异步事件列表
-    ///
-    /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAsyncEventsResponse > {
         self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 拉取函数异步事件列表
-    ///
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {

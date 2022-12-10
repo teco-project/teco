@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -38,6 +37,9 @@ extension TCPtsError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -91,6 +93,8 @@ extension TCPtsError {
         }
         
         /// 请求发送失败。
+        ///
+        /// 可能的原因：标签服务鉴权失败，等等。
         public static var sendRequest: FailedOperation {
             FailedOperation(.sendRequest)
         }
@@ -115,10 +119,21 @@ extension TCPtsError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCPtsError.FailedOperation {
+    /// - Returns: ``TCPtsError`` that holds the same error and context.
     public func toPtsError() -> TCPtsError {
         guard let code = TCPtsError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCPtsError(code, context: self.context)
+    }
+}
+
+extension TCPtsError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }

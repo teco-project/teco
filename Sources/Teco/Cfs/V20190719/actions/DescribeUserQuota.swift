@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfs {
     /// 查询文件系统配额
-    ///
-    /// 查询文件系统配额
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaResponse > {
         self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 查询文件系统配额
-    ///
     /// 查询文件系统配额
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {

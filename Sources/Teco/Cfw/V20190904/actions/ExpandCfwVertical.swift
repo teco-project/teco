@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Cfw {
     /// 防火墙垂直扩容
-    ///
-    /// 防火墙垂直扩容
     @inlinable
     public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandCfwVerticalResponse > {
         self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 防火墙垂直扩容
-    ///
     /// 防火墙垂直扩容
     @inlinable
     public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {

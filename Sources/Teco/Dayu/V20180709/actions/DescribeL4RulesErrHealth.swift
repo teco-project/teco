@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -17,15 +16,11 @@
 
 extension Dayu {
     /// 获取L4转发规则健康检查异常结果
-    ///
-    /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(_ input: DescribeL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4RulesErrHealthResponse > {
         self.client.execute(action: "DescribeL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
     
-    /// 获取L4转发规则健康检查异常结果
-    ///
     /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(_ input: DescribeL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4RulesErrHealthResponse {

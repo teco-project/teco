@@ -6,7 +6,6 @@
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Teco project authors
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -72,6 +71,9 @@ extension TCTioneError {
             self.error.rawValue
         }
         
+        /// Initializer used by ``TCClient`` to match an error of this type.
+        ///
+        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -86,6 +88,8 @@ extension TCTioneError {
         }
         
         /// API网关访问失败，请重试。
+        ///
+        /// 请重试或提工单寻求帮助。
         public static var apiGatewayQueryFailed: FailedOperation {
             FailedOperation(.apiGatewayQueryFailed)
         }
@@ -96,16 +100,22 @@ extension TCTioneError {
         }
         
         /// 绑定标签失败。
+        ///
+        /// 请列表页重新编辑。
         public static var bindingTagsFailed: FailedOperation {
             FailedOperation(.bindingTagsFailed)
         }
         
         /// 调用集群失败。
+        ///
+        /// 请重试
         public static var callClusterFail: FailedOperation {
             FailedOperation(.callClusterFail)
         }
         
         /// CAM内部错误。
+        ///
+        /// 请到CAM确认。
         public static var camFailure: FailedOperation {
             FailedOperation(.camFailure)
         }
@@ -116,11 +126,15 @@ extension TCTioneError {
         }
         
         /// 集群访问失败。
+        ///
+        /// 请稍后重试或提工单询问小助手
         public static var clusterQueryFailed: FailedOperation {
             FailedOperation(.clusterQueryFailed)
         }
         
         /// 启动实例失败。
+        ///
+        /// 请稍后重试。
         public static var createJobInstanceFailed: FailedOperation {
             FailedOperation(.createJobInstanceFailed)
         }
@@ -196,6 +210,8 @@ extension TCTioneError {
         }
         
         /// 标签操作失败。
+        ///
+        /// 请重试
         public static var execTagFail: FailedOperation {
             FailedOperation(.execTagFail)
         }
@@ -216,6 +232,8 @@ extension TCTioneError {
         }
         
         /// 移动模型目录失败。
+        ///
+        /// 请到cos确认。
         public static var moveModelDirFailed: FailedOperation {
             FailedOperation(.moveModelDirFailed)
         }
@@ -241,6 +259,8 @@ extension TCTioneError {
         }
         
         /// 查询资源标签失败。
+        ///
+        /// 请到标签中心确认。
         public static var queryBindingTagsFailed: FailedOperation {
             FailedOperation(.queryBindingTagsFailed)
         }
@@ -251,11 +271,15 @@ extension TCTioneError {
         }
         
         /// 根据标签查询资源失败。
+        ///
+        /// 请到标签中心确认。
         public static var queryModelsByTagsFailed: FailedOperation {
             FailedOperation(.queryModelsByTagsFailed)
         }
         
         /// 查询计费价格失败。
+        ///
+        /// 请稍后重试。
         public static var queryPriceFailed: FailedOperation {
             FailedOperation(.queryPriceFailed)
         }
@@ -265,11 +289,14 @@ extension TCTioneError {
             FailedOperation(.querySpecsFailed)
         }
         
+        /// 请重试
         public static var queryTagFail: FailedOperation {
             FailedOperation(.queryTagFail)
         }
         
         /// 记录不存在。
+        ///
+        /// 确认传参是否有问题
         public static var recordNotFound: FailedOperation {
             FailedOperation(.recordNotFound)
         }
@@ -290,6 +317,8 @@ extension TCTioneError {
         }
         
         /// 未知的实例规格。
+        ///
+        /// 请查看规格文档，填写正确的实例规格
         public static var unknownInstanceType: FailedOperation {
             FailedOperation(.unknownInstanceType)
         }
@@ -319,10 +348,21 @@ extension TCTioneError.FailedOperation: CustomStringConvertible {
 }
 
 extension TCTioneError.FailedOperation {
+    /// - Returns: ``TCTioneError`` that holds the same error and context.
     public func toTioneError() -> TCTioneError {
         guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
             fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
         }
         return TCTioneError(code, context: self.context)
+    }
+}
+
+extension TCTioneError.FailedOperation {
+    /// - Returns: ``TCCommonError`` that holds the same error and context.
+    public func toCommonError() -> TCCommonError? {
+        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
+            return error
+        }
+        return nil
     }
 }
