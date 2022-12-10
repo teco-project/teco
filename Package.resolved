@@ -104,9 +104,9 @@
         "package": "teco-core",
         "repositoryURL": "https://github.com/teco-project/teco-core.git",
         "state": {
-          "branch": "main",
-          "revision": "3b133f427e1c060d720587fc04591653016410a1",
-          "version": null
+          "branch": null,
+          "revision": "08f4833f0faf3a8f5bf67f5e8c875ebfd474c202",
+          "version": "0.2.1"
         }
       }
     ]
