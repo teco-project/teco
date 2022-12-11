@@ -18,7 +18,7 @@
 
 /// 语音消息 (vms)
 ///
-/// 介绍如何使用API对语音消息进行操作，包括管理语音消息应用、标签等。
+/// 对语音消息进行操作，包括管理语音消息应用、标签等。
 public struct Vms: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

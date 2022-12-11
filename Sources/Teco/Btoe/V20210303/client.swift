@@ -48,7 +48,6 @@ public struct Btoe: TCService {
         service: "btoe", 
         apiVersion: "2021-03-03", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

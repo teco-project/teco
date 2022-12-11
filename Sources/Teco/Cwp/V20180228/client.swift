@@ -18,7 +18,7 @@
 
 /// 主机安全 (cwp)
 ///
-/// 介绍如何使用API对主机安全进行操作，包括资产管理、漏洞管理等。
+/// 对主机安全进行操作，包括资产管理、漏洞管理等。
 public struct Cwp: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

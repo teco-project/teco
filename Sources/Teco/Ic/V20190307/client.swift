@@ -18,7 +18,7 @@
 
 /// 物联网卡 (ic)
 ///
-/// 介绍如何使用API对物联卡进行操作，包括查询卡片信息、查询应用信息、群发短信等。
+/// 对物联卡进行操作，包括查询卡片信息、查询应用信息、群发短信等。
 public struct Ic: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

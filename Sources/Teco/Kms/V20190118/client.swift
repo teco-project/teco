@@ -18,7 +18,7 @@
 
 /// 密钥管理系统 (kms)
 ///
-/// 介绍如何使用API对密钥管理系统进行操作，包括非对称/白盒密钥的创建、禁用等。
+/// 对密钥管理系统进行操作，包括非对称/白盒密钥的创建、禁用等。
 public struct Kms: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

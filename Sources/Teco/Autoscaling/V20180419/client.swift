@@ -18,7 +18,7 @@
 
 /// 弹性伸缩 (as)
 ///
-/// 介绍如何使用API对弹性伸缩服务进行操作，包括管理伸缩组、触发任务、生命周期等。
+/// 对弹性伸缩服务进行操作，包括管理伸缩组、触发任务、生命周期等。
 public struct As: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

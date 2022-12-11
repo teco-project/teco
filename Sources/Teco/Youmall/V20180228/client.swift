@@ -44,7 +44,6 @@ public struct Youmall: TCService {
         service: "youmall", 
         apiVersion: "2018-02-28", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

@@ -18,7 +18,7 @@
 
 /// 消息队列 TDMQ (tdmq)
 ///
-/// 介绍如何使用API对消息队列 TDMQ进行操作，包括消息回溯，修改主题，创建订阅关系等。
+/// 对消息队列 TDMQ进行操作，包括消息回溯，修改主题，创建订阅关系等。
 public struct Tdmq: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 业务风险情报 (bri)
 ///
-/// 介绍如何使用API对业务风险情报进行操作，包括获取业务风险情报等。
+/// 对业务风险情报进行操作，包括获取业务风险情报等。
 public struct Bri: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -44,7 +44,6 @@ public struct Npp: TCService {
         service: "npp", 
         apiVersion: "2019-08-23", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

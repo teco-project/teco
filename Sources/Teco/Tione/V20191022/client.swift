@@ -18,7 +18,7 @@
 
 /// 腾讯云 TI 平台 TI-ONE (tione)
 ///
-/// 介绍如何使用API对腾讯云 TI 平台 TI-ONE 进行操作，包括存储库、Notebook、任务训练等。
+/// 对腾讯云 TI 平台 TI-ONE 进行操作，包括存储库、Notebook、任务训练等。
 public struct Tione: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Tione: TCService {
         service: "tione", 
         apiVersion: "2019-10-22", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

@@ -18,7 +18,7 @@
 
 /// 云服务器 (cvm)
 ///
-/// 介绍如何使用API对云服务器进行操作，包括使用并管理实例、镜像、密钥等资源。
+/// 对云服务器进行操作，包括使用并管理实例、镜像、密钥等资源。
 public struct Cvm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

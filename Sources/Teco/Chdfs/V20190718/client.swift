@@ -18,7 +18,7 @@
 
 /// 云 HDFS (chdfs)
 ///
-/// 介绍如何使用API对云HDFS进行操作，包括权限规则管理、文件系统操作等。
+/// 对云HDFS进行操作，包括权限规则管理、文件系统操作等。
 public struct Chdfs: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Chdfs: TCService {
         service: "chdfs", 
         apiVersion: "2019-07-18", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

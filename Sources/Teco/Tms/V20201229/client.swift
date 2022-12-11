@@ -18,7 +18,7 @@
 
 /// 文本内容安全 (tms)
 ///
-/// 介绍如何使用API对文本内容检测进行操作，包括识别文本中的不适宜内容等。
+/// 对文本内容检测进行操作，包括识别文本中的不适宜内容等。
 public struct Tms: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

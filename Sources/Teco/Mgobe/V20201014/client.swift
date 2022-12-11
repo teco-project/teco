@@ -18,7 +18,7 @@
 
 /// 游戏联机对战引擎 (mgobe)
 ///
-/// 介绍如何使用API对联机对战引擎各对象进行操作，包括房间、玩家、匹配等。
+/// 对联机对战引擎各对象进行操作，包括房间、玩家、匹配等。
 public struct Mgobe: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Mgobe: TCService {
         service: "mgobe", 
         apiVersion: "2020-10-14", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

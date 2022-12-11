@@ -18,7 +18,7 @@
 
 /// 云数据库 MySQL (cdb)
 ///
-/// 介绍如何使用API对云数据库MySQL进行操作，包括查询数据库表、查询云数据库实例任务列表、续费云数据库实例等。
+/// 对云数据库MySQL进行操作，包括查询数据库表、查询云数据库实例任务列表、续费云数据库实例等。
 public struct Cdb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

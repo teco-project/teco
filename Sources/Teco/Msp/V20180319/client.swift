@@ -18,7 +18,7 @@
 
 /// 迁移服务平台 (msp)
 ///
-/// 介绍如何使用API对迁移服务平台进行操作，包括注册迁移任务、更改迁移任务所属项目等。
+/// 对迁移服务平台进行操作，包括注册迁移任务、更改迁移任务所属项目等。
 public struct Msp: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

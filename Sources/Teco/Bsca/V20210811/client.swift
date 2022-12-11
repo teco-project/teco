@@ -18,7 +18,7 @@
 
 /// 二进制软件成分分析 (bsca)
 ///
-/// 介绍如何使用API对二进制软件成分分析进行操作，包括新建分析、查看分析列表、查看报告等。
+/// 对二进制软件成分分析进行操作，包括新建分析、查看分析列表、查看报告等。
 public struct Bsca: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 游戏多媒体引擎 (gme)
 ///
-/// 介绍如何使用API对游戏多媒体引擎进行操作，包括语音分析、用量等。
+/// 对游戏多媒体引擎进行操作，包括语音分析、用量等。
 public struct Gme: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

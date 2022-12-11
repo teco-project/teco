@@ -44,7 +44,6 @@ public struct Eis: TCService {
         service: "eis", 
         apiVersion: "2020-07-15", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

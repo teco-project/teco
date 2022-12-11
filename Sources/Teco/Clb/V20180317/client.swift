@@ -18,7 +18,7 @@
 
 /// 负载均衡 (clb)
 ///
-/// 介绍如何使用API对负载均衡进行操作，包括创建、查询负载均衡实例、管理监听等。
+/// 对负载均衡进行操作，包括创建、查询负载均衡实例、管理监听等。
 public struct Clb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

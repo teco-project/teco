@@ -18,7 +18,7 @@
 
 /// 云数据库 PostgreSQL (postgres)
 ///
-/// 介绍如何使用API对云数据库PostgreSQL进行操作，包括实例管理、serverlessDB等。
+/// 对云数据库PostgreSQL进行操作，包括实例管理、serverlessDB等。
 public struct Postgres: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

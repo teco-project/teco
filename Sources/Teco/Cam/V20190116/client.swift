@@ -18,7 +18,7 @@
 
 /// 访问管理 (cam)
 ///
-/// 介绍如何使用API对访问管理进行操作，包括管理用户、组、角色及授权策略等。
+/// 对访问管理进行操作，包括管理用户、组、角色及授权策略等。
 public struct Cam: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

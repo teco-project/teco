@@ -46,7 +46,6 @@ public struct Tci: TCService {
         service: "tci", 
         apiVersion: "2019-03-18", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

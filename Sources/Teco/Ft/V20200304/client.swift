@@ -18,7 +18,7 @@
 
 /// 人像变换 (ft)
 ///
-/// 介绍如何使用API对人像变换进行操作，包括人脸性别转换、人脸年龄变化等。
+/// 对人像变换进行操作，包括人脸性别转换、人脸年龄变化等。
 public struct Ft: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

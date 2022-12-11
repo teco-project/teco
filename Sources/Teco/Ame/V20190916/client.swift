@@ -18,7 +18,7 @@
 
 /// 正版曲库直通车 (ame)
 ///
-/// 介绍如何使用API对正版曲库直通车进行操作，包括素材获取、数据上报等。
+/// 对正版曲库直通车进行操作，包括素材获取、数据上报等。
 public struct Ame: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

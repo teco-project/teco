@@ -18,7 +18,7 @@
 
 /// 私有网络 (vpc)
 ///
-/// 介绍如何使用API对私有网络进行操作，包括带宽包、IPV6转换服务、安全组、弹性网卡等。
+/// 对私有网络进行操作，包括带宽包、IPV6转换服务、安全组、弹性网卡等。
 public struct Vpc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

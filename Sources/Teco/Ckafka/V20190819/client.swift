@@ -18,7 +18,7 @@
 
 /// 消息队列 CKafka (ckafka)
 ///
-/// 介绍如何使用API对消息队列CKafka进行操作，包括管理实例等。
+/// 对消息队列CKafka进行操作，包括管理实例等。
 public struct Ckafka: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

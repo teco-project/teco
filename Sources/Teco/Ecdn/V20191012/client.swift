@@ -18,7 +18,7 @@
 
 /// 全站加速网络 (ecdn)
 ///
-/// 介绍如何使用API对全站加速网络操作，包括内容管理、域名管理、数据查询等。
+/// 对全站加速网络操作，包括内容管理、域名管理、数据查询等。
 public struct Ecdn: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 域名注册 (domain)
 ///
-/// 介绍如何使用API对域名注册进行操作，包括域名注册检查、获取域名价格列表等。
+/// 对域名注册进行操作，包括域名注册检查、获取域名价格列表等。
 public struct Domain: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

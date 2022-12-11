@@ -18,7 +18,7 @@
 
 /// 机器翻译 (tmt)
 ///
-/// 介绍如何使用API对机器翻译进行操作，包括文本翻译、语种识别、图片翻译等。
+/// 对机器翻译进行操作，包括文本翻译、语种识别、图片翻译等。
 public struct Tmt: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

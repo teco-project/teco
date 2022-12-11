@@ -18,7 +18,7 @@
 
 /// 云拨测 (cat)
 ///
-/// 介绍如何使用API对云拨测进行操作，包括拨测任务、拨测告警等。
+/// 对云拨测进行操作，包括拨测任务、拨测告警等。
 public struct Cat: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

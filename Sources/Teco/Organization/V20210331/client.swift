@@ -18,7 +18,7 @@
 
 /// 集团账号管理 (organization)
 ///
-/// 介绍如何使用API对企业组织进行操作，包括获取企业组织单元列表、更新企业组织单元等。
+/// 对企业组织进行操作，包括获取企业组织单元列表、更新企业组织单元等。
 public struct Organization: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

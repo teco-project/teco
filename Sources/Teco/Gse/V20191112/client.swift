@@ -18,7 +18,7 @@
 
 /// 游戏服务器伸缩 (gse)
 ///
-/// 介绍如何使用API对游戏服务器伸缩进行操作，包括服务管理、查询游戏服务器会话队列等。
+/// 对游戏服务器伸缩进行操作，包括服务管理、查询游戏服务器会话队列等。
 public struct Gse: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Gse: TCService {
         service: "gse", 
         apiVersion: "2019-11-12", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

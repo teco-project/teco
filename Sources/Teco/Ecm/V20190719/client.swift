@@ -18,7 +18,7 @@
 
 /// 边缘计算机器 (ecm)
 ///
-/// 介绍如何使用API对边缘计算机器进行操作，包括管理弹性网卡、管理实例等。
+/// 对边缘计算机器进行操作，包括管理弹性网卡、管理实例等。
 public struct Ecm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

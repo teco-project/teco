@@ -18,7 +18,7 @@
 
 /// 云数据库 MariaDB (mariadb)
 ///
-/// 介绍如何使用API对云数据库MariaDB进行操作，包括查询云数据库可售卖地域和可用区信息、查看数据库参数等。
+/// 对云数据库MariaDB进行操作，包括查询云数据库可售卖地域和可用区信息、查看数据库参数等。
 public struct Mariadb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

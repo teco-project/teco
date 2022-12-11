@@ -18,7 +18,7 @@
 
 /// 图片内容安全 (ims)
 ///
-/// 介绍如何使用API对图片内容安全进行操作，包括识别图片中的不适宜内容等。
+/// 对图片内容安全进行操作，包括识别图片中的不适宜内容等。
 public struct Ims: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

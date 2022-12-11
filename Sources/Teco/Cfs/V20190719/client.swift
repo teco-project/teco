@@ -18,7 +18,7 @@
 
 /// 文件存储 (cfs)
 ///
-/// 介绍如何使用API对文件存储进行操作，包括对文件系统、权限组等的创建、删除、修改等操作。
+/// 对文件存储进行操作，包括对文件系统、权限组等的创建、删除、修改等操作。
 public struct Cfs: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

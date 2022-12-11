@@ -18,7 +18,7 @@
 
 /// 应用与服务编排工作流 (asw)
 ///
-/// 介绍如何使用API对应用与服务编排工作流进行操作，包括创建工作流、启动工作流、获得工作流执行情况等。
+/// 对应用与服务编排工作流进行操作，包括创建工作流、启动工作流、获得工作流执行情况等。
 public struct Asw: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

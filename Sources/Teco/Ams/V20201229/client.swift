@@ -18,7 +18,7 @@
 
 /// 音频内容安全 (ams)
 ///
-/// 介绍如何使用API对音频内容检测进行操作，包括识别音频中的不适宜内容等。
+/// 对音频内容检测进行操作，包括识别音频中的不适宜内容等。
 public struct Ams: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

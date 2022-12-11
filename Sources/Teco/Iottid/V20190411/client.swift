@@ -18,7 +18,7 @@
 
 /// 物联网设备身份认证 (iottid)
 ///
-/// 介绍如何使用API对物联网设备身份认证操作，包括安全芯片TID空发回执、下载芯片订单的TID等。
+/// 对物联网设备身份认证操作，包括安全芯片TID空发回执、下载芯片订单的TID等。
 public struct Iottid: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 腾讯云搜 (yunsou)
 ///
-/// 介绍如何使用API对腾讯云搜进行操作，包括数据检索、云搜数据上传等。
+/// 对腾讯云搜进行操作，包括数据检索、云搜数据上传等。
 public struct Yunsou: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Yunsou: TCService {
         service: "yunsou", 
         apiVersion: "2018-05-04", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

@@ -18,7 +18,7 @@
 
 /// 消息队列 CMQ (cmq)
 ///
-/// 介绍如何使用API对消息队列CMQ进行操作，包括队列、订阅、主题等。
+/// 对消息队列CMQ进行操作，包括队列、订阅、主题等。
 public struct Cmq: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

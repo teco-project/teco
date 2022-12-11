@@ -46,7 +46,6 @@ public struct Cloudstudio: TCService {
         service: "cloudstudio", 
         apiVersion: "2021-05-24", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

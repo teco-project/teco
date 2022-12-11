@@ -44,7 +44,6 @@ public struct Tbm: TCService {
         service: "tbm", 
         apiVersion: "2018-01-29", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

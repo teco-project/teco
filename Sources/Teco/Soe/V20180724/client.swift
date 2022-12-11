@@ -18,7 +18,7 @@
 
 /// 智聆口语评测 (soe)
 ///
-/// 介绍如何使用API对智聆口语评测进行操作，包括发音数据传输、发音评估初始化等。
+/// 对智聆口语评测进行操作，包括发音数据传输、发音评估初始化等。
 public struct Soe: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

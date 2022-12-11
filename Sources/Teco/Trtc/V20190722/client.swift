@@ -18,7 +18,7 @@
 
 /// 实时音视频 (trtc)
 ///
-/// 介绍如何使用API对实时音视频进行操作，如房间管理、通话质量监控等。
+/// 对实时音视频进行操作，如房间管理、通话质量监控等。
 public struct Trtc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

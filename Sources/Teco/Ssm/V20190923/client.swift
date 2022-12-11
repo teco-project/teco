@@ -18,7 +18,7 @@
 
 /// 凭据管理系统 (ssm)
 ///
-/// 介绍如何使用API对凭据管理系统进行操作，包括凭据启用、停用等。
+/// 对凭据管理系统进行操作，包括凭据启用、停用等。
 public struct Ssm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

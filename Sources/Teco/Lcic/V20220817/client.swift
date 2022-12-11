@@ -18,7 +18,7 @@
 
 /// 低代码互动课堂 (lcic)
 ///
-/// 介绍如何使用API对低代码互动课堂进行操作，包括课堂管理，用户管理，应用管理等
+/// 对低代码互动课堂进行操作，包括课堂管理，用户管理，应用管理等
 public struct Lcic: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

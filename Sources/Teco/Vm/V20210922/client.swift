@@ -18,7 +18,7 @@
 
 /// 视频内容安全 (vm)
 ///
-/// 介绍如何使用API对点播、直播视频内容检测进行操作，包括识别点播、直播视频中的不适宜内容等。
+/// 对点播、直播视频内容检测进行操作，包括识别点播、直播视频中的不适宜内容等。
 public struct Vm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 定制建模 (afc)
 ///
-/// 介绍如何使用API对定制建模进行操作，包括定制建模等。
+/// 对定制建模进行操作，包括定制建模等。
 public struct Afc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

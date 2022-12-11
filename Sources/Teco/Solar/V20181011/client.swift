@@ -44,7 +44,6 @@ public struct Solar: TCService {
         service: "solar", 
         apiVersion: "2018-10-11", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

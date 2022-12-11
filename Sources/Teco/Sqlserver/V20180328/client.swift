@@ -18,7 +18,7 @@
 
 /// 云数据库 SQL Server (sqlserver)
 ///
-/// 介绍如何使用API对云数据库SQL Server进行操作，包括实例管理、备份与恢复等。
+/// 对云数据库SQL Server进行操作，包括实例管理、备份与恢复等。
 public struct Sqlserver: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

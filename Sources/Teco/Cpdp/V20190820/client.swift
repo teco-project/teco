@@ -18,7 +18,7 @@
 
 /// 企业收付平台 (cpdp)
 ///
-/// 介绍如何使用API对企业收付平台进行操作，包括聚鑫、云鉴、智慧零售等。
+/// 对企业收付平台进行操作，包括聚鑫、云鉴、智慧零售等。
 public struct Cpdp: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

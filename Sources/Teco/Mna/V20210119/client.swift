@@ -18,7 +18,7 @@
 
 /// 移动网络加速 (mna)
 ///
-/// 介绍如何使用API对移动业务加速进行操作，包括启动加速、停止加速、上报接口状态等
+/// 对移动业务加速进行操作，包括启动加速、停止加速、上报接口状态等
 public struct Mna: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

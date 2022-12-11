@@ -18,7 +18,7 @@
 
 /// 人体分析 (bda)
 ///
-/// 介绍如何使用API对人体分析进行操作，包括人体库管理、人体搜索、人体检测等。
+/// 对人体分析进行操作，包括人体库管理、人体搜索、人体检测等。
 public struct Bda: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

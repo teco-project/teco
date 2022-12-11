@@ -18,7 +18,7 @@
 
 /// 云硬盘 (cbs)
 ///
-/// 介绍如何使用API对云硬盘和快照进行相关操作，如创建弹性云盘、创建快照或回滚快照等。
+/// 对云硬盘和快照进行相关操作，如创建弹性云盘、创建快照或回滚快照等。
 public struct Cbs: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

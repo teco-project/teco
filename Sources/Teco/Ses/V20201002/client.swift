@@ -18,7 +18,7 @@
 
 /// 邮件推送 (ses)
 ///
-/// 介绍如何使用API进行邮件发送操作，包括发信域名管理、DNS验证、模板管理、数据统计等。
+/// 进行邮件发送操作，包括发信域名管理、DNS验证、模板管理、数据统计等。
 public struct Ses: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

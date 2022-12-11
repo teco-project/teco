@@ -18,7 +18,7 @@
 
 /// 前端性能监控 (rum)
 ///
-/// 介绍如何使用API对应用观测进行操作，包括查询监控数据、创建应用实例等。
+/// 对应用观测进行操作，包括查询监控数据、创建应用实例等。
 public struct Rum: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 云监控 (monitor)
 ///
-/// 介绍如何使用API对云监控进行操作，包括查询监控数据、创建报警规则等。
+/// 对云监控进行操作，包括查询监控数据、创建报警规则等。
 public struct Monitor: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

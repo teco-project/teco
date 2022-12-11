@@ -18,7 +18,7 @@
 
 /// 云函数 (scf)
 ///
-/// 介绍如何使用API对云函数计算进行操作，包括层管理、函数、触发器等。
+/// 对云函数计算进行操作，包括层管理、函数、触发器等。
 public struct Scf: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 金融联络机器人 (cr)
 ///
-/// 介绍如何使用API对金融联络机器人进行操作，包括录音查询（文件）、获取信审结果等。
+/// 对金融联络机器人进行操作，包括录音查询（文件）、获取信审结果等。
 public struct Cr: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Cr: TCService {
         service: "cr", 
         apiVersion: "2018-03-21", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

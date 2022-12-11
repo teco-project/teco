@@ -18,7 +18,7 @@
 
 /// 数据库智能管家 DBbrain (dbbrain)
 ///
-/// 介绍如何使用API对数据库智能管家 Dbbrain 进行操作，包括慢日志分析、异常检测等。
+/// 对数据库智能管家 Dbbrain 进行操作，包括慢日志分析、异常检测等。
 public struct Dbbrain: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Dbbrain: TCService {
         service: "dbbrain", 
         apiVersion: "2019-10-16", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

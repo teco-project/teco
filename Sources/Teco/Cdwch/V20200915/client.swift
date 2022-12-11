@@ -46,7 +46,6 @@ public struct Cdwch: TCService {
         service: "cdwch", 
         apiVersion: "2020-09-15", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

@@ -47,7 +47,6 @@ public struct Icr: TCService {
         service: "icr", 
         apiVersion: "2021-10-14", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

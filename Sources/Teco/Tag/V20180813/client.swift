@@ -18,7 +18,7 @@
 
 /// 标签 (tag)
 ///
-/// 介绍如何使用API对标签操作，包括查询标签、标签关联资源等。
+/// 对标签操作，包括查询标签、标签关联资源等。
 public struct Tag: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

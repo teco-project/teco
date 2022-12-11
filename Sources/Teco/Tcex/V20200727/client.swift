@@ -44,7 +44,6 @@ public struct Tcex: TCService {
         service: "tcex", 
         apiVersion: "2020-07-27", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

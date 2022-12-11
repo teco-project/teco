@@ -44,7 +44,6 @@ public struct Tav: TCService {
         service: "tav", 
         apiVersion: "2019-01-18", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

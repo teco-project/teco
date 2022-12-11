@@ -18,7 +18,7 @@
 
 /// 图像分析 (tiia)
 ///
-/// 介绍如何使用API对图像分析进行操作，包括图像质量检测、图像理解等。
+/// 对图像分析进行操作，包括图像质量检测、图像理解等。
 public struct Tiia: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

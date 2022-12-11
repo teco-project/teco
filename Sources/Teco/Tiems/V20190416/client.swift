@@ -18,7 +18,7 @@
 
 /// 腾讯云 TI 平台 TI-EMS  (tiems)
 ///
-/// 介绍如何使用API对腾讯云 TI 平台 TI-EMS 进行操作，包括资源管理、服务管理、配置管理等。
+/// 对腾讯云 TI 平台 TI-EMS 进行操作，包括资源管理、服务管理、配置管理等。
 public struct Tiems: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Tiems: TCService {
         service: "tiems", 
         apiVersion: "2019-04-16", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

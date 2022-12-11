@@ -18,7 +18,7 @@
 
 /// TDSQL MySQL 版 (dcdb)
 ///
-/// 介绍如何使用API对分布式数据库TDSQL进行操作，包括新购分布式数据库实例询价、实例管理等。
+/// 对分布式数据库TDSQL进行操作，包括新购分布式数据库实例询价、实例管理等。
 public struct Dcdb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

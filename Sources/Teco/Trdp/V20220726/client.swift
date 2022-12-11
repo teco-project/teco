@@ -46,7 +46,6 @@ public struct Trdp: TCService {
         service: "trdp", 
         apiVersion: "2022-07-26", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

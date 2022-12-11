@@ -18,7 +18,7 @@
 
 /// 营销号码安全 (smpn)
 ///
-/// 介绍如何使用API对营销号码安全进行操作，包括企业认证、终端骚扰保护、虚假号码识别等。
+/// 对营销号码安全进行操作，包括企业认证、终端骚扰保护、虚假号码识别等。
 public struct Smpn: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

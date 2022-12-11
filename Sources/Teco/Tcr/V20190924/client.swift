@@ -18,7 +18,7 @@
 
 /// 容器镜像服务 (tcr)
 ///
-/// 介绍如何使用API对容器镜像服务进行相关操作，包括实例管理、镜像仓库等。
+/// 对容器镜像服务进行相关操作，包括实例管理、镜像仓库等。
 public struct Tcr: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

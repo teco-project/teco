@@ -18,7 +18,7 @@
 
 /// 资源编排 TIC (tic)
 ///
-/// 介绍如何使用API对资源栈进行操作，包括创建资源栈、创建资源栈版本、预览资源栈、发布资源栈、销毁资源栈以及删除资源栈等。
+/// 对资源栈进行操作，包括创建资源栈、创建资源栈版本、预览资源栈、发布资源栈、销毁资源栈以及删除资源栈等。
 public struct Tic: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

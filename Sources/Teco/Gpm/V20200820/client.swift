@@ -46,7 +46,6 @@ public struct Gpm: TCService {
         service: "gpm", 
         apiVersion: "2020-08-20", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

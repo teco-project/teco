@@ -18,7 +18,7 @@
 
 /// 云审计 (cloudaudit)
 ///
-/// 介绍如何使用API对云审计进行操作，包括更新跟踪集、检索日志、查询日志等。
+/// 对云审计进行操作，包括更新跟踪集、检索日志、查询日志等。
 public struct Cloudaudit: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

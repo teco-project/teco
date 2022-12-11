@@ -18,7 +18,7 @@
 
 /// 智能识图 (iir)
 ///
-/// 介绍如何使用API对智能识图进行操作，包括商品识别等。
+/// 对智能识图进行操作，包括商品识别等。
 public struct Iir: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Iir: TCService {
         service: "iir", 
         apiVersion: "2020-04-17", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

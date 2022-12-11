@@ -18,7 +18,7 @@
 
 /// 网站备案 (ba)
 ///
-/// 介绍如何使用API对备案进行操作，包括提交备案、查看备案信息、创建备案授权码等。
+/// 对备案进行操作，包括提交备案、查看备案信息、创建备案授权码等。
 public struct Ba: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

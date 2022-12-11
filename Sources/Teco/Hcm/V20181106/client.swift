@@ -18,7 +18,7 @@
 
 /// 数学作业批改 (hcm)
 ///
-/// 介绍如何使用API对数学作业批改进行操作，包括速算题目批改等。
+/// 对数学作业批改进行操作，包括速算题目批改等。
 public struct Hcm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

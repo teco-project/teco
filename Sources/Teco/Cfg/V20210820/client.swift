@@ -18,7 +18,7 @@
 
 /// 混沌演练平台 (cfg)
 ///
-/// 介绍如何使用API对混沌工程平台进行操作，包括创建演练、创建演练分组、创建经验库等
+/// 对混沌工程平台进行操作，包括创建演练、创建演练分组、创建经验库等
 public struct Cfg: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

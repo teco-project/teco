@@ -18,7 +18,7 @@
 
 /// 验证码 (captcha)
 ///
-/// 介绍如何使用API对验证码进行操作，包括核查验证码票据结果、安全验证码用户操作数据查询等。
+/// 对验证码进行操作，包括核查验证码票据结果、安全验证码用户操作数据查询等。
 public struct Captcha: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

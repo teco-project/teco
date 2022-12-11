@@ -18,7 +18,7 @@
 
 /// 数据传输服务 (dts)
 ///
-/// 介绍如何使用API对数据传输服务进行操作，包括数据订阅、数据传输服务、灾备同步等。
+/// 对数据传输服务进行操作，包括数据订阅、数据传输服务、灾备同步等。
 public struct Dts: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Dts: TCService {
         service: "dts", 
         apiVersion: "2018-03-30", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

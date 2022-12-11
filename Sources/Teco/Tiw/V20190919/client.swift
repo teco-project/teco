@@ -18,7 +18,7 @@
 
 /// 互动白板 (tiw)
 ///
-/// 介绍如何使用API对互动白板进行操作，包括文档转码、实时录制等
+/// 对互动白板进行操作，包括文档转码、实时录制等
 public struct Tiw: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

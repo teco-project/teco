@@ -18,7 +18,7 @@
 
 /// 英文作文批改 (ecc)
 ///
-/// 介绍如何使用API对英文作文批改进行操作，包括纯文本英语作文批改、图像识别批改等。
+/// 对英文作文批改进行操作，包括纯文本英语作文批改、图像识别批改等。
 public struct Ecc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

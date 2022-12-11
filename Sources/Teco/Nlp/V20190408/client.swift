@@ -18,7 +18,7 @@
 
 /// 自然语言处理 (nlp)
 ///
-/// 介绍如何使用API对自然语言处理进行操作，包括对话机器人、词法分析、篇章分析、向量技术等。
+/// 对自然语言处理进行操作，包括对话机器人、词法分析、篇章分析、向量技术等。
 public struct Nlp: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

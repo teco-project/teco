@@ -46,7 +46,6 @@ public struct Dataintegration: TCService {
         service: "dataintegration", 
         apiVersion: "2022-06-13", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

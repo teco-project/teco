@@ -18,7 +18,7 @@
 
 /// 游戏数据库 TcaplusDB (tcaplusdb)
 ///
-/// 介绍如何使用API对游戏数据库TcaplusDB进行操作，包括表格组、集群操作等。
+/// 对游戏数据库TcaplusDB进行操作，包括表格组、集群操作等。
 public struct Tcaplusdb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

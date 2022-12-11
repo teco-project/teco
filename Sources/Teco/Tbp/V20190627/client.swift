@@ -18,7 +18,7 @@
 
 /// 腾讯智能对话平台 (tbp)
 ///
-/// 介绍如何使用API对腾讯智能对话平台进行操作，包括会话重置、文本处理等。
+/// 对腾讯智能对话平台进行操作，包括会话重置、文本处理等。
 public struct Tbp: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

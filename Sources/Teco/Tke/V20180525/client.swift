@@ -18,7 +18,7 @@
 
 /// 容器服务 (tke)
 ///
-/// 介绍如何使用API对容器服务进行相关操作，包括集群、伸缩组、节点等。
+/// 对容器服务进行相关操作，包括集群、伸缩组、节点等。
 public struct Tke: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

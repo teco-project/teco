@@ -18,7 +18,7 @@
 
 /// 云市场 (market)
 ///
-/// 介绍如何使用API对云市场服务进行操作，包括对服务商操作、产品管理等。
+/// 对云市场服务进行操作，包括对服务商操作、产品管理等。
 public struct Market: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

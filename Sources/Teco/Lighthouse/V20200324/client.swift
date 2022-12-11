@@ -18,7 +18,7 @@
 
 /// 轻量应用服务器 (lighthouse)
 ///
-/// 介绍如何使用API对 lighthouse 实例资源进行相关操作，如启动实例、关闭实例、重启实例、查询实例列表等。
+/// 对 lighthouse 实例资源进行相关操作，如启动实例、关闭实例、重启实例、查询实例列表等。
 public struct Lighthouse: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

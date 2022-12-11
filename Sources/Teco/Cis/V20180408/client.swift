@@ -44,7 +44,6 @@ public struct Cis: TCService {
         service: "cis", 
         apiVersion: "2018-04-08", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

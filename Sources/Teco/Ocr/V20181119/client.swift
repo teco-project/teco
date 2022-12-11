@@ -18,7 +18,7 @@
 
 /// 文字识别 (ocr)
 ///
-/// 介绍如何使用API对文字识别进行操作，包括汽车场景识别、卡证文字识别、通用文字识别等。
+/// 对文字识别进行操作，包括汽车场景识别、卡证文字识别、通用文字识别等。
 public struct Ocr: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

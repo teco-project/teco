@@ -44,7 +44,6 @@ public struct Habo: TCService {
         service: "habo", 
         apiVersion: "2018-12-03", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

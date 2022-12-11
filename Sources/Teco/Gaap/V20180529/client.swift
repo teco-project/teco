@@ -18,7 +18,7 @@
 
 /// 全球应用加速 (gaap)
 ///
-/// 介绍如何使用API对全球应用加速操作，包括监听器、通道、源站等。
+/// 对全球应用加速操作，包括监听器、通道、源站等。
 public struct Gaap: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

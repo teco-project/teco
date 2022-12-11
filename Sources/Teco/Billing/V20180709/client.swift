@@ -18,7 +18,7 @@
 
 /// 费用中心 (billing)
 ///
-/// 介绍如何使用API对计费相关进行操作，包括资金管理、账单管理、订单管理等。
+/// 对计费相关进行操作，包括资金管理、账单管理、订单管理等。
 public struct Billing: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

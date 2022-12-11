@@ -44,7 +44,6 @@ public struct Ticm: TCService {
         service: "ticm", 
         apiVersion: "2018-11-27", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

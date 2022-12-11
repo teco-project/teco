@@ -18,7 +18,7 @@
 
 /// 物联网开发平台 (iotexplorer)
 ///
-/// 介绍如何使用API对物联网开发平台进行操作，包括产品管理、设备管理等。
+/// 对物联网开发平台进行操作，包括产品管理、设备管理等。
 public struct Iotexplorer: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

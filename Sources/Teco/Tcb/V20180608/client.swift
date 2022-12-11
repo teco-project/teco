@@ -18,7 +18,7 @@
 
 /// 云开发 CloudBase (tcb)
 ///
-/// 介绍如何使用API对云开发 CloudBase进行操作，包括更新环境信息、TCB云API统一入口等。
+/// 对云开发 CloudBase进行操作，包括更新环境信息、TCB云API统一入口等。
 public struct Tcb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

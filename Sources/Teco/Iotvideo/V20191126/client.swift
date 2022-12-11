@@ -18,7 +18,7 @@
 
 /// 物联网智能视频服务 (iotvideo)
 ///
-/// 介绍如何使用API对物联网智能视频服务进行操作，包括终端管理、OTA固件管理等。
+/// 对物联网智能视频服务进行操作，包括终端管理、OTA固件管理等。
 public struct Iotvideo: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 流量反欺诈 (taf)
 ///
-/// 介绍如何使用API对流量反欺诈进行操作，包括流量反欺诈-虚假TA识别、流量反欺诈-活跃度检测等。
+/// 对流量反欺诈进行操作，包括流量反欺诈-虚假TA识别、流量反欺诈-活跃度检测等。
 public struct Taf: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

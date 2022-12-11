@@ -18,7 +18,7 @@
 
 /// 微服务平台 TSF (tsf)
 ///
-/// 介绍如何使用API对腾讯微服务平台TSF进行操作，包括部署组、程序包管理等。
+/// 对腾讯微服务平台TSF进行操作，包括部署组、程序包管理等。
 public struct Tsf: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

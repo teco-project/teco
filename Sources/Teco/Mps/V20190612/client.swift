@@ -18,7 +18,7 @@
 
 /// 媒体处理 (mps)
 ///
-/// 介绍如何使用API对视频处理进行操作，如AI样本管理、工作流管理、视频处理等。
+/// 对视频处理进行操作，如AI样本管理、工作流管理、视频处理等。
 public struct Mps: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

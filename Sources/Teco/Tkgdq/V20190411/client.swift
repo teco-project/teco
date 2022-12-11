@@ -44,7 +44,6 @@ public struct Tkgdq: TCService {
         service: "tkgdq", 
         apiVersion: "2019-04-11", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

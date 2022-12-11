@@ -18,7 +18,7 @@
 
 /// 主机安全 (yunjing)
 ///
-/// 介绍如何使用API对主机安全进行操作，包括资产管理、漏洞管理等。
+/// 对主机安全进行操作，包括资产管理、漏洞管理等。
 public struct Yunjing: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Yunjing: TCService {
         service: "yunjing", 
         apiVersion: "2018-02-28", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

@@ -18,7 +18,7 @@
 
 /// 专线接入 (dc)
 ///
-/// 介绍如何使用API对专线接入进行操作，包括删除物理专线、创建专用通道、接受专用通道申请等。
+/// 对专线接入进行操作，包括删除物理专线、创建专用通道、接受专用通道申请等。
 public struct Dc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

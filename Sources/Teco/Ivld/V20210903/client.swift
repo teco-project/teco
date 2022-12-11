@@ -18,7 +18,7 @@
 
 /// 媒体智能标签 (ivld)
 ///
-/// 介绍如何使用API对媒体智能标签进行操作，包括视频上传、发起分析任务、获取任务分析结果等。
+/// 对媒体智能标签进行操作，包括视频上传、发起分析任务、获取任务分析结果等。
 public struct Ivld: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

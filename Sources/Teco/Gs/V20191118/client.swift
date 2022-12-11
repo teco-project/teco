@@ -18,7 +18,7 @@
 
 /// 云游戏 (gs)
 ///
-/// 介绍如何使用API对云游戏操作，包括尝试锁定机器、创建会话或强制退出游戏等。
+/// 对云游戏操作，包括尝试锁定机器、创建会话或强制退出游戏等。
 public struct Gs: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

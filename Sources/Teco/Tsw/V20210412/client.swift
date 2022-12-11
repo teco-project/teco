@@ -48,7 +48,6 @@ public struct Tsw: TCService {
         service: "tsw", 
         apiVersion: "2021-04-12", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

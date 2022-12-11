@@ -18,7 +18,7 @@
 
 /// 语音识别 (asr)
 ///
-/// 介绍如何使用API对语音识别进行操作，包括录音文件识别、实时语音识别等。
+/// 对语音识别进行操作，包括录音文件识别、实时语音识别等。
 public struct Asr: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// API 网关 (apigateway)
 ///
-/// 介绍如何使用API对API网关进行操作，包括自定义域名、限流策略等。
+/// 对API网关进行操作，包括自定义域名、限流策略等。
 public struct Apigateway: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

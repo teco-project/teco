@@ -18,7 +18,7 @@
 
 /// 本地专用集群 (cdc)
 ///
-/// 介绍如何使用API对本地专用集群进行操作，包括使用并管理站点、专用集群等资源。
+/// 对本地专用集群进行操作，包括使用并管理站点、专用集群等资源。
 public struct Cdc: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

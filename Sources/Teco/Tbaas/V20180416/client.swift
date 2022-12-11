@@ -18,7 +18,7 @@
 
 /// 腾讯云区块链服务平台 TBaaS (tbaas)
 ///
-/// 介绍如何使用API对TBaaS进行操作，包括TrustSQL服务统一、Hyperledger Fabric链状态等。
+/// 对TBaaS进行操作，包括TrustSQL服务统一、Hyperledger Fabric链状态等。
 public struct Tbaas: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

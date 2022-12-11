@@ -44,7 +44,6 @@ public struct Wss: TCService {
         service: "wss", 
         apiVersion: "2018-04-26", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

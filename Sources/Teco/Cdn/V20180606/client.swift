@@ -18,7 +18,7 @@
 
 /// 内容分发网络 CDN (cdn)
 ///
-/// 介绍如何使用API对内容分发网络操作，包括域名管理、配置管理、日志查询等。
+/// 对内容分发网络操作，包括域名管理、配置管理、日志查询等。
 public struct Cdn: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

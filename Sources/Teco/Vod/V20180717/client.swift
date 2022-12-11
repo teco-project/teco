@@ -18,7 +18,7 @@
 
 /// 云点播 (vod)
 ///
-/// 介绍如何使用API对云点播进行操作，如事件通知、视频处理、媒资管理等。
+/// 对云点播进行操作，如事件通知、视频处理、媒资管理等。
 public struct Vod: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

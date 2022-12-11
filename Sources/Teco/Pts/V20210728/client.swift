@@ -18,7 +18,7 @@
 
 /// 云压测 (pts)
 ///
-/// 介绍如何使用API的方式来构建压测相关场景
+/// 的方式来构建压测相关场景
 public struct Pts: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

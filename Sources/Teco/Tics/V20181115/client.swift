@@ -18,7 +18,7 @@
 
 /// 威胁情报云查服务 (tics)
 ///
-/// 介绍如何使用API对威胁情报云查服务进行操作，包括查询威胁情报、查询域名信誉等。
+/// 对威胁情报云查服务进行操作，包括查询威胁情报、查询域名信誉等。
 public struct Tics: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

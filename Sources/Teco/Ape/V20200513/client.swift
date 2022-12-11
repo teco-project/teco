@@ -18,7 +18,7 @@
 
 /// 正版图库直通车 (ape)
 ///
-/// 介绍如何使用API对正版图库直通车进行操作，包括素材获取、素材订购等。
+/// 对正版图库直通车进行操作，包括素材获取、素材订购等。
 public struct Ape: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

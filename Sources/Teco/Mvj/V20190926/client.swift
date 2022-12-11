@@ -44,7 +44,6 @@ public struct Mvj: TCService {
         service: "mvj", 
         apiVersion: "2019-09-26", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

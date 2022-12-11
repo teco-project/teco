@@ -18,7 +18,7 @@
 
 /// 黑石物理服务器1.0 (bm)
 ///
-/// 介绍如何使用API对黑石物理服务器进行相关操作，包括创建、更改带宽、重启等。
+/// 对黑石物理服务器进行相关操作，包括创建、更改带宽、重启等。
 public struct Bm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

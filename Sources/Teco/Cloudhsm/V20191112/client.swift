@@ -18,7 +18,7 @@
 
 /// 云加密机 (cloudhsm)
 ///
-/// 介绍如何使用API对云加密机进行操作，包括虚拟加密机实例相关操作等。
+/// 对云加密机进行操作，包括虚拟加密机实例相关操作等。
 public struct Cloudhsm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

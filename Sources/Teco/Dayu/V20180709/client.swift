@@ -18,7 +18,7 @@
 
 /// DDoS 高防包 (dayu)
 ///
-/// 介绍如何使用API对DDoS高防包操作，包括CC攻击防护策略、DDoS攻击防护策略等。
+/// 对DDoS高防包操作，包括CC攻击防护策略、DDoS攻击防护策略等。
 public struct Dayu: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

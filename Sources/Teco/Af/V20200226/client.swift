@@ -18,7 +18,7 @@
 
 /// 借贷反欺诈 (af)
 ///
-/// 介绍如何使用API对借贷反欺诈进行操作，包括借贷反欺诈等。
+/// 对借贷反欺诈进行操作，包括借贷反欺诈等。
 public struct Af: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

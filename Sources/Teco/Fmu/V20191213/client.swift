@@ -18,7 +18,7 @@
 
 /// 人脸试妆 (fmu)
 ///
-/// 介绍如何使用API对人脸试妆进行操作，包括试唇色、人脸美颜等。
+/// 对人脸试妆进行操作，包括试唇色、人脸美颜等。
 public struct Fmu: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

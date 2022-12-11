@@ -18,7 +18,7 @@
 
 /// 云直播CSS (live)
 ///
-/// 介绍如何使用API对云直播进行操作，如直播回调、直播混流等。
+/// 对云直播进行操作，如直播回调、直播混流等。
 public struct Live: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 弹性 MapReduce (emr)
 ///
-/// 介绍如何使用API对弹性MapReduce进行操作，包括信息查询、集群生命周期等。
+/// 对弹性MapReduce进行操作，包括信息查询、集群生命周期等。
 public struct Emr: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

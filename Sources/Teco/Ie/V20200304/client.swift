@@ -18,7 +18,7 @@
 
 /// 智能编辑 (ie)
 ///
-/// 介绍如何使用API对智能编辑进行操作，包括获取智能编辑任务结果、创建智能编辑任务等。
+/// 对智能编辑进行操作，包括获取智能编辑任务结果、创建智能编辑任务等。
 public struct Ie: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

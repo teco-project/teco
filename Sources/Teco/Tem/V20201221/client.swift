@@ -46,7 +46,6 @@ public struct Tem: TCService {
         service: "tem", 
         apiVersion: "2020-12-21", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

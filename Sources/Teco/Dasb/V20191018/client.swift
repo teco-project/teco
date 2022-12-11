@@ -18,7 +18,7 @@
 
 /// T-Sec-堡垒机（BH） (dasb)
 ///
-/// 介绍如何使用API对SaaS堡垒机进行操作，包括管理用户、访问权限等资源。
+/// 对SaaS堡垒机进行操作，包括管理用户、访问权限等资源。
 public struct Dasb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

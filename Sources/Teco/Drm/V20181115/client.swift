@@ -18,7 +18,7 @@
 
 /// 数字版权管理 (drm)
 ///
-/// 介绍如何使用API对数字版权管理进行操作，包括生成DRM的播放许可证、启动DRM加密等。
+/// 对数字版权管理进行操作，包括生成DRM的播放许可证、启动DRM加密等。
 public struct Drm: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

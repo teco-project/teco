@@ -18,7 +18,7 @@
 
 /// 云数据库Redis (redis)
 ///
-/// 介绍如何使用API对云数据库Redis进行操作，包括备份和恢复、禁用读写分离、创建Redis实例等。
+/// 对云数据库Redis进行操作，包括备份和恢复、禁用读写分离、创建Redis实例等。
 public struct Redis: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

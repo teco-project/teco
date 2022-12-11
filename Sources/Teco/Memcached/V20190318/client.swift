@@ -18,7 +18,7 @@
 
 /// 云数据库Memcached (memcached)
 ///
-/// 介绍如何使用API对即云数据库Memcached进行操作，包括获取Cmem实例列表等。
+/// 对即云数据库Memcached进行操作，包括获取Cmem实例列表等。
 public struct Memcached: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -18,7 +18,7 @@
 
 /// 云数据库 MongoDB (mongodb)
 ///
-/// 介绍如何使用API对云数据库RMongoDB进行操作，包括创建实例询价、创建云数据库实例、续费云数据库实例等。
+/// 对云数据库RMongoDB进行操作，包括创建实例询价、创建云数据库实例、续费云数据库实例等。
 public struct Mongodb: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

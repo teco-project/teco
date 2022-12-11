@@ -44,7 +44,6 @@ public struct Rp: TCService {
         service: "rp", 
         apiVersion: "2020-02-24", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

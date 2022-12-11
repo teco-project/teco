@@ -18,7 +18,7 @@
 
 /// 人脸核身 (faceid)
 ///
-/// 介绍如何使用API对人脸核身操作，包括验证结果拉取信息、实名信息核验服务等。
+/// 对人脸核身操作，包括验证结果拉取信息、实名信息核验服务等。
 public struct Faceid: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

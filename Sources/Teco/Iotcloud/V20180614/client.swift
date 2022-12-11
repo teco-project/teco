@@ -18,7 +18,7 @@
 
 /// 物联网通信 (iotcloud)
 ///
-/// 介绍如何使用API对物联网通信进行操作，包括规则引擎等。
+/// 对物联网通信进行操作，包括规则引擎等。
 public struct Iotcloud: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Iotcloud: TCService {
         service: "iotcloud", 
         apiVersion: "2018-06-14", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

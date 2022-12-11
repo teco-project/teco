@@ -18,7 +18,7 @@
 
 /// 人脸融合 (facefusion)
 ///
-/// 介绍如何使用API对人脸融合进行操作，包括人脸融合、选脸融合等。
+/// 对人脸融合进行操作，包括人脸融合、选脸融合等。
 public struct Facefusion: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

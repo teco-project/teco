@@ -18,7 +18,7 @@
 
 /// T-Sec-数据安全审计（DSA） (cds)
 ///
-/// 介绍如何使用API对数据安全审计进行操作，包括数据安全审计产品实例询价、获取数据安全审计实例列表等。
+/// 对数据安全审计进行操作，包括数据安全审计产品实例询价、获取数据安全审计实例列表等。
 public struct Cds: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

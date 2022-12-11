@@ -18,7 +18,7 @@
 
 /// Elasticsearch Service (es)
 ///
-/// 介绍如何使用API对Elasticsearch Service进行操作，包括ES集群实例管理等。
+/// 对Elasticsearch Service进行操作，包括ES集群实例管理等。
 public struct Es: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

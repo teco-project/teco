@@ -18,7 +18,7 @@
 
 /// 渠道合作伙伴 (partners)
 ///
-/// 介绍如何使用API对渠道合作伙伴进行操作，包括业务信息、客户操作、订单操作等。
+/// 对渠道合作伙伴进行操作，包括业务信息、客户操作、订单操作等。
 public struct Partners: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

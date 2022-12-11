@@ -18,7 +18,7 @@
 
 /// 批量计算 (batch)
 ///
-/// 介绍如何使用API对批量计算服务进行操作，包括作业、任务模块、计算环境等。
+/// 对批量计算服务进行操作，包括作业、任务模块、计算环境等。
 public struct Batch: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient

@@ -44,7 +44,6 @@ public struct Cim: TCService {
         service: "cim", 
         apiVersion: "2019-03-18", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

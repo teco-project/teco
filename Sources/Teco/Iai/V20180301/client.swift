@@ -18,7 +18,7 @@
 
 /// 人脸识别 (iai)
 ///
-/// 介绍如何使用API对人脸识别操作，包括五官定位、人脸比对等。
+/// 对人脸识别操作，包括五官定位、人脸比对等。
 public struct Iai: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Iai: TCService {
         service: "iai", 
         apiVersion: "2018-03-01", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

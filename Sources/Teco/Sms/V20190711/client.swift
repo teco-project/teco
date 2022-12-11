@@ -18,7 +18,7 @@
 
 /// 短信 (sms)
 ///
-/// 介绍如何使用API对短信进行操作，包括短信签名、发送短信、短信统计等。
+/// 对短信进行操作，包括短信签名、发送短信、短信统计等。
 public struct Sms: TCService {
     /// Client used for communication with Tencent Cloud
     public let client: TCClient
@@ -46,7 +46,6 @@ public struct Sms: TCService {
         service: "sms", 
         apiVersion: "2019-07-11", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )

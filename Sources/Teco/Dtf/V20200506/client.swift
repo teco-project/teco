@@ -44,7 +44,6 @@ public struct Dtf: TCService {
         service: "dtf", 
         apiVersion: "2020-05-06", 
         endpoint: endpoint, 
-        
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )
